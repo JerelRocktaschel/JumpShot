@@ -10,6 +10,35 @@
 		D817FC48261BCFB00092F5E0 /* JumpShot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D817FC3E261BCFB00092F5E0 /* JumpShot.framework */; };
 		D817FC4D261BCFB00092F5E0 /* JumpShotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D817FC4C261BCFB00092F5E0 /* JumpShotTests.swift */; };
 		D817FC4F261BCFB00092F5E0 /* JumpShot.h in Headers */ = {isa = PBXBuildFile; fileRef = D817FC41261BCFB00092F5E0 /* JumpShot.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D817FC5E261BCFEC0092F5E0 /* JumpShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = D817FC5D261BCFEC0092F5E0 /* JumpShot.swift */; };
+		D817FC64261BCFF80092F5E0 /* JumpShotGetTeams.swift in Sources */ = {isa = PBXBuildFile; fileRef = D817FC63261BCFF80092F5E0 /* JumpShotGetTeams.swift */; };
+		D817FC71261BD0070092F5E0 /* JumpShotNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D817FC69261BD0070092F5E0 /* JumpShotNetworkManager.swift */; };
+		D817FC72261BD0070092F5E0 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = D817FC6B261BD0070092F5E0 /* Team.swift */; };
+		D817FC73261BD0070092F5E0 /* JumpShotApiEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D817FC6D261BD0070092F5E0 /* JumpShotApiEndPoint.swift */; };
+		D817FC74261BD0070092F5E0 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D817FC6F261BD0070092F5E0 /* Router.swift */; };
+		D817FC75261BD0070092F5E0 /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D817FC70261BD0070092F5E0 /* EndPointType.swift */; };
+		D817FC84261BD02A0092F5E0 /* TeamApiResponseMissingLeagueDict.json in Resources */ = {isa = PBXBuildFile; fileRef = D817FC7A261BD02A0092F5E0 /* TeamApiResponseMissingLeagueDict.json */; };
+		D817FC85261BD02A0092F5E0 /* TeamApiResponseMissingStandardDict.json in Resources */ = {isa = PBXBuildFile; fileRef = D817FC7B261BD02A0092F5E0 /* TeamApiResponseMissingStandardDict.json */; };
+		D817FC86261BD02A0092F5E0 /* TeamApiResponseMissingIsNBAFranchise.json in Resources */ = {isa = PBXBuildFile; fileRef = D817FC7C261BD02A0092F5E0 /* TeamApiResponseMissingIsNBAFranchise.json */; };
+		D817FC87261BD02A0092F5E0 /* TeamApiResponseIsNBAFranchiseIsFalse.json in Resources */ = {isa = PBXBuildFile; fileRef = D817FC7D261BD02A0092F5E0 /* TeamApiResponseIsNBAFranchiseIsFalse.json */; };
+		D817FC88261BD02A0092F5E0 /* TeamApiResponseMissingAttribute.json in Resources */ = {isa = PBXBuildFile; fileRef = D817FC7E261BD02A0092F5E0 /* TeamApiResponseMissingAttribute.json */; };
+		D817FC89261BD02A0092F5E0 /* TeamApiResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D817FC7F261BD02A0092F5E0 /* TeamApiResponse.json */; };
+		D817FC8A261BD02A0092F5E0 /* TeamModel.json in Resources */ = {isa = PBXBuildFile; fileRef = D817FC81261BD02A0092F5E0 /* TeamModel.json */; };
+		D817FC8B261BD02A0092F5E0 /* TeamModelMissingDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D817FC82261BD02A0092F5E0 /* TeamModelMissingDataFormat.json */; };
+		D817FC8C261BD02A0092F5E0 /* TeamModelBadDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D817FC83261BD02A0092F5E0 /* TeamModelBadDataFormat.json */; };
+		D817FC93261BD02F0092F5E0 /* XCTestCase+helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D817FC92261BD02F0092F5E0 /* XCTestCase+helpers.swift */; };
+		D817FCA1261BD0560092F5E0 /* JumpShotNetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D817FC9A261BD0560092F5E0 /* JumpShotNetworkManagerTests.swift */; };
+		D817FCA2261BD0560092F5E0 /* JumpShotApiEndPointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D817FC9C261BD0560092F5E0 /* JumpShotApiEndPointTests.swift */; };
+		D817FCA3261BD0560092F5E0 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D817FC9E261BD0560092F5E0 /* MockURLSession.swift */; };
+		D817FCA4261BD0560092F5E0 /* JumpShotRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D817FCA0261BD0560092F5E0 /* JumpShotRouterTests.swift */; };
+		D817FCAB261BD05C0092F5E0 /* JumpShotAPIResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D817FCAA261BD05C0092F5E0 /* JumpShotAPIResponseTests.swift */; };
+		D817FCB2261BD0640092F5E0 /* JumpShotModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D817FCB1261BD0640092F5E0 /* JumpShotModelTests.swift */; };
+		D817FCC7261BD1A00092F5E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D817FCC6261BD1A00092F5E0 /* AppDelegate.swift */; };
+		D817FCC9261BD1A00092F5E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D817FCC8261BD1A00092F5E0 /* SceneDelegate.swift */; };
+		D817FCD0261BD1A10092F5E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D817FCCF261BD1A10092F5E0 /* Assets.xcassets */; };
+		D817FCD3261BD1A10092F5E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D817FCD1261BD1A10092F5E0 /* LaunchScreen.storyboard */; };
+		D817FCDC261BD1B40092F5E0 /* JumpShotTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D817FCDB261BD1B40092F5E0 /* JumpShotTableViewController.swift */; };
+		D817FCE7261BD1C60092F5E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D817FCE6261BD1C60092F5E0 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +58,38 @@
 		D817FC47261BCFB00092F5E0 /* JumpShotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JumpShotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D817FC4C261BCFB00092F5E0 /* JumpShotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotTests.swift; sourceTree = "<group>"; };
 		D817FC4E261BCFB00092F5E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D817FC5D261BCFEC0092F5E0 /* JumpShot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JumpShot.swift; sourceTree = "<group>"; };
+		D817FC63261BCFF80092F5E0 /* JumpShotGetTeams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JumpShotGetTeams.swift; sourceTree = "<group>"; };
+		D817FC69261BD0070092F5E0 /* JumpShotNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JumpShotNetworkManager.swift; sourceTree = "<group>"; };
+		D817FC6B261BD0070092F5E0 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		D817FC6D261BD0070092F5E0 /* JumpShotApiEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JumpShotApiEndPoint.swift; sourceTree = "<group>"; };
+		D817FC6F261BD0070092F5E0 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		D817FC70261BD0070092F5E0 /* EndPointType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
+		D817FC7A261BD02A0092F5E0 /* TeamApiResponseMissingLeagueDict.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TeamApiResponseMissingLeagueDict.json; sourceTree = "<group>"; };
+		D817FC7B261BD02A0092F5E0 /* TeamApiResponseMissingStandardDict.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TeamApiResponseMissingStandardDict.json; sourceTree = "<group>"; };
+		D817FC7C261BD02A0092F5E0 /* TeamApiResponseMissingIsNBAFranchise.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TeamApiResponseMissingIsNBAFranchise.json; sourceTree = "<group>"; };
+		D817FC7D261BD02A0092F5E0 /* TeamApiResponseIsNBAFranchiseIsFalse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TeamApiResponseIsNBAFranchiseIsFalse.json; sourceTree = "<group>"; };
+		D817FC7E261BD02A0092F5E0 /* TeamApiResponseMissingAttribute.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TeamApiResponseMissingAttribute.json; sourceTree = "<group>"; };
+		D817FC7F261BD02A0092F5E0 /* TeamApiResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TeamApiResponse.json; sourceTree = "<group>"; };
+		D817FC81261BD02A0092F5E0 /* TeamModel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TeamModel.json; sourceTree = "<group>"; };
+		D817FC82261BD02A0092F5E0 /* TeamModelMissingDataFormat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TeamModelMissingDataFormat.json; sourceTree = "<group>"; };
+		D817FC83261BD02A0092F5E0 /* TeamModelBadDataFormat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TeamModelBadDataFormat.json; sourceTree = "<group>"; };
+		D817FC92261BD02F0092F5E0 /* XCTestCase+helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+helpers.swift"; sourceTree = "<group>"; };
+		D817FC9A261BD0560092F5E0 /* JumpShotNetworkManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JumpShotNetworkManagerTests.swift; sourceTree = "<group>"; };
+		D817FC9C261BD0560092F5E0 /* JumpShotApiEndPointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JumpShotApiEndPointTests.swift; sourceTree = "<group>"; };
+		D817FC9E261BD0560092F5E0 /* MockURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
+		D817FCA0261BD0560092F5E0 /* JumpShotRouterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JumpShotRouterTests.swift; sourceTree = "<group>"; };
+		D817FCAA261BD05C0092F5E0 /* JumpShotAPIResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JumpShotAPIResponseTests.swift; sourceTree = "<group>"; };
+		D817FCB1261BD0640092F5E0 /* JumpShotModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JumpShotModelTests.swift; sourceTree = "<group>"; };
+		D817FCB6261BD06C0092F5E0 /* JumpShotModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JumpShotModelTests.swift; sourceTree = "<group>"; };
+		D817FCC4261BD1A00092F5E0 /* JumpShotExamples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JumpShotExamples.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D817FCC6261BD1A00092F5E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D817FCC8261BD1A00092F5E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		D817FCCF261BD1A10092F5E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D817FCD2261BD1A10092F5E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D817FCD4261BD1A10092F5E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D817FCDB261BD1B40092F5E0 /* JumpShotTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JumpShotTableViewController.swift; sourceTree = "<group>"; };
+		D817FCE6261BD1C60092F5E0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +108,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D817FCC1261BD1A00092F5E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -55,6 +123,7 @@
 			children = (
 				D817FC40261BCFB00092F5E0 /* JumpShot */,
 				D817FC4B261BCFB00092F5E0 /* JumpShotTests */,
+				D817FCC5261BD1A00092F5E0 /* JumpShotExamples */,
 				D817FC3F261BCFB00092F5E0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,6 +133,7 @@
 			children = (
 				D817FC3E261BCFB00092F5E0 /* JumpShot.framework */,
 				D817FC47261BCFB00092F5E0 /* JumpShotTests.xctest */,
+				D817FCC4261BD1A00092F5E0 /* JumpShotExamples.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -71,7 +141,10 @@
 		D817FC40261BCFB00092F5E0 /* JumpShot */ = {
 			isa = PBXGroup;
 			children = (
+				D817FC5D261BCFEC0092F5E0 /* JumpShot.swift */,
+				D817FC63261BCFF80092F5E0 /* JumpShotGetTeams.swift */,
 				D817FC41261BCFB00092F5E0 /* JumpShot.h */,
+				D817FC67261BD0070092F5E0 /* Network */,
 				D817FC42261BCFB00092F5E0 /* Info.plist */,
 			);
 			path = JumpShot;
@@ -81,9 +154,180 @@
 			isa = PBXGroup;
 			children = (
 				D817FC4C261BCFB00092F5E0 /* JumpShotTests.swift */,
+				D817FC78261BD02A0092F5E0 /* JSON */,
+				D817FC91261BD02F0092F5E0 /* Helpers */,
+				D817FC98261BD0560092F5E0 /* NetworkTests */,
+				D817FCA9261BD05C0092F5E0 /* APIResponseTests */,
+				D817FCB5261BD06C0092F5E0 /* ModelTests */,
 				D817FC4E261BCFB00092F5E0 /* Info.plist */,
 			);
 			path = JumpShotTests;
+			sourceTree = "<group>";
+		};
+		D817FC67261BD0070092F5E0 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D817FC68261BD0070092F5E0 /* NetworkManager */,
+				D817FC6A261BD0070092F5E0 /* Models */,
+				D817FC6C261BD0070092F5E0 /* EndPoint */,
+				D817FC6E261BD0070092F5E0 /* Service */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		D817FC68261BD0070092F5E0 /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				D817FC69261BD0070092F5E0 /* JumpShotNetworkManager.swift */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		D817FC6A261BD0070092F5E0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D817FC6B261BD0070092F5E0 /* Team.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D817FC6C261BD0070092F5E0 /* EndPoint */ = {
+			isa = PBXGroup;
+			children = (
+				D817FC6D261BD0070092F5E0 /* JumpShotApiEndPoint.swift */,
+			);
+			path = EndPoint;
+			sourceTree = "<group>";
+		};
+		D817FC6E261BD0070092F5E0 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D817FC6F261BD0070092F5E0 /* Router.swift */,
+				D817FC70261BD0070092F5E0 /* EndPointType.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		D817FC78261BD02A0092F5E0 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				D817FC79261BD02A0092F5E0 /* TeamApiResponse */,
+				D817FC80261BD02A0092F5E0 /* TeamModel */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		D817FC79261BD02A0092F5E0 /* TeamApiResponse */ = {
+			isa = PBXGroup;
+			children = (
+				D817FC7A261BD02A0092F5E0 /* TeamApiResponseMissingLeagueDict.json */,
+				D817FC7B261BD02A0092F5E0 /* TeamApiResponseMissingStandardDict.json */,
+				D817FC7C261BD02A0092F5E0 /* TeamApiResponseMissingIsNBAFranchise.json */,
+				D817FC7D261BD02A0092F5E0 /* TeamApiResponseIsNBAFranchiseIsFalse.json */,
+				D817FC7E261BD02A0092F5E0 /* TeamApiResponseMissingAttribute.json */,
+				D817FC7F261BD02A0092F5E0 /* TeamApiResponse.json */,
+			);
+			path = TeamApiResponse;
+			sourceTree = "<group>";
+		};
+		D817FC80261BD02A0092F5E0 /* TeamModel */ = {
+			isa = PBXGroup;
+			children = (
+				D817FC81261BD02A0092F5E0 /* TeamModel.json */,
+				D817FC82261BD02A0092F5E0 /* TeamModelMissingDataFormat.json */,
+				D817FC83261BD02A0092F5E0 /* TeamModelBadDataFormat.json */,
+			);
+			path = TeamModel;
+			sourceTree = "<group>";
+		};
+		D817FC91261BD02F0092F5E0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D817FC92261BD02F0092F5E0 /* XCTestCase+helpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D817FC98261BD0560092F5E0 /* NetworkTests */ = {
+			isa = PBXGroup;
+			children = (
+				D817FC99261BD0560092F5E0 /* NetworkManager */,
+				D817FC9B261BD0560092F5E0 /* EndPoint */,
+				D817FC9D261BD0560092F5E0 /* MockURLSession */,
+				D817FC9F261BD0560092F5E0 /* Router */,
+			);
+			path = NetworkTests;
+			sourceTree = "<group>";
+		};
+		D817FC99261BD0560092F5E0 /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				D817FC9A261BD0560092F5E0 /* JumpShotNetworkManagerTests.swift */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		D817FC9B261BD0560092F5E0 /* EndPoint */ = {
+			isa = PBXGroup;
+			children = (
+				D817FC9C261BD0560092F5E0 /* JumpShotApiEndPointTests.swift */,
+			);
+			path = EndPoint;
+			sourceTree = "<group>";
+		};
+		D817FC9D261BD0560092F5E0 /* MockURLSession */ = {
+			isa = PBXGroup;
+			children = (
+				D817FC9E261BD0560092F5E0 /* MockURLSession.swift */,
+			);
+			path = MockURLSession;
+			sourceTree = "<group>";
+		};
+		D817FC9F261BD0560092F5E0 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				D817FCA0261BD0560092F5E0 /* JumpShotRouterTests.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		D817FCA9261BD05C0092F5E0 /* APIResponseTests */ = {
+			isa = PBXGroup;
+			children = (
+				D817FCB0261BD0640092F5E0 /* ModelTests */,
+				D817FCAA261BD05C0092F5E0 /* JumpShotAPIResponseTests.swift */,
+			);
+			path = APIResponseTests;
+			sourceTree = "<group>";
+		};
+		D817FCB0261BD0640092F5E0 /* ModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				D817FCB1261BD0640092F5E0 /* JumpShotModelTests.swift */,
+			);
+			path = ModelTests;
+			sourceTree = "<group>";
+		};
+		D817FCB5261BD06C0092F5E0 /* ModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				D817FCB6261BD06C0092F5E0 /* JumpShotModelTests.swift */,
+			);
+			path = ModelTests;
+			sourceTree = "<group>";
+		};
+		D817FCC5261BD1A00092F5E0 /* JumpShotExamples */ = {
+			isa = PBXGroup;
+			children = (
+				D817FCC6261BD1A00092F5E0 /* AppDelegate.swift */,
+				D817FCC8261BD1A00092F5E0 /* SceneDelegate.swift */,
+				D817FCDB261BD1B40092F5E0 /* JumpShotTableViewController.swift */,
+				D817FCE6261BD1C60092F5E0 /* Main.storyboard */,
+				D817FCCF261BD1A10092F5E0 /* Assets.xcassets */,
+				D817FCD1261BD1A10092F5E0 /* LaunchScreen.storyboard */,
+				D817FCD4261BD1A10092F5E0 /* Info.plist */,
+			);
+			path = JumpShotExamples;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +380,23 @@
 			productReference = D817FC47261BCFB00092F5E0 /* JumpShotTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		D817FCC3261BD1A00092F5E0 /* JumpShotExamples */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D817FCD5261BD1A10092F5E0 /* Build configuration list for PBXNativeTarget "JumpShotExamples" */;
+			buildPhases = (
+				D817FCC0261BD1A00092F5E0 /* Sources */,
+				D817FCC1261BD1A00092F5E0 /* Frameworks */,
+				D817FCC2261BD1A00092F5E0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JumpShotExamples;
+			productName = JumpShotExamples;
+			productReference = D817FCC4261BD1A00092F5E0 /* JumpShotExamples.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -147,8 +408,12 @@
 				TargetAttributes = {
 					D817FC3D261BCFB00092F5E0 = {
 						CreatedOnToolsVersion = 12.3;
+						LastSwiftMigration = 1230;
 					};
 					D817FC46261BCFB00092F5E0 = {
+						CreatedOnToolsVersion = 12.3;
+					};
+					D817FCC3261BD1A00092F5E0 = {
 						CreatedOnToolsVersion = 12.3;
 					};
 				};
@@ -168,6 +433,7 @@
 			targets = (
 				D817FC3D261BCFB00092F5E0 /* JumpShot */,
 				D817FC46261BCFB00092F5E0 /* JumpShotTests */,
+				D817FCC3261BD1A00092F5E0 /* JumpShotExamples */,
 			);
 		};
 /* End PBXProject section */
@@ -184,6 +450,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D817FC8C261BD02A0092F5E0 /* TeamModelBadDataFormat.json in Resources */,
+				D817FC89261BD02A0092F5E0 /* TeamApiResponse.json in Resources */,
+				D817FC87261BD02A0092F5E0 /* TeamApiResponseIsNBAFranchiseIsFalse.json in Resources */,
+				D817FC86261BD02A0092F5E0 /* TeamApiResponseMissingIsNBAFranchise.json in Resources */,
+				D817FC85261BD02A0092F5E0 /* TeamApiResponseMissingStandardDict.json in Resources */,
+				D817FC8B261BD02A0092F5E0 /* TeamModelMissingDataFormat.json in Resources */,
+				D817FC88261BD02A0092F5E0 /* TeamApiResponseMissingAttribute.json in Resources */,
+				D817FC84261BD02A0092F5E0 /* TeamApiResponseMissingLeagueDict.json in Resources */,
+				D817FC8A261BD02A0092F5E0 /* TeamModel.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D817FCC2261BD1A00092F5E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D817FCE7261BD1C60092F5E0 /* Main.storyboard in Resources */,
+				D817FCD3261BD1A10092F5E0 /* LaunchScreen.storyboard in Resources */,
+				D817FCD0261BD1A10092F5E0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +479,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D817FC72261BD0070092F5E0 /* Team.swift in Sources */,
+				D817FC71261BD0070092F5E0 /* JumpShotNetworkManager.swift in Sources */,
+				D817FC73261BD0070092F5E0 /* JumpShotApiEndPoint.swift in Sources */,
+				D817FC5E261BCFEC0092F5E0 /* JumpShot.swift in Sources */,
+				D817FC74261BD0070092F5E0 /* Router.swift in Sources */,
+				D817FC64261BCFF80092F5E0 /* JumpShotGetTeams.swift in Sources */,
+				D817FC75261BD0070092F5E0 /* EndPointType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +493,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D817FCA1261BD0560092F5E0 /* JumpShotNetworkManagerTests.swift in Sources */,
+				D817FCB2261BD0640092F5E0 /* JumpShotModelTests.swift in Sources */,
+				D817FCAB261BD05C0092F5E0 /* JumpShotAPIResponseTests.swift in Sources */,
+				D817FCA2261BD0560092F5E0 /* JumpShotApiEndPointTests.swift in Sources */,
+				D817FCA4261BD0560092F5E0 /* JumpShotRouterTests.swift in Sources */,
+				D817FC93261BD02F0092F5E0 /* XCTestCase+helpers.swift in Sources */,
+				D817FCA3261BD0560092F5E0 /* MockURLSession.swift in Sources */,
 				D817FC4D261BCFB00092F5E0 /* JumpShotTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D817FCC0261BD1A00092F5E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D817FCC7261BD1A00092F5E0 /* AppDelegate.swift in Sources */,
+				D817FCC9261BD1A00092F5E0 /* SceneDelegate.swift in Sources */,
+				D817FCDC261BD1B40092F5E0 /* JumpShotTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +523,17 @@
 			targetProxy = D817FC49261BCFB00092F5E0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D817FCD1261BD1A10092F5E0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D817FCD2261BD1A10092F5E0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D817FC50261BCFB00092F5E0 /* Debug */ = {
@@ -341,6 +661,7 @@
 		D817FC53261BCFB00092F5E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = V8M7L5RW78;
@@ -357,6 +678,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.highscoreapps.JumpShot;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -365,6 +687,7 @@
 		D817FC54261BCFB00092F5E0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = V8M7L5RW78;
@@ -389,6 +712,7 @@
 		D817FC56261BCFB00092F5E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V8M7L5RW78;
 				INFOPLIST_FILE = JumpShotTests/Info.plist;
@@ -407,6 +731,7 @@
 		D817FC57261BCFB00092F5E0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V8M7L5RW78;
 				INFOPLIST_FILE = JumpShotTests/Info.plist;
@@ -416,6 +741,44 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.highscoreapps.JumpShotTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D817FCD6261BD1A10092F5E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V8M7L5RW78;
+				INFOPLIST_FILE = JumpShotExamples/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.highscoreapps.JumpShotExamples;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D817FCD7261BD1A10092F5E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V8M7L5RW78;
+				INFOPLIST_FILE = JumpShotExamples/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.highscoreapps.JumpShotExamples;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -448,6 +811,15 @@
 			buildConfigurations = (
 				D817FC56261BCFB00092F5E0 /* Debug */,
 				D817FC57261BCFB00092F5E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D817FCD5261BD1A10092F5E0 /* Build configuration list for PBXNativeTarget "JumpShotExamples" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D817FCD6261BD1A10092F5E0 /* Debug */,
+				D817FCD7261BD1A10092F5E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

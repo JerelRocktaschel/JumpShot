@@ -1,0 +1,15 @@
+{
+    "_internal": {
+        "pubDateTime": "2020-11-17 10:30:16.813 EST",
+        "igorPath": "cron,1605627010823,1605627010823|router,1605627010823,1605627010828|domUpdater,1605627011040,1605627016242|feedProducer,1605627016447,1605627017092",
+        "xslt": "NBA/xsl/league/roster/marty_teams_list.xsl",
+        "xsltForceRecompile": "true",
+        "xsltInCache": "false",
+        "xsltCompileTimeMillis": "152",
+        "xsltTransformTimeMillis": "2110",
+        "consolidatedDomKey": "prod__transform__marty_teams_list__1929228391129",
+        "endToEndTimeMillis": "12736"
+        },
+    "league": {
+    }
+}

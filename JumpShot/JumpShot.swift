@@ -1,0 +1,58 @@
+//
+//  JumpShot.swift
+//  JumpShot
+//
+//  Copyright (c) 2021 Jerel Rocktaschel
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
+//
+
+import Foundation
+
+public class JumpShot {
+
+    // MARK: Properties
+
+    static var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = JumpShotNetworkManagerResources.urlDateformat
+        return formatter
+    }()
+
+    // MARK: Init
+
+    public init() { }
+
+    // MARK: Helpers
+
+    static func getSeasonYear() -> String {
+        /// nba uses beginning season year in url
+        /// if current date is greater than new season start date - use current year
+        /// if current date is less than new season start date - use last year
+        let date = Date()
+        var year = String(Calendar.current.component(.year, from: Date()))
+        let newSeasonDateString = JumpShotNetworkManagerResources.seasonStartMonthAndDay + year
+        if let newSeasonDate = dateFormatter.date(from: newSeasonDateString),
+            let yearInt = Int(year),
+            date < newSeasonDate {
+                year = String(yearInt - 1)
+        }
+        return year
+    }
+}

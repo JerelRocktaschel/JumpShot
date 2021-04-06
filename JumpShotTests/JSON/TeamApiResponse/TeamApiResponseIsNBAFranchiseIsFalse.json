@@ -1,0 +1,31 @@
+{
+    "_internal": {
+        "pubDateTime":"2020-11-17 10:30:16.813 EST",
+        "igorPath":
+            "cron,1605627010823,1605627010823|router,1605627010823,1605627010828|domUpdater,1605627011040,1605627016242|feedProducer,1605627016447,1605627017092",
+        "xslt":"NBA/xsl/league/roster/marty_teams_list.xsl",
+        "xsltForceRecompile":"true",
+        "xsltInCache":"true",
+        "xsltCompileTimeMillis":"335",
+        "xsltTransformTimeMillis":"238","consolidatedDomKey":"prod__transform__marty_teams_list__1929228391129",
+        "endToEndTimeMillis":"6269"
+    },
+    "league":{
+        "standard": [
+            {
+                "isNBAFranchise":false,
+                "isAllStar":false,
+                "city":"Boston",
+                "altCityName":"Boston",
+                "fullName":"Boston Celtics",
+                "tricode":"BOS",
+                "teamId":"1610612738",
+                "nickname":"Celtics",
+                "urlName":"celtics",
+                "teamShortName":"Boston",
+                "confName":"East",
+                "divName":"Atlantic"
+            }
+        ]
+    }
+}
