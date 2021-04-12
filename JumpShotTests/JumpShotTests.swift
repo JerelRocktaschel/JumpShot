@@ -128,7 +128,7 @@ class JumpShotTests: XCTestCase {
         guard let path = testBundle.path(forResource: "TeamApiResponse", ofType: "json")
             else { fatalError("Can't find TeamApiResponse.json file") }
         let teamApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
-        let expectation = XCTestExpectation(description: "Player Response")
+        let expectation = XCTestExpectation(description: "Team Response")
 
         jumpShot.getTeams { teams, _ in
             responseTeams = teams!
@@ -153,5 +153,156 @@ class JumpShotTests: XCTestCase {
         XCTAssertEqual(responseTeams.first!.shortName, "Atlanta")
         XCTAssertEqual(responseTeams.first!.conference, "East")
         XCTAssertEqual(responseTeams.first!.division, "Southeast")
+    }
+    
+    // MARK: Team Image
+    
+    func test_jumpShot_withGetTeamImage_isNetworkUnavailable() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getTeamImage(for: "BOS") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            nil, nil, TestError.testError
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The network is unavailable.")
+    }
+    
+    func test_jumpShot_withGetTeamImage_isRequestCouldNotBeDecoded() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "Network Error")
+
+        jumpShot.getTeamImage(for: "BOS") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            teamJsonData(), response(statusCode: 300), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The source data could not be decoded.")
+    }
+    
+    func test_jumpShot_withGetTeamImage_isNoDataReturned() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getTeamImage(for: "BOS") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+                           nil, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "No NBA data was returned.")
+    }
+    
+    func test_jumpShot_withGetTeamImage_isUnableToDecodeWithError() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getTeamImage(for: "BOS") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            badJsonData(), response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The source data could not be decoded.")
+    }
+    
+    func test_jumpShot_withGetTeamImage_isBOSLogo() throws {
+        let mockURLSession = MockURLSession()
+        router.session = mockURLSession
+        let testBundle = Bundle(for: type(of: self))
+        guard let path = testBundle.path(forResource: "BOS", ofType: "png")
+            else { fatalError("Can't find UTA.png file") }
+        let teamImageData = try Data(contentsOf: URL(fileURLWithPath: path))
+        var responseTeamImage = UIImage()
+        let expectation = XCTestExpectation(description: "Team Image Response")
+
+        jumpShot.getTeamImage(for: "BOS") { image, _ in
+            responseTeamImage = image!
+            expectation.fulfill()
+        }
+        
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            teamImageData, response(statusCode: 200), nil
+        )
+        
+        wait(for: [expectation], timeout: 5.0)
+        XCTAssertEqual(responseTeamImage.pngData()!.count, 86373)
+    }
+    
+    func test_jumpShot_withGetTeamImage_isUTALogo() throws {
+        let mockURLSession = MockURLSession()
+        router.session = mockURLSession
+        let testBundle = Bundle(for: type(of: self))
+        guard let path = testBundle.path(forResource: "UTA", ofType: "png")
+            else { fatalError("Can't find UTA.png file") }
+        let teamImageData = try Data(contentsOf: URL(fileURLWithPath: path))
+        var responseTeamImage = UIImage()
+        let expectation = XCTestExpectation(description: "Team Image Response")
+
+        jumpShot.getTeamImage(for: "UTA") { image, _ in
+            responseTeamImage = image!
+            expectation.fulfill()
+        }
+        
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            teamImageData, response(statusCode: 200), nil
+        )
+        
+        wait(for: [expectation], timeout: 5.0)
+        XCTAssertEqual(responseTeamImage.pngData()!.count, 15494)
+    }
+    
+    func test_jumpShot_withGetTeamImage_isUNOPLogo() throws {
+        let mockURLSession = MockURLSession()
+        router.session = mockURLSession
+        let testBundle = Bundle(for: type(of: self))
+        guard let path = testBundle.path(forResource: "NOP", ofType: "png")
+            else { fatalError("Can't find NOP.png file") }
+        let teamImageData = try Data(contentsOf: URL(fileURLWithPath: path))
+        var responseTeamImage = UIImage()
+        let expectation = XCTestExpectation(description: "Team Image Response")
+
+        jumpShot.getTeamImage(for: "NOP") { image, _ in
+            responseTeamImage = image!
+            expectation.fulfill()
+        }
+        
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            teamImageData, response(statusCode: 200), nil
+        )
+        
+        wait(for: [expectation], timeout: 5.0)
+        XCTAssertEqual(responseTeamImage.pngData()!.count, 35550)
     }
 }

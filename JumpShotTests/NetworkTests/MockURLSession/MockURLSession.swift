@@ -13,7 +13,18 @@ class MockURLSession: URLSessionProtocol {
     var dataTaskCallCount = 0
     var dataTaskArgsRequest: [URLRequest] = []
     var dataTaskArgsCompletionHandler: [(Data?, URLResponse?, Error?) -> Void] = []
+    var imageTaskArgsCompletionHandler: [(UIImage?, Error?) -> Void] = []
 
+    func imageTask(
+            with request: URLRequest,
+            completionHandler: @escaping (UIImage?, Error?) -> Void
+    ) -> URLSessionDataTask {
+        dataTaskCallCount += 1
+        dataTaskArgsRequest.append(request)
+        imageTaskArgsCompletionHandler.append(completionHandler)
+        return DummyURLSessionDataTask()
+    }
+    
     func dataTask(
             with request: URLRequest,
             completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void

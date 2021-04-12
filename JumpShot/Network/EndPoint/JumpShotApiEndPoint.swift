@@ -31,14 +31,17 @@ public typealias HTTPHeaders = [String: String]
 
 public enum BaseURL {
     public static var teamList: String { return "https://data.nba.net/data/5s/prod/v2/" }
+    public static var teamImage: String { return "https://a.espncdn.com/i/teamlogos/nba/500/" }
 }
 
 public enum Path {
     public static var teamList: String { return "/teams.json" }
+    public static var teamImage: String { return ".png" }
 }
 
 enum JumpShotApiEndPoint {
     case teamList(season: String)
+    case teamImage(teamAbbreviation: String)
 }
 
 extension JumpShotApiEndPoint: EndPointType {
@@ -48,6 +51,7 @@ extension JumpShotApiEndPoint: EndPointType {
     var environmentBaseURL: String {
         switch self {
         case .teamList: return BaseURL.teamList
+        case .teamImage: return BaseURL.teamImage
         }
     }
 
@@ -62,6 +66,8 @@ extension JumpShotApiEndPoint: EndPointType {
         switch self {
         case .teamList(let season):
             return season + Path.teamList
+        case .teamImage(let teamAbbreviation):
+            return teamAbbreviation + Path.teamImage
         }
     }
 }

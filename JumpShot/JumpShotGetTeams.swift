@@ -30,7 +30,7 @@ public extension JumpShot {
     /**
         GET    getTeams
          
-        Returns a collection of NBA Teams.
+        Returns a collection of current NBA Teams in a [Team] array.
      
         API:   V2
         

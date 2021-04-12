@@ -15,13 +15,13 @@ class JumpShotRouterTests: XCTestCase {
 
     override func setUp() {
         router.session = mockURLSession
-        router.request(.teamList(season: "2020")) { _, _, _ in
-        }
     }
 
     // MARK: Team
 
     func test_teamRouter_shouldMakeRequestToTeamsAPIURL() {
+        router.request(.teamList(season: "2020")) { _, _, _ in
+        }
         mockURLSession.verifyDataTask(
             with: URLRequest(url: URL(string: "https://data.nba.net/data/5s/prod/v2/2020/teams.json")!))
     }
@@ -31,5 +31,14 @@ class JumpShotRouterTests: XCTestCase {
                            ofType: "json")
         let teamApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
         XCTAssertEqual(teamApiResponseData, teamJsonData())
+    }
+    
+    // MARK: Team Image
+
+    func test_teamImageRouter_shouldMakeRequestToTeamsImageAPIURL() {
+        router.request(.teamImage(teamAbbreviation: "BOS")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://a.espncdn.com/i/teamlogos/nba/500/BOS.png")!))
     }
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import XCTest
+import UIKit
 
 public extension XCTestCase {
 
@@ -86,3 +87,4 @@ public extension XCTestCase {
     }
     // swiftlint:enable all
 }
+
