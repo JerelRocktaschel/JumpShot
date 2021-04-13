@@ -17,7 +17,7 @@ class JumpShotTableViewController: UITableViewController {
     // MARK: 1 - Instantiate an instance of JumpShot
 
     let jumpShot = JumpShot()
-    let jumpShotFunctions = ["getTeams()","getTeamImage()"]
+    let jumpShotFunctions = ["getTeams()","getTeamImage()","getPlayerImage() - Small","getPlayerImage() - Large"]
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         jumpShotFunctions.count
@@ -35,6 +35,10 @@ class JumpShotTableViewController: UITableViewController {
             getTeams()
         case 1:
             getTeamImage(for: "BOS")
+        case 2:
+            getPlayerImage(for: .small, and: "1627759")
+        case 3:
+            getPlayerImage(for: .large, and: "1627759")
         default:
             print("No function selected")
         }
@@ -73,6 +77,23 @@ class JumpShotTableViewController: UITableViewController {
             }
 
             print(teamImage)
+        }
+    }
+    
+    private func getPlayerImage(for size: JumpShotPlayerImageSize, and playerId: String) {
+
+        jumpShot.getPlayerImage(for: size, and: playerId) { playerImage, error in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+
+            guard let playerImage = playerImage else {
+                print("No image returned.")
+                return
+            }
+
+            print(playerImage)
         }
     }
 }

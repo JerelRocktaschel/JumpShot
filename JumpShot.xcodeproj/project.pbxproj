@@ -43,6 +43,10 @@
 		D832C4F4261F74CD00D214B8 /* BOS.png in Resources */ = {isa = PBXBuildFile; fileRef = D832C4F3261F74CD00D214B8 /* BOS.png */; };
 		D832C4FA261FB3D300D214B8 /* NOP.png in Resources */ = {isa = PBXBuildFile; fileRef = D832C4F8261FB3D300D214B8 /* NOP.png */; };
 		D832C4FB261FB3D300D214B8 /* UTA.png in Resources */ = {isa = PBXBuildFile; fileRef = D832C4F9261FB3D300D214B8 /* UTA.png */; };
+		D832C5092624BE0200D214B8 /* JumpShotGetPlayerImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D832C5082624BE0200D214B8 /* JumpShotGetPlayerImage.swift */; };
+		D832C5112625080A00D214B8 /* JumpShot+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D832C5102625080A00D214B8 /* JumpShot+Helpers.swift */; };
+		D832C51926251C2900D214B8 /* small_1627759.png in Resources */ = {isa = PBXBuildFile; fileRef = D832C51726251C2900D214B8 /* small_1627759.png */; };
+		D832C51A26251C2900D214B8 /* large_1627759.png in Resources */ = {isa = PBXBuildFile; fileRef = D832C51826251C2900D214B8 /* large_1627759.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +102,10 @@
 		D832C4F3261F74CD00D214B8 /* BOS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BOS.png; sourceTree = "<group>"; };
 		D832C4F8261FB3D300D214B8 /* NOP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NOP.png; sourceTree = "<group>"; };
 		D832C4F9261FB3D300D214B8 /* UTA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UTA.png; sourceTree = "<group>"; };
+		D832C5082624BE0200D214B8 /* JumpShotGetPlayerImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetPlayerImage.swift; sourceTree = "<group>"; };
+		D832C5102625080A00D214B8 /* JumpShot+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JumpShot+Helpers.swift"; sourceTree = "<group>"; };
+		D832C51726251C2900D214B8 /* small_1627759.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = small_1627759.png; sourceTree = "<group>"; };
+		D832C51826251C2900D214B8 /* large_1627759.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = large_1627759.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,8 +158,10 @@
 			isa = PBXGroup;
 			children = (
 				D817FC5D261BCFEC0092F5E0 /* JumpShot.swift */,
+				D832C5102625080A00D214B8 /* JumpShot+Helpers.swift */,
 				D817FC63261BCFF80092F5E0 /* JumpShotGetTeams.swift */,
 				D832C4DC261E50F000D214B8 /* JumpShotGetTeamImage.swift */,
+				D832C5082624BE0200D214B8 /* JumpShotGetPlayerImage.swift */,
 				D817FC41261BCFB00092F5E0 /* JumpShot.h */,
 				D817FC67261BD0070092F5E0 /* Network */,
 				D817FC42261BCFB00092F5E0 /* Info.plist */,
@@ -343,11 +353,29 @@
 		D832C4F2261F749E00D214B8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D832C51626251C1300D214B8 /* Player */,
+				D832C51526251C0600D214B8 /* Team */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		D832C51526251C0600D214B8 /* Team */ = {
+			isa = PBXGroup;
+			children = (
 				D832C4F8261FB3D300D214B8 /* NOP.png */,
 				D832C4F9261FB3D300D214B8 /* UTA.png */,
 				D832C4F3261F74CD00D214B8 /* BOS.png */,
 			);
-			path = Images;
+			path = Team;
+			sourceTree = "<group>";
+		};
+		D832C51626251C1300D214B8 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				D832C51826251C2900D214B8 /* large_1627759.png */,
+				D832C51726251C2900D214B8 /* small_1627759.png */,
+			);
+			path = Player;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -475,12 +503,14 @@
 				D817FC89261BD02A0092F5E0 /* TeamApiResponse.json in Resources */,
 				D817FC87261BD02A0092F5E0 /* TeamApiResponseIsNBAFranchiseIsFalse.json in Resources */,
 				D817FC86261BD02A0092F5E0 /* TeamApiResponseMissingIsNBAFranchise.json in Resources */,
+				D832C51A26251C2900D214B8 /* large_1627759.png in Resources */,
 				D832C4FA261FB3D300D214B8 /* NOP.png in Resources */,
 				D817FC85261BD02A0092F5E0 /* TeamApiResponseMissingStandardDict.json in Resources */,
 				D817FC8B261BD02A0092F5E0 /* TeamModelMissingDataFormat.json in Resources */,
 				D832C4F4261F74CD00D214B8 /* BOS.png in Resources */,
 				D817FC88261BD02A0092F5E0 /* TeamApiResponseMissingAttribute.json in Resources */,
 				D817FC84261BD02A0092F5E0 /* TeamApiResponseMissingLeagueDict.json in Resources */,
+				D832C51926251C2900D214B8 /* small_1627759.png in Resources */,
 				D817FC8A261BD02A0092F5E0 /* TeamModel.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,9 +537,11 @@
 				D817FC71261BD0070092F5E0 /* JumpShotNetworkManager.swift in Sources */,
 				D817FC73261BD0070092F5E0 /* JumpShotApiEndPoint.swift in Sources */,
 				D817FC5E261BCFEC0092F5E0 /* JumpShot.swift in Sources */,
+				D832C5092624BE0200D214B8 /* JumpShotGetPlayerImage.swift in Sources */,
 				D817FC74261BD0070092F5E0 /* Router.swift in Sources */,
 				D817FC64261BCFF80092F5E0 /* JumpShotGetTeams.swift in Sources */,
 				D817FC75261BD0070092F5E0 /* EndPointType.swift in Sources */,
+				D832C5112625080A00D214B8 /* JumpShot+Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

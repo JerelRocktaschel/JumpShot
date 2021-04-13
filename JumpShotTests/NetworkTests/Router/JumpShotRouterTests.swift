@@ -41,4 +41,20 @@ class JumpShotRouterTests: XCTestCase {
         mockURLSession.verifyDataTask(
             with: URLRequest(url: URL(string: "https://a.espncdn.com/i/teamlogos/nba/500/BOS.png")!))
     }
+    
+    // MARK: Player Image
+    
+    func test_playerSmallImageRouter_shouldMakeRequestToTeamsImageAPIURL() {
+        router.request(.playerImage(imageSize: .small, playerId: "1627759")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/1627759.png")!))
+    }
+    
+    func test_playerLargeImageRouter_shouldMakeRequestToTeamsImageAPIURL() {
+        router.request(.playerImage(imageSize: .large, playerId: "1627759")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/1040x760/1627759.png")!))
+    }
 }

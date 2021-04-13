@@ -38,21 +38,4 @@ public class JumpShot {
     // MARK: Init
 
     public init() { }
-
-    // MARK: Helpers
-
-    static func getSeasonYear() -> String {
-        /// nba uses beginning season year in url
-        /// if current date is greater than new season start date - use current year
-        /// if current date is less than new season start date - use last year
-        let date = Date()
-        var year = String(Calendar.current.component(.year, from: Date()))
-        let newSeasonDateString = JumpShotNetworkManagerResources.seasonStartMonthAndDay + year
-        if let newSeasonDate = dateFormatter.date(from: newSeasonDateString),
-            let yearInt = Int(year),
-            date < newSeasonDate {
-                year = String(yearInt - 1)
-        }
-        return year
-    }
 }

@@ -32,16 +32,19 @@ public typealias HTTPHeaders = [String: String]
 public enum BaseURL {
     public static var teamList: String { return "https://data.nba.net/data/5s/prod/v2/" }
     public static var teamImage: String { return "https://a.espncdn.com/i/teamlogos/nba/500/" }
+    public static var playerImage: String { return "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/" }
 }
-
+    
 public enum Path {
     public static var teamList: String { return "/teams.json" }
     public static var teamImage: String { return ".png" }
+    public static var playerImage: String { return ".png" }
 }
 
 enum JumpShotApiEndPoint {
     case teamList(season: String)
     case teamImage(teamAbbreviation: String)
+    case playerImage(imageSize: JumpShotPlayerImageSize, playerId: String)
 }
 
 extension JumpShotApiEndPoint: EndPointType {
@@ -52,6 +55,7 @@ extension JumpShotApiEndPoint: EndPointType {
         switch self {
         case .teamList: return BaseURL.teamList
         case .teamImage: return BaseURL.teamImage
+        case .playerImage: return BaseURL.playerImage
         }
     }
 
@@ -68,6 +72,8 @@ extension JumpShotApiEndPoint: EndPointType {
             return season + Path.teamList
         case .teamImage(let teamAbbreviation):
             return teamAbbreviation + Path.teamImage
+        case .playerImage(let imageSize, let playerId):
+            return imageSize.rawValue + "/" + playerId + Path.playerImage
         }
     }
 }

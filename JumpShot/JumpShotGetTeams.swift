@@ -28,13 +28,17 @@ import Foundation
 public extension JumpShot {
 
     /**
-        GET    getTeams
-         
-        Returns a collection of current NBA Teams in a [Team] array.
+        Returns an array of Team model objects representing all teams in the NBA.
      
-        API:   V2
-        
-        URL:  data.nba.net/prod/v2/CURRENT SEASON YEAR/teams.json - (See getSeasonYear() for CURRENT SEASON YEAR logic)
+        URL called:  ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/JUMPSHOTIMAGESIZE/NBA PLAYER ID.png
+     
+        - Parameter completion: The callback after retrieval.
+        - Parameter teams: An array of Team model objects.
+        - Parameter error: Error should one occur.
+        - Returns: An array of Team model objects or error.
+            
+        # Notes: #
+        1. Handle [Team] return due to being optional.
      */
 
     func getTeams(completion: @escaping (_ teams: [Team]?, _ error: LocalizedError?) -> Void) {
