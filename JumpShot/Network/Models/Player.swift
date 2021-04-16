@@ -53,7 +53,7 @@ public struct Player {
     let displayName: String
     let playerId: String
     let teamID: String
-    let jersey: Int
+    var jersey: Int?
     let position: String
     var feet: Int?
     var inches: Int?
@@ -94,7 +94,12 @@ public struct Player {
         displayName = try playerContainer.decode(String.self, forKey: .displayName)
         playerId = try playerContainer.decode(String.self, forKey: .playerId)
         teamID = try playerContainer.decode(String.self, forKey: .teamId)
-        jersey = Int(jerseyString)!
+
+        // sometimes newer players do not have a jersey number
+        if let jerseyInt = Int(jerseyString) {
+            jersey = jerseyInt
+        }
+
         position = try playerContainer.decode(String.self, forKey: .position)
 
         // sometimes newer players are missing height/weight information
@@ -191,13 +196,6 @@ extension Player: Decodable {
         case lastAffiliation = "lastAffiliation"
         case country = "country"
     }
-}
-
-enum PlayerJSONKeys {
-    case resultsSets
-    case commonallplayers
-    case headers
-    case rowset
 }
 
 struct PlayerApiResponse {
