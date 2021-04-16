@@ -49,6 +49,16 @@
 		D832C51A26251C2900D214B8 /* large_1627759.png in Resources */ = {isa = PBXBuildFile; fileRef = D832C51826251C2900D214B8 /* large_1627759.png */; };
 		D832C52826262CFB00D214B8 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D832C52726262CFB00D214B8 /* Player.swift */; };
 		D832C52D26273D6900D214B8 /* JumpShotGetPlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D832C52C26273D6900D214B8 /* JumpShotGetPlayers.swift */; };
+		D8D676062628D23A0009B06F /* PlayerApiResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D8D676052628D23A0009B06F /* PlayerApiResponse.json */; };
+		D8D676172628E2B90009B06F /* PlayerModel.json in Resources */ = {isa = PBXBuildFile; fileRef = D8D676162628E2B90009B06F /* PlayerModel.json */; };
+		D8D6761F2629DFDF0009B06F /* PlayerModelMissingDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D8D6761E2629DFDF0009B06F /* PlayerModelMissingDataFormat.json */; };
+		D8D676242629DFF80009B06F /* PlayerModelBadDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D8D676232629DFF80009B06F /* PlayerModelBadDataFormat.json */; };
+		D8D676342629E3290009B06F /* PlayerApiResponseMissingStandardDict.json in Resources */ = {isa = PBXBuildFile; fileRef = D8D676332629E3290009B06F /* PlayerApiResponseMissingStandardDict.json */; };
+		D8D6763F2629E36E0009B06F /* PlayerApiResponseMissingLeagueDict.json in Resources */ = {isa = PBXBuildFile; fileRef = D8D6763E2629E36E0009B06F /* PlayerApiResponseMissingLeagueDict.json */; };
+		D8D6764A2629E5770009B06F /* PlayerApiResponseMissingIsActive.json in Resources */ = {isa = PBXBuildFile; fileRef = D8D676492629E5770009B06F /* PlayerApiResponseMissingIsActive.json */; };
+		D8D6764F2629E6C50009B06F /* PlayerApiResponseIsActiveIsFalse.json in Resources */ = {isa = PBXBuildFile; fileRef = D8D6764E2629E6C50009B06F /* PlayerApiResponseIsActiveIsFalse.json */; };
+		D8D676572629E9600009B06F /* PlayerApiResponseMissingAttribute.json in Resources */ = {isa = PBXBuildFile; fileRef = D8D676562629E9600009B06F /* PlayerApiResponseMissingAttribute.json */; };
+		D8D6765C2629F0110009B06F /* PlayerApiResponseOnePlayer.json in Resources */ = {isa = PBXBuildFile; fileRef = D8D6765B2629F0110009B06F /* PlayerApiResponseOnePlayer.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +120,16 @@
 		D832C51826251C2900D214B8 /* large_1627759.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = large_1627759.png; sourceTree = "<group>"; };
 		D832C52726262CFB00D214B8 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		D832C52C26273D6900D214B8 /* JumpShotGetPlayers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetPlayers.swift; sourceTree = "<group>"; };
+		D8D676052628D23A0009B06F /* PlayerApiResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlayerApiResponse.json; sourceTree = "<group>"; };
+		D8D676162628E2B90009B06F /* PlayerModel.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlayerModel.json; sourceTree = "<group>"; };
+		D8D6761E2629DFDF0009B06F /* PlayerModelMissingDataFormat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlayerModelMissingDataFormat.json; sourceTree = "<group>"; };
+		D8D676232629DFF80009B06F /* PlayerModelBadDataFormat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlayerModelBadDataFormat.json; sourceTree = "<group>"; };
+		D8D676332629E3290009B06F /* PlayerApiResponseMissingStandardDict.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlayerApiResponseMissingStandardDict.json; sourceTree = "<group>"; };
+		D8D6763E2629E36E0009B06F /* PlayerApiResponseMissingLeagueDict.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlayerApiResponseMissingLeagueDict.json; sourceTree = "<group>"; };
+		D8D676492629E5770009B06F /* PlayerApiResponseMissingIsActive.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlayerApiResponseMissingIsActive.json; sourceTree = "<group>"; };
+		D8D6764E2629E6C50009B06F /* PlayerApiResponseIsActiveIsFalse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlayerApiResponseIsActiveIsFalse.json; sourceTree = "<group>"; };
+		D8D676562629E9600009B06F /* PlayerApiResponseMissingAttribute.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlayerApiResponseMissingAttribute.json; sourceTree = "<group>"; };
+		D8D6765B2629F0110009B06F /* PlayerApiResponseOnePlayer.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlayerApiResponseOnePlayer.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +257,8 @@
 		D817FC78261BD02A0092F5E0 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				D8D675F62628D0570009B06F /* PlayerApiResponse */,
+				D8D6760D2628E26C0009B06F /* PlayerModel */,
 				D817FC79261BD02A0092F5E0 /* TeamApiResponse */,
 				D817FC80261BD02A0092F5E0 /* TeamModel */,
 			);
@@ -384,6 +406,30 @@
 			path = Player;
 			sourceTree = "<group>";
 		};
+		D8D675F62628D0570009B06F /* PlayerApiResponse */ = {
+			isa = PBXGroup;
+			children = (
+				D8D676052628D23A0009B06F /* PlayerApiResponse.json */,
+				D8D6765B2629F0110009B06F /* PlayerApiResponseOnePlayer.json */,
+				D8D6763E2629E36E0009B06F /* PlayerApiResponseMissingLeagueDict.json */,
+				D8D676332629E3290009B06F /* PlayerApiResponseMissingStandardDict.json */,
+				D8D676492629E5770009B06F /* PlayerApiResponseMissingIsActive.json */,
+				D8D6764E2629E6C50009B06F /* PlayerApiResponseIsActiveIsFalse.json */,
+				D8D676562629E9600009B06F /* PlayerApiResponseMissingAttribute.json */,
+			);
+			path = PlayerApiResponse;
+			sourceTree = "<group>";
+		};
+		D8D6760D2628E26C0009B06F /* PlayerModel */ = {
+			isa = PBXGroup;
+			children = (
+				D8D676162628E2B90009B06F /* PlayerModel.json */,
+				D8D6761E2629DFDF0009B06F /* PlayerModelMissingDataFormat.json */,
+				D8D676232629DFF80009B06F /* PlayerModelBadDataFormat.json */,
+			);
+			path = PlayerModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -406,6 +452,7 @@
 				D817FC3A261BCFB00092F5E0 /* Sources */,
 				D817FC3B261BCFB00092F5E0 /* Frameworks */,
 				D817FC3C261BCFB00092F5E0 /* Resources */,
+				D81D51192628B45E00487AD3 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -505,17 +552,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				D832C4FB261FB3D300D214B8 /* UTA.png in Resources */,
+				D8D676342629E3290009B06F /* PlayerApiResponseMissingStandardDict.json in Resources */,
+				D8D676062628D23A0009B06F /* PlayerApiResponse.json in Resources */,
 				D817FC8C261BD02A0092F5E0 /* TeamModelBadDataFormat.json in Resources */,
+				D8D6765C2629F0110009B06F /* PlayerApiResponseOnePlayer.json in Resources */,
+				D8D6764F2629E6C50009B06F /* PlayerApiResponseIsActiveIsFalse.json in Resources */,
 				D817FC89261BD02A0092F5E0 /* TeamApiResponse.json in Resources */,
+				D8D676242629DFF80009B06F /* PlayerModelBadDataFormat.json in Resources */,
 				D817FC87261BD02A0092F5E0 /* TeamApiResponseIsNBAFranchiseIsFalse.json in Resources */,
 				D817FC86261BD02A0092F5E0 /* TeamApiResponseMissingIsNBAFranchise.json in Resources */,
+				D8D6764A2629E5770009B06F /* PlayerApiResponseMissingIsActive.json in Resources */,
 				D832C51A26251C2900D214B8 /* large_1627759.png in Resources */,
 				D832C4FA261FB3D300D214B8 /* NOP.png in Resources */,
 				D817FC85261BD02A0092F5E0 /* TeamApiResponseMissingStandardDict.json in Resources */,
+				D8D6763F2629E36E0009B06F /* PlayerApiResponseMissingLeagueDict.json in Resources */,
+				D8D676172628E2B90009B06F /* PlayerModel.json in Resources */,
 				D817FC8B261BD02A0092F5E0 /* TeamModelMissingDataFormat.json in Resources */,
 				D832C4F4261F74CD00D214B8 /* BOS.png in Resources */,
+				D8D6761F2629DFDF0009B06F /* PlayerModelMissingDataFormat.json in Resources */,
 				D817FC88261BD02A0092F5E0 /* TeamApiResponseMissingAttribute.json in Resources */,
 				D817FC84261BD02A0092F5E0 /* TeamApiResponseMissingLeagueDict.json in Resources */,
+				D8D676572629E9600009B06F /* PlayerApiResponseMissingAttribute.json in Resources */,
 				D832C51926251C2900D214B8 /* small_1627759.png in Resources */,
 				D817FC8A261BD02A0092F5E0 /* TeamModel.json in Resources */,
 			);
@@ -532,6 +589,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D81D51192628B45E00487AD3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\nif test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D817FC3A261BCFB00092F5E0 /* Sources */ = {

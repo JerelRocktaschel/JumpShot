@@ -35,7 +35,7 @@ public enum BaseURL {
     public static var playerList: String { return "https://data.nba.net/data/5s/prod/v2/" }
     public static var playerImage: String { return "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/" }
 }
-    
+
 public enum Path {
     public static var teamList: String { return "/teams.json" }
     public static var teamImage: String { return ".png" }

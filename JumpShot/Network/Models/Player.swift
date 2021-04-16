@@ -31,17 +31,17 @@ struct TeamResponse: Decodable {
     let seasonEnd: String
 }
 
+struct Draft: Decodable {
+    let teamId: String
+    let pickNum: String
+    let roundNum: String
+    let seasonYear: String
+}
+
 public struct Player {
-    
-    //MARK: Internal Properties
-    
-    struct Draft: Decodable {
-        let teamId: String
-        let pickNum: String
-        let roundNum: String
-        let seasonYear: String
-    }
-    
+
+    // MARK: Internal Properties
+
     struct Team {
         let teamId: String
         let seasonStart: Int
@@ -50,33 +50,34 @@ public struct Player {
 
     let firstName: String
     let lastName: String
-    let temporaryDisplayName: String //TODO: CHANGE VAR NAME
+    let displayName: String
     let playerId: String
     let teamID: String
-    let jersey: String
+    let jersey: Int
     let position: String
-    let feet: Int
-    let inches: Int
-    let meters: Double
-    let pounds: Int
-    let kilograms: Double
+    var feet: Int?
+    var inches: Int?
+    var meters: Double?
+    var pounds: Int?
+    var kilograms: Double?
     let dateOfBirth: Date
     let teams: [Team]
-    let draftTeamId: String
-    let draftPosition: Int
-    let draftRound: Int
-    let draftYear: Int
-    let nbaDebutYear: Int
-    let yearsPro: Int
+    var draftTeamId: String?
+    var draftPosition: Int?
+    var draftRound: Int?
+    var draftYear: Int?
+    var nbaDebutYear: Int?
+    var yearsPro: Int?
     let collegeName: String
     let lastAffiliation: String
     let country: String
     let dateFormatter = DateFormatter()
 
-    //MARK: Init
-    
+    // MARK: Init
+
     public init(from decoder: Decoder) throws {
         let playerContainer = try decoder.container(keyedBy: PlayerCodingKeys.self)
+        let jerseyString = try playerContainer.decode(String.self, forKey: .jersey)
         let feetString = try playerContainer.decode(String.self, forKey: .feet)
         let inchesString = try playerContainer.decode(String.self, forKey: .inches)
         let metersString = try playerContainer.decode(String.self, forKey: .meters)
@@ -87,96 +88,77 @@ public struct Player {
         let yearsProString = try playerContainer.decode(String.self, forKey: .yearsPro)
         let teamsDictionaries = try playerContainer.decode([TeamResponse].self, forKey: .teams)
         let draftDictionary = try playerContainer.decode(Draft.self, forKey: .draft)
-        
+
         firstName = try playerContainer.decode(String.self, forKey: .firstName)
         lastName = try playerContainer.decode(String.self, forKey: .lastName)
-        temporaryDisplayName = try playerContainer.decode(String.self, forKey: .temporaryDisplayName)
+        displayName = try playerContainer.decode(String.self, forKey: .displayName)
         playerId = try playerContainer.decode(String.self, forKey: .playerId)
         teamID = try playerContainer.decode(String.self, forKey: .teamId)
-        jersey = try playerContainer.decode(String.self, forKey: .jersey)
+        jersey = Int(jerseyString)!
         position = try playerContainer.decode(String.self, forKey: .position)
 
-        
+        // sometimes newer players are missing height/weight information
         if let feetInt = Int(feetString) {
             feet = feetInt
-        } else {
-            feet = 0
         }
-        
+
         if let inchesInt = Int(inchesString) {
             inches = inchesInt
-        } else {
-            inches = 0
         }
-        
+
         if let metersDouble = Double(metersString) {
             meters = metersDouble
-        } else {
-            meters = 0
         }
-        
+
         if let poundsInt = Int(poundsString) {
             pounds = poundsInt
-        } else {
-            pounds = 0
         }
-        
+
         if let kilogramsDouble = Double(kilogramsString) {
             kilograms = kilogramsDouble
-        } else {
-            kilograms = 0
         }
-        
+
         dateFormatter.dateFormat = "yyyy-MM-dd"
         dateOfBirth = dateFormatter.date(from: dateOfBirthString)!
-        
+
         var teamArray = [Team]()
         for teamDictionary in teamsDictionaries {
             let teamId = teamDictionary.teamId
             let seasonStart = Int(teamDictionary.seasonStart)!
             let seasonEnd = Int(teamDictionary.seasonEnd)!
             var team: Team
-            
+
             team = Team(teamId: teamId,
                         seasonStart: seasonStart,
                         seasonEnd: seasonEnd)
             teamArray.append(team)
         }
-        
-        teams = teamArray
 
+        teams = teamArray
         draftTeamId = draftDictionary.teamId
-        
+
+        // undrafted players have no draft information
         if let draftPositionInt = Int(draftDictionary.pickNum) {
             draftPosition = draftPositionInt
-        } else {
-            draftPosition = 0
-        }
-        
-        if let draftRoundInt = Int(draftDictionary.roundNum) {
-            draftRound = draftRoundInt
-        } else {
-            draftRound = 0
-        }
-        
-        if let draftYearInt = Int(draftDictionary.seasonYear) {
-            draftYear = draftYearInt
-        } else {
-            draftYear = 0
         }
 
+        if let draftRoundInt = Int(draftDictionary.roundNum) {
+            draftRound = draftRoundInt
+        }
+
+        if let draftYearInt = Int(draftDictionary.seasonYear) {
+            draftYear = draftYearInt
+        }
+
+        // sometimes newer players are missing debut year and years pro information
         if let nbaDebutYearInt = Int(nbaDebutYearString) {
             nbaDebutYear = nbaDebutYearInt
-        } else {
-            nbaDebutYear = 0
         }
-        
+
         if let yearsProInt = Int(yearsProString) {
             yearsPro = yearsProInt
-        } else {
-            yearsPro = 0
         }
-        
+
         collegeName = try playerContainer.decode(String.self, forKey: .collegeName)
         lastAffiliation = try playerContainer.decode(String.self, forKey: .lastAffiliation)
         country = try playerContainer.decode(String.self, forKey: .country)
@@ -184,13 +166,13 @@ public struct Player {
 }
 
 extension Player: Decodable {
-    
-    //MARK: Coding Keys
-    
+
+    // MARK: Coding Keys
+
     enum PlayerCodingKeys: String, CodingKey {
         case firstName = "firstName"
         case lastName = "lastName"
-        case temporaryDisplayName = "temporaryDisplayName"
+        case displayName = "temporaryDisplayName"
         case playerId = "personId"
         case teamId = "teamId"
         case jersey = "jersey"
@@ -219,40 +201,40 @@ enum PlayerJSONKeys {
 }
 
 struct PlayerApiResponse {
-    
-    //MARK: Internal Properties
-    
+
+    // MARK: Internal Properties
+
     var players: [Player]
 }
 
 extension PlayerApiResponse {
-    
-    //MARK: Init
-    
-    init?(json: [String:Any]) {
+
+    // MARK: Init
+
+    init?(json: [String: Any]) {
         guard let leagueDictionary = json["league"] as? JSONDictionary  else {
             return nil
         }
-        
+
         guard let standardDictionary = leagueDictionary["standard"] as? [JSONDictionary] else {
             return nil
         }
-        
+
         self.players = [Player]()
         for playerDictionary in standardDictionary {
             guard let isActive = playerDictionary["isActive"] as? Bool else {
                 return nil
             }
-            
-            ///inactive players exist
+
+            // inactive players exist
             guard isActive == true else {
                 continue
             }
-            
+
             guard let jsonPlayerData = try? JSONSerialization.data(withJSONObject: playerDictionary, options: []) else {
                 return nil
             }
-            
+
             do {
                 let player = try JSONDecoder().decode(Player.self, from: jsonPlayerData)
                 self.players.append(player)
@@ -262,4 +244,3 @@ extension PlayerApiResponse {
         }
     }
 }
-

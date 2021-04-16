@@ -1,0 +1,39 @@
+{
+   "firstName":"Steven",
+   "lastName":"Adams",
+   "temporaryDisplayName":"Adams, Steven",
+   "personId":"203500",
+   "teamId":"1610612740",
+   "jersey":"12",
+   "isActive":true,
+   "pos":"C",
+   "heightFeet":"6",
+   "heightInches":"11",
+   "heightMeters":"2.11",
+   "weightPounds":"265",
+   "weightKilograms":"120.2",
+   "dateOfBirthUTC":"1993-07-20",
+   "teams":[
+      {
+         "teamId":"1610612760",
+         "seasonStart":"2013",
+         "seasonEnd":"2019"
+      },
+      {
+         "teamId":"1610612740",
+         "seasonStart":"2020",
+         "seasonEnd":"2020"
+      }
+   ],
+   "draft":{
+      "teamId":"1610612760",
+      "pickNum":"12",
+      "roundNum":"1",
+      "seasonYear":"2013"
+   },
+   "nbaDebutYear":"2013",
+   "yearsPro":"7",
+   "collegeName":"Pittsburgh",
+   "lastAffiliation":"Pittsburgh/New Zealand"
+}
+

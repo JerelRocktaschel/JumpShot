@@ -47,7 +47,7 @@ public extension JumpShot {
      */
 
     typealias GetTeamImageCompletion = (_ teamImage: UIImage?, _ error: LocalizedError?) -> Void
-    
+
     func getTeamImage(for teamAbbreviation: String, completion: @escaping GetTeamImageCompletion) {
         let convertedAbbreviation = convertTeamAbbreviation(for: teamAbbreviation)
         JumpShotNetworkManager.shared.router.request(.teamImage(teamAbbreviation: convertedAbbreviation)) { [unowned self] data, _, error in
@@ -56,9 +56,9 @@ public extension JumpShot {
             completion(imageResponse.teamImage, imageResponse.error)
         }
     }
-    
+
     private func convertTeamAbbreviation(for abbreviation: String) -> String {
-        ///conversion between NBA and ESPN abbreviations
+        /// conversion between NBA and ESPN abbreviations
         let convertedAbbreviation: String
         switch abbreviation {
         case "NOP":
@@ -71,5 +71,3 @@ public extension JumpShot {
         return convertedAbbreviation
     }
 }
-
-

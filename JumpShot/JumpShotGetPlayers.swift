@@ -26,7 +26,7 @@
 import Foundation
 
 public extension JumpShot {
-    
+
     /**
         Returns an array of Team model objects representing all teams in the NBA.
      
@@ -40,15 +40,15 @@ public extension JumpShot {
         # Notes: #
         1. Handle [Team] return due to being optional.
      */
-    
-    func getPlayers(completion: @escaping (_ players: [Player]?, _ error: LocalizedError?)->()){
+
+    func getPlayers(completion: @escaping (_ players: [Player]?, _ error: LocalizedError?) -> Void) {
         let year = JumpShot.getSeasonYear()
         JumpShotNetworkManager.shared.router.request(.playerList(season: year)) { data, response, error in
             guard error == nil else {
                 completion(nil, JumpShotNetworkManagerError.networkConnectivityError)
                 return
             }
-            
+
             if let response = response as? HTTPURLResponse {
                 let result = JumpShotNetworkManager.shared.handleNetworkResponse(response)
                 switch result {

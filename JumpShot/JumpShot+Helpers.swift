@@ -27,7 +27,7 @@ import Foundation
 import UIKit
 
 public extension JumpShot {
-    
+
     // MARK: Helpers
 
     /// nba uses beginning season year in url
@@ -44,18 +44,18 @@ public extension JumpShot {
         }
         return year
     }
-    
+
     /// image response logic for both Player and Team image functions
     internal func handleImageResponse(data: Data?, error: Error?) -> (UIImage?, LocalizedError?) {
         guard error == nil else {
             return (nil, JumpShotNetworkManagerError.networkConnectivityError)
         }
-        
+
         guard let data = data else {
             return (nil, JumpShotNetworkManagerError.noDataError)
         }
-    
-        if let image = UIImage(data: data)  {
+
+        if let image = UIImage(data: data) {
             return (image, nil)
         } else {
             return (nil, JumpShotNetworkManagerError.unableToDecodeError)

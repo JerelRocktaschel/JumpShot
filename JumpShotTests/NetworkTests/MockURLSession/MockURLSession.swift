@@ -24,7 +24,7 @@ class MockURLSession: URLSessionProtocol {
         imageTaskArgsCompletionHandler.append(completionHandler)
         return DummyURLSessionDataTask()
     }
-    
+
     func dataTask(
             with request: URLRequest,
             completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void

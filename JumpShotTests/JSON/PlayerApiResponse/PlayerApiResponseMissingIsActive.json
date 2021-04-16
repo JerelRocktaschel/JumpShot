@@ -1,0 +1,51 @@
+{
+   "_internal":{
+      "pubDateTime":"2021-04-14 13:10:13.166 EDT",
+      "igorPath":"S3,1618420200191,1618420202214|router,1618420202214,1618420202220|domUpdater,1618420202419,1618420212034|feedProducer,1618420212146,1618420219068",
+      "xslt":"NBA/xsl/league/roster/marty_active_players2.xsl",
+      "xsltForceRecompile":"true",
+      "xsltInCache":"false",
+      "xsltCompileTimeMillis":"236",
+      "xsltTransformTimeMillis":"5747",
+      "consolidatedDomKey":"prod__transform__marty_active_players2__396760168367",
+      "endToEndTimeMillis":"18877"
+   },
+   "league":{
+      "standard":[
+         {
+            "firstName":"Precious",
+            "lastName":"Achiuwa",
+            "temporaryDisplayName":"Achiuwa, Precious",
+            "personId":"1630173",
+            "teamId":"1610612748",
+            "jersey":"5",
+            "pos":"F",
+            "heightFeet":"6",
+            "heightInches":"8",
+            "heightMeters":"2.03",
+            "weightPounds":"225",
+            "weightKilograms":"102.1",
+            "dateOfBirthUTC":"1999-09-19",
+            "teams":[
+               {
+                  "teamId":"1610612748",
+                  "seasonStart":"2020",
+                  "seasonEnd":"2020"
+               }
+            ],
+            "draft":{
+               "teamId":"1610612748",
+               "pickNum":"20",
+               "roundNum":"1",
+               "seasonYear":"2020"
+            },
+            "nbaDebutYear":"2020",
+            "yearsPro":"0",
+            "collegeName":"Memphis",
+            "lastAffiliation":"Memphis/Nigeria",
+            "country":"Nigeria"
+         }
+      ]
+   }
+}
+

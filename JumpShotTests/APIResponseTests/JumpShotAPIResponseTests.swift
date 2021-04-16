@@ -59,4 +59,54 @@ class JumpShotAPIResponseTests: XCTestCase {
         let teamApiResponse = TeamApiResponse(json: teamApiResponseJson)
         XCTAssertNil(teamApiResponse)
     }
+
+    // MARK: PlayerApiResponse
+
+    func test_playerApiResponse_withMissingLeagueDictionary_isNil() throws {
+        let path = getPath(forResource: "PlayerApiResponseMissingLeagueDict",
+                           ofType: "json")
+        let playerApiResponseJson = try getApiResourceJson(withPath: path)
+        let playerApiResponse = PlayerApiResponse(json: playerApiResponseJson)
+        XCTAssertNil(playerApiResponse)
+    }
+
+    func test_playerApiResponse_withMissingStandardDictionary_isNil() throws {
+        let path = getPath(forResource: "PlayerApiResponseMissingStandardDict",
+                           ofType: "json")
+        let playerApiResponseJson = try getApiResourceJson(withPath: path)
+        let playerApiResponse = PlayerApiResponse(json: playerApiResponseJson)
+        XCTAssertNil(playerApiResponse)
+    }
+
+    func test_playerApiResponse_withTwoPlayers_isTwo() throws {
+        let path = getPath(forResource: "PlayerApiResponse",
+                           ofType: "json")
+        let playerApiResponseJson = try getApiResourceJson(withPath: path)
+        let playerApiResponse = PlayerApiResponse(json: playerApiResponseJson)
+        XCTAssertEqual(playerApiResponse?.players.count, 2)
+    }
+
+    func test_playerApiResponse_withMissingIsActive_isNil() throws {
+        let path = getPath(forResource: "PlayerApiResponseMissingIsActive",
+                           ofType: "json")
+        let playerApiResponseJson = try getApiResourceJson(withPath: path)
+        let playerApiResponse = PlayerApiResponse(json: playerApiResponseJson)
+        XCTAssertNil(playerApiResponse)
+    }
+
+    func test_playerApiResponse_withFalseIsActive_isZero() throws {
+        let path = getPath(forResource: "PlayerApiResponseIsActiveIsFalse",
+                           ofType: "json")
+        let playerApiResponseJson = try getApiResourceJson(withPath: path)
+        let playerApiResponse = PlayerApiResponse(json: playerApiResponseJson)
+        XCTAssertEqual(playerApiResponse?.players.count, 0)
+    }
+
+    func test_playerApiResponse_withMissingAttribute_isZero() throws {
+        let path = getPath(forResource: "PlayerApiResponseMissingAttribute",
+                           ofType: "json")
+        let playerApiResponseJson = try getApiResourceJson(withPath: path)
+        let playerApiResponse = PlayerApiResponse(json: playerApiResponseJson)
+        XCTAssertNil(playerApiResponse)
+    }
 }

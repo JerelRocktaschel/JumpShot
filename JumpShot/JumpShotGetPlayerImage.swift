@@ -32,7 +32,7 @@ public enum JumpShotPlayerImageSize: String {
 }
 
 public extension JumpShot {
-    
+
     /**
         Returns a current player image in PNG format.
      
@@ -48,15 +48,17 @@ public extension JumpShot {
         # Notes: #
         1. Handle UIImage return due to being optional.
      */
-    
+
     typealias GetPlayerImageCompletion = (_ playerImage: UIImage?, _ error: LocalizedError?) -> Void
 
-    func getPlayerImage(for imageSize: JumpShotPlayerImageSize, and playerid: String, completion: @escaping GetPlayerImageCompletion) {
-        JumpShotNetworkManager.shared.router.request(.playerImage(imageSize: imageSize, playerId: playerid)) { [unowned self] data, _, error  in
+    func getPlayerImage(for imageSize: JumpShotPlayerImageSize,
+                        and playerid: String,
+                        completion: @escaping GetPlayerImageCompletion) {
+        JumpShotNetworkManager.shared.router.request(.playerImage(imageSize: imageSize,
+                                                                  playerId: playerid)) { [unowned self] data, _, error  in
             var imageResponse: (playerImage: UIImage?, error: LocalizedError?)
             imageResponse = self.handleImageResponse(data: data, error: error)
             completion(imageResponse.playerImage, imageResponse.error)
         }
     }
-    
 }

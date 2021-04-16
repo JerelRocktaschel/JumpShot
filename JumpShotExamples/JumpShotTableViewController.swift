@@ -17,7 +17,11 @@ class JumpShotTableViewController: UITableViewController {
     // MARK: 1 - Instantiate an instance of JumpShot
 
     let jumpShot = JumpShot()
-    let jumpShotFunctions = ["getTeams()","getTeamImage()","getPlayerImage() - Small","getPlayerImage() - Large","getPlayers()"]
+    let jumpShotFunctions = ["getTeams()",
+                             "getTeamImage()",
+                             "getPlayerImage() - Small",
+                             "getPlayerImage() - Large",
+                             "getPlayers()"]
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         jumpShotFunctions.count
@@ -47,7 +51,7 @@ class JumpShotTableViewController: UITableViewController {
     }
 
     private func getTeams() {
-        
+
         // MARK: 2 - Call a JumpShot function and handle the response via a closure
 
         jumpShot.getTeams { teams, error in
@@ -81,7 +85,7 @@ class JumpShotTableViewController: UITableViewController {
             print(teamImage)
         }
     }
-    
+
     private func getPlayers() {
 
         jumpShot.getPlayers { players, error in
@@ -98,7 +102,7 @@ class JumpShotTableViewController: UITableViewController {
             print(players)
         }
     }
-    
+
     private func getPlayerImage(for size: JumpShotPlayerImageSize, and playerId: String) {
 
         jumpShot.getPlayerImage(for: size, and: playerId) { playerImage, error in
