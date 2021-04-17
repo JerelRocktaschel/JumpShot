@@ -52,7 +52,7 @@ public struct Player {
     let lastName: String
     let displayName: String
     let playerId: String
-    let teamID: String
+    let teamId: String
     var jersey: Int?
     let position: String
     var feet: Int?
@@ -93,7 +93,7 @@ public struct Player {
         lastName = try playerContainer.decode(String.self, forKey: .lastName)
         displayName = try playerContainer.decode(String.self, forKey: .displayName)
         playerId = try playerContainer.decode(String.self, forKey: .playerId)
-        teamID = try playerContainer.decode(String.self, forKey: .teamId)
+        teamId = try playerContainer.decode(String.self, forKey: .teamId)
 
         // sometimes newer players do not have a jersey number
         if let jerseyInt = Int(jerseyString) {

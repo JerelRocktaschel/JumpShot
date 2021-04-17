@@ -26,7 +26,10 @@
 import Foundation
 
 public struct GameSchedule {
-    let gameID: String
+    
+    // MARK: Internal Properties
+    
+    let gameId: String
     let visitorCity: String
     let visitorNickName: String
     let visitorShortName: String
@@ -35,9 +38,56 @@ public struct GameSchedule {
     let homeNickName: String
     let homeShortName: String
     let homeAbbreviation: String
-    let gameTime: Date
+    let gameDate: Date
     let gameDay: String
     let broadcastId: String
     let broadcasterName: String
     let tapeDelayComments: String
+    
+    // MARK: Init
+
+    public init(from decoder: Decoder) throws {
+        let gameScheduleContainer = try decoder.container(keyedBy: GameScheduleCodingKeys.self)
+        let dateString = try gameScheduleContainer.decode(String.self, forKey: .date)
+        let timeString = try gameScheduleContainer.decode(String.self, forKey: .time)
+        gameId = try gameScheduleContainer.decode(String.self, forKey: .gameId)
+        visitorCity = try gameScheduleContainer.decode(String.self, forKey: .visitorCity)
+        visitorNickName = try gameScheduleContainer.decode(String.self, forKey: .visitorNickName)
+        visitorShortName = try gameScheduleContainer.decode(String.self, forKey: .visitorShortName)
+        visitorAbbreviation = try gameScheduleContainer.decode(String.self, forKey: .visitorAbbreviation)
+        homeCity = try gameScheduleContainer.decode(String.self, forKey: .homeCity)
+        homeNickName = try gameScheduleContainer.decode(String.self, forKey: .homeNickName)
+        homeShortName = try gameScheduleContainer.decode(String.self, forKey: .homeShortName)
+        homeAbbreviation = try gameScheduleContainer.decode(String.self, forKey: .homeAbbreviation)
+        
+        
+        
+        gameDay = try gameScheduleContainer.decode(String.self, forKey: .gameDay)
+        broadcastId = try gameScheduleContainer.decode(String.self, forKey: .broadcastId)
+        broadcasterName = try gameScheduleContainer.decode(String.self, forKey: .broadcasterName)
+        tapeDelayComments = try gameScheduleContainer.decode(String.self, forKey: .tapeDelayComments)
+    }
+}
+
+extension GameSchedule: Decodable {
+
+    // MARK: Coding Keys
+
+    enum GameScheduleCodingKeys: String, CodingKey {
+        case gameId = "gameID"
+        case visitorCity = "vtCity"
+        case visitorNickName = "vtNickName"
+        case visitorShortName = "vtShortName"
+        case vistorAbbreviation = "vtAbbreviation"
+        case homeCity = "htCity"
+        case homeNickName = "htNickName"
+        case homeShortName = "htShortName"
+        case homeAbbreviation = "htAbbreviation"
+        case date = "date"
+        case time = "time"
+        case gameDay = "day"
+        case broadcastId = "broadcastID"
+        case broadcasterName = "broadcasterName"
+        case tapeDelayComments = "tapeDelayComments"
+    }
 }
