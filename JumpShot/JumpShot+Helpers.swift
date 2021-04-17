@@ -33,17 +33,18 @@ public extension JumpShot {
     /// nba uses beginning season year in url
     /// if current date is greater than new season start date - use current year
     /// if current date is less than new season start date - use last year
-    static func getSeasonYear() -> String {
+    /*static func getSeasonYear() -> String {
         let date = Date()
         var year = String(Calendar.current.component(.year, from: Date()))
         let newSeasonDateString = JumpShotNetworkManagerResources.seasonStartMonthAndDay + year
+        dateFormatter.dateFormat = JumpShotNetworkManagerResources.urlDateformat
         if let newSeasonDate = dateFormatter.date(from: newSeasonDateString),
             let yearInt = Int(year),
             date < newSeasonDate {
                 year = String(yearInt - 1)
         }
         return year
-    }
+    }*/
 
     /// image response logic for both Player and Team image functions
     internal func handleImageResponse(data: Data?, error: Error?) -> (UIImage?, LocalizedError?) {
@@ -60,5 +61,22 @@ public extension JumpShot {
         } else {
             return (nil, JumpShotNetworkManagerError.unableToDecodeError)
         }
+    }
+}
+
+extension Date {
+    /// nba uses beginning season year in url
+    /// if current date is greater than new season start date - use current year
+    /// if current date is less than new season start date - use last year
+    func getSeasonYear() -> String {
+        var year = String(Calendar.current.component(.year, from: Date()))
+        let newSeasonDateString = JumpShotNetworkManagerResources.seasonStartMonthAndDay + year
+        JumpShot.dateFormatter.dateFormat = JumpShotNetworkManagerResources.urlDateformat
+        if let newSeasonDate = JumpShot.dateFormatter.date(from: newSeasonDateString),
+            let yearInt = Int(year),
+            self < newSeasonDate {
+                year = String(yearInt - 1)
+        }
+        return year
     }
 }

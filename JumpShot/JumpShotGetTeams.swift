@@ -42,8 +42,9 @@ public extension JumpShot {
      */
 
     func getTeams(completion: @escaping (_ teams: [Team]?, _ error: LocalizedError?) -> Void) {
-        let year = JumpShot.getSeasonYear()
-        JumpShotNetworkManager.shared.router.request(.teamList(season: year)) { data, response, error in
+        //let year = JumpShot.getSeasonYear()
+        let season = Date().getSeasonYear()
+        JumpShotNetworkManager.shared.router.request(.teamList(season: season)) { data, response, error in
             guard error == nil else {
                 completion(nil, JumpShotNetworkManagerError.networkConnectivityError)
                 return
