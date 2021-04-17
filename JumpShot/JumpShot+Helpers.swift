@@ -30,22 +30,6 @@ public extension JumpShot {
 
     // MARK: Helpers
 
-    /// nba uses beginning season year in url
-    /// if current date is greater than new season start date - use current year
-    /// if current date is less than new season start date - use last year
-    /*static func getSeasonYear() -> String {
-        let date = Date()
-        var year = String(Calendar.current.component(.year, from: Date()))
-        let newSeasonDateString = JumpShotNetworkManagerResources.seasonStartMonthAndDay + year
-        dateFormatter.dateFormat = JumpShotNetworkManagerResources.urlDateformat
-        if let newSeasonDate = dateFormatter.date(from: newSeasonDateString),
-            let yearInt = Int(year),
-            date < newSeasonDate {
-                year = String(yearInt - 1)
-        }
-        return year
-    }*/
-
     /// image response logic for both Player and Team image functions
     internal func handleImageResponse(data: Data?, error: Error?) -> (UIImage?, LocalizedError?) {
         guard error == nil else {
@@ -60,6 +44,18 @@ public extension JumpShot {
             return (image, nil)
         } else {
             return (nil, JumpShotNetworkManagerError.unableToDecodeError)
+        }
+    }
+    
+    //game time response in 12h format - convert to 24h
+    static func getGameDate(from responseDateString: String) -> Date {
+        JumpShot.dateFormatter.dateFormat = "MM/dd/yyyy HH:mm"
+        JumpShot.dateFormatter.timeZone = TimeZone(abbreviation: "EST")
+        if let responseDate = JumpShot.dateFormatter.date(from: responseDateString) {
+            let gameDate = responseDate.addHours(12)
+            return gameDate
+        } else {
+            return Date()
         }
     }
 }
@@ -78,5 +74,10 @@ extension Date {
                 year = String(yearInt - 1)
         }
         return year
+    }
+    
+    func addHours(_ hours: Int) -> Date {
+        let previousDate = Calendar.current.date(byAdding: .hour, value: hours, to: self)
+        return previousDate!
     }
 }

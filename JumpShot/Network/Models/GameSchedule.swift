@@ -26,9 +26,9 @@
 import Foundation
 
 public struct GameSchedule {
-    
+
     // MARK: Internal Properties
-    
+
     let gameId: String
     let visitorCity: String
     let visitorNickName: String
@@ -43,7 +43,7 @@ public struct GameSchedule {
     let broadcastId: String
     let broadcasterName: String
     let tapeDelayComments: String
-    
+
     // MARK: Init
 
     public init(from decoder: Decoder) throws {
@@ -59,9 +59,7 @@ public struct GameSchedule {
         homeNickName = try gameScheduleContainer.decode(String.self, forKey: .homeNickName)
         homeShortName = try gameScheduleContainer.decode(String.self, forKey: .homeShortName)
         homeAbbreviation = try gameScheduleContainer.decode(String.self, forKey: .homeAbbreviation)
-        
-        
-        
+        gameDate = JumpShot.getGameDate(from: dateString + " " + timeString)
         gameDay = try gameScheduleContainer.decode(String.self, forKey: .gameDay)
         broadcastId = try gameScheduleContainer.decode(String.self, forKey: .broadcastId)
         broadcasterName = try gameScheduleContainer.decode(String.self, forKey: .broadcasterName)
@@ -78,7 +76,7 @@ extension GameSchedule: Decodable {
         case visitorCity = "vtCity"
         case visitorNickName = "vtNickName"
         case visitorShortName = "vtShortName"
-        case vistorAbbreviation = "vtAbbreviation"
+        case visitorAbbreviation = "vtAbbreviation"
         case homeCity = "htCity"
         case homeNickName = "htNickName"
         case homeShortName = "htShortName"
