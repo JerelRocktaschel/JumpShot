@@ -31,7 +31,6 @@ public class JumpShot {
 
     static var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = JumpShotNetworkManagerResources.urlDateformat
         return formatter
     }()
 
