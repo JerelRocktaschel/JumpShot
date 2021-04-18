@@ -80,7 +80,7 @@ class JumpShotModelTests: XCTestCase {
         XCTAssertEqual(playerModelResponse.lastName, "Adams")
         XCTAssertEqual(playerModelResponse.displayName, "Adams, Steven")
         XCTAssertEqual(playerModelResponse.playerId, "203500")
-        XCTAssertEqual(playerModelResponse.teamID, "1610612740")
+        XCTAssertEqual(playerModelResponse.teamId, "1610612740")
         XCTAssertEqual(playerModelResponse.jersey, 12)
         XCTAssertEqual(playerModelResponse.position, "C")
         XCTAssertEqual(playerModelResponse.feet, 6)

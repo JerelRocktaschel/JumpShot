@@ -1,5 +1,5 @@
 //
-//  JumpShotGetPlayers.swift
+//  JumpShotGetSchedule.swift
 //  JumpShot
 //
 //  Copyright (c) 2021 Jerel Rocktaschel
@@ -28,21 +28,28 @@ import Foundation
 public extension JumpShot {
 
     /**
-        Returns an array of Team model objects representing all teams in the NBA.
+        Returns an array of GameSchedule model objects for a particular date.
      
-        URL called:  ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/JUMPSHOTIMAGESIZE/NBA PLAYER ID.png
+        URL called:  stats.nba.com/stats/internationalbroadcasterschedule?LeagueID=00&Season=2020&RegionID=1&Date=MM/dd/yyyy&EST=Y
      
+        - Parameter scheduleDate: The date to retrieve the game schedule.
         - Parameter completion: The callback after retrieval.
-        - Parameter players: An array of Player model objects.
+        - Parameter teams: An array of Team model objects.
         - Parameter error: Error should one occur.
-        - Returns: An array of Player model objects or error.
+        - Returns: An array of GameSchedule model objects or error.
             
         # Notes: #
-        1. Handle [Player] return due to being optional.
+        1. Handle [GameSchedule] return due to being optional.
      */
 
-    func getPlayers(completion: @escaping (_ players: [Player]?, _ error: LocalizedError?) -> Void) {
-        let season = Date().getSeasonYear()
+    func getSchedule(for scheduleDate: Date, completion: @escaping (_ gameSchedules: [GameSchedule]?,
+                                                                    _ error: LocalizedError?) -> Void) {
+
+        let scheduleDateString = scheduleDate.toNBADateURLFormat()
+        print(scheduleDateString)
+        completion(nil, nil)
+
+     /*
         JumpShotNetworkManager.shared.router.request(.playerList(season: season)) { data, response, error in
             guard error == nil else {
                 completion(nil, JumpShotNetworkManagerError.networkConnectivityError)
@@ -71,6 +78,6 @@ public extension JumpShot {
                     completion(nil, networkFailureError)
                 }
             }
-        }
+        }*/
     }
 }

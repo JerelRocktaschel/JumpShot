@@ -451,7 +451,7 @@ class JumpShotTests: XCTestCase {
         XCTAssertEqual(responsePlayers.first!.lastName, "Adams")
         XCTAssertEqual(responsePlayers.first!.displayName, "Adams, Steven")
         XCTAssertEqual(responsePlayers.first!.playerId, "203500")
-        XCTAssertEqual(responsePlayers.first!.teamID, "1610612740")
+        XCTAssertEqual(responsePlayers.first!.teamId, "1610612740")
         XCTAssertEqual(responsePlayers.first!.jersey, 12)
         XCTAssertEqual(responsePlayers.first!.position, "C")
         XCTAssertEqual(responsePlayers.first!.feet, 6)

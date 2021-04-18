@@ -89,3 +89,40 @@ extension GameSchedule: Decodable {
         case tapeDelayComments = "tapeDelayComments"
     }
 }
+
+struct GameScheduleApiResponse {
+
+    // MARK: Internal Properties
+
+    var gameSchedules: [GameSchedule]
+}
+
+extension GameScheduleApiResponse {
+
+    // MARK: Init
+
+    init?(json: [String: Any]) {
+        guard let resultSetsDictionary = json["resultSets"] as? JSONDictionary  else {
+            return nil
+        }
+
+        guard let completeGameListDictionary = resultSetsDictionary["CompleteGameList"] as? [JSONDictionary] else {
+            return nil
+        }
+
+        self.gameSchedules = [GameSchedule]()
+        for gameScheduleDictionary in completeGameListDictionary {
+            guard let jsonGameScheduleData = try? JSONSerialization.data(withJSONObject: gameScheduleDictionary,
+                                                                         options: []) else {
+                return nil
+            }
+
+            do {
+                let gameSchedule = try JSONDecoder().decode(GameSchedule.self, from: jsonGameScheduleData)
+                self.gameSchedules.append(gameSchedule)
+            } catch {
+                return nil
+            }
+        }
+    }
+}

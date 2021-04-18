@@ -21,7 +21,8 @@ class JumpShotTableViewController: UITableViewController {
                              "getTeamImage()",
                              "getPlayerImage() - Small",
                              "getPlayerImage() - Large",
-                             "getPlayers()"]
+                             "getPlayers()",
+                             "getGameSchedule(for: \"04/17/2021\")"]
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         jumpShotFunctions.count
@@ -45,6 +46,13 @@ class JumpShotTableViewController: UITableViewController {
             getPlayerImage(for: .large, and: "1627759")
         case 4:
             getPlayers()
+        case 5:
+            var dateComponents = DateComponents()
+            dateComponents.year = 2021
+            dateComponents.month = 4
+            dateComponents.day = 17
+            let scheduleDate = Calendar.current.date(from: dateComponents)
+            getSchedule(for: scheduleDate!)
         default:
             print("No function selected")
         }
@@ -70,7 +78,6 @@ class JumpShotTableViewController: UITableViewController {
     }
 
     private func getTeamImage(for teamAbbreviation: String) {
-
         jumpShot.getTeamImage(for: teamAbbreviation) { teamImage, error in
             guard error == nil else {
                 print(error!)
@@ -87,7 +94,6 @@ class JumpShotTableViewController: UITableViewController {
     }
 
     private func getPlayers() {
-
         jumpShot.getPlayers { players, error in
             guard error == nil else {
                 print(error!)
@@ -104,7 +110,6 @@ class JumpShotTableViewController: UITableViewController {
     }
 
     private func getPlayerImage(for size: JumpShotPlayerImageSize, and playerId: String) {
-
         jumpShot.getPlayerImage(for: size, and: playerId) { playerImage, error in
             guard error == nil else {
                 print(error!)
@@ -117,6 +122,22 @@ class JumpShotTableViewController: UITableViewController {
             }
 
             print(playerImage)
+        }
+    }
+    
+    private func getSchedule(for date: Date) {
+        jumpShot.getSchedule(for: date) { gameSchedules, error in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+
+            guard let gameSchedules = gameSchedules else {
+                print("No schedules returned.")
+                return
+            }
+
+            print(gameSchedules)
         }
     }
 }
