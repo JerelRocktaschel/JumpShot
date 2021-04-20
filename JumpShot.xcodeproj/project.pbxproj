@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D815EAC7262B8B75004C22AD /* JumpShotGetSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D815EAC6262B8B75004C22AD /* JumpShotGetSchedule.swift */; };
+		D815EAC7262B8B75004C22AD /* JumpShotGetDailySchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D815EAC6262B8B75004C22AD /* JumpShotGetDailySchedule.swift */; };
 		D817FC48261BCFB00092F5E0 /* JumpShot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D817FC3E261BCFB00092F5E0 /* JumpShot.framework */; };
 		D817FC4D261BCFB00092F5E0 /* JumpShotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D817FC4C261BCFB00092F5E0 /* JumpShotTests.swift */; };
 		D817FC4F261BCFB00092F5E0 /* JumpShot.h in Headers */ = {isa = PBXBuildFile; fileRef = D817FC41261BCFB00092F5E0 /* JumpShot.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -74,7 +74,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D815EAC6262B8B75004C22AD /* JumpShotGetSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetSchedule.swift; sourceTree = "<group>"; };
+		D815EAC6262B8B75004C22AD /* JumpShotGetDailySchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetDailySchedule.swift; sourceTree = "<group>"; };
 		D817FC3E261BCFB00092F5E0 /* JumpShot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JumpShot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D817FC41261BCFB00092F5E0 /* JumpShot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JumpShot.h; sourceTree = "<group>"; };
 		D817FC42261BCFB00092F5E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -191,7 +191,7 @@
 				D832C4DC261E50F000D214B8 /* JumpShotGetTeamImage.swift */,
 				D832C5082624BE0200D214B8 /* JumpShotGetPlayerImage.swift */,
 				D832C52C26273D6900D214B8 /* JumpShotGetPlayers.swift */,
-				D815EAC6262B8B75004C22AD /* JumpShotGetSchedule.swift */,
+				D815EAC6262B8B75004C22AD /* JumpShotGetDailySchedule.swift */,
 				D817FC41261BCFB00092F5E0 /* JumpShot.h */,
 				D817FC67261BD0070092F5E0 /* Network */,
 				D817FC42261BCFB00092F5E0 /* Info.plist */,
@@ -624,7 +624,7 @@
 				D832C52826262CFB00D214B8 /* Player.swift in Sources */,
 				D817FC72261BD0070092F5E0 /* Team.swift in Sources */,
 				D832C4DD261E50F000D214B8 /* JumpShotGetTeamImage.swift in Sources */,
-				D815EAC7262B8B75004C22AD /* JumpShotGetSchedule.swift in Sources */,
+				D815EAC7262B8B75004C22AD /* JumpShotGetDailySchedule.swift in Sources */,
 				D817FC71261BD0070092F5E0 /* JumpShotNetworkManager.swift in Sources */,
 				D83B2646262A1951002EDBB0 /* GameSchedule.swift in Sources */,
 				D817FC73261BD0070092F5E0 /* JumpShotApiEndPoint.swift in Sources */,

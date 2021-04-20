@@ -38,7 +38,7 @@ public struct GameSchedule {
     let homeNickName: String
     let homeShortName: String
     let homeAbbreviation: String
-    let gameDate: Date
+    var gameDate: Date?
     let gameDay: String
     let broadcastId: String
     let broadcasterName: String
@@ -59,7 +59,11 @@ public struct GameSchedule {
         homeNickName = try gameScheduleContainer.decode(String.self, forKey: .homeNickName)
         homeShortName = try gameScheduleContainer.decode(String.self, forKey: .homeShortName)
         homeAbbreviation = try gameScheduleContainer.decode(String.self, forKey: .homeAbbreviation)
-        gameDate = JumpShot.getGameDate(from: dateString + " " + timeString)
+        
+        if let gameFormattedDate = (dateString + " " + timeString).getGameDate() {
+            gameDate = gameFormattedDate
+        }
+        
         gameDay = try gameScheduleContainer.decode(String.self, forKey: .gameDay)
         broadcastId = try gameScheduleContainer.decode(String.self, forKey: .broadcastId)
         broadcasterName = try gameScheduleContainer.decode(String.self, forKey: .broadcasterName)
@@ -102,16 +106,23 @@ extension GameScheduleApiResponse {
     // MARK: Init
 
     init?(json: [String: Any]) {
-        guard let resultSetsDictionary = json["resultSets"] as? JSONDictionary  else {
+
+        guard let resultSetsDictionaryArray = json["resultSets"] as? [JSONDictionary] else {
             return nil
         }
 
-        guard let completeGameListDictionary = resultSetsDictionary["CompleteGameList"] as? [JSONDictionary] else {
-            return nil
+        var completeGameListDictionary = [JSONDictionary]()
+        for resultSetsDictionary in resultSetsDictionaryArray {
+            if let completeGamesResultsDictionary = resultSetsDictionary["CompleteGameList"] as? [JSONDictionary] {
+                completeGameListDictionary = completeGamesResultsDictionary
+            } else {
+                continue
+            }
         }
 
         self.gameSchedules = [GameSchedule]()
         for gameScheduleDictionary in completeGameListDictionary {
+
             guard let jsonGameScheduleData = try? JSONSerialization.data(withJSONObject: gameScheduleDictionary,
                                                                          options: []) else {
                 return nil

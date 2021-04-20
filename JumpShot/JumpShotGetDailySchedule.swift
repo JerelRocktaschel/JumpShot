@@ -42,15 +42,12 @@ public extension JumpShot {
         1. Handle [GameSchedule] return due to being optional.
      */
 
-    func getSchedule(for scheduleDate: Date, completion: @escaping (_ gameSchedules: [GameSchedule]?,
+    func getDailySchedule(for scheduleDate: Date, completion: @escaping (_ gameSchedules: [GameSchedule]?,
                                                                     _ error: LocalizedError?) -> Void) {
-
         let scheduleDateString = scheduleDate.toNBADateURLFormat()
-        print(scheduleDateString)
-        completion(nil, nil)
+        let season = Date().getSeasonYear()
 
-     /*
-        JumpShotNetworkManager.shared.router.request(.playerList(season: season)) { data, response, error in
+        JumpShotNetworkManager.shared.router.request(.scheduleList(season: season, date: scheduleDateString)) { data, response, error in
             guard error == nil else {
                 completion(nil, JumpShotNetworkManagerError.networkConnectivityError)
                 return
@@ -66,11 +63,11 @@ public extension JumpShot {
                     }
                     do {
                         let json = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any]
-                        guard let apiResponse = PlayerApiResponse(json: json!) else {
+                        guard let apiResponse = GameScheduleApiResponse(json: json!) else {
                             completion(nil, JumpShotNetworkManagerError.unableToDecodeError)
                             return
                         }
-                        completion(apiResponse.players, nil)
+                        completion(apiResponse.gameSchedules, nil)
                     } catch {
                         completion(nil, JumpShotNetworkManagerError.unableToDecodeError)
                     }
@@ -78,6 +75,6 @@ public extension JumpShot {
                     completion(nil, networkFailureError)
                 }
             }
-        }*/
+        }
     }
 }

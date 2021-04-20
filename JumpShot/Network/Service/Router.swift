@@ -55,9 +55,14 @@ final class Router<EndPoint: EndPointType> {
     // MARK: Private Functions
 
     private func buildRequest(from route: EndPoint) throws -> URLRequest {
-        var request = URLRequest(url: route.baseURL.appendingPathComponent(route.path),
+        let baseUrl = route.baseURL
+        let path = route.path
+        let urlWithPath = baseUrl.appendingPathComponent(path).absoluteString.removingPercentEncoding
+        let url = URL(string: urlWithPath!)
+        var request = URLRequest(url: url!,
                                  cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
                                  timeoutInterval: 10.0)
+
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         return request

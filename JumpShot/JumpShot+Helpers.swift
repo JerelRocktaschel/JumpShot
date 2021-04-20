@@ -46,16 +46,17 @@ public extension JumpShot {
             return (nil, JumpShotNetworkManagerError.unableToDecodeError)
         }
     }
+}
 
-    //game time response in 12h format - convert to 24h
-    static func getGameDate(from responseDateString: String) -> Date {
-        JumpShot.dateFormatter.dateFormat = "MM/dd/yyyy HH:mm"
+extension String {
+    /// formats and returns date for NBA game time
+    func getGameDate() -> Date? {
+        JumpShot.dateFormatter.dateFormat = "MM/dd/yyyy hh:mm a"
         JumpShot.dateFormatter.timeZone = TimeZone(abbreviation: "EST")
-        if let responseDate = JumpShot.dateFormatter.date(from: responseDateString) {
-            let gameDate = responseDate.addHours(12)
+        if let gameDate = JumpShot.dateFormatter.date(from: self) {
             return gameDate
         } else {
-            return Date()
+            return nil
         }
     }
 }
@@ -75,21 +76,15 @@ extension Date {
         }
         return year
     }
-
-    func addHours(_ hours: Int) -> Date {
-        let previousDate = Calendar.current.date(byAdding: .hour, value: hours, to: self)
-        return previousDate!
-    }
-
+    
     func get(_ components: Calendar.Component..., calendar: Calendar = Calendar.current) -> DateComponents {
         return calendar.dateComponents(Set(components), from: self)
     }
 
     func toNBADateURLFormat() -> String {
-        let twentyFourFormatDate = self.addHours(12)
-        let day = String(twentyFourFormatDate.get(.day).day!)
-        let month = String(twentyFourFormatDate.get(.month).month!)
-        let year = String(twentyFourFormatDate.get(.year).year!)
+        let day = String(self.get(.day).day!)
+        let month = String(self.get(.month).month!)
+        let year = String(self.get(.year).year!)
         return month + "/" + day + "/" + year
     }
 }

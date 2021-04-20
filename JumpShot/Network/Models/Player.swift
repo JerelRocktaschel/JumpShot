@@ -210,7 +210,7 @@ extension PlayerApiResponse {
     // MARK: Init
 
     init?(json: [String: Any]) {
-        guard let leagueDictionary = json["league"] as? JSONDictionary  else {
+        guard let leagueDictionary = json["league"] as? JSONDictionary else {
             return nil
         }
 
