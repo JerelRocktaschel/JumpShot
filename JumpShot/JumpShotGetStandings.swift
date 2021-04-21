@@ -24,3 +24,52 @@
 //
 
 import Foundation
+
+public extension JumpShot {
+
+    /**
+        Returns an array of Standing model objects.
+     
+        URL called:  data.nba.net/prod/v2/current/standings_conference.json
+    
+        - Parameter completion: The callback after retrieval.
+        - Parameter standings: An array of Standing model objects.
+        - Parameter error: Error should one occur.
+        - Returns: An array of GameSchedule model objects or error.
+            
+        # Notes: #
+        1. Handle [Standing] return due to being optional.
+     */
+
+    func getStandings(completion: @escaping (_ gameSchedules: [Standing]?, _ error: LocalizedError?) -> Void) {
+        JumpShotNetworkManager.shared.router.request(.standingList) { data, response, error in
+            guard error == nil else {
+                completion(nil, JumpShotNetworkManagerError.networkConnectivityError)
+                return
+            }
+
+            if let response = response as? HTTPURLResponse {
+                let result = JumpShotNetworkManager.shared.handleNetworkResponse(response)
+                switch result {
+                case .success:
+                    guard let responseData = data else {
+                        completion(nil, JumpShotNetworkManagerError.noDataError)
+                        return
+                    }
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any]
+                        guard let apiResponse = StandingApiResponse(json: json!) else {
+                            completion(nil, JumpShotNetworkManagerError.unableToDecodeError)
+                            return
+                        }
+                        completion(apiResponse.standings, nil)
+                    } catch {
+                        completion(nil, JumpShotNetworkManagerError.unableToDecodeError)
+                    }
+                case .failure(let networkFailureError):
+                    completion(nil, networkFailureError)
+                }
+            }
+        }
+    }
+}
