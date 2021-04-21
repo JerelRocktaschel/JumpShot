@@ -136,4 +136,62 @@ class JumpShotModelTests: XCTestCase {
          }
          XCTAssertNil(playerModelResponse)
       }
+
+    // MARK: Game Schedule
+
+    func test_gameScheduleModel_withCompleteData_isSuccessful() throws {
+        let path = getPath(forResource: "GameScheduleModel",
+                               ofType: "json")
+        let gameScheduleModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let gameScheduleModelResponse = try JSONDecoder().decode(GameSchedule.self, from: gameScheduleModelData)
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy hh:mm a"
+        dateFormatter.timeZone = TimeZone(abbreviation: "EST")
+        let dateString = "04/20/2021 07:30 PM"
+        let gameDate =  dateFormatter.date(from: dateString)!
+
+        XCTAssertEqual(gameScheduleModelResponse.gameId, "0022000878")
+        XCTAssertEqual(gameScheduleModelResponse.visitorCity, "Brooklyn")
+        XCTAssertEqual(gameScheduleModelResponse.visitorNickName, "Nets")
+        XCTAssertEqual(gameScheduleModelResponse.visitorShortName, "Brooklyn")
+        XCTAssertEqual(gameScheduleModelResponse.visitorAbbreviation, "BKN")
+        XCTAssertEqual(gameScheduleModelResponse.homeCity, "New Orleans")
+        XCTAssertEqual(gameScheduleModelResponse.homeNickName, "Pelicans")
+        XCTAssertEqual(gameScheduleModelResponse.homeShortName, "New Orleans")
+        XCTAssertEqual(gameScheduleModelResponse.homeAbbreviation, "NOP")
+        XCTAssertEqual(gameScheduleModelResponse.gameDate, gameDate)
+        XCTAssertEqual(gameScheduleModelResponse.gameDay, "Tue")
+        XCTAssertEqual(gameScheduleModelResponse.broadcastId, "10")
+        XCTAssertEqual(gameScheduleModelResponse.broadcasterName, "TNT")
+        XCTAssertEqual(gameScheduleModelResponse.tapeDelayComments, "")
+    }
+
+    func test_gameScheduleModel_withBadData_isNil() throws {
+        let path = getPath(forResource: "GameScheduleModelBadDataFormat",
+                               ofType: "json")
+        let gameScheduleModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        var gameScheduleModelResponse: GameSchedule?
+
+        do {
+            gameScheduleModelResponse = try JSONDecoder().decode(GameSchedule.self, from: gameScheduleModelData)
+        } catch {
+            gameScheduleModelResponse = nil
+        }
+        XCTAssertNil(gameScheduleModelResponse)
+    }
+
+     func test_gameScheduleModel_withMissingData_isNil() throws {
+        let path = getPath(forResource: "GameScheduleModelMissingDataFormat",
+                               ofType: "json")
+        let gameScheduleModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let gameScheduleModelResponse: GameSchedule?
+
+        do {
+            gameScheduleModelResponse = try JSONDecoder().decode(GameSchedule.self, from: gameScheduleModelData)
+        } catch {
+            gameScheduleModelResponse = nil
+        }
+        XCTAssertNil(gameScheduleModelResponse)
+     }
 }

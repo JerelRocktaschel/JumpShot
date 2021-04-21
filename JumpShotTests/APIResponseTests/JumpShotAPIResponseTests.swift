@@ -109,4 +109,38 @@ class JumpShotAPIResponseTests: XCTestCase {
         let playerApiResponse = PlayerApiResponse(json: playerApiResponseJson)
         XCTAssertNil(playerApiResponse)
     }
+
+    // MARK: GameScheduleApiResponse
+
+    func test_gameScheduleApiResponse_withMissingResultSetsDictionary_isNil() throws {
+        let path = getPath(forResource: "GameScheduleApiResponseMissingResultSets",
+                           ofType: "json")
+        let gameScheduleApiResponseJson = try getApiResourceJson(withPath: path)
+        let gameScheduleApiResponse = GameScheduleApiResponse(json: gameScheduleApiResponseJson)
+        XCTAssertNil(gameScheduleApiResponse)
+    }
+
+    func test_gameScheduleApiResponse_withMissingCompleteGameListDictionary_isNil() throws {
+        let path = getPath(forResource: "GameScheduleApiResponseMissingCompleteGameSet",
+                           ofType: "json")
+        let gameScheduleApiResponseJson = try getApiResourceJson(withPath: path)
+        let gameScheduleApiResponse = GameScheduleApiResponse(json: gameScheduleApiResponseJson)
+        XCTAssertNil(gameScheduleApiResponse)
+    }
+
+    func test_gameScheduleApiResponse_withSixGames_isSix() throws {
+        let path = getPath(forResource: "GameScheduleApiResponse",
+                           ofType: "json")
+        let gameScheduleApiResponseJson = try getApiResourceJson(withPath: path)
+        let gameScheduleApiResponse = GameScheduleApiResponse(json: gameScheduleApiResponseJson)
+        XCTAssertEqual(gameScheduleApiResponse?.gameSchedules.count, 6)
+    }
+
+    func test_gameScheduleApiResponse_withMissingAttribute_isNil() throws {
+        let path = getPath(forResource: "GameScheduleApiResponseMissingAttribute",
+                            ofType: "json")
+        let gameScheduleApiResponseJson = try getApiResourceJson(withPath: path)
+        let gameScheduleApiResponse = GameScheduleApiResponse(json: gameScheduleApiResponseJson)
+        XCTAssertNil(gameScheduleApiResponse)
+    }
 }

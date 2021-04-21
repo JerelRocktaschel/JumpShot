@@ -1,0 +1,38 @@
+{
+   "resource":"internationalbroadcasterschedule",
+   "parameters":{
+      "LeagueID":"00",
+      "Season":"2020",
+      "RegionID":1,
+      "Date":"4/17/2021",
+      "EST":"Y"
+   },
+   "resultSets":[
+      {
+         "NextGameList":[
+            {
+               "gameID":"0022000876",
+               "vtCity":"Orlando",
+               "vtNickName":"Magic",
+               "vtShortName":"Orlando",
+               "vtAbbreviation":"ORL",
+               "htCity":"Atlanta",
+               "htNickName":"Hawks",
+               "htShortName":"Atlanta",
+               "htAbbreviation":"ATL",
+               "date":"04/20/2021",
+               "time":"07:30 PM",
+               "day":"Tue",
+               "broadcasters":[
+                  {
+                     "broadcastID":"0",
+                     "broadcasterName":"LEAGUE PASS",
+                     "tapeDelayComments":""
+                  }
+               ]
+            }
+         ]
+      }
+   ]
+}
+

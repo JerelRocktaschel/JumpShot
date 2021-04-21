@@ -1,0 +1,227 @@
+{
+   "resource":"internationalbroadcasterschedule",
+   "parameters":{
+      "LeagueID":"00",
+      "Season":"2020",
+      "RegionID":1,
+      "Date":"4/17/2021",
+      "EST":"Y"
+   },
+   "resultSets":[
+      {
+         "NextGameList":[
+            {
+               "gameID":"0022000876",
+               "vtCity":"Orlando",
+               "vtNickName":"Magic",
+               "vtShortName":"Orlando",
+               "vtAbbreviation":"ORL",
+               "htCity":"Atlanta",
+               "htNickName":"Hawks",
+               "htShortName":"Atlanta",
+               "htAbbreviation":"ATL",
+               "date":"04/20/2021",
+               "time":"07:30 PM",
+               "day":"Tue",
+               "broadcasters":[
+                  {
+                     "broadcastID":"0",
+                     "broadcasterName":"LEAGUE PASS",
+                     "tapeDelayComments":""
+                  }
+               ]
+            },
+            {
+               "gameID":"0022000877",
+               "vtCity":"Charlotte",
+               "vtNickName":"Hornets",
+               "vtShortName":"Charlotte",
+               "vtAbbreviation":"CHA",
+               "htCity":"New York",
+               "htNickName":"Knicks",
+               "htShortName":"New York",
+               "htAbbreviation":"NYK",
+               "date":"04/20/2021",
+               "time":"07:30 PM",
+               "day":"Tue",
+               "broadcasters":[
+                  {
+                     "broadcastID":"0",
+                     "broadcasterName":"LEAGUE PASS",
+                     "tapeDelayComments":""
+                  }
+               ]
+            },
+            {
+               "gameID":"0022000878",
+               "vtCity":"Brooklyn",
+               "vtNickName":"Nets",
+               "vtShortName":"Brooklyn",
+               "vtAbbreviation":"BKN",
+               "htCity":"New Orleans",
+               "htNickName":"Pelicans",
+               "htShortName":"New Orleans",
+               "htAbbreviation":"NOP",
+               "date":"04/20/2021",
+               "time":"07:30 PM",
+               "day":"Tue",
+               "broadcasters":[
+                  {
+                     "broadcastID":"10",
+                     "broadcasterName":"TNT",
+                     "tapeDelayComments":""
+                  }
+               ]
+            },
+            {
+               "gameID":"0022000879",
+               "vtCity":"LA",
+               "vtNickName":"Clippers",
+               "vtShortName":"LA Clippers",
+               "vtAbbreviation":"LAC",
+               "htCity":"Portland",
+               "htNickName":"Trail Blazers",
+               "htShortName":"Portland",
+               "htAbbreviation":"POR",
+               "date":"04/20/2021",
+               "time":"10:00 PM",
+               "day":"Tue",
+               "broadcasters":[
+                  {
+                     "broadcastID":"10",
+                     "broadcasterName":"TNT",
+                     "tapeDelayComments":""
+                  }
+               ]
+            },
+            {
+               "gameID":"0022000880",
+               "vtCity":"Minnesota",
+               "vtNickName":"Timberwolves",
+               "vtShortName":"Minnesota",
+               "vtAbbreviation":"MIN",
+               "htCity":"Sacramento",
+               "htNickName":"Kings",
+               "htShortName":"Sacramento",
+               "htAbbreviation":"SAC",
+               "date":"04/20/2021",
+               "time":"10:00 PM",
+               "day":"Tue",
+               "broadcasters":[
+                  {
+                     "broadcastID":"0",
+                     "broadcasterName":"LEAGUE PASS",
+                     "tapeDelayComments":""
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "CompleteGameList":[
+            {
+               "gameID":"0022000855",
+               "vtCity":"Utah",
+               "vtNickName":"Jazz",
+               "vtShortName":"Utah",
+               "vtAbbreviation":"UTA",
+               "htCity":"Los Angeles",
+               "htNickName":"Lakers",
+               "htShortName":"L.A. Lakers",
+               "htAbbreviation":"LAL",
+               "date":"04/17/2021",
+               "time":"04:30 PM",
+               "day":"Sat",
+               "broadcastID":"2",
+               "broadcasterName":"ESPN",
+               "tapeDelayComments":""
+            },
+            {
+               "gameID":"0022000856",
+               "vtCity":"Detroit",
+               "vtNickName":"Pistons",
+               "vtShortName":"Detroit",
+               "vtAbbreviation":"DET",
+               "htCity":"Washington",
+               "htNickName":"Wizards",
+               "htShortName":"Washington",
+               "htAbbreviation":"WAS",
+               "date":"04/17/2021",
+               "time":"08:00 PM",
+               "day":"Sat",
+               "broadcastID":"0",
+               "broadcasterName":"LEAGUE PASS",
+               "tapeDelayComments":""
+            },
+            {
+               "gameID":"0022000857",
+               "vtCity":"Cleveland",
+               "vtNickName":"Cavaliers",
+               "vtShortName":"Cleveland",
+               "vtAbbreviation":"CLE",
+               "htCity":"Chicago",
+               "htNickName":"Bulls",
+               "htShortName":"Chicago",
+               "htAbbreviation":"CHI",
+               "date":"04/17/2021",
+               "time":"08:00 PM",
+               "day":"Sat",
+               "broadcastID":"0",
+               "broadcasterName":"LEAGUE PASS",
+               "tapeDelayComments":""
+            },
+            {
+               "gameID":"0022000858",
+               "vtCity":"Golden State",
+               "vtNickName":"Warriors",
+               "vtShortName":"Golden State",
+               "vtAbbreviation":"GSW",
+               "htCity":"Boston",
+               "htNickName":"Celtics",
+               "htShortName":"Boston",
+               "htAbbreviation":"BOS",
+               "date":"04/17/2021",
+               "time":"08:30 PM",
+               "day":"Sat",
+               "broadcastID":"1",
+               "broadcasterName":"ABC",
+               "tapeDelayComments":""
+            },
+            {
+               "gameID":"0022000859",
+               "vtCity":"Memphis",
+               "vtNickName":"Grizzlies",
+               "vtShortName":"Memphis",
+               "vtAbbreviation":"MEM",
+               "htCity":"Milwaukee",
+               "htNickName":"Bucks",
+               "htShortName":"Milwaukee",
+               "htAbbreviation":"MIL",
+               "date":"04/17/2021",
+               "time":"09:00 PM",
+               "day":"Sat",
+               "broadcastID":"0",
+               "broadcasterName":"LEAGUE PASS",
+               "tapeDelayComments":""
+            },
+            {
+               "gameID":"0022000860",
+               "vtCity":"San Antonio",
+               "vtNickName":"Spurs",
+               "vtShortName":"San Antonio",
+               "vtAbbreviation":"SAS",
+               "htCity":"Phoenix",
+               "htNickName":"Suns",
+               "htShortName":"Phoenix",
+               "htAbbreviation":"PHX",
+               "date":"04/17/2021",
+               "time":"10:00 PM",
+               "day":"Sat",
+               "broadcastID":"0",
+               "broadcasterName":"LEAGUE PASS",
+               "tapeDelayComments":""
+            }
+         ]
+      }
+   ]
+}

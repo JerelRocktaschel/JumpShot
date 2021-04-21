@@ -607,4 +607,186 @@ class JumpShotTests: XCTestCase {
         wait(for: [expectation], timeout: 5.0)
         XCTAssertEqual(responseTeamImage.pngData()!.count, 384454)
     }
+
+    // MARK: GetDailySchedule
+
+    func test_jumpShot_withGetDailySchedule_isNetworkUnavailable() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 4
+        dateComponents.day = 20
+        let scheduleDate = Calendar.current.date(from: dateComponents)
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getDailySchedule(for: scheduleDate!) { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            nil, nil, TestError.testError
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The network is unavailable.")
+    }
+
+    func test_jumpShot_withGetDailySchedule_isRequestFailed() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 4
+        dateComponents.day = 20
+        let scheduleDate = Calendar.current.date(from: dateComponents)
+
+        let expectation = XCTestExpectation(description: "Network Error")
+
+        jumpShot.getDailySchedule(for: scheduleDate!) { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            gameDailyScheduleData(), response(statusCode: 300), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The request failed.")
+    }
+
+    func test_jumpShot_withGetDailySchedule_isNoDataReturned() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 4
+        dateComponents.day = 20
+        let scheduleDate = Calendar.current.date(from: dateComponents)
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getDailySchedule(for: scheduleDate!) { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+                           nil, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "No NBA data was returned.")
+    }
+
+    func test_jumpShot_withGetDailySchedule_isUnableToDecode() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 4
+        dateComponents.day = 20
+        let scheduleDate = Calendar.current.date(from: dateComponents)
+
+        let path = getPath(forResource: "GameScheduleApiResponseMissingAttribute",
+                           ofType: "json")
+
+        let teamApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getDailySchedule(for: scheduleDate!) { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            teamApiResponseData, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The source data could not be decoded.")
+    }
+
+    func test_jumpShot_withGetDailySchedule__isUnableToDecodeWithError() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 4
+        dateComponents.day = 20
+        let scheduleDate = Calendar.current.date(from: dateComponents)
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getDailySchedule(for: scheduleDate!) { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            badJsonData(), response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The source data could not be decoded.")
+    }
+
+    func test_jumpShot_withGetDailySchedule_isOneGame() throws {
+        let mockURLSession = MockURLSession()
+        var responseGameSchedules = [GameSchedule]()
+        router.session = mockURLSession
+        let testBundle = Bundle(for: type(of: self))
+        guard let path = testBundle.path(forResource: "GameScheduleApiResponseOneGame", ofType: "json")
+            else { fatalError("Can't find GameScheduleApiResponseOneGame.json file") }
+        let gameScheduleApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 4
+        dateComponents.day = 20
+        let scheduleDate = Calendar.current.date(from: dateComponents)
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy hh:mm a"
+        dateFormatter.timeZone = TimeZone(abbreviation: "EST")
+        let dateString = "04/20/2021 07:30 PM"
+        let gameDate =  dateFormatter.date(from: dateString)!
+
+        let expectation = XCTestExpectation(description: "Game Schedule Response")
+
+        jumpShot.getDailySchedule(for: scheduleDate!) { gameSchedules, _ in
+            responseGameSchedules = gameSchedules!
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            gameScheduleApiResponseData, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 5.0)
+
+        XCTAssertEqual(responseGameSchedules.count, 1)
+        XCTAssertEqual(responseGameSchedules.first!.gameId, "0022000878")
+        XCTAssertEqual(responseGameSchedules.first!.visitorCity, "Brooklyn")
+        XCTAssertEqual(responseGameSchedules.first!.visitorNickName, "Nets")
+        XCTAssertEqual(responseGameSchedules.first!.visitorShortName, "Brooklyn")
+        XCTAssertEqual(responseGameSchedules.first!.visitorAbbreviation, "BKN")
+        XCTAssertEqual(responseGameSchedules.first!.homeCity, "New Orleans")
+        XCTAssertEqual(responseGameSchedules.first!.homeNickName, "Pelicans")
+        XCTAssertEqual(responseGameSchedules.first!.homeShortName, "New Orleans")
+        XCTAssertEqual(responseGameSchedules.first!.homeAbbreviation, "NOP")
+        XCTAssertEqual(responseGameSchedules.first!.gameDate, gameDate)
+        XCTAssertEqual(responseGameSchedules.first!.gameDay, "Tue")
+        XCTAssertEqual(responseGameSchedules.first!.broadcastId, "10")
+        XCTAssertEqual(responseGameSchedules.first!.broadcasterName, "TNT")
+        XCTAssertEqual(responseGameSchedules.first!.tapeDelayComments, "")
+    }
 }

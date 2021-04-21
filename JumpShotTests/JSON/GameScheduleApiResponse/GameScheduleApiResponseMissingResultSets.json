@@ -1,0 +1,10 @@
+{
+   "resource":"internationalbroadcasterschedule",
+   "parameters":{
+      "LeagueID":"00",
+      "Season":"2020",
+      "RegionID":1,
+      "Date":"4/17/2021",
+      "EST":"Y"
+   }
+}

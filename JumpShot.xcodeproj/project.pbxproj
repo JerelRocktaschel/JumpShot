@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		D815EAC7262B8B75004C22AD /* JumpShotGetDailySchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D815EAC6262B8B75004C22AD /* JumpShotGetDailySchedule.swift */; };
+		D815EAEA262F7699004C22AD /* GameScheduleApiResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D815EAE9262F7699004C22AD /* GameScheduleApiResponse.json */; };
+		D815EAF3262F7E6D004C22AD /* GameScheduleModel.json in Resources */ = {isa = PBXBuildFile; fileRef = D815EAF2262F7E6D004C22AD /* GameScheduleModel.json */; };
+		D815EAFB262FAB9F004C22AD /* GameScheduleModelBadDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D815EAFA262FAB9F004C22AD /* GameScheduleModelBadDataFormat.json */; };
+		D815EB00262FABF8004C22AD /* GameScheduleModelMissingDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D815EAFF262FABF8004C22AD /* GameScheduleModelMissingDataFormat.json */; };
+		D815EB08262FB9DD004C22AD /* GameScheduleApiResponseMissingResultSets.json in Resources */ = {isa = PBXBuildFile; fileRef = D815EB07262FB9DD004C22AD /* GameScheduleApiResponseMissingResultSets.json */; };
+		D815EB10262FBB19004C22AD /* GameScheduleApiResponseMissingCompleteGameSet.json in Resources */ = {isa = PBXBuildFile; fileRef = D815EB0F262FBB19004C22AD /* GameScheduleApiResponseMissingCompleteGameSet.json */; };
+		D815EB15262FC503004C22AD /* GameScheduleApiResponseMissingAttribute.json in Resources */ = {isa = PBXBuildFile; fileRef = D815EB14262FC503004C22AD /* GameScheduleApiResponseMissingAttribute.json */; };
+		D815EB1A262FCAC0004C22AD /* GameScheduleApiResponseOneGame.json in Resources */ = {isa = PBXBuildFile; fileRef = D815EB19262FCAC0004C22AD /* GameScheduleApiResponseOneGame.json */; };
 		D817FC48261BCFB00092F5E0 /* JumpShot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D817FC3E261BCFB00092F5E0 /* JumpShot.framework */; };
 		D817FC4D261BCFB00092F5E0 /* JumpShotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D817FC4C261BCFB00092F5E0 /* JumpShotTests.swift */; };
 		D817FC4F261BCFB00092F5E0 /* JumpShot.h in Headers */ = {isa = PBXBuildFile; fileRef = D817FC41261BCFB00092F5E0 /* JumpShot.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -75,6 +83,14 @@
 
 /* Begin PBXFileReference section */
 		D815EAC6262B8B75004C22AD /* JumpShotGetDailySchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetDailySchedule.swift; sourceTree = "<group>"; };
+		D815EAE9262F7699004C22AD /* GameScheduleApiResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameScheduleApiResponse.json; sourceTree = "<group>"; };
+		D815EAF2262F7E6D004C22AD /* GameScheduleModel.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameScheduleModel.json; sourceTree = "<group>"; };
+		D815EAFA262FAB9F004C22AD /* GameScheduleModelBadDataFormat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameScheduleModelBadDataFormat.json; sourceTree = "<group>"; };
+		D815EAFF262FABF8004C22AD /* GameScheduleModelMissingDataFormat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameScheduleModelMissingDataFormat.json; sourceTree = "<group>"; };
+		D815EB07262FB9DD004C22AD /* GameScheduleApiResponseMissingResultSets.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameScheduleApiResponseMissingResultSets.json; sourceTree = "<group>"; };
+		D815EB0F262FBB19004C22AD /* GameScheduleApiResponseMissingCompleteGameSet.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameScheduleApiResponseMissingCompleteGameSet.json; sourceTree = "<group>"; };
+		D815EB14262FC503004C22AD /* GameScheduleApiResponseMissingAttribute.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameScheduleApiResponseMissingAttribute.json; sourceTree = "<group>"; };
+		D815EB19262FCAC0004C22AD /* GameScheduleApiResponseOneGame.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameScheduleApiResponseOneGame.json; sourceTree = "<group>"; };
 		D817FC3E261BCFB00092F5E0 /* JumpShot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JumpShot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D817FC41261BCFB00092F5E0 /* JumpShot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JumpShot.h; sourceTree = "<group>"; };
 		D817FC42261BCFB00092F5E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,7 +120,6 @@
 		D817FCA0261BD0560092F5E0 /* JumpShotRouterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JumpShotRouterTests.swift; sourceTree = "<group>"; };
 		D817FCAA261BD05C0092F5E0 /* JumpShotAPIResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JumpShotAPIResponseTests.swift; sourceTree = "<group>"; };
 		D817FCB1261BD0640092F5E0 /* JumpShotModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JumpShotModelTests.swift; sourceTree = "<group>"; };
-		D817FCB6261BD06C0092F5E0 /* JumpShotModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JumpShotModelTests.swift; sourceTree = "<group>"; };
 		D817FCC4261BD1A00092F5E0 /* JumpShotExamples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JumpShotExamples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D817FCC6261BD1A00092F5E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D817FCC8261BD1A00092F5E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +177,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D815EAD7262F762C004C22AD /* GameScheduleApiResponse */ = {
+			isa = PBXGroup;
+			children = (
+				D815EAE9262F7699004C22AD /* GameScheduleApiResponse.json */,
+				D815EB19262FCAC0004C22AD /* GameScheduleApiResponseOneGame.json */,
+				D815EB0F262FBB19004C22AD /* GameScheduleApiResponseMissingCompleteGameSet.json */,
+				D815EB07262FB9DD004C22AD /* GameScheduleApiResponseMissingResultSets.json */,
+				D815EB14262FC503004C22AD /* GameScheduleApiResponseMissingAttribute.json */,
+			);
+			path = GameScheduleApiResponse;
+			sourceTree = "<group>";
+		};
+		D815EAF1262F7E42004C22AD /* GameScheduleModel */ = {
+			isa = PBXGroup;
+			children = (
+				D815EAF2262F7E6D004C22AD /* GameScheduleModel.json */,
+				D815EAFF262FABF8004C22AD /* GameScheduleModelMissingDataFormat.json */,
+				D815EAFA262FAB9F004C22AD /* GameScheduleModelBadDataFormat.json */,
+			);
+			path = GameScheduleModel;
+			sourceTree = "<group>";
+		};
 		D817FC34261BCFB00092F5E0 = {
 			isa = PBXGroup;
 			children = (
@@ -208,7 +245,6 @@
 				D817FC91261BD02F0092F5E0 /* Helpers */,
 				D817FC98261BD0560092F5E0 /* NetworkTests */,
 				D817FCA9261BD05C0092F5E0 /* APIResponseTests */,
-				D817FCB5261BD06C0092F5E0 /* ModelTests */,
 				D817FC4E261BCFB00092F5E0 /* Info.plist */,
 			);
 			path = JumpShotTests;
@@ -263,10 +299,12 @@
 		D817FC78261BD02A0092F5E0 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				D815EAD7262F762C004C22AD /* GameScheduleApiResponse */,
 				D8D675F62628D0570009B06F /* PlayerApiResponse */,
 				D8D6760D2628E26C0009B06F /* PlayerModel */,
 				D817FC79261BD02A0092F5E0 /* TeamApiResponse */,
 				D817FC80261BD02A0092F5E0 /* TeamModel */,
+				D815EAF1262F7E42004C22AD /* GameScheduleModel */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -358,14 +396,6 @@
 			isa = PBXGroup;
 			children = (
 				D817FCB1261BD0640092F5E0 /* JumpShotModelTests.swift */,
-			);
-			path = ModelTests;
-			sourceTree = "<group>";
-		};
-		D817FCB5261BD06C0092F5E0 /* ModelTests */ = {
-			isa = PBXGroup;
-			children = (
-				D817FCB6261BD06C0092F5E0 /* JumpShotModelTests.swift */,
 			);
 			path = ModelTests;
 			sourceTree = "<group>";
@@ -557,6 +587,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D815EB00262FABF8004C22AD /* GameScheduleModelMissingDataFormat.json in Resources */,
+				D815EB10262FBB19004C22AD /* GameScheduleApiResponseMissingCompleteGameSet.json in Resources */,
+				D815EAF3262F7E6D004C22AD /* GameScheduleModel.json in Resources */,
 				D832C4FB261FB3D300D214B8 /* UTA.png in Resources */,
 				D8D676342629E3290009B06F /* PlayerApiResponseMissingStandardDict.json in Resources */,
 				D8D676062628D23A0009B06F /* PlayerApiResponse.json in Resources */,
@@ -568,13 +601,18 @@
 				D817FC87261BD02A0092F5E0 /* TeamApiResponseIsNBAFranchiseIsFalse.json in Resources */,
 				D817FC86261BD02A0092F5E0 /* TeamApiResponseMissingIsNBAFranchise.json in Resources */,
 				D8D6764A2629E5770009B06F /* PlayerApiResponseMissingIsActive.json in Resources */,
+				D815EB08262FB9DD004C22AD /* GameScheduleApiResponseMissingResultSets.json in Resources */,
+				D815EB1A262FCAC0004C22AD /* GameScheduleApiResponseOneGame.json in Resources */,
 				D832C51A26251C2900D214B8 /* large_1627759.png in Resources */,
+				D815EB15262FC503004C22AD /* GameScheduleApiResponseMissingAttribute.json in Resources */,
 				D832C4FA261FB3D300D214B8 /* NOP.png in Resources */,
 				D817FC85261BD02A0092F5E0 /* TeamApiResponseMissingStandardDict.json in Resources */,
 				D8D6763F2629E36E0009B06F /* PlayerApiResponseMissingLeagueDict.json in Resources */,
 				D8D676172628E2B90009B06F /* PlayerModel.json in Resources */,
+				D815EAEA262F7699004C22AD /* GameScheduleApiResponse.json in Resources */,
 				D817FC8B261BD02A0092F5E0 /* TeamModelMissingDataFormat.json in Resources */,
 				D832C4F4261F74CD00D214B8 /* BOS.png in Resources */,
+				D815EAFB262FAB9F004C22AD /* GameScheduleModelBadDataFormat.json in Resources */,
 				D8D6761F2629DFDF0009B06F /* PlayerModelMissingDataFormat.json in Resources */,
 				D817FC88261BD02A0092F5E0 /* TeamApiResponseMissingAttribute.json in Resources */,
 				D817FC84261BD02A0092F5E0 /* TeamApiResponseMissingLeagueDict.json in Resources */,

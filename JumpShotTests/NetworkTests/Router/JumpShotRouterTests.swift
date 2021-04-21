@@ -44,7 +44,7 @@ class JumpShotRouterTests: XCTestCase {
 
     // MARK: Player
 
-    func test_playerRouter_shouldMakeRequestToTeamsAPIURL() {
+    func test_playerRouter_shouldMakeRequestToPlayersAPIURL() {
         router.request(.playerList(season: "2020")) { _, _, _ in
         }
         mockURLSession.verifyDataTask(
@@ -72,5 +72,21 @@ class JumpShotRouterTests: XCTestCase {
         }
         mockURLSession.verifyDataTask(
             with: URLRequest(url: URL(string: "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/1040x760/1627759.png")!))
+    }
+
+    // MARK: Get Daily Schedule
+
+    func test_dailyScheduleRouter_shouldMakeRequestToTeamsAPIURL() {
+        router.request(.scheduleList(season: "2020", date: "04/17/2021")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/internationalbroadcasterschedule?LeagueID=00&Season=2020&RegionID=1&Date=04/17/2021&EST=Y")!))
+    }
+
+    func test_dailyScheduleRouter_withJSONData_isEqualToCanonical() throws {
+        let path = getPath(forResource: "GameScheduleApiResponse",
+                           ofType: "json")
+        let gameScheduleApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+        XCTAssertEqual(gameScheduleApiResponseData, gameDailyScheduleData())
     }
 }

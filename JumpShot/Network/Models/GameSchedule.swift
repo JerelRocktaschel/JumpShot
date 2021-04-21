@@ -59,11 +59,11 @@ public struct GameSchedule {
         homeNickName = try gameScheduleContainer.decode(String.self, forKey: .homeNickName)
         homeShortName = try gameScheduleContainer.decode(String.self, forKey: .homeShortName)
         homeAbbreviation = try gameScheduleContainer.decode(String.self, forKey: .homeAbbreviation)
-        
+
         if let gameFormattedDate = (dateString + " " + timeString).getGameDate() {
             gameDate = gameFormattedDate
         }
-        
+
         gameDay = try gameScheduleContainer.decode(String.self, forKey: .gameDay)
         broadcastId = try gameScheduleContainer.decode(String.self, forKey: .broadcastId)
         broadcasterName = try gameScheduleContainer.decode(String.self, forKey: .broadcasterName)
@@ -120,15 +120,19 @@ extension GameScheduleApiResponse {
             }
         }
 
+        if completeGameListDictionary.count == 0 {
+            return nil
+        }
+
         self.gameSchedules = [GameSchedule]()
         for gameScheduleDictionary in completeGameListDictionary {
-
             guard let jsonGameScheduleData = try? JSONSerialization.data(withJSONObject: gameScheduleDictionary,
                                                                          options: []) else {
                 return nil
             }
 
             do {
+                print(json)
                 let gameSchedule = try JSONDecoder().decode(GameSchedule.self, from: jsonGameScheduleData)
                 self.gameSchedules.append(gameSchedule)
             } catch {
