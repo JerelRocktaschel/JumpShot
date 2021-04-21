@@ -132,7 +132,6 @@ extension GameScheduleApiResponse {
             }
 
             do {
-                print(json)
                 let gameSchedule = try JSONDecoder().decode(GameSchedule.self, from: jsonGameScheduleData)
                 self.gameSchedules.append(gameSchedule)
             } catch {
