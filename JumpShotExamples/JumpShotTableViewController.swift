@@ -22,7 +22,8 @@ class JumpShotTableViewController: UITableViewController {
                              "getPlayerImage() - Small",
                              "getPlayerImage() - Large",
                              "getPlayers()",
-                             "getGameSchedule(for: \"04/20/2021\")"]
+                             "getGameSchedule(for: \"04/20/2021\")",
+                             "getStandings()"]
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         jumpShotFunctions.count
@@ -53,6 +54,8 @@ class JumpShotTableViewController: UITableViewController {
             dateComponents.day = 20
             let scheduleDate = Calendar.current.date(from: dateComponents)
             getDailySchedule(for: scheduleDate!)
+        case 6:
+            getStandings()
         default:
             print("No function selected")
         }
@@ -138,6 +141,22 @@ class JumpShotTableViewController: UITableViewController {
             }
 
             print(gameSchedules)
+        }
+    }
+    
+    private func getStandings() {
+        jumpShot.getStandings() { standings, error in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+
+            guard let standings = standings else {
+                print("No schedules returned.")
+                return
+            }
+
+            print(standings)
         }
     }
 }

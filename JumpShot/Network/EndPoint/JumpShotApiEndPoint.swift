@@ -44,7 +44,7 @@ public enum Path {
     public static var playerList: String { return "/players.json" }
     public static var playerImage: String { return ".png" }
     public static var scheduleList: String { return "&EST=Y" }
-    public static var standingList: String { return "v2/current/standings_conference.json" }
+    public static var standingList: String { return "current/standings_conference.json" }
 }
 
 enum JumpShotApiEndPoint {

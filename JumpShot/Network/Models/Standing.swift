@@ -27,6 +27,18 @@ import Foundation
 
 public struct Standing {
 
+    struct TeamSitesOnly: Decodable {
+        let teamKey: String
+        let teamName: String
+        let teamCode: String
+        let teamNickname: String
+        let teamTricode: String
+        let clinchedConference: String
+        let clinchedDivision: String
+        let clinchedPlayoffs: String
+        let streakText: String
+    }
+
     // MARK: Internal Properties
 
     let teamId: String
@@ -50,6 +62,7 @@ public struct Standing {
     let streak: Int
     var divisionRank: Int?
     let isWinStreak: Bool
+    let teamSitesOnly: TeamSitesOnly
     let isClinchedConference: Bool
     let isclinchedDivision: Bool
 
@@ -76,8 +89,6 @@ public struct Standing {
         let lastTenLossesString = try standingContainer.decode(String.self, forKey: .lastTenLosses)
         let streakString = try standingContainer.decode(String.self, forKey: .streak)
         let divisionRankString = try standingContainer.decode(String.self, forKey: .divisionRank)
-        let isClinchedConferenceRankString = try standingContainer.decode(String.self, forKey: .isClinchedConference)
-        let isclinchedDivisionRankString = try standingContainer.decode(String.self, forKey: .isclinchedDivision)
 
         teamId = try standingContainer.decode(String.self, forKey: .teamId)
         wins = Int(winsString)!
@@ -110,17 +121,18 @@ public struct Standing {
         }
 
         isWinStreak = try standingContainer.decode(Bool.self, forKey: .isWinStreak)
-
-        if isClinchedConferenceRankString == "0" {
-            isClinchedConference = false
-        } else {
+        teamSitesOnly = try standingContainer.decode(TeamSitesOnly.self, forKey: .teamSitesOnly)
+        
+        if teamSitesOnly.clinchedConference == "1" {
             isClinchedConference = true
+        } else {
+            isClinchedConference = false
         }
 
-        if isclinchedDivisionRankString == "0" {
-            isclinchedDivision = false
-        } else {
+        if teamSitesOnly.clinchedDivision == "1" {
             isclinchedDivision = true
+        } else {
+            isclinchedDivision = false
         }
     }
 }
@@ -151,8 +163,7 @@ extension Standing: Decodable {
         case streak = "streak"
         case divisionRank = "divRank"
         case isWinStreak = "isWinStreak"
-        case isClinchedConference = "clinchedConference"
-        case isclinchedDivision = "clinchedDivision"
+        case teamSitesOnly = "teamSitesOnly"
     }
 }
 
@@ -181,25 +192,28 @@ extension StandingApiResponse {
             return nil
         }
 
-        self.standings = [Standing]()
-        for (_, value) in completeConferenceDictionary {
+        guard let eastConferenceStandingsDictionary = completeConferenceDictionary["east"] as? [JSONDictionary] else {
+            return nil
+        }
 
-            guard let standingsDictionary = value as? JSONDictionary else {
-                return nil
+        guard let westConferenceDictionary = completeConferenceDictionary["west"] as? [JSONDictionary] else {
+            return nil
+        }
+
+        let eastWestConferenceStandingsDictionary = eastConferenceStandingsDictionary + westConferenceDictionary
+
+        self.standings = [Standing]()
+        for standingDictionary in eastWestConferenceStandingsDictionary {
+            guard let jsonStandingData = try? JSONSerialization.data(withJSONObject: standingDictionary,
+                                                                             options: []) else {
+                    return nil
             }
 
-            for standingDictionary in standingsDictionary {
-                guard let jsonStandingData = try? JSONSerialization.data(withJSONObject: standingDictionary,
-                                                                                 options: []) else {
-                        return nil
-                }
-
-                do {
-                    let standing = try JSONDecoder().decode(Standing.self, from: jsonStandingData)
-                    self.standings.append(standing)
-                } catch {
-                    return nil
-                }
+            do {
+                let standing = try JSONDecoder().decode(Standing.self, from: jsonStandingData)
+                self.standings.append(standing)
+            } catch {
+                return nil
             }
         }
     }
