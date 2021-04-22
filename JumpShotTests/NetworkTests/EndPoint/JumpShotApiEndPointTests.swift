@@ -16,6 +16,7 @@ class JumpShotApiEndPointTests: XCTestCase {
     var playerSmallImageJumpShotApiEndPoint: JumpShotApiEndPoint!
     var playerLargeImageJumpShotApiEndPoint: JumpShotApiEndPoint!
     var dailyGameScheduleJumpShotApiEndPoint: JumpShotApiEndPoint!
+    var standingsScheduleJumpShotApiEndPoint: JumpShotApiEndPoint!
 
     override func setUp() {
         teamsJumpShotApiEndPoint = JumpShotApiEndPoint.self.teamList(season: "2020")
@@ -26,6 +27,7 @@ class JumpShotApiEndPointTests: XCTestCase {
         playerLargeImageJumpShotApiEndPoint = JumpShotApiEndPoint.self.playerImage(imageSize: .large,
                                                                                    playerId: "1627759")
         dailyGameScheduleJumpShotApiEndPoint = JumpShotApiEndPoint.self.scheduleList(season: "2020", date: "04/17/2021")
+        standingsScheduleJumpShotApiEndPoint = JumpShotApiEndPoint.self.standingList
     }
 
     // MARK: Team
@@ -113,6 +115,22 @@ class JumpShotApiEndPointTests: XCTestCase {
     func test_scheduleListJumpShotApiEndPoint_withPath_isCorrectValue() {
         XCTAssertEqual(dailyGameScheduleJumpShotApiEndPoint.path,
                        "internationalbroadcasterschedule?LeagueID=00&Season=2020&RegionID=1&Date=04/17/2021&EST=Y")
+    }
+
+    // MARK: Standings
+
+    func test_standingsListJumpShotApiEndPoint_withEnvironmentalBaseURL_isCorrectValue() {
+        XCTAssertEqual(standingsScheduleJumpShotApiEndPoint.environmentBaseURL, "https://data.nba.net/data/5s/prod/v2/")
+    }
+
+    func test_standingsListJumpShotApiEndPoint_withBaseURL_isCorrectValue() {
+        XCTAssertEqual(standingsScheduleJumpShotApiEndPoint.baseURL,
+                       URL(string: "https://data.nba.net/data/5s/prod/v2/"))
+    }
+
+    func test_standingsListJumpShotApiEndPoint_withPath_isCorrectValue() {
+        XCTAssertEqual(standingsScheduleJumpShotApiEndPoint.path,
+                       "current/standings_all.json")
     }
 
 }

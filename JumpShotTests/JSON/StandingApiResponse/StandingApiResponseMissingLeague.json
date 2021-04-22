@@ -1,0 +1,14 @@
+{
+   "_internal":{
+      "pubDateTime":"2021-04-22 09:44:11.234 EDT",
+      "igorPath":"S3,1619099041615,1619099049409|router,1619099049409,1619099049437|domUpdater,1619099049646,1619099050961|feedProducer,1619099051062,1619099053250",
+      "xslt":"NBA/xsl/league/standings/marty_all_standings.xsl",
+      "xsltForceRecompile":"true",
+      "xsltInCache":"false",
+      "xsltCompileTimeMillis":"154",
+      "xsltTransformTimeMillis":"1947",
+      "consolidatedDomKey":"prod__transform__marty_standings_all__3167958081801",
+      "endToEndTimeMillis":"11635"
+   }
+}
+

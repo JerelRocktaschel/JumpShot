@@ -39,6 +39,8 @@ public extension JumpShot {
             
         # Notes: #
         1. Handle [Standing] return due to being optional.
+        2. divisionRank is included in the model bit has no value in the response (as of coding).
+        3. Not sure if isClinchedConference/isClinchedDivision will have values in the response.
      */
 
     func getStandings(completion: @escaping (_ gameSchedules: [Standing]?, _ error: LocalizedError?) -> Void) {

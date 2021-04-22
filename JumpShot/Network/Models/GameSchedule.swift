@@ -38,7 +38,7 @@ public struct GameSchedule {
     let homeNickName: String
     let homeShortName: String
     let homeAbbreviation: String
-    var gameDate: Date?
+    let gameDate: Date
     let gameDay: String
     let broadcastId: String
     let broadcasterName: String
@@ -59,11 +59,7 @@ public struct GameSchedule {
         homeNickName = try gameScheduleContainer.decode(String.self, forKey: .homeNickName)
         homeShortName = try gameScheduleContainer.decode(String.self, forKey: .homeShortName)
         homeAbbreviation = try gameScheduleContainer.decode(String.self, forKey: .homeAbbreviation)
-
-        if let gameFormattedDate = (dateString + " " + timeString).getGameDate() {
-            gameDate = gameFormattedDate
-        }
-
+        gameDate = (dateString + " " + timeString).gameDate!
         gameDay = try gameScheduleContainer.decode(String.self, forKey: .gameDay)
         broadcastId = try gameScheduleContainer.decode(String.self, forKey: .broadcastId)
         broadcasterName = try gameScheduleContainer.decode(String.self, forKey: .broadcasterName)

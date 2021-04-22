@@ -143,4 +143,46 @@ class JumpShotAPIResponseTests: XCTestCase {
         let gameScheduleApiResponse = GameScheduleApiResponse(json: gameScheduleApiResponseJson)
         XCTAssertNil(gameScheduleApiResponse)
     }
+
+    // MARK: StandingApiResponse
+
+    func test_standingApiResponse_withMissingLeagueDictionary_isNil() throws {
+        let path = getPath(forResource: "StandingApiResponseMissingLeague",
+                           ofType: "json")
+        let gameScheduleApiResponseJson = try getApiResourceJson(withPath: path)
+        let gameScheduleApiResponse = GameScheduleApiResponse(json: gameScheduleApiResponseJson)
+        XCTAssertNil(gameScheduleApiResponse)
+    }
+
+    func test_standingApiResponse_withMissingStandardDictionary_isNil() throws {
+        let path = getPath(forResource: "StandingApiResponseMissingStandard",
+                           ofType: "json")
+        let gameScheduleApiResponseJson = try getApiResourceJson(withPath: path)
+        let gameScheduleApiResponse = GameScheduleApiResponse(json: gameScheduleApiResponseJson)
+        XCTAssertNil(gameScheduleApiResponse)
+    }
+
+    func test_standingApiResponse_withMissingTeamsDictionary_isNil() throws {
+        let path = getPath(forResource: "StandingApiResponseMissingTeams",
+                           ofType: "json")
+        let gameScheduleApiResponseJson = try getApiResourceJson(withPath: path)
+        let gameScheduleApiResponse = GameScheduleApiResponse(json: gameScheduleApiResponseJson)
+        XCTAssertNil(gameScheduleApiResponse)
+    }
+
+    func test_standingApiResponse_withThirtyStandings_isThirty() throws {
+        let path = getPath(forResource: "StandingApiResponse",
+                           ofType: "json")
+        let standingApiResponseJson = try getApiResourceJson(withPath: path)
+        let standingApiResponse = StandingApiResponse(json: standingApiResponseJson)
+        XCTAssertEqual(standingApiResponse?.standings.count, 30)
+    }
+
+   func test_standingApiResponse_withMissingAttribute_isNil() throws {
+        let path = getPath(forResource: "StandingApiResponseMissingAttribute",
+                            ofType: "json")
+        let standingApiResponseJson = try getApiResourceJson(withPath: path)
+        let standingApiResponse = StandingApiResponse(json: standingApiResponseJson)
+        XCTAssertNil(standingApiResponse)
+    }
 }

@@ -715,7 +715,7 @@ class JumpShotTests: XCTestCase {
         XCTAssertEqual(errorDescription, "The source data could not be decoded.")
     }
 
-    func test_jumpShot_withGetDailySchedule__isUnableToDecodeWithError() throws {
+    func test_jumpShot_withGetDailySchedule_isUnableToDecodeWithError() throws {
         let mockURLSession = MockURLSession()
         var errorDescription = String()
         router.session = mockURLSession
@@ -788,5 +788,159 @@ class JumpShotTests: XCTestCase {
         XCTAssertEqual(responseGameSchedules.first!.broadcastId, "10")
         XCTAssertEqual(responseGameSchedules.first!.broadcasterName, "TNT")
         XCTAssertEqual(responseGameSchedules.first!.tapeDelayComments, "")
+    }
+
+    // MARK: GetDailySchedule
+
+    func test_jumpShot_withGetStandings_isNetworkUnavailable() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getStandings { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            nil, nil, TestError.testError
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The network is unavailable.")
+    }
+
+    func test_jumpShot_withGetStandings_isRequestFailed() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "Network Error")
+
+        jumpShot.getStandings { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            gameDailyScheduleData(), response(statusCode: 300), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The request failed.")
+    }
+
+    func test_jumpShot_withGetStandings_isNoDataReturned() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getStandings { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+                           nil, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "No NBA data was returned.")
+    }
+
+    func test_jumpShot_withGetStandings_isUnableToDecode() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+
+        let path = getPath(forResource: "StandingApiResponseMissingAttribute",
+                           ofType: "json")
+
+        let teamApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getStandings { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            teamApiResponseData, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The source data could not be decoded.")
+    }
+
+    func test_jumpShot_withGetStandings_isUnableToDecodeWithError() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getStandings { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            badJsonData(), response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The source data could not be decoded.")
+    }
+
+    func test_jumpShot_withGetStandings_isOneStanding() throws {
+        let mockURLSession = MockURLSession()
+        var responseStandings = [Standing]()
+        router.session = mockURLSession
+        let testBundle = Bundle(for: type(of: self))
+        guard let path = testBundle.path(forResource: "StandingApiResponseOneStanding", ofType: "json")
+            else { fatalError("Can't find StandingApiResponseOneStanding.json file") }
+        let standingApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+
+        let expectation = XCTestExpectation(description: "Standing Response")
+
+        jumpShot.getStandings { standings, _ in
+            responseStandings = standings!
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            standingApiResponseData, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 5.0)
+
+        XCTAssertEqual(responseStandings.first!.teamId, "1610612762")
+        XCTAssertEqual(responseStandings.first!.wins, 44)
+        XCTAssertEqual(responseStandings.first!.losses, 15)
+        XCTAssertEqual(responseStandings.first!.winPct, 0.746)
+        XCTAssertEqual(responseStandings.first!.lossPct, 0.254)
+        XCTAssertEqual(responseStandings.first!.gamesBehind, 0.0)
+        XCTAssertEqual(responseStandings.first!.divisionGamesBehind, 0.0)
+        XCTAssertEqual(responseStandings.first!.isClinchedPlayoffs, false)
+        XCTAssertEqual(responseStandings.first!.conferenceWins, 21)
+        XCTAssertEqual(responseStandings.first!.conferenceLosses, 9)
+        XCTAssertEqual(responseStandings.first!.homeWins, 26)
+        XCTAssertEqual(responseStandings.first!.homeLosses, 3)
+        XCTAssertEqual(responseStandings.first!.divisionWins, 5)
+        XCTAssertEqual(responseStandings.first!.divisionLosses, 2)
+        XCTAssertEqual(responseStandings.first!.awayWins, 18)
+        XCTAssertEqual(responseStandings.first!.awayLosses, 12)
+        XCTAssertEqual(responseStandings.first!.lastTenWins, 6)
+        XCTAssertEqual(responseStandings.first!.lastTenLosses, 4)
+        XCTAssertEqual(responseStandings.first!.streak, 2)
+        XCTAssertNil(responseStandings.first!.divisionRank)
+        XCTAssertEqual(responseStandings.first!.isWinStreak, true)
+        XCTAssertEqual(responseStandings.first!.isClinchedConference, false)
+        XCTAssertEqual(responseStandings.first!.isclinchedDivision, false)
     }
 }

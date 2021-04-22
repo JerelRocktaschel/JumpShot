@@ -194,4 +194,65 @@ class JumpShotModelTests: XCTestCase {
         }
         XCTAssertNil(gameScheduleModelResponse)
      }
+
+    // MARK: Standing
+
+    func test_standingModel_withCompleteData_isSuccessful() throws {
+        let path = getPath(forResource: "StandingModel",
+                               ofType: "json")
+        let standingModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let standingModelResponse = try JSONDecoder().decode(Standing.self, from: standingModelData)
+
+        XCTAssertEqual(standingModelResponse.teamId, "1610612762")
+        XCTAssertEqual(standingModelResponse.wins, 44)
+        XCTAssertEqual(standingModelResponse.losses, 15)
+        XCTAssertEqual(standingModelResponse.winPct, 0.746)
+        XCTAssertEqual(standingModelResponse.lossPct, 0.254)
+        XCTAssertEqual(standingModelResponse.gamesBehind, 0.0)
+        XCTAssertEqual(standingModelResponse.divisionGamesBehind, 0.0)
+        XCTAssertEqual(standingModelResponse.isClinchedPlayoffs, false)
+        XCTAssertEqual(standingModelResponse.conferenceWins, 21)
+        XCTAssertEqual(standingModelResponse.conferenceLosses, 9)
+        XCTAssertEqual(standingModelResponse.homeWins, 26)
+        XCTAssertEqual(standingModelResponse.homeLosses, 3)
+        XCTAssertEqual(standingModelResponse.divisionWins, 5)
+        XCTAssertEqual(standingModelResponse.divisionLosses, 2)
+        XCTAssertEqual(standingModelResponse.awayWins, 18)
+        XCTAssertEqual(standingModelResponse.awayLosses, 12)
+        XCTAssertEqual(standingModelResponse.lastTenWins, 6)
+        XCTAssertEqual(standingModelResponse.lastTenLosses, 4)
+        XCTAssertEqual(standingModelResponse.streak, 2)
+        XCTAssertNil(standingModelResponse.divisionRank)
+        XCTAssertEqual(standingModelResponse.isWinStreak, true)
+        XCTAssertEqual(standingModelResponse.isClinchedConference, false)
+        XCTAssertEqual(standingModelResponse.isclinchedDivision, false)
+    }
+
+    func test_standingModel_withBadData_isNil() throws {
+        let path = getPath(forResource: "StandingModelBadDataFormat",
+                               ofType: "json")
+        let standingModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        var standingModelResponse: Standing?
+
+        do {
+            standingModelResponse = try JSONDecoder().decode(Standing.self, from: standingModelData)
+        } catch {
+            standingModelResponse = nil
+        }
+        XCTAssertNil(standingModelResponse)
+    }
+
+     func test_standingModel_withMissingData_isNil() throws {
+        let path = getPath(forResource: "StandingModelMissingDataFormat",
+                               ofType: "json")
+        let gameScheduleModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let gameScheduleModelResponse: GameSchedule?
+
+        do {
+            gameScheduleModelResponse = try JSONDecoder().decode(GameSchedule.self, from: gameScheduleModelData)
+        } catch {
+            gameScheduleModelResponse = nil
+        }
+        XCTAssertNil(gameScheduleModelResponse)
+     }
 }

@@ -25,19 +25,19 @@
 
 import Foundation
 
-public struct Standing {
+struct TeamSitesOnly: Decodable {
+    let teamKey: String
+    let teamName: String
+    let teamCode: String
+    let teamNickname: String
+    let teamTricode: String
+    let clinchedConference: String
+    let clinchedDivision: String
+    let clinchedPlayoffs: String
+    let streakText: String
+}
 
-    struct TeamSitesOnly: Decodable {
-        let teamKey: String
-        let teamName: String
-        let teamCode: String
-        let teamNickname: String
-        let teamTricode: String
-        let clinchedConference: String
-        let clinchedDivision: String
-        let clinchedPlayoffs: String
-        let streakText: String
-    }
+public struct Standing {
 
     // MARK: Internal Properties
 
@@ -73,7 +73,7 @@ public struct Standing {
         let winsString = try standingContainer.decode(String.self, forKey: .wins)
         let lossesString = try standingContainer.decode(String.self, forKey: .losses)
         let winPctString = try standingContainer.decode(String.self, forKey: .winPct)
-        let lossPctString = try standingContainer.decode(String.self, forKey: .winPct)
+        let lossPctString = try standingContainer.decode(String.self, forKey: .lossPct)
         let gamesBehindString = try standingContainer.decode(String.self, forKey: .gamesBehind)
         let divisionGamesBehindString = try standingContainer.decode(String.self, forKey: .divisionGamesBehind)
         let clinchedPlayoffsString = try standingContainer.decode(String.self, forKey: .isClinchedPlayoffs)
@@ -97,13 +97,7 @@ public struct Standing {
         lossPct = Double(lossPctString)!
         gamesBehind = Double(gamesBehindString)!
         divisionGamesBehind = Double(divisionGamesBehindString)!
-
-        if clinchedPlayoffsString == "0" {
-            isClinchedPlayoffs = false
-        } else {
-            isClinchedPlayoffs = true
-        }
-
+        isClinchedPlayoffs = clinchedPlayoffsString.bool
         conferenceWins = Int(conferenceWinsString)!
         conferenceLosses = Int(conferenceLossesString)!
         homeWins = Int(homeWinsString)!
@@ -115,25 +109,11 @@ public struct Standing {
         lastTenWins = Int(lastTenWinsString)!
         lastTenLosses = Int(lastTenLossesString)!
         streak = Int(streakString)!
-
-        if let divisionRankInt = Int(divisionRankString) {
-            divisionRank =  divisionRankInt
-        }
-
+        divisionRank = divisionRankString.int
         isWinStreak = try standingContainer.decode(Bool.self, forKey: .isWinStreak)
         teamSitesOnly = try standingContainer.decode(TeamSitesOnly.self, forKey: .teamSitesOnly)
-        
-        if teamSitesOnly.clinchedConference == "1" {
-            isClinchedConference = true
-        } else {
-            isClinchedConference = false
-        }
-
-        if teamSitesOnly.clinchedDivision == "1" {
-            isclinchedDivision = true
-        } else {
-            isclinchedDivision = false
-        }
+        isClinchedConference = teamSitesOnly.clinchedConference.bool
+        isclinchedDivision = teamSitesOnly.clinchedDivision.bool
     }
 }
 
@@ -188,23 +168,13 @@ extension StandingApiResponse {
             return nil
         }
 
-        guard let completeConferenceDictionary = standardDictionary["conference"] as? JSONDictionary else {
+        guard let teamsStandingsDictionary = standardDictionary["teams"] as? [JSONDictionary] else {
             return nil
         }
-
-        guard let eastConferenceStandingsDictionary = completeConferenceDictionary["east"] as? [JSONDictionary] else {
-            return nil
-        }
-
-        guard let westConferenceDictionary = completeConferenceDictionary["west"] as? [JSONDictionary] else {
-            return nil
-        }
-
-        let eastWestConferenceStandingsDictionary = eastConferenceStandingsDictionary + westConferenceDictionary
 
         self.standings = [Standing]()
-        for standingDictionary in eastWestConferenceStandingsDictionary {
-            guard let jsonStandingData = try? JSONSerialization.data(withJSONObject: standingDictionary,
+        for teamStandingDictionary in teamsStandingsDictionary {
+            guard let jsonStandingData = try? JSONSerialization.data(withJSONObject: teamStandingDictionary,
                                                                              options: []) else {
                     return nil
             }

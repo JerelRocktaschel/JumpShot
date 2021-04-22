@@ -61,6 +61,15 @@
 		D83B2646262A1951002EDBB0 /* GameSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83B2645262A1951002EDBB0 /* GameSchedule.swift */; };
 		D8B6295826305E2F007B0D63 /* Standing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B6295726305E2F007B0D63 /* Standing.swift */; };
 		D8B6295D2630B169007B0D63 /* JumpShotGetStandings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B6295C2630B169007B0D63 /* JumpShotGetStandings.swift */; };
+		D8B629632631B769007B0D63 /* StandingApiResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D8B629622631B769007B0D63 /* StandingApiResponse.json */; };
+		D8B6298B2631C20C007B0D63 /* StandingModel.json in Resources */ = {isa = PBXBuildFile; fileRef = D8B6298A2631C20C007B0D63 /* StandingModel.json */; };
+		D8B629902631C223007B0D63 /* StandingModelMissingDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D8B6298F2631C223007B0D63 /* StandingModelMissingDataFormat.json */; };
+		D8B6299D2631C259007B0D63 /* StandingModelBadDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D8B6299C2631C259007B0D63 /* StandingModelBadDataFormat.json */; };
+		D8B629B52631C735007B0D63 /* StandingApiResponseMissingLeague.json in Resources */ = {isa = PBXBuildFile; fileRef = D8B629B42631C735007B0D63 /* StandingApiResponseMissingLeague.json */; };
+		D8B629C22631C7EB007B0D63 /* StandingApiResponseMissingStandard.json in Resources */ = {isa = PBXBuildFile; fileRef = D8B629C12631C7EB007B0D63 /* StandingApiResponseMissingStandard.json */; };
+		D8B629C72631C8D5007B0D63 /* StandingApiResponseMissingTeams.json in Resources */ = {isa = PBXBuildFile; fileRef = D8B629C62631C8D5007B0D63 /* StandingApiResponseMissingTeams.json */; };
+		D8B629CC2631C9F0007B0D63 /* StandingApiResponseMissingAttribute.json in Resources */ = {isa = PBXBuildFile; fileRef = D8B629CB2631C9F0007B0D63 /* StandingApiResponseMissingAttribute.json */; };
+		D8B629D12631CC54007B0D63 /* StandingApiResponseOneStanding.json in Resources */ = {isa = PBXBuildFile; fileRef = D8B629D02631CC54007B0D63 /* StandingApiResponseOneStanding.json */; };
 		D8D676062628D23A0009B06F /* PlayerApiResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D8D676052628D23A0009B06F /* PlayerApiResponse.json */; };
 		D8D676172628E2B90009B06F /* PlayerModel.json in Resources */ = {isa = PBXBuildFile; fileRef = D8D676162628E2B90009B06F /* PlayerModel.json */; };
 		D8D6761F2629DFDF0009B06F /* PlayerModelMissingDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D8D6761E2629DFDF0009B06F /* PlayerModelMissingDataFormat.json */; };
@@ -143,6 +152,15 @@
 		D83B2645262A1951002EDBB0 /* GameSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSchedule.swift; sourceTree = "<group>"; };
 		D8B6295726305E2F007B0D63 /* Standing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standing.swift; sourceTree = "<group>"; };
 		D8B6295C2630B169007B0D63 /* JumpShotGetStandings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetStandings.swift; sourceTree = "<group>"; };
+		D8B629622631B769007B0D63 /* StandingApiResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StandingApiResponse.json; sourceTree = "<group>"; };
+		D8B6298A2631C20C007B0D63 /* StandingModel.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StandingModel.json; sourceTree = "<group>"; };
+		D8B6298F2631C223007B0D63 /* StandingModelMissingDataFormat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StandingModelMissingDataFormat.json; sourceTree = "<group>"; };
+		D8B6299C2631C259007B0D63 /* StandingModelBadDataFormat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StandingModelBadDataFormat.json; sourceTree = "<group>"; };
+		D8B629B42631C735007B0D63 /* StandingApiResponseMissingLeague.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StandingApiResponseMissingLeague.json; sourceTree = "<group>"; };
+		D8B629C12631C7EB007B0D63 /* StandingApiResponseMissingStandard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StandingApiResponseMissingStandard.json; sourceTree = "<group>"; };
+		D8B629C62631C8D5007B0D63 /* StandingApiResponseMissingTeams.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StandingApiResponseMissingTeams.json; sourceTree = "<group>"; };
+		D8B629CB2631C9F0007B0D63 /* StandingApiResponseMissingAttribute.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StandingApiResponseMissingAttribute.json; sourceTree = "<group>"; };
+		D8B629D02631CC54007B0D63 /* StandingApiResponseOneStanding.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StandingApiResponseOneStanding.json; sourceTree = "<group>"; };
 		D8D676052628D23A0009B06F /* PlayerApiResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlayerApiResponse.json; sourceTree = "<group>"; };
 		D8D676162628E2B90009B06F /* PlayerModel.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlayerModel.json; sourceTree = "<group>"; };
 		D8D6761E2629DFDF0009B06F /* PlayerModelMissingDataFormat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlayerModelMissingDataFormat.json; sourceTree = "<group>"; };
@@ -305,12 +323,14 @@
 		D817FC78261BD02A0092F5E0 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				D8B629612631B737007B0D63 /* StandingApiResponse */,
 				D815EAD7262F762C004C22AD /* GameScheduleApiResponse */,
 				D8D675F62628D0570009B06F /* PlayerApiResponse */,
 				D8D6760D2628E26C0009B06F /* PlayerModel */,
 				D817FC79261BD02A0092F5E0 /* TeamApiResponse */,
 				D817FC80261BD02A0092F5E0 /* TeamModel */,
 				D815EAF1262F7E42004C22AD /* GameScheduleModel */,
+				D8B6296A2631B8EF007B0D63 /* StandingModel */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -446,6 +466,29 @@
 				D832C51726251C2900D214B8 /* small_1627759.png */,
 			);
 			path = Player;
+			sourceTree = "<group>";
+		};
+		D8B629612631B737007B0D63 /* StandingApiResponse */ = {
+			isa = PBXGroup;
+			children = (
+				D8B629622631B769007B0D63 /* StandingApiResponse.json */,
+				D8B629CB2631C9F0007B0D63 /* StandingApiResponseMissingAttribute.json */,
+				D8B629C12631C7EB007B0D63 /* StandingApiResponseMissingStandard.json */,
+				D8B629D02631CC54007B0D63 /* StandingApiResponseOneStanding.json */,
+				D8B629B42631C735007B0D63 /* StandingApiResponseMissingLeague.json */,
+				D8B629C62631C8D5007B0D63 /* StandingApiResponseMissingTeams.json */,
+			);
+			path = StandingApiResponse;
+			sourceTree = "<group>";
+		};
+		D8B6296A2631B8EF007B0D63 /* StandingModel */ = {
+			isa = PBXGroup;
+			children = (
+				D8B6298A2631C20C007B0D63 /* StandingModel.json */,
+				D8B6298F2631C223007B0D63 /* StandingModelMissingDataFormat.json */,
+				D8B6299C2631C259007B0D63 /* StandingModelBadDataFormat.json */,
+			);
+			path = StandingModel;
 			sourceTree = "<group>";
 		};
 		D8D675F62628D0570009B06F /* PlayerApiResponse */ = {
@@ -596,10 +639,13 @@
 				D815EB00262FABF8004C22AD /* GameScheduleModelMissingDataFormat.json in Resources */,
 				D815EB10262FBB19004C22AD /* GameScheduleApiResponseMissingCompleteGameSet.json in Resources */,
 				D815EAF3262F7E6D004C22AD /* GameScheduleModel.json in Resources */,
+				D8B6298B2631C20C007B0D63 /* StandingModel.json in Resources */,
 				D832C4FB261FB3D300D214B8 /* UTA.png in Resources */,
 				D8D676342629E3290009B06F /* PlayerApiResponseMissingStandardDict.json in Resources */,
 				D8D676062628D23A0009B06F /* PlayerApiResponse.json in Resources */,
+				D8B629C22631C7EB007B0D63 /* StandingApiResponseMissingStandard.json in Resources */,
 				D817FC8C261BD02A0092F5E0 /* TeamModelBadDataFormat.json in Resources */,
+				D8B629D12631CC54007B0D63 /* StandingApiResponseOneStanding.json in Resources */,
 				D8D6765C2629F0110009B06F /* PlayerApiResponseOnePlayer.json in Resources */,
 				D8D6764F2629E6C50009B06F /* PlayerApiResponseIsActiveIsFalse.json in Resources */,
 				D817FC89261BD02A0092F5E0 /* TeamApiResponse.json in Resources */,
@@ -612,19 +658,25 @@
 				D832C51A26251C2900D214B8 /* large_1627759.png in Resources */,
 				D815EB15262FC503004C22AD /* GameScheduleApiResponseMissingAttribute.json in Resources */,
 				D832C4FA261FB3D300D214B8 /* NOP.png in Resources */,
+				D8B629B52631C735007B0D63 /* StandingApiResponseMissingLeague.json in Resources */,
 				D817FC85261BD02A0092F5E0 /* TeamApiResponseMissingStandardDict.json in Resources */,
+				D8B629C72631C8D5007B0D63 /* StandingApiResponseMissingTeams.json in Resources */,
 				D8D6763F2629E36E0009B06F /* PlayerApiResponseMissingLeagueDict.json in Resources */,
 				D8D676172628E2B90009B06F /* PlayerModel.json in Resources */,
 				D815EAEA262F7699004C22AD /* GameScheduleApiResponse.json in Resources */,
 				D817FC8B261BD02A0092F5E0 /* TeamModelMissingDataFormat.json in Resources */,
 				D832C4F4261F74CD00D214B8 /* BOS.png in Resources */,
+				D8B629902631C223007B0D63 /* StandingModelMissingDataFormat.json in Resources */,
 				D815EAFB262FAB9F004C22AD /* GameScheduleModelBadDataFormat.json in Resources */,
 				D8D6761F2629DFDF0009B06F /* PlayerModelMissingDataFormat.json in Resources */,
 				D817FC88261BD02A0092F5E0 /* TeamApiResponseMissingAttribute.json in Resources */,
 				D817FC84261BD02A0092F5E0 /* TeamApiResponseMissingLeagueDict.json in Resources */,
 				D8D676572629E9600009B06F /* PlayerApiResponseMissingAttribute.json in Resources */,
+				D8B629632631B769007B0D63 /* StandingApiResponse.json in Resources */,
 				D832C51926251C2900D214B8 /* small_1627759.png in Resources */,
+				D8B6299D2631C259007B0D63 /* StandingModelBadDataFormat.json in Resources */,
 				D817FC8A261BD02A0092F5E0 /* TeamModel.json in Resources */,
+				D8B629CC2631C9F0007B0D63 /* StandingApiResponseMissingAttribute.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

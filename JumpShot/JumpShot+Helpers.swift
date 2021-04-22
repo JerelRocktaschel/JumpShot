@@ -50,7 +50,7 @@ public extension JumpShot {
 
 extension String {
     /// formats and returns date for NBA game time
-    func getGameDate() -> Date? {
+    var gameDate: Date? {
         JumpShot.dateFormatter.dateFormat = "MM/dd/yyyy hh:mm a"
         JumpShot.dateFormatter.timeZone = TimeZone(abbreviation: "EST")
         if let gameDate = JumpShot.dateFormatter.date(from: self) {
@@ -58,6 +58,21 @@ extension String {
         } else {
             return nil
         }
+    }
+
+    var bool: Bool {
+        if self == "1" {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    var int: Int? {
+        guard let int = Int(self) else {
+            return nil
+        }
+        return int
     }
 }
 
