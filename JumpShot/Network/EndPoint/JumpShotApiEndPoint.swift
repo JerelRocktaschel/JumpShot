@@ -36,6 +36,7 @@ public enum BaseURL {
     public static var playerImage: String { return "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/" }
     public static var scheduleList: String { return "https://stats.nba.com/stats/" }
     public static var standingList: String { return "https://data.nba.net/data/5s/prod/v2/" }
+    public static var teamLeaderList: String { return "https://data.nba.com/prod/v1/2020/teams/" }
 }
 
 public enum Path {
@@ -45,6 +46,7 @@ public enum Path {
     public static var playerImage: String { return ".png" }
     public static var scheduleList: String { return "&EST=Y" }
     public static var standingList: String { return "current/standings_all.json" }
+    public static var teamLeaderList: String { return "/leaders.json" }
 }
 
 enum JumpShotApiEndPoint {
@@ -54,6 +56,7 @@ enum JumpShotApiEndPoint {
     case playerImage(imageSize: JumpShotPlayerImageSize, playerId: String)
     case scheduleList(season: String, date: String)
     case standingList
+    case teamLeaderList(teamId: String)
 }
 
 extension JumpShotApiEndPoint: EndPointType {
@@ -68,6 +71,7 @@ extension JumpShotApiEndPoint: EndPointType {
         case .playerImage: return BaseURL.playerImage
         case .scheduleList: return BaseURL.scheduleList
         case .standingList: return BaseURL.standingList
+        case .teamLeaderList: return BaseURL.teamLeaderList
         }
     }
 
@@ -92,6 +96,8 @@ extension JumpShotApiEndPoint: EndPointType {
             return "internationalbroadcasterschedule?LeagueID=00&Season=" + season + "&RegionID=1&Date=" + date + Path.scheduleList
         case .standingList:
             return Path.standingList
+        case .teamLeaderList(let teamId):
+            return teamId + Path.teamLeaderList
         }
     }
 }
