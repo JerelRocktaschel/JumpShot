@@ -30,19 +30,18 @@ public extension JumpShot {
         Returns an array of Standing model objects.
      
         URL called:  data.nba.net/prod/v2/current/standings_conference.json
-    
+   
+        - Parameter teamId: The teamId to lookup stat leaders.
         - Parameter completion: The callback after retrieval.
-        - Parameter standings: An array of Standing model objects.
+        - Parameter statLeaders: An array of Standing model objects.
         - Parameter error: Error should one occur.
-        - Returns: An array of GameSchedule model objects or error.
+        - Returns: An array of StatLeader model objects or error.
             
         # Notes: #
-        1. Handle [Standing] return due to being optional.
-        2. divisionRank is included in the model bit has no value in the response (as of coding).
-        3. Not sure if isClinchedConference/isClinchedDivision will have values in the response.
+        1. Handle [StatLeader] return due to being optional.
      */
 
-    func getTeamLeaders(for teamId: String, completion: @escaping (_ leaders: [StatLeader]?, _ error: LocalizedError?) -> Void) {
+    func getTeamLeaders(for teamId: String, completion: @escaping (_ statLeaders: [StatLeader]?, _ error: LocalizedError?) -> Void) {
         JumpShotNetworkManager.shared.router.request(.teamLeaderList(teamId: teamId)) { data, response, error in
             guard error == nil else {
                 completion(nil, JumpShotNetworkManagerError.networkConnectivityError)

@@ -185,4 +185,38 @@ class JumpShotAPIResponseTests: XCTestCase {
         let standingApiResponse = StandingApiResponse(json: standingApiResponseJson)
         XCTAssertNil(standingApiResponse)
     }
+
+    // MARK: LeaderApiResponse
+
+    func test_leaderApiResponse_withMissingLeagueDictionary_isNil() throws {
+        let path = getPath(forResource: "LeaderApiResponseMissingLeague",
+                           ofType: "json")
+        let leaderApiResponseJson = try getApiResourceJson(withPath: path)
+        let leaderApiResponse = GameScheduleApiResponse(json: leaderApiResponseJson)
+        XCTAssertNil(leaderApiResponse)
+    }
+
+    func test_leaderApiResponse_withMissingStandardDictionary_isNil() throws {
+        let path = getPath(forResource: "LeaderApiResponseMissingStandard",
+                           ofType: "json")
+        let leaderApiResponseJson = try getApiResourceJson(withPath: path)
+        let leaderApiResponse = GameScheduleApiResponse(json: leaderApiResponseJson)
+        XCTAssertNil(leaderApiResponse)
+    }
+
+    func test_leaderApiResponse_withTenLeaders_isTen() throws {
+        let path = getPath(forResource: "LeaderApiResponse",
+                           ofType: "json")
+        let leaderApiResponseJson = try getApiResourceJson(withPath: path)
+        let leaderApiResponse = LeaderApiResponse(json: leaderApiResponseJson)
+        XCTAssertEqual(leaderApiResponse?.statLeaders.count, 10)
+    }
+
+      func test_leaderApiResponse_withMissingAttribute_isNil() throws {
+        let path = getPath(forResource: "LeaderApiResponseMissingAttribute",
+                            ofType: "json")
+        let leaderApiResponseJson = try getApiResourceJson(withPath: path)
+        let leaderApiResponse = StandingApiResponse(json: leaderApiResponseJson)
+        XCTAssertNil(leaderApiResponse)
+    }
 }

@@ -4176,4 +4176,220 @@ public extension XCTestCase {
 
     """.data(using: .utf8)!
     }
+    
+    func teamLeaderData() -> Data {
+    """
+    {
+       "_internal":{
+          "pubDateTime":"2021-04-23 08:11:03.520 EDT",
+          "igorPath":"S3,1619179859950,1619179862858|router,1619179862858,1619179862863|domUpdater,1619179862957,1619179863303|feedProducer,1619179863394,1619179887214",
+          "xslt":"NBA/xsl/team/statistics/marty_team_leaders.xsl",
+          "xsltForceRecompile":"true",
+          "xsltInCache":"false",
+          "xsltCompileTimeMillis":"36",
+          "xsltTransformTimeMillis":"1077",
+          "consolidatedDomKey":"prod__transform__marty_team_leaders__471573461226",
+          "endToEndTimeMillis":"27264"
+       },
+       "league":{
+          "standard":{
+             "seasonStageId":2,
+             "ppg":[
+                {
+                   "personId":"1629027",
+                   "value":"25.3"
+                }
+             ],
+             "trpg":[
+                {
+                   "personId":"203991",
+                   "value":"14.7"
+                }
+             ],
+             "apg":[
+                {
+                   "personId":"1629027",
+                   "value":"9.6"
+                }
+             ],
+             "fgp":[
+                {
+                   "personId":"1630168",
+                   "value":"0.621"
+                }
+             ],
+             "tpp":[
+                {
+                   "personId":"203503",
+                   "value":"0.571"
+                }
+             ],
+             "ftp":[
+                {
+                   "personId":"203503",
+                   "value":"1.000"
+                }
+             ],
+             "bpg":[
+                {
+                   "personId":"203991",
+                   "value":"2.2"
+                }
+             ],
+             "spg":[
+                {
+                   "personId":"1629629",
+                   "value":"1.3"
+                }
+             ],
+             "tpg":[
+                {
+                   "personId":"1629027",
+                   "value":"4.2"
+                }
+             ],
+             "pfpg":[
+                {
+                   "personId":"1628381",
+                   "value":"3.2"
+                }
+             ]
+          },
+          "africa":{
+             "seasonStageId":4,
+             "ppg":[
+                
+             ],
+             "trpg":[
+                
+             ],
+             "apg":[
+                
+             ],
+             "fgp":[
+                
+             ],
+             "tpp":[
+                
+             ],
+             "ftp":[
+                
+             ],
+             "bpg":[
+                
+             ],
+             "spg":[
+                
+             ],
+             "tpg":[
+                
+             ],
+             "pfpg":[
+                
+             ]
+          },
+          "sacramento":{
+             "seasonStageId":4,
+             "ppg":[
+                
+             ],
+             "trpg":[
+                
+             ],
+             "apg":[
+                
+             ],
+             "fgp":[
+                
+             ],
+             "tpp":[
+                
+             ],
+             "ftp":[
+                
+             ],
+             "bpg":[
+                
+             ],
+             "spg":[
+                
+             ],
+             "tpg":[
+                
+             ],
+             "pfpg":[
+                
+             ]
+          },
+          "vegas":{
+             "seasonStageId":4,
+             "ppg":[
+                
+             ],
+             "trpg":[
+                
+             ],
+             "apg":[
+                
+             ],
+             "fgp":[
+                
+             ],
+             "tpp":[
+                
+             ],
+             "ftp":[
+                
+             ],
+             "bpg":[
+                
+             ],
+             "spg":[
+                
+             ],
+             "tpg":[
+                
+             ],
+             "pfpg":[
+                
+             ]
+          },
+          "utah":{
+             "seasonStageId":4,
+             "ppg":[
+                
+             ],
+             "trpg":[
+                
+             ],
+             "apg":[
+                
+             ],
+             "fgp":[
+                
+             ],
+             "tpp":[
+                
+             ],
+             "ftp":[
+                
+             ],
+             "bpg":[
+                
+             ],
+             "spg":[
+                
+             ],
+             "tpg":[
+                
+             ],
+             "pfpg":[
+                
+             ]
+          }
+       }
+    }
+
+    """.data(using: .utf8)!
+    }
 }

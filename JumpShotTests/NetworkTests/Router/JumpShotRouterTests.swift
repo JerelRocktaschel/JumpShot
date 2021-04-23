@@ -105,4 +105,20 @@ class JumpShotRouterTests: XCTestCase {
         let gameScheduleApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
         XCTAssertEqual(gameScheduleApiResponseData, standingsData())
     }
+
+    // MARK: Get Team Leaders
+
+    func test_teamLeadersRouter_shouldMakeRequestToStandingsAPIURL() {
+        router.request(.teamLeaderList(teamId: "1610612737")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://data.nba.com/prod/v1/2020/teams/1610612737/leaders.json")!))
+    }
+
+    func test_teamLeadersRouter_withJSONData_isEqualToCanonical() throws {
+        let path = getPath(forResource: "LeaderApiResponse",
+                           ofType: "json")
+        let teamLeaderApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+        XCTAssertEqual(teamLeaderApiResponseData, teamLeaderData())
+    }
 }

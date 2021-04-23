@@ -255,4 +255,43 @@ class JumpShotModelTests: XCTestCase {
         }
         XCTAssertNil(gameScheduleModelResponse)
      }
+
+    // MARK: Leader
+
+    func test_leaderModel_withCompleteData_isSuccessful() throws {
+        let path = getPath(forResource: "LeaderModel",
+                               ofType: "json")
+        let leaderModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let leaderModelResponse = try JSONDecoder().decode(Leader.self, from: leaderModelData)
+        XCTAssertEqual(leaderModelResponse.playerId, "1629027")
+        XCTAssertEqual(leaderModelResponse.value, 25.3)
+    }
+
+    func test_leaderModel_withBadData_isNil() throws {
+        let path = getPath(forResource: "LeaderModelBadDataFormat",
+                               ofType: "json")
+        let leaderModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        var leaderModelResponse: Leader?
+
+        do {
+            leaderModelResponse = try JSONDecoder().decode(Leader.self, from: leaderModelData)
+        } catch {
+            leaderModelResponse = nil
+        }
+        XCTAssertNil(leaderModelResponse)
+    }
+
+     func test_leaderModel_withMissingData_isNil() throws {
+        let path = getPath(forResource: "LeaderModelMissingDataFormat",
+                               ofType: "json")
+        let leaderModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let leaderModelResponse: Leader?
+
+        do {
+            leaderModelResponse = try JSONDecoder().decode(Leader.self, from: leaderModelData)
+        } catch {
+            leaderModelResponse = nil
+        }
+        XCTAssertNil(leaderModelResponse)
+     }
 }

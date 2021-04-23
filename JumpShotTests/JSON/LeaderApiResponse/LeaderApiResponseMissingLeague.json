@@ -1,0 +1,13 @@
+{
+   "_internal":{
+      "pubDateTime":"2021-04-23 08:11:03.520 EDT",
+      "igorPath":"S3,1619179859950,1619179862858|router,1619179862858,1619179862863|domUpdater,1619179862957,1619179863303|feedProducer,1619179863394,1619179887214",
+      "xslt":"NBA/xsl/team/statistics/marty_team_leaders.xsl",
+      "xsltForceRecompile":"true",
+      "xsltInCache":"false",
+      "xsltCompileTimeMillis":"36",
+      "xsltTransformTimeMillis":"1077",
+      "consolidatedDomKey":"prod__transform__marty_team_leaders__471573461226",
+      "endToEndTimeMillis":"27264"
+   }
+}
