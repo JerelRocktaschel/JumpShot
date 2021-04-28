@@ -24,7 +24,8 @@ class JumpShotTableViewController: UITableViewController {
                              "getPlayers()",
                              "getGameSchedule(for: \"04/20/2021\")",
                              "getStandings()",
-                             "getTeamLeaders(for: \"1610612737\")"]
+                             "getTeamLeaders(for: \"1610612737\")",
+                             "getTeamSchedules(for: \"1610612737\")"]
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         jumpShotFunctions.count
@@ -59,6 +60,8 @@ class JumpShotTableViewController: UITableViewController {
             getStandings()
         case 7:
             getTeamLeaders(for: "1610612737")
+        case 8:
+            getTeamSchedules(for: "1610612737")
         default:
             print("No function selected")
         }
@@ -176,6 +179,22 @@ class JumpShotTableViewController: UITableViewController {
             }
 
             print(teamLeaders)
+        }
+    }
+    
+    private func getTeamSchedules(for teamId: String) {
+        jumpShot.getTeamSchedules(for: teamId) { teamSchedules, error in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+
+            guard let teamSchedules = teamSchedules else {
+                print("No schedules returned.")
+                return
+            }
+
+            print(teamSchedules)
         }
     }
 }

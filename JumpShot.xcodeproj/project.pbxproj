@@ -59,6 +59,8 @@
 		D832C52826262CFB00D214B8 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D832C52726262CFB00D214B8 /* Player.swift */; };
 		D832C52D26273D6900D214B8 /* JumpShotGetPlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D832C52C26273D6900D214B8 /* JumpShotGetPlayers.swift */; };
 		D83B2646262A1951002EDBB0 /* GameSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83B2645262A1951002EDBB0 /* GameSchedule.swift */; };
+		D852B5122633532A00610391 /* TeamSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D852B5112633532A00610391 /* TeamSchedule.swift */; };
+		D852B5172633B7D700610391 /* JumpShotGetTeamSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D852B5162633B7D700610391 /* JumpShotGetTeamSchedule.swift */; };
 		D8B6295826305E2F007B0D63 /* Standing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B6295726305E2F007B0D63 /* Standing.swift */; };
 		D8B6295D2630B169007B0D63 /* JumpShotGetStandings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B6295C2630B169007B0D63 /* JumpShotGetStandings.swift */; };
 		D8B629632631B769007B0D63 /* StandingApiResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D8B629622631B769007B0D63 /* StandingApiResponse.json */; };
@@ -160,6 +162,8 @@
 		D832C52726262CFB00D214B8 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		D832C52C26273D6900D214B8 /* JumpShotGetPlayers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetPlayers.swift; sourceTree = "<group>"; };
 		D83B2645262A1951002EDBB0 /* GameSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSchedule.swift; sourceTree = "<group>"; };
+		D852B5112633532A00610391 /* TeamSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSchedule.swift; sourceTree = "<group>"; };
+		D852B5162633B7D700610391 /* JumpShotGetTeamSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetTeamSchedule.swift; sourceTree = "<group>"; };
 		D8B6295726305E2F007B0D63 /* Standing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standing.swift; sourceTree = "<group>"; };
 		D8B6295C2630B169007B0D63 /* JumpShotGetStandings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetStandings.swift; sourceTree = "<group>"; };
 		D8B629622631B769007B0D63 /* StandingApiResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StandingApiResponse.json; sourceTree = "<group>"; };
@@ -273,6 +277,7 @@
 				D815EAC6262B8B75004C22AD /* JumpShotGetDailySchedule.swift */,
 				D8B6295C2630B169007B0D63 /* JumpShotGetStandings.swift */,
 				D8B629E32631FE06007B0D63 /* JumpShotGetTeamLeaders.swift */,
+				D852B5162633B7D700610391 /* JumpShotGetTeamSchedule.swift */,
 				D817FC41261BCFB00092F5E0 /* JumpShot.h */,
 				D817FC67261BD0070092F5E0 /* Network */,
 				D817FC42261BCFB00092F5E0 /* Info.plist */,
@@ -321,6 +326,7 @@
 				D83B2645262A1951002EDBB0 /* GameSchedule.swift */,
 				D8B6295726305E2F007B0D63 /* Standing.swift */,
 				D8B629D82631ED8B007B0D63 /* Leader.swift */,
+				D852B5112633532A00610391 /* TeamSchedule.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -781,6 +787,7 @@
 				D83B2646262A1951002EDBB0 /* GameSchedule.swift in Sources */,
 				D8B629D92631ED8B007B0D63 /* Leader.swift in Sources */,
 				D817FC73261BD0070092F5E0 /* JumpShotApiEndPoint.swift in Sources */,
+				D852B5172633B7D700610391 /* JumpShotGetTeamSchedule.swift in Sources */,
 				D817FC5E261BCFEC0092F5E0 /* JumpShot.swift in Sources */,
 				D832C5092624BE0200D214B8 /* JumpShotGetPlayerImage.swift in Sources */,
 				D8B6295D2630B169007B0D63 /* JumpShotGetStandings.swift in Sources */,
@@ -788,6 +795,7 @@
 				D817FC64261BCFF80092F5E0 /* JumpShotGetTeams.swift in Sources */,
 				D832C52D26273D6900D214B8 /* JumpShotGetPlayers.swift in Sources */,
 				D817FC75261BD0070092F5E0 /* EndPointType.swift in Sources */,
+				D852B5122633532A00610391 /* TeamSchedule.swift in Sources */,
 				D832C5112625080A00D214B8 /* JumpShot+Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
