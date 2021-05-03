@@ -62,7 +62,7 @@ public extension JumpShot {
                             completion(nil, JumpShotNetworkManagerError.unableToDecodeError)
                             return
                         }
-                        completion(apiResponse.teamScheduleLeaders, nil)
+                        completion(apiResponse.teamSchedules, nil)
                     } catch {
                         completion(nil, JumpShotNetworkManagerError.unableToDecodeError)
                     }
