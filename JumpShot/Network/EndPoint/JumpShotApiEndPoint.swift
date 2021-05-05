@@ -38,6 +38,7 @@ public enum BaseURL {
     public static var standingList: String { return "https://data.nba.net/data/5s/prod/v2/" }
     public static var teamLeaderList: String { return "https://data.nba.com/prod/v1/2020/teams/" }
     public static var teamScheduleList: String { return "https://data.nba.com/prod/v1/2020/teams/" }
+    public static var coachList: String { return "https://data.nba.net/prod/v1/" }
 }
 
 public enum Path {
@@ -49,6 +50,7 @@ public enum Path {
     public static var standingList: String { return "current/standings_all.json" }
     public static var teamLeaderList: String { return "/leaders.json" }
     public static var teamScheduleList: String { return "/schedule.json" }
+    public static var coachList: String { return "/coaches.json" }
 }
 
 enum JumpShotApiEndPoint {
@@ -60,6 +62,7 @@ enum JumpShotApiEndPoint {
     case standingList
     case teamLeaderList(teamId: String)
     case teamScheduleList(teamId: String)
+    case coachList(season: String)
 }
 
 extension JumpShotApiEndPoint: EndPointType {
@@ -76,6 +79,7 @@ extension JumpShotApiEndPoint: EndPointType {
         case .standingList: return BaseURL.standingList
         case .teamLeaderList: return BaseURL.teamLeaderList
         case .teamScheduleList: return BaseURL.teamLeaderList
+        case .coachList: return BaseURL.coachList
         }
     }
 
@@ -104,6 +108,8 @@ extension JumpShotApiEndPoint: EndPointType {
             return teamId + Path.teamLeaderList
         case .teamScheduleList(let teamId):
             return teamId + Path.teamScheduleList
+        case .coachList(let season):
+            return season + Path.coachList
         }
     }
 }

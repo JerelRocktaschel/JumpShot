@@ -19,6 +19,7 @@ class JumpShotApiEndPointTests: XCTestCase {
     var standingsScheduleJumpShotApiEndPoint: JumpShotApiEndPoint!
     var teamLeadersScheduleJumpShotApiEndPoint: JumpShotApiEndPoint!
     var teamScheduleJumpShotApiEndPoint: JumpShotApiEndPoint!
+    var coachJumpShotApiEndPoint: JumpShotApiEndPoint!
 
     override func setUp() {
         teamsJumpShotApiEndPoint = JumpShotApiEndPoint.self.teamList(season: "2020")
@@ -32,6 +33,7 @@ class JumpShotApiEndPointTests: XCTestCase {
         standingsScheduleJumpShotApiEndPoint = JumpShotApiEndPoint.self.standingList
         teamLeadersScheduleJumpShotApiEndPoint = JumpShotApiEndPoint.self.teamLeaderList(teamId: "1610612737")
         teamScheduleJumpShotApiEndPoint = JumpShotApiEndPoint.self.teamScheduleList(teamId: "1610612737")
+        coachJumpShotApiEndPoint = JumpShotApiEndPoint.self.coachList(season: "2020")
     }
 
     // MARK: Team
@@ -121,7 +123,7 @@ class JumpShotApiEndPointTests: XCTestCase {
                        "internationalbroadcasterschedule?LeagueID=00&Season=2020&RegionID=1&Date=04/17/2021&EST=Y")
     }
 
-    // MARK: Standings
+    // MARK: Standing
 
     func test_standingsListJumpShotApiEndPoint_withEnvironmentalBaseURL_isCorrectValue() {
         XCTAssertEqual(standingsScheduleJumpShotApiEndPoint.environmentBaseURL, "https://data.nba.net/data/5s/prod/v2/")
@@ -169,4 +171,19 @@ class JumpShotApiEndPointTests: XCTestCase {
         XCTAssertEqual(teamScheduleJumpShotApiEndPoint.path, "1610612737/schedule.json")
     }
 
+    // MARK: Coach
+
+    func test_coachListJumpShotApiEndPoint_withEnvironmentalBaseURL_isCorrectValue() {
+        XCTAssertEqual(coachJumpShotApiEndPoint.environmentBaseURL,
+                       "https://data.nba.net/prod/v1/")
+    }
+
+    func test_coachListJumpShotApiEndPoint_withBaseURL_isCorrectValue() {
+        XCTAssertEqual(coachJumpShotApiEndPoint.baseURL,
+                       URL(string: "https://data.nba.net/prod/v1/"))
+    }
+
+    func test_coachListJumpShotApiEndPoint_withPath_isCorrectValue() {
+        XCTAssertEqual(coachJumpShotApiEndPoint.path, "2020/coaches.json")
+    }
 }
