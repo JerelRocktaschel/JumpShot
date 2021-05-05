@@ -219,4 +219,38 @@ class JumpShotAPIResponseTests: XCTestCase {
         let leaderApiResponse = StandingApiResponse(json: leaderApiResponseJson)
         XCTAssertNil(leaderApiResponse)
     }
+
+    // MARK: TeamScheduleApiResponse
+
+    func test_teamScheduleApiResponse_withMissingLeagueDictionary_isNil() throws {
+        let path = getPath(forResource: "TeamScheduleApiResponseMissingLeague",
+                           ofType: "json")
+        let teamScheduleApiResponseJson = try getApiResourceJson(withPath: path)
+        let teamScheduleApiResponse = TeamScheduleApiResponse(json: teamScheduleApiResponseJson)
+        XCTAssertNil(teamScheduleApiResponse)
+    }
+
+    func test_teamScheduleApiResponse_withMissingStandardDictionary_isNil() throws {
+        let path = getPath(forResource: "TeamScheduleApiResponseMissingStandard",
+                           ofType: "json")
+        let teamScheduleApiResponseJson = try getApiResourceJson(withPath: path)
+        let teamScheduleApiResponse = TeamScheduleApiResponse(json: teamScheduleApiResponseJson)
+        XCTAssertNil(teamScheduleApiResponse)
+    }
+
+    func test_teamScheduleApiResponse_withTenLeaders_isTen() throws {
+        let path = getPath(forResource: "TeamScheduleApiResponseOneSchedule",
+                           ofType: "json")
+        let teamScheduleApiResponseJson = try getApiResourceJson(withPath: path)
+        let teamScheduleApiResponse = TeamScheduleApiResponse(json: teamScheduleApiResponseJson)
+        XCTAssertEqual(teamScheduleApiResponse?.teamSchedules.count, 1)
+    }
+
+      func test_teamScheduleApiResponse_withMissingAttribute_isNil() throws {
+        let path = getPath(forResource: "TeamScheduleApiResponseMissingAttribute",
+                            ofType: "json")
+        let teamScheduleApiResponseJson = try getApiResourceJson(withPath: path)
+        let teamScheduleApiResponse = TeamScheduleApiResponse(json: teamScheduleApiResponseJson)
+        XCTAssertNil(teamScheduleApiResponse)
+    }
 }

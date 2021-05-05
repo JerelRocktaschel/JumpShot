@@ -1,0 +1,15 @@
+{
+   "_internal":{
+      "pubDateTime":"2021-05-02 19:58:17.793 EDT",
+      "igorPath":"domUpdater,1619999683712,1619999695786|feedProducer,1619999897422,1620000015197",
+      "xslt":"NBA/xsl/team/schedule/marty_team_schedule.xsl",
+      "xsltForceRecompile":"true",
+      "xsltInCache":"false",
+      "xsltCompileTimeMillis":"62",
+      "xsltTransformTimeMillis":"86492",
+      "consolidatedDomKey":"prod__transform__marty_team_schedule__2263580314749",
+      "endToEndTimeMillis":"331485"
+   },
+   "league":{
+   }
+}

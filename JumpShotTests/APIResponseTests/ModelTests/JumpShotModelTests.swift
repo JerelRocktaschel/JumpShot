@@ -294,4 +294,136 @@ class JumpShotModelTests: XCTestCase {
         }
         XCTAssertNil(leaderModelResponse)
      }
+
+    // MARK: Team Schedule
+
+    func test_teamScheduleModel_withCompleteData_isSuccessful() throws {
+        let path = getPath(forResource: "TeamScheduleModel",
+                               ofType: "json")
+        let teamScheduleData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let dateFormatter = DateFormatter.iso8601Full
+        let startTimeUTC = dateFormatter.date(from: "2020-12-12T00:00:00.000Z")
+        let teamScheduleResponse = try JSONDecoder().decode(TeamSchedule.self, from: teamScheduleData)
+        let visitorScheduledTeamData = """
+            {
+                "teamId":"1610612753",
+                "score":"116"
+            }
+            """.data(using: .utf8)!
+        let visitorTeam = try JSONDecoder().decode(ScheduledTeam.self, from: visitorScheduledTeamData)
+        let homeScheduledTeamData = """
+            {
+                "teamId":"1610612737",
+                "score":"112"
+            }
+            """.data(using: .utf8)!
+        let homeTeam = try JSONDecoder().decode(ScheduledTeam.self, from: homeScheduledTeamData)
+
+        let canadianBroadcaster = """
+        [
+           {
+              "shortName":"TSN",
+              "longName":"TSN"
+           }
+        ]
+        """.data(using: .utf8)!
+        let canadianBroadcasterMediaNames = try JSONDecoder().decode([MediaNames].self, from: canadianBroadcaster)
+
+        let hTeamBroadcaster = """
+        [
+            {
+                "shortName":"FSSE-ATL",
+                "longName":"Fox Sports Southeast - Atlanta"
+            }
+        ]
+        """.data(using: .utf8)!
+        let hTeamBroadcasterMediaNames = try JSONDecoder().decode([MediaNames].self, from: hTeamBroadcaster)
+
+        let vTeamAudio = """
+        [
+            {
+                "shortName":"WYGM-FM/AM/WNUE-FM",
+                "longName":"WYGM-FM/AM/WNUE-FM"
+            }
+        ]
+        """.data(using: .utf8)!
+        let vTeamAudioMediaNames = try JSONDecoder().decode([MediaNames].self, from: vTeamAudio)
+
+        let hTeamAudio = """
+        [
+            {
+                "shortName":"WZGC 92.9 FM The Game",
+                "longName":"WZGC 92.9 FM The Game"
+            }
+        ]
+        """.data(using: .utf8)!
+        let hTeamAudioMediaNames = try JSONDecoder().decode([MediaNames].self, from: hTeamAudio)
+
+        XCTAssertEqual(teamScheduleResponse.gameUrlCode, "20201211/ORLATL")
+        XCTAssertEqual(teamScheduleResponse.gameId, "0012000001")
+        XCTAssertEqual(teamScheduleResponse.statusNumber, 3)
+        XCTAssertEqual(teamScheduleResponse.extendedStatusNum, 0)
+        XCTAssertEqual(teamScheduleResponse.startTimeEastern, "7:00 PM ET")
+        XCTAssertEqual(teamScheduleResponse.startTimeUTC, startTimeUTC)
+        XCTAssertEqual(teamScheduleResponse.startDateEastern, "20201211")
+        XCTAssertEqual(teamScheduleResponse.homeStartDate, "20201211")
+        XCTAssertEqual(teamScheduleResponse.homeStartTime, "1900")
+        XCTAssertEqual(teamScheduleResponse.visitorStartDate, "20201211")
+        XCTAssertEqual(teamScheduleResponse.visitorStartTime, "1900")
+        XCTAssertEqual(teamScheduleResponse.isHomeTeam, true)
+        XCTAssertEqual(teamScheduleResponse.isStartTimeTBD, false)
+        XCTAssertEqual(teamScheduleResponse.visitorTeam, visitorTeam)
+        XCTAssertEqual(teamScheduleResponse.homeTeam, homeTeam)
+        XCTAssertEqual(teamScheduleResponse.regionalBlackoutCodes, "")
+        XCTAssertEqual(teamScheduleResponse.isPurchasable, false)
+        XCTAssertEqual(teamScheduleResponse.isLeaguePass, true)
+        XCTAssertEqual(teamScheduleResponse.isNationalBlackout, false)
+        XCTAssertEqual(teamScheduleResponse.isTNTOT, false)
+        XCTAssertEqual(teamScheduleResponse.isVR, false)
+        XCTAssertEqual(teamScheduleResponse.isTntOTOnAir, false)
+        XCTAssertEqual(teamScheduleResponse.isNextVR, false)
+        XCTAssertEqual(teamScheduleResponse.isNBAOnTNTVR, false)
+        XCTAssertEqual(teamScheduleResponse.isMagicLeap, false)
+        XCTAssertEqual(teamScheduleResponse.isOculusVenues, false)
+        XCTAssertEqual(teamScheduleResponse.media.sorted().first!.category, "audio")
+        XCTAssertEqual(teamScheduleResponse.media.sorted().last!.category, "broadcasters")
+        XCTAssertEqual(teamScheduleResponse.media.sorted().last!.details.sorted().first?.subCategory, "canadian")
+        XCTAssertEqual(teamScheduleResponse.media.sorted().last!.details.sorted().last?.subCategory, "hTeam")
+        XCTAssertEqual(teamScheduleResponse.media.sorted().first!.details.sorted().first?.subCategory, "hTeam")
+        XCTAssertEqual(teamScheduleResponse.media.sorted().first!.details.sorted().last?.subCategory, "vTeam")
+        XCTAssertEqual(teamScheduleResponse.media.sorted().first!.details.sorted().first?.names.containsSameElements(as: hTeamAudioMediaNames), true)
+        XCTAssertEqual(teamScheduleResponse.media.sorted().first!.details.sorted().last?.names.containsSameElements(as: vTeamAudioMediaNames), true)
+        XCTAssertEqual(teamScheduleResponse.media.sorted().last!.details.sorted().first?.names.containsSameElements(as: canadianBroadcasterMediaNames), true)
+        XCTAssertEqual(teamScheduleResponse.media.sorted().last!.details.sorted().last?.names.containsSameElements(as: hTeamBroadcasterMediaNames), true)
+    }
+
+    func test_teamScheduleModel_withBadData_isNil() throws {
+        let path = getPath(forResource: "TeamScheduleModelBadDataFormat",
+                               ofType: "json")
+        let teamScheduleModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        var teamScheduleModelResponse: Leader?
+
+        do {
+            teamScheduleModelResponse = try JSONDecoder().decode(Leader.self, from: teamScheduleModelData)
+        } catch {
+            teamScheduleModelResponse = nil
+        }
+        XCTAssertNil(teamScheduleModelResponse)
+    }
+
+    func test_teamScheduleModel_withMissingData_isNil() throws {
+        let path = getPath(forResource: "TeamScheduleModelMissingDataFormat",
+                               ofType: "json")
+        let teamScheduleModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        var teamScheduleModelResponse: Leader?
+
+        do {
+            teamScheduleModelResponse = try JSONDecoder().decode(Leader.self, from: teamScheduleModelData)
+        } catch {
+            teamScheduleModelResponse = nil
+        }
+        XCTAssertNil(teamScheduleModelResponse)
+    }
 }
+
+

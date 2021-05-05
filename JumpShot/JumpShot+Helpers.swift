@@ -59,17 +59,6 @@ extension String {
             return nil
         }
     }
-    
-    var gameDateZulu: Date? {
-        //JumpShot.dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"//  "yyyy-MM-dd'T'HH:mm:ssZ"
-        JumpShot.dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        JumpShot.dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        if let gameDate = JumpShot.dateFormatter.date(from: self) {
-            return gameDate
-        } else {
-            return nil
-        }
-    }
 
     var bool: Bool {
         if self == "1" {
@@ -102,7 +91,7 @@ extension Date {
         }
         return year
     }
-    
+
     func get(_ components: Calendar.Component..., calendar: Calendar = Calendar.current) -> DateComponents {
         return calendar.dateComponents(Set(components), from: self)
     }
@@ -133,4 +122,10 @@ extension DateFormatter {
         formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter
     }()
+}
+
+extension Array where Element: Comparable {
+    func containsSameElements(as other: [Element]) -> Bool {
+        return self.count == other.count && self.sorted() == other.sorted()
+    }
 }

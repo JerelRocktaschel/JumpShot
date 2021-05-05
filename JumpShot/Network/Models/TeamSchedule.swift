@@ -38,6 +38,24 @@ public struct MediaNames {
     }
 }
 
+extension MediaNames: Equatable {
+    
+    // MARK: Equatable
+    
+    public static func ==(lhs: MediaNames, rhs: MediaNames) -> Bool {
+        return lhs.shortName == rhs.shortName && lhs.longName == rhs.longName
+    }
+}
+
+extension MediaNames: Comparable {
+    
+    // MARK: Comparable
+    
+    public static func <(lhs: MediaNames, rhs: MediaNames) -> Bool {
+        return lhs.shortName < rhs.shortName
+    }
+}
+
 extension MediaNames: Decodable {
 
     // MARK: Coding Keys
@@ -53,9 +71,46 @@ public struct MediaDetails {
     let names: [MediaNames]
 }
 
+
+extension MediaDetails: Equatable {
+    
+    // MARK: Equatable
+    
+    public static func ==(lhs: MediaDetails, rhs: MediaDetails) -> Bool {
+        return lhs.subCategory == rhs.subCategory && lhs.names == rhs.names
+    }
+}
+
+extension MediaDetails: Comparable {
+    
+    // MARK: Comparable
+    
+    public static func <(lhs: MediaDetails, rhs: MediaDetails) -> Bool {
+        return lhs.subCategory < rhs.subCategory
+    }
+}
+
 public struct Media {
     let category: String
     let details: [MediaDetails]
+}
+
+extension Media: Equatable {
+    
+    // MARK: Equatable
+    
+    public static func ==(lhs: Media, rhs: Media) -> Bool {
+        return lhs.category == rhs.category && lhs.details == rhs.details
+    }
+}
+
+extension Media: Comparable {
+    
+    // MARK: Comparable
+    
+    public static func <(lhs: Media, rhs: Media) -> Bool {
+        return lhs.category < rhs.category
+    }
 }
 
 public struct ScheduledTeam {
@@ -68,6 +123,15 @@ public struct ScheduledTeam {
 
         teamId = try scheduledTeamContainer.decode(String.self, forKey: .teamId)
         score = Int(scoreString)
+    }
+}
+
+extension ScheduledTeam: Equatable {
+    
+    // MARK: Equatable
+    
+    public static func ==(lhs: ScheduledTeam, rhs: ScheduledTeam) -> Bool {
+        return lhs.teamId == rhs.teamId && lhs.score == rhs.score
     }
 }
 
@@ -146,7 +210,6 @@ public struct TeamSchedule {
         let broadcastMediaDetails = try getMediaDetails(in: broadcastersNestedContainer,
                                                            using: TeamScheduleCodingKeys.self)
         let broadcastMedia = Media(category: mediaCategory, details: broadcastMediaDetails)
-        
         regionalBlackoutCodes = try videoDetailsNestedContainer.decode(String.self, forKey: .regionalBlackoutCodes)
         isPurchasable = try videoDetailsNestedContainer.decode(Bool.self, forKey: .isPurchasable)
         isLeaguePass = try videoDetailsNestedContainer.decode(Bool.self, forKey: .isLeaguePass)
