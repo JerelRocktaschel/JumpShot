@@ -1,0 +1,15 @@
+{
+   "_internal":{
+      "pubDateTime":"2021-05-05 17:11:15.067 EDT",
+      "igorPath":"S3,1620249056185,1620249067244|router,1620249067244,1620249067249|domUpdater,1620249067403,1620249074887|feedProducer,1620249075031,1620249075122",
+      "xslt":"NBA/xsl/league/roster/marty_coaches.xsl",
+      "xsltForceRecompile":"true",
+      "xsltInCache":"false",
+      "xsltCompileTimeMillis":"25",
+      "xsltTransformTimeMillis":"55",
+      "consolidatedDomKey":"prod__transform__marty_coaches__1240942179031",
+      "endToEndTimeMillis":"18937"
+   },
+   "league":{
+   }
+}

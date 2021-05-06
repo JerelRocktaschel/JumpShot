@@ -78,7 +78,7 @@ extension CoachApiResponse {
             return nil
         }
 
-        guard let standardDictionary = leagueDictionary["standard"] as? JSONDictionary else {
+        guard let standardDictionary = leagueDictionary["standard"] as? [JSONDictionary] else {
             return nil
         }
 

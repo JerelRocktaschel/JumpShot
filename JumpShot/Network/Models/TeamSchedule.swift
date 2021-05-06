@@ -343,6 +343,7 @@ struct TeamScheduleApiResponse {
     var teamSchedules: [TeamSchedule]
 
     init?(json: [String: Any]) {
+    
         guard let leagueDictionary = json["league"] as? JSONDictionary else {
             return nil
         }

@@ -253,4 +253,38 @@ class JumpShotAPIResponseTests: XCTestCase {
         let teamScheduleApiResponse = TeamScheduleApiResponse(json: teamScheduleApiResponseJson)
         XCTAssertNil(teamScheduleApiResponse)
     }
+
+    // MARK: TeamScheduleApiResponse
+
+    func test_coachApiResponse_withMissingLeagueDictionary_isNil() throws {
+        let path = getPath(forResource: "CoachApiResponseMissingLeague",
+                           ofType: "json")
+        let coachApiResponseJson = try getApiResourceJson(withPath: path)
+        let coachApiResponse = CoachApiResponse(json: coachApiResponseJson)
+        XCTAssertNil(coachApiResponse)
+    }
+
+    func test_coachApiResponse_withMissingStandardDictionary_isNil() throws {
+        let path = getPath(forResource: "CoachApiResponseMissingStandard",
+                           ofType: "json")
+        let coachApiResponseJson = try getApiResourceJson(withPath: path)
+        let coachApiResponse = CoachApiResponse(json: coachApiResponseJson)
+        XCTAssertNil(coachApiResponse)
+    }
+
+    func test_coachApiResponse_withOneCoach_isOne() throws {
+        let path = getPath(forResource: "CoachApiResponseOneCoach",
+                           ofType: "json")
+        let coachApiResponseJson = try getApiResourceJson(withPath: path)
+        let coachApiResponse = CoachApiResponse(json: coachApiResponseJson)
+        XCTAssertEqual(coachApiResponse?.coaches.count, 1)
+    }
+
+    func test_coachApiResponse_withMissingAttribute_isNil() throws {
+        let path = getPath(forResource: "CoachApiResponseMissingAttribute",
+                            ofType: "json")
+        let coachApiResponseJson = try getApiResourceJson(withPath: path)
+        let coachApiResponse = CoachApiResponse(json: coachApiResponseJson)
+        XCTAssertNil(coachApiResponse)
+    }
 }
