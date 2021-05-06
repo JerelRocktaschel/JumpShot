@@ -1,0 +1,16 @@
+{
+   "lastName":"Rivers",
+   "isAssistant":false,
+   "personId":"1941",
+   "teamId":"1610612755",
+   "sortSequence":"",
+   "college":"Marquette",
+   "teamSitesOnly":{
+      "displayName":"Rivers, Doc",
+      "coachCode":"doc_rivers",
+      "coachRole":"1",
+      "teamCode":"76ers",
+      "teamTricode":"PHI"
+   }
+}
+

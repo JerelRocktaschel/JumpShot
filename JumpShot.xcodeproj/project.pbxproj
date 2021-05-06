@@ -70,6 +70,10 @@
 		D893535E2642E11C006CA270 /* TeamScheduleApiResponseMissingStandard.json in Resources */ = {isa = PBXBuildFile; fileRef = D893535D2642E11C006CA270 /* TeamScheduleApiResponseMissingStandard.json */; };
 		D89353632642E157006CA270 /* TeamScheduleApiResponseMissingAttribute.json in Resources */ = {isa = PBXBuildFile; fileRef = D89353622642E157006CA270 /* TeamScheduleApiResponseMissingAttribute.json */; };
 		D893537B2642E377006CA270 /* TeamScheduleApiResponseOneSchedule.json in Resources */ = {isa = PBXBuildFile; fileRef = D893537A2642E377006CA270 /* TeamScheduleApiResponseOneSchedule.json */; };
+		D893538C2643701B006CA270 /* Coach.swift in Sources */ = {isa = PBXBuildFile; fileRef = D893538B2643701B006CA270 /* Coach.swift */; };
+		D893539226437923006CA270 /* CoachModel.json in Resources */ = {isa = PBXBuildFile; fileRef = D893539126437923006CA270 /* CoachModel.json */; };
+		D893539A26437954006CA270 /* CoachModelBadDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D893539926437954006CA270 /* CoachModelBadDataFormat.json */; };
+		D89353A7264379C8006CA270 /* CoachModelMissingDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D89353A6264379C8006CA270 /* CoachModelMissingDataFormat.json */; };
 		D8B6295826305E2F007B0D63 /* Standing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B6295726305E2F007B0D63 /* Standing.swift */; };
 		D8B6295D2630B169007B0D63 /* JumpShotGetStandings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B6295C2630B169007B0D63 /* JumpShotGetStandings.swift */; };
 		D8B629632631B769007B0D63 /* StandingApiResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D8B629622631B769007B0D63 /* StandingApiResponse.json */; };
@@ -182,6 +186,10 @@
 		D893535D2642E11C006CA270 /* TeamScheduleApiResponseMissingStandard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TeamScheduleApiResponseMissingStandard.json; sourceTree = "<group>"; };
 		D89353622642E157006CA270 /* TeamScheduleApiResponseMissingAttribute.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TeamScheduleApiResponseMissingAttribute.json; sourceTree = "<group>"; };
 		D893537A2642E377006CA270 /* TeamScheduleApiResponseOneSchedule.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TeamScheduleApiResponseOneSchedule.json; sourceTree = "<group>"; };
+		D893538B2643701B006CA270 /* Coach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coach.swift; sourceTree = "<group>"; };
+		D893539126437923006CA270 /* CoachModel.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CoachModel.json; sourceTree = "<group>"; };
+		D893539926437954006CA270 /* CoachModelBadDataFormat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CoachModelBadDataFormat.json; sourceTree = "<group>"; };
+		D89353A6264379C8006CA270 /* CoachModelMissingDataFormat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CoachModelMissingDataFormat.json; sourceTree = "<group>"; };
 		D8B6295726305E2F007B0D63 /* Standing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standing.swift; sourceTree = "<group>"; };
 		D8B6295C2630B169007B0D63 /* JumpShotGetStandings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetStandings.swift; sourceTree = "<group>"; };
 		D8B629622631B769007B0D63 /* StandingApiResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StandingApiResponse.json; sourceTree = "<group>"; };
@@ -345,6 +353,7 @@
 				D8B6295726305E2F007B0D63 /* Standing.swift */,
 				D8B629D82631ED8B007B0D63 /* Leader.swift */,
 				D852B5112633532A00610391 /* TeamSchedule.swift */,
+				D893538B2643701B006CA270 /* Coach.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -369,6 +378,7 @@
 		D817FC78261BD02A0092F5E0 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				D8935390264378DF006CA270 /* CoachModel */,
 				D89353442641B958006CA270 /* TeamScheduleModel */,
 				D893531E2641A5CC006CA270 /* TeamScheduleApiResponse */,
 				D8B629F12632FC72007B0D63 /* LeaderModel */,
@@ -539,6 +549,16 @@
 				D893534D26422719006CA270 /* TeamScheduleModelMissingDataFormat.json */,
 			);
 			path = TeamScheduleModel;
+			sourceTree = "<group>";
+		};
+		D8935390264378DF006CA270 /* CoachModel */ = {
+			isa = PBXGroup;
+			children = (
+				D893539126437923006CA270 /* CoachModel.json */,
+				D893539926437954006CA270 /* CoachModelBadDataFormat.json */,
+				D89353A6264379C8006CA270 /* CoachModelMissingDataFormat.json */,
+			);
+			path = CoachModel;
 			sourceTree = "<group>";
 		};
 		D8B629612631B737007B0D63 /* StandingApiResponse */ = {
@@ -735,6 +755,7 @@
 				D815EB00262FABF8004C22AD /* GameScheduleModelMissingDataFormat.json in Resources */,
 				D8B62A142633005C007B0D63 /* LeaderApiResponseMissingStandard.json in Resources */,
 				D893533B2641AF4F006CA270 /* TeamScheduleApiResponse.json in Resources */,
+				D893539A26437954006CA270 /* CoachModelBadDataFormat.json in Resources */,
 				D815EB10262FBB19004C22AD /* GameScheduleApiResponseMissingCompleteGameSet.json in Resources */,
 				D815EAF3262F7E6D004C22AD /* GameScheduleModel.json in Resources */,
 				D8B6298B2631C20C007B0D63 /* StandingModel.json in Resources */,
@@ -745,6 +766,7 @@
 				D893534926422700006CA270 /* TeamScheduleModelBadDataFormat.json in Resources */,
 				D8B629C22631C7EB007B0D63 /* StandingApiResponseMissingStandard.json in Resources */,
 				D8B62A042632FEA3007B0D63 /* LeaderModelMissingDataFormat.json in Resources */,
+				D893539226437923006CA270 /* CoachModel.json in Resources */,
 				D817FC8C261BD02A0092F5E0 /* TeamModelBadDataFormat.json in Resources */,
 				D8B629D12631CC54007B0D63 /* StandingApiResponseOneStanding.json in Resources */,
 				D8B62A21263301A3007B0D63 /* LeaderApiResponseMissingAttribute.json in Resources */,
@@ -785,6 +807,7 @@
 				D893535E2642E11C006CA270 /* TeamScheduleApiResponseMissingStandard.json in Resources */,
 				D832C51926251C2900D214B8 /* small_1627759.png in Resources */,
 				D8B6299D2631C259007B0D63 /* StandingModelBadDataFormat.json in Resources */,
+				D89353A7264379C8006CA270 /* CoachModelMissingDataFormat.json in Resources */,
 				D817FC8A261BD02A0092F5E0 /* TeamModel.json in Resources */,
 				D8B629FF2632FE94007B0D63 /* LeaderModelBadDataFormat.json in Resources */,
 				D8B629CC2631C9F0007B0D63 /* StandingApiResponseMissingAttribute.json in Resources */,
@@ -841,6 +864,7 @@
 				D852B5172633B7D700610391 /* JumpShotGetTeamSchedules.swift in Sources */,
 				D817FC5E261BCFEC0092F5E0 /* JumpShot.swift in Sources */,
 				D832C5092624BE0200D214B8 /* JumpShotGetPlayerImage.swift in Sources */,
+				D893538C2643701B006CA270 /* Coach.swift in Sources */,
 				D8B6295D2630B169007B0D63 /* JumpShotGetStandings.swift in Sources */,
 				D817FC74261BD0070092F5E0 /* Router.swift in Sources */,
 				D817FC64261BCFF80092F5E0 /* JumpShotGetTeams.swift in Sources */,

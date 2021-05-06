@@ -5,6 +5,8 @@
 //  Created by Jerel Rocktaschel on 3/29/21.
 //
 
+// swiftlint:disable all
+
 import XCTest
 @testable import JumpShot
 
@@ -245,15 +247,15 @@ class JumpShotModelTests: XCTestCase {
      func test_standingModel_withMissingData_isNil() throws {
         let path = getPath(forResource: "StandingModelMissingDataFormat",
                                ofType: "json")
-        let gameScheduleModelData = try Data(contentsOf: URL(fileURLWithPath: path))
-        let gameScheduleModelResponse: GameSchedule?
+        let standingModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let standingModelResponse: Standing?
 
         do {
-            gameScheduleModelResponse = try JSONDecoder().decode(GameSchedule.self, from: gameScheduleModelData)
+            standingModelResponse = try JSONDecoder().decode(Standing.self, from: standingModelData)
         } catch {
-            gameScheduleModelResponse = nil
+            standingModelResponse = nil
         }
-        XCTAssertNil(gameScheduleModelResponse)
+        XCTAssertNil(standingModelResponse)
      }
 
     // MARK: Leader
@@ -424,6 +426,48 @@ class JumpShotModelTests: XCTestCase {
         }
         XCTAssertNil(teamScheduleModelResponse)
     }
+    
+    // MARK: Coach
+
+    func test_coachModel_withCompleteData_isSuccessful() throws {
+        let path = getPath(forResource: "CoachModel",
+                               ofType: "json")
+        let coachModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let coachModelResponse = try JSONDecoder().decode(Coach.self, from: coachModelData)
+        XCTAssertEqual(coachModelResponse.firstName, "Doc")
+        XCTAssertEqual(coachModelResponse.lastName, "Rivers")
+        XCTAssertEqual(coachModelResponse.isAssistant, false)
+        XCTAssertEqual(coachModelResponse.personId, "1941")
+        XCTAssertEqual(coachModelResponse.teamId, "1610612755")
+        XCTAssertEqual(coachModelResponse.college, "Marquette")
+    
+    }
+
+    func test_coachModel_withBadData_isNil() throws {
+        let path = getPath(forResource: "CoachModelBadDataFormat",
+                               ofType: "json")
+        let coachModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        var coachModelResponse: Coach?
+
+        do {
+            coachModelResponse = try JSONDecoder().decode(Coach.self, from: coachModelData)
+        } catch {
+            coachModelResponse = nil
+        }
+        XCTAssertNil(coachModelResponse)
+    }
+
+     func test_coachModel_withMissingData_isNil() throws {
+        let path = getPath(forResource: "CoachModelMissingDataFormat",
+                               ofType: "json")
+        let coachModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let coachModelResponse: Coach?
+
+        do {
+            coachModelResponse = try JSONDecoder().decode(Coach.self, from: coachModelData)
+        } catch {
+            coachModelResponse = nil
+        }
+        XCTAssertNil(coachModelResponse)
+     }
 }
-
-
