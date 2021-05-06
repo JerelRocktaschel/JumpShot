@@ -329,6 +329,7 @@ extension TeamSchedule: Decodable {
         case broadcast = "broadcast"
         case broadcasters = "broadcasters"
         case national = "national"
+        case canadian = "canadian"
         case video = "video"
         case audio = "audio"
     }

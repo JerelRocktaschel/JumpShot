@@ -100,6 +100,8 @@
 		D8B62A21263301A3007B0D63 /* LeaderApiResponseMissingAttribute.json in Resources */ = {isa = PBXBuildFile; fileRef = D8B62A20263301A3007B0D63 /* LeaderApiResponseMissingAttribute.json */; };
 		D8B62A31263305AC007B0D63 /* LeaderApiResponseOneLeader.json in Resources */ = {isa = PBXBuildFile; fileRef = D8B62A30263305AC007B0D63 /* LeaderApiResponseOneLeader.json */; };
 		D8C03188264423080009292A /* JumpShotGetCoaches.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C03187264423080009292A /* JumpShotGetCoaches.swift */; };
+		D8C0319326445ABC0009292A /* Helpers+Coach.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C0319226445ABC0009292A /* Helpers+Coach.swift */; };
+		D8C0319B26445C570009292A /* CoachApiResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D8C0319A26445C570009292A /* CoachApiResponse.json */; };
 		D8D676062628D23A0009B06F /* PlayerApiResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D8D676052628D23A0009B06F /* PlayerApiResponse.json */; };
 		D8D676172628E2B90009B06F /* PlayerModel.json in Resources */ = {isa = PBXBuildFile; fileRef = D8D676162628E2B90009B06F /* PlayerModel.json */; };
 		D8D6761F2629DFDF0009B06F /* PlayerModelMissingDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D8D6761E2629DFDF0009B06F /* PlayerModelMissingDataFormat.json */; };
@@ -221,6 +223,8 @@
 		D8B62A20263301A3007B0D63 /* LeaderApiResponseMissingAttribute.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LeaderApiResponseMissingAttribute.json; sourceTree = "<group>"; };
 		D8B62A30263305AC007B0D63 /* LeaderApiResponseOneLeader.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LeaderApiResponseOneLeader.json; sourceTree = "<group>"; };
 		D8C03187264423080009292A /* JumpShotGetCoaches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetCoaches.swift; sourceTree = "<group>"; };
+		D8C0319226445ABC0009292A /* Helpers+Coach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helpers+Coach.swift"; sourceTree = "<group>"; };
+		D8C0319A26445C570009292A /* CoachApiResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CoachApiResponse.json; sourceTree = "<group>"; };
 		D8D676052628D23A0009B06F /* PlayerApiResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlayerApiResponse.json; sourceTree = "<group>"; };
 		D8D676162628E2B90009B06F /* PlayerModel.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlayerModel.json; sourceTree = "<group>"; };
 		D8D6761E2629DFDF0009B06F /* PlayerModelMissingDataFormat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlayerModelMissingDataFormat.json; sourceTree = "<group>"; };
@@ -435,6 +439,7 @@
 			children = (
 				D817FC92261BD02F0092F5E0 /* XCTestCase+helpers.swift */,
 				D89353192641A292006CA270 /* Helpers+TeamSchedule.swift */,
+				D8C0319226445ABC0009292A /* Helpers+Coach.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -577,6 +582,7 @@
 			isa = PBXGroup;
 			children = (
 				D89353B7264381BD006CA270 /* CoachApiResponseMissingLeague.json */,
+				D8C0319A26445C570009292A /* CoachApiResponse.json */,
 				D89353BC264382B0006CA270 /* CoachApiResponseMissingStandard.json */,
 				D89353C42643870E006CA270 /* CoachApiResponseOneCoach.json */,
 				D89353C9264388B6006CA270 /* CoachApiResponseMissingAttribute.json */,
@@ -788,6 +794,7 @@
 				D8D676062628D23A0009B06F /* PlayerApiResponse.json in Resources */,
 				D893534926422700006CA270 /* TeamScheduleModelBadDataFormat.json in Resources */,
 				D8B629C22631C7EB007B0D63 /* StandingApiResponseMissingStandard.json in Resources */,
+				D8C0319B26445C570009292A /* CoachApiResponse.json in Resources */,
 				D8B62A042632FEA3007B0D63 /* LeaderModelMissingDataFormat.json in Resources */,
 				D893539226437923006CA270 /* CoachModel.json in Resources */,
 				D817FC8C261BD02A0092F5E0 /* TeamModelBadDataFormat.json in Resources */,
@@ -912,6 +919,7 @@
 				D817FCAB261BD05C0092F5E0 /* JumpShotAPIResponseTests.swift in Sources */,
 				D893531A2641A292006CA270 /* Helpers+TeamSchedule.swift in Sources */,
 				D817FCA2261BD0560092F5E0 /* JumpShotApiEndPointTests.swift in Sources */,
+				D8C0319326445ABC0009292A /* Helpers+Coach.swift in Sources */,
 				D817FCA4261BD0560092F5E0 /* JumpShotRouterTests.swift in Sources */,
 				D817FC93261BD02F0092F5E0 /* XCTestCase+helpers.swift in Sources */,
 				D817FCA3261BD0560092F5E0 /* MockURLSession.swift in Sources */,
