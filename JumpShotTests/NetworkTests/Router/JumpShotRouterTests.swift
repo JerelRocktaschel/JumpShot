@@ -108,7 +108,7 @@ class JumpShotRouterTests: XCTestCase {
 
     // MARK: Get Team Leaders
 
-    func test_teamLeadersRouter_shouldMakeRequestToStandingsAPIURL() {
+    func test_teamLeadersRouter_shouldMakeRequestToTeamLeadersAPIURL() {
         router.request(.teamLeaderList(teamId: "1610612737")) { _, _, _ in
         }
         mockURLSession.verifyDataTask(
@@ -124,7 +124,7 @@ class JumpShotRouterTests: XCTestCase {
 
     // MARK: Get Team Schedule
 
-    func test_teamScheduleRouter_shouldMakeRequestToStandingsAPIURL() {
+    func test_teamScheduleRouter_shouldMakeRequestToTeamScheduleAPIURL() {
         router.request(.teamScheduleList(teamId: "1610612737")) { _, _, _ in
         }
         mockURLSession.verifyDataTask(
