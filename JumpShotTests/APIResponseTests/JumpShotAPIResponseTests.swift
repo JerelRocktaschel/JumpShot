@@ -254,7 +254,7 @@ class JumpShotAPIResponseTests: XCTestCase {
         XCTAssertNil(teamScheduleApiResponse)
     }
 
-    // MARK: TeamScheduleApiResponse
+    // MARK: CoachApiResponse
 
     func test_coachApiResponse_withMissingLeagueDictionary_isNil() throws {
         let path = getPath(forResource: "CoachApiResponseMissingLeague",

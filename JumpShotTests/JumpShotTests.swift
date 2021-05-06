@@ -4,11 +4,10 @@
 //
 //  Created by Jerel Rocktaschel on 3/31/21.
 //
+// swiftlint:disable all
 
 import XCTest
 @testable import JumpShot
-
-// swiftlint:disable type_body_length
 
 class JumpShotTests: XCTestCase {
 
@@ -1300,5 +1299,142 @@ class JumpShotTests: XCTestCase {
         XCTAssertEqual(responseTeamSchedules.first!.media.sorted().first!.details.sorted().last?.names.containsSameElements(as: vTeamAudioMediaNames), true)
         XCTAssertEqual(responseTeamSchedules.first!.media.sorted().last!.details.sorted().first?.names.containsSameElements(as: canadianBroadcasterMediaNames), true)
         XCTAssertEqual(responseTeamSchedules.first!.media.sorted().last!.details.sorted().last?.names.containsSameElements(as: hTeamBroadcasterMediaNames), true)
+     }
+    
+    // MARK: GetTeamSchedule
+
+    func test_jumpShot_withGetCoaches_isNetworkUnavailable() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getCoaches { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            nil, nil, TestError.testError
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The network is unavailable.")
+    }
+
+    func test_jumpShot_withGetCoaches_isRequestFailed() throws {
+         let mockURLSession = MockURLSession()
+         var errorDescription = String()
+         router.session = mockURLSession
+
+         let expectation = XCTestExpectation(description: "Network Error")
+
+        jumpShot.getCoaches { _, error in
+             errorDescription = error!.localizedDescription
+             expectation.fulfill()
+         }
+
+         mockURLSession.dataTaskArgsCompletionHandler.first?(
+             gameDailyScheduleData(), response(statusCode: 300), nil
+         )
+
+         wait(for: [expectation], timeout: 1.0)
+         XCTAssertEqual(errorDescription, "The request failed.")
+     }
+
+    func test_jumpShot_withGetCoaches_isNoDataReturned() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getCoaches { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+                            nil, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "No NBA data was returned.")
+     }
+
+    func test_jumpShot_withGetCoaches_isUnableToDecode() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+
+        let path = getPath(forResource: "CoachApiResponseMissingAttribute",
+                            ofType: "json")
+
+        let coachApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getCoaches { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            coachApiResponseData, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The source data could not be decoded.")
+     }
+
+    func test_jumpShot_withGetCoaches_isUnableToDecodeWithError() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getCoaches { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            badJsonData(), response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The source data could not be decoded.")
+     }
+
+    func test_jumpShot_withGetCoaches_isOneSchedule() throws {
+        let mockURLSession = MockURLSession()
+        var responseCoaches = [Coach]()
+        router.session = mockURLSession
+        let testBundle = Bundle(for: type(of: self))
+        guard let path = testBundle.path(forResource: "CoachApiResponseOneCoach", ofType: "json")
+            else { fatalError("Can't find CoachApiResponseOneCoach.json file") }
+        let coachApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+
+        let expectation = XCTestExpectation(description: "Coach Api Response")
+
+        jumpShot.getCoaches { coaches, _ in
+            responseCoaches = coaches!
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            coachApiResponseData, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 5.0)
+    
+        XCTAssertEqual(responseCoaches.first!.firstName, "Doc")
+        XCTAssertEqual(responseCoaches.first!.lastName, "Rivers")
+        XCTAssertEqual(responseCoaches.first!.isAssistant, false)
+        XCTAssertEqual(responseCoaches.first!.personId, "1941")
+        XCTAssertEqual(responseCoaches.first!.teamId, "1610612755")
+        XCTAssertEqual(responseCoaches.first!.college, "Marquette")
      }
 }

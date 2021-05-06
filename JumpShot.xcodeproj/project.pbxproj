@@ -99,6 +99,7 @@
 		D8B62A142633005C007B0D63 /* LeaderApiResponseMissingStandard.json in Resources */ = {isa = PBXBuildFile; fileRef = D8B62A132633005C007B0D63 /* LeaderApiResponseMissingStandard.json */; };
 		D8B62A21263301A3007B0D63 /* LeaderApiResponseMissingAttribute.json in Resources */ = {isa = PBXBuildFile; fileRef = D8B62A20263301A3007B0D63 /* LeaderApiResponseMissingAttribute.json */; };
 		D8B62A31263305AC007B0D63 /* LeaderApiResponseOneLeader.json in Resources */ = {isa = PBXBuildFile; fileRef = D8B62A30263305AC007B0D63 /* LeaderApiResponseOneLeader.json */; };
+		D8C03188264423080009292A /* JumpShotGetCoaches.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C03187264423080009292A /* JumpShotGetCoaches.swift */; };
 		D8D676062628D23A0009B06F /* PlayerApiResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D8D676052628D23A0009B06F /* PlayerApiResponse.json */; };
 		D8D676172628E2B90009B06F /* PlayerModel.json in Resources */ = {isa = PBXBuildFile; fileRef = D8D676162628E2B90009B06F /* PlayerModel.json */; };
 		D8D6761F2629DFDF0009B06F /* PlayerModelMissingDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D8D6761E2629DFDF0009B06F /* PlayerModelMissingDataFormat.json */; };
@@ -219,6 +220,7 @@
 		D8B62A132633005C007B0D63 /* LeaderApiResponseMissingStandard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LeaderApiResponseMissingStandard.json; sourceTree = "<group>"; };
 		D8B62A20263301A3007B0D63 /* LeaderApiResponseMissingAttribute.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LeaderApiResponseMissingAttribute.json; sourceTree = "<group>"; };
 		D8B62A30263305AC007B0D63 /* LeaderApiResponseOneLeader.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LeaderApiResponseOneLeader.json; sourceTree = "<group>"; };
+		D8C03187264423080009292A /* JumpShotGetCoaches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetCoaches.swift; sourceTree = "<group>"; };
 		D8D676052628D23A0009B06F /* PlayerApiResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlayerApiResponse.json; sourceTree = "<group>"; };
 		D8D676162628E2B90009B06F /* PlayerModel.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlayerModel.json; sourceTree = "<group>"; };
 		D8D6761E2629DFDF0009B06F /* PlayerModelMissingDataFormat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlayerModelMissingDataFormat.json; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				D8B6295C2630B169007B0D63 /* JumpShotGetStandings.swift */,
 				D8B629E32631FE06007B0D63 /* JumpShotGetTeamLeaders.swift */,
 				D852B5162633B7D700610391 /* JumpShotGetTeamSchedules.swift */,
+				D8C03187264423080009292A /* JumpShotGetCoaches.swift */,
 				D817FC41261BCFB00092F5E0 /* JumpShot.h */,
 				D817FC67261BD0070092F5E0 /* Network */,
 				D817FC42261BCFB00092F5E0 /* Info.plist */,
@@ -884,6 +887,7 @@
 				D8B629E42631FE06007B0D63 /* JumpShotGetTeamLeaders.swift in Sources */,
 				D83B2646262A1951002EDBB0 /* GameSchedule.swift in Sources */,
 				D8B629D92631ED8B007B0D63 /* Leader.swift in Sources */,
+				D8C03188264423080009292A /* JumpShotGetCoaches.swift in Sources */,
 				D817FC73261BD0070092F5E0 /* JumpShotApiEndPoint.swift in Sources */,
 				D852B5172633B7D700610391 /* JumpShotGetTeamSchedules.swift in Sources */,
 				D817FC5E261BCFEC0092F5E0 /* JumpShot.swift in Sources */,
