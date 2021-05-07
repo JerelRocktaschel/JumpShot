@@ -299,8 +299,8 @@ class JumpShotModelTests: XCTestCase {
 
     // MARK: Team Schedule
 
-    func test_teamScheduleModel_withCompleteData_isSuccessful() throws {
-        let path = getPath(forResource: "TeamScheduleModel",
+    func test_teamScheduleModel_fromTeamScheduleCall_withCompleteData_isSuccessful() throws {
+        let path = getPath(forResource: "TeamScheduleModelFromTeamScheduleCall",
                                ofType: "json")
         let teamScheduleData = try Data(contentsOf: URL(fileURLWithPath: path))
         let dateFormatter = DateFormatter.iso8601Full
@@ -377,6 +377,9 @@ class JumpShotModelTests: XCTestCase {
         XCTAssertEqual(teamScheduleResponse.visitorTeam, visitorTeam)
         XCTAssertEqual(teamScheduleResponse.homeTeam, homeTeam)
         XCTAssertEqual(teamScheduleResponse.regionalBlackoutCodes, "")
+        XCTAssertNil(teamScheduleResponse.isNeutralVenue)
+        XCTAssertNil(teamScheduleResponse.isBuzzerBeater)
+        XCTAssertNil(teamScheduleResponse.period)
         XCTAssertEqual(teamScheduleResponse.isPurchasable, false)
         XCTAssertEqual(teamScheduleResponse.isLeaguePass, true)
         XCTAssertEqual(teamScheduleResponse.isNationalBlackout, false)
@@ -387,16 +390,16 @@ class JumpShotModelTests: XCTestCase {
         XCTAssertEqual(teamScheduleResponse.isNBAOnTNTVR, false)
         XCTAssertEqual(teamScheduleResponse.isMagicLeap, false)
         XCTAssertEqual(teamScheduleResponse.isOculusVenues, false)
-        XCTAssertEqual(teamScheduleResponse.media.sorted().first!.category, "audio")
-        XCTAssertEqual(teamScheduleResponse.media.sorted().last!.category, "broadcasters")
-        XCTAssertEqual(teamScheduleResponse.media.sorted().last!.details.sorted().first?.subCategory, "canadian")
-        XCTAssertEqual(teamScheduleResponse.media.sorted().last!.details.sorted().last?.subCategory, "hTeam")
-        XCTAssertEqual(teamScheduleResponse.media.sorted().first!.details.sorted().first?.subCategory, "hTeam")
-        XCTAssertEqual(teamScheduleResponse.media.sorted().first!.details.sorted().last?.subCategory, "vTeam")
-        XCTAssertEqual(teamScheduleResponse.media.sorted().first!.details.sorted().first?.names.containsSameElements(as: hTeamAudioMediaNames), true)
-        XCTAssertEqual(teamScheduleResponse.media.sorted().first!.details.sorted().last?.names.containsSameElements(as: vTeamAudioMediaNames), true)
-        XCTAssertEqual(teamScheduleResponse.media.sorted().last!.details.sorted().first?.names.containsSameElements(as: canadianBroadcasterMediaNames), true)
-        XCTAssertEqual(teamScheduleResponse.media.sorted().last!.details.sorted().last?.names.containsSameElements(as: hTeamBroadcasterMediaNames), true)
+        XCTAssertEqual(teamScheduleResponse.media!.sorted().first!.category, "audio")
+        XCTAssertEqual(teamScheduleResponse.media!.sorted().last!.category, "broadcasters")
+        XCTAssertEqual(teamScheduleResponse.media!.sorted().last!.details.sorted().first?.subCategory, "canadian")
+        XCTAssertEqual(teamScheduleResponse.media!.sorted().last!.details.sorted().last?.subCategory, "hTeam")
+        XCTAssertEqual(teamScheduleResponse.media!.sorted().first!.details.sorted().first?.subCategory, "hTeam")
+        XCTAssertEqual(teamScheduleResponse.media!.sorted().first!.details.sorted().last?.subCategory, "vTeam")
+        XCTAssertEqual(teamScheduleResponse.media!.sorted().first!.details.sorted().first?.names.containsSameElements(as: hTeamAudioMediaNames), true)
+        XCTAssertEqual(teamScheduleResponse.media!.sorted().first!.details.sorted().last?.names.containsSameElements(as: vTeamAudioMediaNames), true)
+        XCTAssertEqual(teamScheduleResponse.media!.sorted().last!.details.sorted().first?.names.containsSameElements(as: canadianBroadcasterMediaNames), true)
+        XCTAssertEqual(teamScheduleResponse.media!.sorted().last!.details.sorted().last?.names.containsSameElements(as: hTeamBroadcasterMediaNames), true)
     }
 
     func test_teamScheduleModel_withBadData_isNil() throws {
@@ -425,6 +428,94 @@ class JumpShotModelTests: XCTestCase {
             teamScheduleModelResponse = nil
         }
         XCTAssertNil(teamScheduleModelResponse)
+    }
+    
+    // MARK: Complete Schedule
+
+    func test_teamScheduleModel_fromCompleteScheduleCall_withCompleteData_isSuccessful() throws {
+        let path = getPath(forResource: "TeamScheduleModelFromCompleteScheduleCall",
+                               ofType: "json")
+        let teamScheduleData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let dateFormatter = DateFormatter.iso8601Full
+        let startTimeUTC = dateFormatter.date(from: "2020-12-12T01:00:00.000Z")
+        let teamScheduleResponse = try JSONDecoder().decode(TeamSchedule.self, from: teamScheduleData)
+        let visitorScheduledTeamData = """
+            {
+                "teamId":"1610612745",
+                "score":"125"
+            }
+            """.data(using: .utf8)!
+        let visitorTeam = try JSONDecoder().decode(ScheduledTeam.self, from: visitorScheduledTeamData)
+        let homeScheduledTeamData = """
+            {
+                "teamId":"1610612741",
+                "score":"104"
+            }
+            """.data(using: .utf8)!
+        let homeTeam = try JSONDecoder().decode(ScheduledTeam.self, from: homeScheduledTeamData)
+
+        let canadianBroadcasterData = """
+        [
+           {
+              "shortName":"SNN",
+              "longName":"SNN"
+           }
+        ]
+        """.data(using: .utf8)!
+        let canadianBroadcasterMediaNames = try JSONDecoder().decode([MediaNames].self, from: canadianBroadcasterData)
+
+        let nationalData = """
+        [
+            {
+                "shortName":"NBA TV",
+                "longName":"NBA TV"
+            }
+        ]
+        """.data(using: .utf8)!
+        let nationalMediaNames = try JSONDecoder().decode([MediaNames].self, from: nationalData)
+        
+        let periodData = """
+        {
+              "current":4,
+              "type":0,
+              "maxRegular":4
+        }
+        """.data(using: .utf8)!
+        let period = try JSONDecoder().decode(Period.self, from: periodData)
+        XCTAssertEqual(teamScheduleResponse.gameUrlCode, "20201211/HOUCHI")
+        XCTAssertEqual(teamScheduleResponse.gameId, "0012000003")
+        XCTAssertEqual(teamScheduleResponse.statusNumber, 3)
+        XCTAssertEqual(teamScheduleResponse.extendedStatusNum, 0)
+        XCTAssertEqual(teamScheduleResponse.startTimeEastern, "8:00 PM ET")
+        XCTAssertEqual(teamScheduleResponse.startTimeUTC, startTimeUTC)
+        XCTAssertEqual(teamScheduleResponse.startDateEastern, "20201211")
+        XCTAssertNil(teamScheduleResponse.homeStartDate)
+        XCTAssertNil(teamScheduleResponse.homeStartTime)
+        XCTAssertNil(teamScheduleResponse.visitorStartDate)
+        XCTAssertNil(teamScheduleResponse.visitorStartTime)
+        XCTAssertNil(teamScheduleResponse.isHomeTeam)
+        XCTAssertEqual(teamScheduleResponse.isStartTimeTBD, false)
+        XCTAssertEqual(teamScheduleResponse.visitorTeam, visitorTeam)
+        XCTAssertEqual(teamScheduleResponse.homeTeam, homeTeam)
+        XCTAssertEqual(teamScheduleResponse.regionalBlackoutCodes, "")
+        XCTAssertEqual(teamScheduleResponse.isBuzzerBeater, false)
+        XCTAssertEqual(teamScheduleResponse.period, period)
+        XCTAssertEqual(teamScheduleResponse.isNeutralVenue, false)
+        XCTAssertEqual(teamScheduleResponse.isPurchasable, false)
+        XCTAssertEqual(teamScheduleResponse.isLeaguePass, true)
+        XCTAssertEqual(teamScheduleResponse.isNationalBlackout, false)
+        XCTAssertEqual(teamScheduleResponse.isTNTOT, false)
+        XCTAssertEqual(teamScheduleResponse.isVR, false)
+        XCTAssertNil(teamScheduleResponse.isTntOTOnAir)
+        XCTAssertEqual(teamScheduleResponse.isNextVR, false)
+        XCTAssertEqual(teamScheduleResponse.isNBAOnTNTVR, false)
+        XCTAssertEqual(teamScheduleResponse.isMagicLeap, false)
+        XCTAssertEqual(teamScheduleResponse.isOculusVenues, false)
+        XCTAssertEqual(teamScheduleResponse.media!.sorted().first!.category, "video")
+        XCTAssertEqual(teamScheduleResponse.media!.sorted().last!.details.sorted().first?.subCategory, "canadian")
+        XCTAssertEqual(teamScheduleResponse.media!.sorted().last!.details.sorted().last?.subCategory, "national")
+        XCTAssertEqual(teamScheduleResponse.media!.sorted().last!.details.sorted().first?.names.containsSameElements(as: canadianBroadcasterMediaNames), true)
+        XCTAssertEqual(teamScheduleResponse.media!.sorted().last!.details.sorted().last?.names.containsSameElements(as: nationalMediaNames), true)
     }
     
     // MARK: Coach

@@ -29,7 +29,7 @@ class JumpShotAPIResponseTests: XCTestCase {
     }
 
     func test_teamApiResponse_withOneTeam_isOne() throws {
-        let path = getPath(forResource: "TeamApiResponse",
+        let path = getPath(forResource: "TeamApiResponseOneTeam",
                            ofType: "json")
         let teamApiResponseJson = try getApiResourceJson(withPath: path)
         let teamApiResponse = TeamApiResponse(json: teamApiResponseJson)
@@ -78,12 +78,12 @@ class JumpShotAPIResponseTests: XCTestCase {
         XCTAssertNil(playerApiResponse)
     }
 
-    func test_playerApiResponse_withTwoPlayers_isTwo() throws {
-        let path = getPath(forResource: "PlayerApiResponse",
+    func test_playerApiResponse_withTwoPlayers_isOne() throws {
+        let path = getPath(forResource: "PlayerApiResponseOnePlayer",
                            ofType: "json")
         let playerApiResponseJson = try getApiResourceJson(withPath: path)
         let playerApiResponse = PlayerApiResponse(json: playerApiResponseJson)
-        XCTAssertEqual(playerApiResponse?.players.count, 2)
+        XCTAssertEqual(playerApiResponse?.players.count, 1)
     }
 
     func test_playerApiResponse_withMissingIsActive_isNil() throws {
@@ -170,12 +170,12 @@ class JumpShotAPIResponseTests: XCTestCase {
         XCTAssertNil(gameScheduleApiResponse)
     }
 
-    func test_standingApiResponse_withThirtyStandings_isThirty() throws {
-        let path = getPath(forResource: "StandingApiResponse",
+    func test_standingApiResponse_withThirtyStandings_isOne() throws {
+        let path = getPath(forResource: "StandingApiResponseOneStanding",
                            ofType: "json")
         let standingApiResponseJson = try getApiResourceJson(withPath: path)
         let standingApiResponse = StandingApiResponse(json: standingApiResponseJson)
-        XCTAssertEqual(standingApiResponse?.standings.count, 30)
+        XCTAssertEqual(standingApiResponse?.standings.count, 1)
     }
 
    func test_standingApiResponse_withMissingAttribute_isNil() throws {
@@ -204,12 +204,12 @@ class JumpShotAPIResponseTests: XCTestCase {
         XCTAssertNil(leaderApiResponse)
     }
 
-    func test_leaderApiResponse_withTenLeaders_isTen() throws {
-        let path = getPath(forResource: "LeaderApiResponse",
+    func test_leaderApiResponse_withTenLeaders_isOne() throws {
+        let path = getPath(forResource: "LeaderApiResponseOneLeader",
                            ofType: "json")
         let leaderApiResponseJson = try getApiResourceJson(withPath: path)
         let leaderApiResponse = LeaderApiResponse(json: leaderApiResponseJson)
-        XCTAssertEqual(leaderApiResponse?.statLeaders.count, 10)
+        XCTAssertEqual(leaderApiResponse?.statLeaders.count, 1)
     }
 
       func test_leaderApiResponse_withMissingAttribute_isNil() throws {
@@ -238,8 +238,8 @@ class JumpShotAPIResponseTests: XCTestCase {
         XCTAssertNil(teamScheduleApiResponse)
     }
 
-    func test_teamScheduleApiResponse_withTenLeaders_isTen() throws {
-        let path = getPath(forResource: "TeamScheduleApiResponseOneSchedule",
+    func test_teamScheduleApiResponse_withTenLeaders_isOne() throws {
+        let path = getPath(forResource: "TeamScheduleApiResponseFromTeamScheduleCall",
                            ofType: "json")
         let teamScheduleApiResponseJson = try getApiResourceJson(withPath: path)
         let teamScheduleApiResponse = TeamScheduleApiResponse(json: teamScheduleApiResponseJson)

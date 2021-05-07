@@ -1,5 +1,5 @@
 //
-//  JumpShotGetTeamLeaders.swift
+//  JumpShotGetCompleteSchedule.swift
 //  JumpShot
 //
 //  Copyright (c) 2021 Jerel Rocktaschel
@@ -27,23 +27,23 @@ import Foundation
 
 public extension JumpShot {
     /**
-        Returns an array of Standing model objects.
+        Returns an array of TeamSchedule model objects.
      
-        URL called:  data.nba.net/prod/v2/current/standings_conference.json
+        URL called:  data.nba.net/prod/v2/2020/schedule.json
    
-        - Parameter teamId: The teamId to lookup stat leaders.
         - Parameter completion: The callback after retrieval.
-        - Parameter statLeaders: An array of Standing model objects.
+        - Parameter teamSchedules: An array of TeamSchedule model objects.
         - Parameter error: Error should one occur.
-        - Returns: An array of StatLeader model objects or error.
+        - Returns: An array of TeamSchedule model objects or error.
             
         # Notes: #
-        1. Handle [StatLeader] return due to being optional.
+        1. Handle [TeamSchedule] return due to being optional.
      */
 
-    func getTeamLeaders(for teamId: String, completion: @escaping (_ statLeaders: [StatLeader]?,
-                                                                   _ error: LocalizedError?) -> Void) {
-        JumpShotNetworkManager.shared.router.request(.teamLeaderList(teamId: teamId)) { data, response, error in
+    func getCompleteSchedule(completion: @escaping (_ teamSchedules: [TeamSchedule]?,
+                                                    _ error: LocalizedError?) -> Void) {
+        let season = Date().getSeasonYear()
+        JumpShotNetworkManager.shared.router.request(.completeScheduleList (season: season)) { data, response, error in
             guard error == nil else {
                 completion(nil, JumpShotNetworkManagerError.networkConnectivityError)
                 return
@@ -59,11 +59,11 @@ public extension JumpShot {
                     }
                     do {
                         let json = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any]
-                        guard let apiResponse = LeaderApiResponse(json: json!) else {
+                        guard let apiResponse = TeamScheduleApiResponse(json: json!) else {
                             completion(nil, JumpShotNetworkManagerError.unableToDecodeError)
                             return
                         }
-                        completion(apiResponse.statLeaders, nil)
+                        completion(apiResponse.teamSchedules, nil)
                     } catch {
                         completion(nil, JumpShotNetworkManagerError.unableToDecodeError)
                     }

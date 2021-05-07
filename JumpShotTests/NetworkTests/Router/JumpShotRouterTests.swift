@@ -26,13 +26,6 @@ class JumpShotRouterTests: XCTestCase {
             with: URLRequest(url: URL(string: "https://data.nba.net/data/5s/prod/v2/2020/teams.json")!))
     }
 
-    func test_teamRouter_withJSONData_isEqualToCanonical() throws {
-        let path = getPath(forResource: "TeamApiResponse",
-                           ofType: "json")
-        let teamApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
-        XCTAssertEqual(teamApiResponseData, teamJsonData())
-    }
-
     // MARK: Team Image
 
     func test_teamImageRouter_shouldMakeRequestToTeamsImageAPIURL() {
@@ -49,13 +42,6 @@ class JumpShotRouterTests: XCTestCase {
         }
         mockURLSession.verifyDataTask(
             with: URLRequest(url: URL(string: "https://data.nba.net/data/5s/prod/v2/2020/players.json")!))
-    }
-
-    func test_playerRouter_withJSONData_isEqualToCanonical() throws {
-        let path = getPath(forResource: "PlayerApiResponse",
-                           ofType: "json")
-        let playerApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
-        XCTAssertEqual(playerApiResponseData, playerJsonData())
     }
 
     // MARK: Player Image
@@ -83,13 +69,6 @@ class JumpShotRouterTests: XCTestCase {
             with: URLRequest(url: URL(string: "https://stats.nba.com/stats/internationalbroadcasterschedule?LeagueID=00&Season=2020&RegionID=1&Date=04/17/2021&EST=Y")!))
     }
 
-    func test_dailyScheduleRouter_withJSONData_isEqualToCanonical() throws {
-        let path = getPath(forResource: "GameScheduleApiResponse",
-                           ofType: "json")
-        let gameScheduleApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
-        XCTAssertEqual(gameScheduleApiResponseData, gameDailyScheduleData())
-    }
-
     // MARK: Get Standings
 
     func test_standingsRouter_shouldMakeRequestToStandingsAPIURL() {
@@ -97,13 +76,6 @@ class JumpShotRouterTests: XCTestCase {
         }
         mockURLSession.verifyDataTask(
             with: URLRequest(url: URL(string: "https://data.nba.net/data/5s/prod/v2/current/standings_all.json")!))
-    }
-
-    func test_standingsRouter_withJSONData_isEqualToCanonical() throws {
-        let path = getPath(forResource: "StandingApiResponse",
-                           ofType: "json")
-        let gameScheduleApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
-        XCTAssertEqual(gameScheduleApiResponseData, standingsData())
     }
 
     // MARK: Get Team Leaders
@@ -115,13 +87,6 @@ class JumpShotRouterTests: XCTestCase {
             with: URLRequest(url: URL(string: "https://data.nba.com/prod/v1/2020/teams/1610612737/leaders.json")!))
     }
 
-    func test_teamLeadersRouter_withJSONData_isEqualToCanonical() throws {
-        let path = getPath(forResource: "LeaderApiResponse",
-                           ofType: "json")
-        let teamLeaderApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
-        XCTAssertEqual(teamLeaderApiResponseData, teamLeaderData())
-    }
-
     // MARK: Get Team Schedule
 
     func test_teamScheduleRouter_shouldMakeRequestToTeamScheduleAPIURL() {
@@ -131,11 +96,13 @@ class JumpShotRouterTests: XCTestCase {
             with: URLRequest(url: URL(string: "https://data.nba.com/prod/v1/2020/teams/1610612737/schedule.json")!))
     }
 
-    func test_teamScheduleRouter_withJSONData_isEqualToCanonical() throws {
-        let path = getPath(forResource: "TeamScheduleApiResponse",
-                           ofType: "json")
-        let teamScheduleApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
-        XCTAssertEqual(teamScheduleApiResponseData, teamScheduleData())
+    // MARK: Get Complete Schedule
+
+    func test_completeScheduleRouter_shouldMakeRequestToTeamScheduleAPIURL() {
+        router.request(.completeScheduleList(season: "2020")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://data.nba.net/prod/v2/2020/schedule.json")!))
     }
 
     // MARK: Coach
@@ -145,12 +112,5 @@ class JumpShotRouterTests: XCTestCase {
         }
         mockURLSession.verifyDataTask(
             with: URLRequest(url: URL(string: "https://data.nba.net/prod/v1/2020/coaches.json")!))
-    }
-
-    func test_coachRouter_withJSONData_isEqualToCanonical() throws {
-        let path = getPath(forResource: "CoachApiResponse",
-                           ofType: "json")
-        let teamScheduleApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
-        XCTAssertEqual(teamScheduleApiResponseData, coachJsonData())
     }
 }

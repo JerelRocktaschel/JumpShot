@@ -26,6 +26,7 @@ class JumpShotTableViewController: UITableViewController {
                              "getStandings()",
                              "getTeamLeaders(for: \"1610612737\")",
                              "getTeamSchedules(for: \"1610612737\")",
+                             "getCompleteSchedule()",
                              "getCoaches()"]
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,6 +65,8 @@ class JumpShotTableViewController: UITableViewController {
         case 8:
             getTeamSchedules(for: "1610612737")
         case 9:
+            getCompleteSchedule()
+        case 10:
             getCoaches()
         default:
             print("No function selected")
@@ -136,7 +139,7 @@ class JumpShotTableViewController: UITableViewController {
             print(playerImage)
         }
     }
-    
+
     private func getDailySchedule(for date: Date) {
         jumpShot.getDailySchedule(for: date) { gameSchedules, error in
             guard error == nil else {
@@ -184,7 +187,7 @@ class JumpShotTableViewController: UITableViewController {
             print(teamLeaders)
         }
     }
-    
+
     private func getTeamSchedules(for teamId: String) {
         jumpShot.getTeamSchedules(for: teamId) { teamSchedules, error in
             guard error == nil else {
@@ -200,9 +203,25 @@ class JumpShotTableViewController: UITableViewController {
             print(teamSchedules)
         }
     }
-    
+
+    private func getCompleteSchedule() {
+        jumpShot.getCompleteSchedule { teamSchedules, error in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+
+            guard let teamSchedules = teamSchedules else {
+                print("No schedules returned.")
+                return
+            }
+
+            print(teamSchedules)
+        }
+    }
+
     private func getCoaches() {
-        jumpShot.getCoaches() { coaches, error in
+        jumpShot.getCoaches { coaches, error in
             guard error == nil else {
                 print(error!)
                 return

@@ -1,0 +1,84 @@
+{
+   "_internal":{
+      "pubDateTime":"2021-05-02 19:58:17.793 EDT",
+      "igorPath":"domUpdater,1619999683712,1619999695786|feedProducer,1619999897422,1620000015197",
+      "xslt":"NBA/xsl/team/schedule/marty_team_schedule.xsl",
+      "xsltForceRecompile":"true",
+      "xsltInCache":"false",
+      "xsltCompileTimeMillis":"62",
+      "xsltTransformTimeMillis":"86492",
+      "consolidatedDomKey":"prod__transform__marty_team_schedule__2263580314749",
+      "endToEndTimeMillis":"331485"
+   },
+   "league":{
+      "lastStandardGamePlayedIndex":68,
+      "standard":[
+          {
+             "gameId":"0012000003",
+             "seasonStageId":1,
+             "gameUrlCode":"20201211/HOUCHI",
+             "statusNum":3,
+             "extendedStatusNum":0,
+             "isStartTimeTBD":false,
+             "startTimeUTC":"2020-12-12T01:00:00.000Z",
+             "startDateEastern":"20201211",
+             "isNeutralVenue":false,
+             "startTimeEastern":"8:00 PM ET",
+             "isBuzzerBeater":false,
+             "period":{
+                "current":4,
+                "type":0,
+                "maxRegular":4
+             },
+             "nugget":{
+                "text":""
+             },
+             "hTeam":{
+                "teamId":"1610612741",
+                "score":"104",
+                "win":"0",
+                "loss":"1"
+             },
+             "vTeam":{
+                "teamId":"1610612745",
+                "score":"125",
+                "win":"1",
+                "loss":"0"
+             },
+             "watch":{
+                "broadcast":{
+                   "video":{
+                      "regionalBlackoutCodes":"",
+                      "isLeaguePass":true,
+                      "isNationalBlackout":false,
+                      "isTNTOT":false,
+                      "canPurchase":false,
+                      "isVR":false,
+                      "isNextVR":false,
+                      "isNBAOnTNTVR":false,
+                      "isMagicLeap":false,
+                      "isOculusVenues":false,
+                      "national":{
+                         "broadcasters":[
+                            {
+                               "shortName":"NBA TV",
+                               "longName":"NBA TV"
+                            }
+                         ]
+                      },
+                      "canadian":[
+                         {
+                            "shortName":"SNN",
+                            "longName":"SNN"
+                         }
+                      ],
+                      "spanish_national":[
+                         
+                      ]
+                   }
+                }
+             }
+          }
+      ]
+   }
+}

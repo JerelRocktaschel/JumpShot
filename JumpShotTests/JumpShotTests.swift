@@ -49,7 +49,7 @@ class JumpShotTests: XCTestCase {
         }
 
         mockURLSession.dataTaskArgsCompletionHandler.first?(
-            teamJsonData(), response(statusCode: 300), nil
+            badJsonData(), response(statusCode: 300), nil
         )
 
         wait(for: [expectation], timeout: 1.0)
@@ -126,7 +126,7 @@ class JumpShotTests: XCTestCase {
         var responseTeams = [Team]()
         router.session = mockURLSession
         let testBundle = Bundle(for: type(of: self))
-        guard let path = testBundle.path(forResource: "TeamApiResponse", ofType: "json")
+        guard let path = testBundle.path(forResource: "TeamApiResponseOneTeam", ofType: "json")
             else { fatalError("Can't find TeamApiResponse.json file") }
         let teamApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
         let expectation = XCTestExpectation(description: "Team Response")
@@ -191,7 +191,7 @@ class JumpShotTests: XCTestCase {
         }
 
         mockURLSession.dataTaskArgsCompletionHandler.first?(
-            teamJsonData(), response(statusCode: 300), nil
+            badJsonData(), response(statusCode: 300), nil
         )
 
         wait(for: [expectation], timeout: 1.0)
@@ -342,7 +342,7 @@ class JumpShotTests: XCTestCase {
          }
 
          mockURLSession.dataTaskArgsCompletionHandler.first?(
-             teamJsonData(), response(statusCode: 300), nil
+            badJsonData(), response(statusCode: 300), nil
          )
 
          wait(for: [expectation], timeout: 1.0)
@@ -514,7 +514,7 @@ class JumpShotTests: XCTestCase {
         }
 
         mockURLSession.dataTaskArgsCompletionHandler.first?(
-            teamJsonData(), response(statusCode: 300), nil
+            badJsonData(), response(statusCode: 300), nil
         )
 
         wait(for: [expectation], timeout: 1.0)
@@ -652,7 +652,7 @@ class JumpShotTests: XCTestCase {
         }
 
         mockURLSession.dataTaskArgsCompletionHandler.first?(
-            gameDailyScheduleData(), response(statusCode: 300), nil
+            badJsonData(), response(statusCode: 300), nil
         )
 
         wait(for: [expectation], timeout: 1.0)
@@ -824,7 +824,7 @@ class JumpShotTests: XCTestCase {
         }
 
         mockURLSession.dataTaskArgsCompletionHandler.first?(
-            gameDailyScheduleData(), response(statusCode: 300), nil
+            badJsonData(), response(statusCode: 300), nil
         )
 
         wait(for: [expectation], timeout: 1.0)
@@ -978,7 +978,7 @@ class JumpShotTests: XCTestCase {
         }
 
         mockURLSession.dataTaskArgsCompletionHandler.first?(
-            gameDailyScheduleData(), response(statusCode: 300), nil
+            badJsonData(), response(statusCode: 300), nil
         )
 
         wait(for: [expectation], timeout: 1.0)
@@ -1112,7 +1112,7 @@ class JumpShotTests: XCTestCase {
          }
 
          mockURLSession.dataTaskArgsCompletionHandler.first?(
-             gameDailyScheduleData(), response(statusCode: 300), nil
+            badJsonData(), response(statusCode: 300), nil
          )
 
          wait(for: [expectation], timeout: 1.0)
@@ -1143,7 +1143,7 @@ class JumpShotTests: XCTestCase {
          let mockURLSession = MockURLSession()
          var errorDescription = String()
 
-         let path = getPath(forResource: "LeaderApiResponseMissingAttribute",
+         let path = getPath(forResource: "TeamScheduleModelMissingDataFormat",
                             ofType: "json")
 
          let leaderApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
@@ -1189,9 +1189,9 @@ class JumpShotTests: XCTestCase {
          var responseTeamSchedules = [TeamSchedule]()
          router.session = mockURLSession
          let testBundle = Bundle(for: type(of: self))
-         guard let path = testBundle.path(forResource: "TeamScheduleApiResponseOneSchedule", ofType: "json")
-             else { fatalError("Can't find TeamScheduleApiResponseOneSchedule.json file") }
-         let leaderApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+         guard let path = testBundle.path(forResource: "TeamScheduleApiResponseFromTeamScheduleCall", ofType: "json")
+             else { fatalError("Can't find TeamScheduleApiResponseFromTeamScheduleCall.json file") }
+         let teamScheduleApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
 
          let expectation = XCTestExpectation(description: "TeamSchedule Api Response")
 
@@ -1201,7 +1201,7 @@ class JumpShotTests: XCTestCase {
          }
 
          mockURLSession.dataTaskArgsCompletionHandler.first?(
-             leaderApiResponseData, response(statusCode: 200), nil
+            teamScheduleApiResponseData, response(statusCode: 200), nil
          )
 
          wait(for: [expectation], timeout: 5.0)
@@ -1279,6 +1279,9 @@ class JumpShotTests: XCTestCase {
         XCTAssertEqual(responseTeamSchedules.first!.visitorTeam, visitorTeam)
         XCTAssertEqual(responseTeamSchedules.first!.homeTeam, homeTeam)
         XCTAssertEqual(responseTeamSchedules.first!.regionalBlackoutCodes, "")
+        XCTAssertNil(responseTeamSchedules.first!.isNeutralVenue)
+        XCTAssertNil(responseTeamSchedules.first!.isBuzzerBeater)
+        XCTAssertNil(responseTeamSchedules.first!.period)
         XCTAssertEqual(responseTeamSchedules.first!.isPurchasable, false)
         XCTAssertEqual(responseTeamSchedules.first!.isLeaguePass, true)
         XCTAssertEqual(responseTeamSchedules.first!.isNationalBlackout, false)
@@ -1289,19 +1292,229 @@ class JumpShotTests: XCTestCase {
         XCTAssertEqual(responseTeamSchedules.first!.isNBAOnTNTVR, false)
         XCTAssertEqual(responseTeamSchedules.first!.isMagicLeap, false)
         XCTAssertEqual(responseTeamSchedules.first!.isOculusVenues, false)
-        XCTAssertEqual(responseTeamSchedules.first!.media.sorted().first!.category, "audio")
-        XCTAssertEqual(responseTeamSchedules.first!.media.sorted().last!.category, "broadcasters")
-        XCTAssertEqual(responseTeamSchedules.first!.media.sorted().last!.details.sorted().first?.subCategory, "canadian")
-        XCTAssertEqual(responseTeamSchedules.first!.media.sorted().last!.details.sorted().last?.subCategory, "hTeam")
-        XCTAssertEqual(responseTeamSchedules.first!.media.sorted().first!.details.sorted().first?.subCategory, "hTeam")
-        XCTAssertEqual(responseTeamSchedules.first!.media.sorted().first!.details.sorted().last?.subCategory, "vTeam")
-        XCTAssertEqual(responseTeamSchedules.first!.media.sorted().first!.details.sorted().first?.names.containsSameElements(as: hTeamAudioMediaNames), true)
-        XCTAssertEqual(responseTeamSchedules.first!.media.sorted().first!.details.sorted().last?.names.containsSameElements(as: vTeamAudioMediaNames), true)
-        XCTAssertEqual(responseTeamSchedules.first!.media.sorted().last!.details.sorted().first?.names.containsSameElements(as: canadianBroadcasterMediaNames), true)
-        XCTAssertEqual(responseTeamSchedules.first!.media.sorted().last!.details.sorted().last?.names.containsSameElements(as: hTeamBroadcasterMediaNames), true)
+        XCTAssertEqual(responseTeamSchedules.first!.media!.sorted().first!.category, "audio")
+        XCTAssertEqual(responseTeamSchedules.first!.media!.sorted().last!.category, "broadcasters")
+        XCTAssertEqual(responseTeamSchedules.first!.media!.sorted().last!.details.sorted().first?.subCategory, "canadian")
+        XCTAssertEqual(responseTeamSchedules.first!.media!.sorted().last!.details.sorted().last?.subCategory, "hTeam")
+        XCTAssertEqual(responseTeamSchedules.first!.media!.sorted().first!.details.sorted().first?.subCategory, "hTeam")
+        XCTAssertEqual(responseTeamSchedules.first!.media!.sorted().first!.details.sorted().last?.subCategory, "vTeam")
+        XCTAssertEqual(responseTeamSchedules.first!.media!.sorted().first!.details.sorted().first?.names.containsSameElements(as: hTeamAudioMediaNames), true)
+        XCTAssertEqual(responseTeamSchedules.first!.media!.sorted().first!.details.sorted().last?.names.containsSameElements(as: vTeamAudioMediaNames), true)
+        XCTAssertEqual(responseTeamSchedules.first!.media!.sorted().last!.details.sorted().first?.names.containsSameElements(as: canadianBroadcasterMediaNames), true)
+        XCTAssertEqual(responseTeamSchedules.first!.media!.sorted().last!.details.sorted().last?.names.containsSameElements(as: hTeamBroadcasterMediaNames), true)
      }
     
-    // MARK: GetTeamSchedule
+    // MARK: GetCompleteSchedule
+
+    func test_jumpShot_withGetCompleteSchedule_isNetworkUnavailable() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getCompleteSchedule { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            nil, nil, TestError.testError
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The network is unavailable.")
+    }
+
+     func test_jumpShot_withGetCompleteSchedule_isRequestFailed() throws {
+         let mockURLSession = MockURLSession()
+         var errorDescription = String()
+         router.session = mockURLSession
+
+         let expectation = XCTestExpectation(description: "Network Error")
+
+        jumpShot.getCompleteSchedule { _, error in
+             errorDescription = error!.localizedDescription
+             expectation.fulfill()
+         }
+
+         mockURLSession.dataTaskArgsCompletionHandler.first?(
+            badJsonData(), response(statusCode: 300), nil
+         )
+
+         wait(for: [expectation], timeout: 1.0)
+         XCTAssertEqual(errorDescription, "The request failed.")
+     }
+
+    func test_jumpShot_withGetCompleteSchedule_isNoDataReturned() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getCompleteSchedule { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+                            nil, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "No NBA data was returned.")
+     }
+
+    func test_jumpShot_withGetCompleteSchedule_isUnableToDecode() throws {
+         let mockURLSession = MockURLSession()
+         var errorDescription = String()
+
+         let path = getPath(forResource: "TeamScheduleModelMissingDataFormat",
+                            ofType: "json")
+
+         let leaderApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+         router.session = mockURLSession
+
+         let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getCompleteSchedule { _, error in
+             errorDescription = error!.localizedDescription
+             expectation.fulfill()
+         }
+
+         mockURLSession.dataTaskArgsCompletionHandler.first?(
+             leaderApiResponseData, response(statusCode: 200), nil
+         )
+
+         wait(for: [expectation], timeout: 1.0)
+         XCTAssertEqual(errorDescription, "The source data could not be decoded.")
+     }
+
+    func test_jumpShot_withGetCompleteSchedule_isUnableToDecodeWithError() throws {
+         let mockURLSession = MockURLSession()
+         var errorDescription = String()
+         router.session = mockURLSession
+
+         let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getCompleteSchedule { _, error in
+             errorDescription = error!.localizedDescription
+             expectation.fulfill()
+         }
+
+         mockURLSession.dataTaskArgsCompletionHandler.first?(
+             badJsonData(), response(statusCode: 200), nil
+         )
+
+         wait(for: [expectation], timeout: 1.0)
+         XCTAssertEqual(errorDescription, "The source data could not be decoded.")
+     }
+
+     func test_jumpShot_withGetCompleteSchedule_isOneSchedule() throws {
+        let mockURLSession = MockURLSession()
+        var responseTeamSchedules = [TeamSchedule]()
+        router.session = mockURLSession
+        let testBundle = Bundle(for: type(of: self))
+        guard let path = testBundle.path(forResource: "TeamScheduleApiResponseFromCompleteScheduleCall", ofType: "json")
+            else { fatalError("Can't find TeamScheduleApiResponseFromCompleteScheduleCall.json file") }
+        let teamScheduleApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+
+        let expectation = XCTestExpectation(description: "TeamSchedule Api Response")
+
+        jumpShot.getCompleteSchedule { teamSchedules, _ in
+           responseTeamSchedules = teamSchedules!
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+           teamScheduleApiResponseData, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 5.0)
+
+        let dateFormatter = DateFormatter.iso8601Full
+        let startTimeUTC = dateFormatter.date(from: "2020-12-12T01:00:00.000Z")
+        let visitorScheduledTeamData = """
+            {
+                "teamId":"1610612745",
+                "score":"125"
+            }
+            """.data(using: .utf8)!
+        let visitorTeam = try JSONDecoder().decode(ScheduledTeam.self, from: visitorScheduledTeamData)
+        let homeScheduledTeamData = """
+            {
+                "teamId":"1610612741",
+                "score":"104"
+            }
+            """.data(using: .utf8)!
+        let homeTeam = try JSONDecoder().decode(ScheduledTeam.self, from: homeScheduledTeamData)
+
+        let canadianBroadcasterData = """
+        [
+           {
+              "shortName":"SNN",
+              "longName":"SNN"
+           }
+        ]
+        """.data(using: .utf8)!
+        let canadianBroadcasterMediaNames = try JSONDecoder().decode([MediaNames].self, from: canadianBroadcasterData)
+
+        let nationalData = """
+        [
+            {
+                "shortName":"NBA TV",
+                "longName":"NBA TV"
+            }
+        ]
+        """.data(using: .utf8)!
+        let nationalMediaNames = try JSONDecoder().decode([MediaNames].self, from: nationalData)
+        
+        let periodData = """
+        {
+              "current":4,
+              "type":0,
+              "maxRegular":4
+        }
+        """.data(using: .utf8)!
+        let period = try JSONDecoder().decode(Period.self, from: periodData)
+        XCTAssertEqual(responseTeamSchedules.first!.gameUrlCode, "20201211/HOUCHI")
+        XCTAssertEqual(responseTeamSchedules.first!.gameId, "0012000003")
+        XCTAssertEqual(responseTeamSchedules.first!.statusNumber, 3)
+        XCTAssertEqual(responseTeamSchedules.first!.extendedStatusNum, 0)
+        XCTAssertEqual(responseTeamSchedules.first!.startTimeEastern, "8:00 PM ET")
+        XCTAssertEqual(responseTeamSchedules.first!.startTimeUTC, startTimeUTC)
+        XCTAssertEqual(responseTeamSchedules.first!.startDateEastern, "20201211")
+        XCTAssertNil(responseTeamSchedules.first!.homeStartDate)
+        XCTAssertNil(responseTeamSchedules.first!.homeStartTime)
+        XCTAssertNil(responseTeamSchedules.first!.visitorStartDate)
+        XCTAssertNil(responseTeamSchedules.first!.visitorStartTime)
+        XCTAssertNil(responseTeamSchedules.first!.isHomeTeam)
+        XCTAssertEqual(responseTeamSchedules.first!.isStartTimeTBD, false)
+        XCTAssertEqual(responseTeamSchedules.first!.visitorTeam, visitorTeam)
+        XCTAssertEqual(responseTeamSchedules.first!.homeTeam, homeTeam)
+        XCTAssertEqual(responseTeamSchedules.first!.regionalBlackoutCodes, "")
+        XCTAssertEqual(responseTeamSchedules.first!.isBuzzerBeater, false)
+        XCTAssertEqual(responseTeamSchedules.first!.period, period)
+        XCTAssertEqual(responseTeamSchedules.first!.isNeutralVenue, false)
+        XCTAssertEqual(responseTeamSchedules.first!.isPurchasable, false)
+        XCTAssertEqual(responseTeamSchedules.first!.isLeaguePass, true)
+        XCTAssertEqual(responseTeamSchedules.first!.isNationalBlackout, false)
+        XCTAssertEqual(responseTeamSchedules.first!.isTNTOT, false)
+        XCTAssertEqual(responseTeamSchedules.first!.isVR, false)
+        XCTAssertNil(responseTeamSchedules.first!.isTntOTOnAir)
+        XCTAssertEqual(responseTeamSchedules.first!.isNextVR, false)
+        XCTAssertEqual(responseTeamSchedules.first!.isNBAOnTNTVR, false)
+        XCTAssertEqual(responseTeamSchedules.first!.isMagicLeap, false)
+        XCTAssertEqual(responseTeamSchedules.first!.isOculusVenues, false)
+        XCTAssertEqual(responseTeamSchedules.first!.media!.sorted().first!.category, "video")
+        XCTAssertEqual(responseTeamSchedules.first!.media!.sorted().last!.details.sorted().first?.subCategory, "canadian")
+        XCTAssertEqual(responseTeamSchedules.first!.media!.sorted().last!.details.sorted().last?.subCategory, "national")
+        XCTAssertEqual(responseTeamSchedules.first!.media!.sorted().last!.details.sorted().first?.names.containsSameElements(as: canadianBroadcasterMediaNames), true)
+        XCTAssertEqual(responseTeamSchedules.first!.media!.sorted().last!.details.sorted().last?.names.containsSameElements(as: nationalMediaNames), true)
+     }
+    
+    // MARK: GetCoaches
 
     func test_jumpShot_withGetCoaches_isNetworkUnavailable() throws {
         let mockURLSession = MockURLSession()
@@ -1336,7 +1549,7 @@ class JumpShotTests: XCTestCase {
          }
 
          mockURLSession.dataTaskArgsCompletionHandler.first?(
-             gameDailyScheduleData(), response(statusCode: 300), nil
+            badJsonData(), response(statusCode: 300), nil
          )
 
          wait(for: [expectation], timeout: 1.0)
