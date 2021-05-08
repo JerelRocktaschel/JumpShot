@@ -287,4 +287,46 @@ class JumpShotAPIResponseTests: XCTestCase {
         let coachApiResponse = CoachApiResponse(json: coachApiResponseJson)
         XCTAssertNil(coachApiResponse)
     }
+
+    // MARK: TeamStatRankingApiResponse
+
+    func test_teamStatRankingApiResponse_withMissingLeagueDictionary_isNil() throws {
+        let path = getPath(forResource: "TeamStatRankingApiResponseMissingLeague",
+                           ofType: "json")
+        let teamStatRankingApiResponseJson = try getApiResourceJson(withPath: path)
+        let teamStatRankingApiResponse = CoachApiResponse(json: teamStatRankingApiResponseJson)
+        XCTAssertNil(teamStatRankingApiResponse)
+    }
+
+    func test_teamStatRankingApiResponse_withMissingStandardDictionary_isNil() throws {
+        let path = getPath(forResource: "TeamStatRankingApiResponseMissingStandard",
+                           ofType: "json")
+        let teamStatRankingApiResponseJson = try getApiResourceJson(withPath: path)
+        let teamStatRankingApiResponse = CoachApiResponse(json: teamStatRankingApiResponseJson)
+        XCTAssertNil(teamStatRankingApiResponse)
+    }
+
+    func test_teamStatRankingApiResponse_withMissingTeamsDictionary_isNil() throws {
+        let path = getPath(forResource: "TeamStatRankingApiResponseMissingTeams",
+                           ofType: "json")
+        let teamStatRankingApiResponseJson = try getApiResourceJson(withPath: path)
+        let teamStatRankingApiResponse = CoachApiResponse(json: teamStatRankingApiResponseJson)
+        XCTAssertNil(teamStatRankingApiResponse)
+    }
+
+    func test_teamStatRankingApiResponse_withOneTeamStatRanking_isOne() throws {
+        let path = getPath(forResource: "TeamStatRankingApiResponseOneTeamRanking",
+                           ofType: "json")
+        let teamStatRankingApiResponseJson = try getApiResourceJson(withPath: path)
+        let teamStatRankingApiResponse = TeamStatRankingApiResponse(json: teamStatRankingApiResponseJson)
+        XCTAssertEqual(teamStatRankingApiResponse?.teamStatRankings.count, 1)
+    }
+
+    func test_teamStatRankingApiResponse_withMissingAttribute_isNil() throws {
+        let path = getPath(forResource: "TeamStatRankingApiResponseMissingAttribute",
+                            ofType: "json")
+        let teamStatRankingApiResponseJson = try getApiResourceJson(withPath: path)
+        let teamStatRankingApiResponse = TeamStatRankingApiResponse(json: teamStatRankingApiResponseJson)
+        XCTAssertNil(teamStatRankingApiResponse)
+    }
 }

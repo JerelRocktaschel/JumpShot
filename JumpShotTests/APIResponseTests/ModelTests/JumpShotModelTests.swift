@@ -561,4 +561,178 @@ class JumpShotModelTests: XCTestCase {
         }
         XCTAssertNil(coachModelResponse)
      }
+    
+    // MARK: Team Stat Ranking
+
+    func test_teamStatRankingModel_withCompleteData_isSuccessful() throws {
+        let path = getPath(forResource: "TeamStatRankingModel",
+                               ofType: "json")
+        let teamStatRankingModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let teamStatRankingModelResponse = try JSONDecoder().decode(TeamStatRanking.self, from: teamStatRankingModelData)
+        
+        let minData = """
+        {
+              "avg":"48.0",
+              "rank":"3"
+        }
+        """.data(using: .utf8)!
+        let minStatRanking = try JSONDecoder().decode(StatRanking.self, from: minData)
+        
+        let fgpData = """
+        {
+              "avg":"0.40",
+              "rank":"29"
+        }
+        """.data(using: .utf8)!
+        let fgpStatRanking = try JSONDecoder().decode(StatRanking.self, from: fgpData)
+        
+        let tppData = """
+        {
+              "avg":"0.32",
+              "rank":"22"
+        }
+        """.data(using: .utf8)!
+        let tppStatRanking = try JSONDecoder().decode(StatRanking.self, from: tppData)
+        
+        let ftpData = """
+        {
+              "avg":"0.80",
+              "rank":"2"
+        }
+        """.data(using: .utf8)!
+        let ftpStatRanking = try JSONDecoder().decode(StatRanking.self, from: ftpData)
+        
+        let orpgData = """
+        {
+              "avg":"11.8",
+              "rank":"4"
+        }
+        """.data(using: .utf8)!
+        let orpgStatRanking = try JSONDecoder().decode(StatRanking.self, from: orpgData)
+        
+        let drpgData = """
+        {
+              "avg":"42.0",
+              "rank":"3"
+        }
+        """.data(using: .utf8)!
+        let drpgStatRanking = try JSONDecoder().decode(StatRanking.self, from: drpgData)
+        
+        let trpgData = """
+        {
+              "avg":"53.8",
+              "rank":"2"
+        }
+        """.data(using: .utf8)!
+        let trpgStatRanking = try JSONDecoder().decode(StatRanking.self, from: trpgData)
+        
+        let apgData = """
+        {
+              "avg":"24.0",
+              "rank":"14"
+        }
+        """.data(using: .utf8)!
+        let apgStatRanking = try JSONDecoder().decode(StatRanking.self, from: apgData)
+        
+        let tpgData = """
+        {
+              "avg":"17.8",
+              "rank":"16"
+        }
+        """.data(using: .utf8)!
+        let tpgStatRanking = try JSONDecoder().decode(StatRanking.self, from: tpgData)
+        
+        let spgData = """
+        {
+              "avg":"7.2",
+              "rank":"23"
+        }
+        """.data(using: .utf8)!
+        let spgStatRanking = try JSONDecoder().decode(StatRanking.self, from: spgData)
+        
+        let bpgData = """
+        {
+              "avg":"3.2",
+              "rank":"23"
+        }
+        """.data(using: .utf8)!
+        let bpgStatRanking = try JSONDecoder().decode(StatRanking.self, from: bpgData)
+        
+        let pfpgData = """
+        {
+              "avg":"24.0",
+              "rank":"15"
+        }
+        """.data(using: .utf8)!
+        let pfpgStatRanking = try JSONDecoder().decode(StatRanking.self, from: pfpgData)
+        
+        let ppgData = """
+        {
+              "avg":"112.8",
+              "rank":"9"
+        }
+        """.data(using: .utf8)!
+        let ppgStatRanking = try JSONDecoder().decode(StatRanking.self, from: ppgData)
+        
+        let oppgData = """
+        {
+              "avg":"116.8",
+              "rank":"6"
+        }
+        """.data(using: .utf8)!
+        let oppgStatRanking = try JSONDecoder().decode(StatRanking.self, from: oppgData)
+        
+        let effData = """
+        {
+              "avg":"-4.00",
+              "rank":"18"
+        }
+        """.data(using: .utf8)!
+        let effStatRanking = try JSONDecoder().decode(StatRanking.self, from: effData)
+        
+        XCTAssertEqual(teamStatRankingModelResponse.teamId, "1610612737")
+        XCTAssertEqual(teamStatRankingModelResponse.min, minStatRanking)
+        XCTAssertEqual(teamStatRankingModelResponse.fgp, fgpStatRanking)
+        XCTAssertEqual(teamStatRankingModelResponse.tpp, tppStatRanking)
+        XCTAssertEqual(teamStatRankingModelResponse.ftp, ftpStatRanking)
+        XCTAssertEqual(teamStatRankingModelResponse.orpg, orpgStatRanking)
+        XCTAssertEqual(teamStatRankingModelResponse.drpg, drpgStatRanking)
+        XCTAssertEqual(teamStatRankingModelResponse.trpg, trpgStatRanking)
+        XCTAssertEqual(teamStatRankingModelResponse.apg, apgStatRanking)
+        XCTAssertEqual(teamStatRankingModelResponse.tpg, tpgStatRanking)
+        XCTAssertEqual(teamStatRankingModelResponse.spg, spgStatRanking)
+        XCTAssertEqual(teamStatRankingModelResponse.bpg, bpgStatRanking)
+        XCTAssertEqual(teamStatRankingModelResponse.pfpg, pfpgStatRanking)
+        XCTAssertEqual(teamStatRankingModelResponse.ppg, ppgStatRanking)
+        XCTAssertEqual(teamStatRankingModelResponse.oppg, oppgStatRanking)
+        XCTAssertEqual(teamStatRankingModelResponse.eff, effStatRanking)
+    }
+
+    func test_teamStatRanking_withBadData_isNil() throws {
+        let path = getPath(forResource: "TeamStatRankingModelBadData",
+                               ofType: "json")
+        let teamStatRankingModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        var teamStatRankingModelResponse: TeamStatRanking?
+
+        do {
+            teamStatRankingModelResponse = try JSONDecoder().decode(TeamStatRanking.self, from: teamStatRankingModelData)
+        } catch {
+            teamStatRankingModelResponse = nil
+        }
+        XCTAssertNil(teamStatRankingModelResponse)
+    }
+
+    func test_teamStatRanking_withMissingData_isNil() throws {
+        let path = getPath(forResource: "TeamStatRankingModelMissingData",
+                               ofType: "json")
+        let teamStatRankingModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        var teamStatRankingModelResponse: TeamStatRanking?
+
+        do {
+            teamStatRankingModelResponse = try JSONDecoder().decode(TeamStatRanking.self, from: teamStatRankingModelData)
+        } catch {
+            teamStatRankingModelResponse = nil
+        }
+        XCTAssertNil(teamStatRankingModelResponse)
+    }
 }

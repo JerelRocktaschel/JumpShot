@@ -1,0 +1,13 @@
+{
+   "_internal":{
+      "pubDateTime":"2021-05-07 14:08:55.415 EDT",
+      "igorPath":"S3,1620410931391,1620410934631|router,1620410934631,1620410934636|domUpdater,1620410934751,1620410935155|feedProducer,1620410935280,1620410937235",
+      "xslt":"NBA/xsl/league/statistics/marty_team_stats_and_rankings.xsl",
+      "xsltForceRecompile":"true",
+      "xsltInCache":"false",
+      "xsltCompileTimeMillis":"98",
+      "xsltTransformTimeMillis":"1601",
+      "consolidatedDomKey":"prod__transform__marty_team_stats_and_rankings__4878872593609",
+      "endToEndTimeMillis":"5844"
+   }
+}

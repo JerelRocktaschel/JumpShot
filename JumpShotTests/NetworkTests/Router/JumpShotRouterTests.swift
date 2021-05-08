@@ -113,4 +113,13 @@ class JumpShotRouterTests: XCTestCase {
         mockURLSession.verifyDataTask(
             with: URLRequest(url: URL(string: "https://data.nba.net/prod/v1/2020/coaches.json")!))
     }
+
+    // MARK: TeamStatRanking
+
+    func test_teamStatRankingRouter_shouldMakeRequestToCoachAPIURL() {
+        router.request(.teamStatRankingList(season: "2020")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://data.nba.com/prod/v1/2020/team_stats_rankings.json")!))
+    }
 }
