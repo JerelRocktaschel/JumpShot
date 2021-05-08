@@ -1650,4 +1650,271 @@ class JumpShotTests: XCTestCase {
         XCTAssertEqual(responseCoaches.first!.teamId, "1610612755")
         XCTAssertEqual(responseCoaches.first!.college, "Marquette")
      }
+    
+    // MARK: GetTeamStatRankings
+
+    func test_jumpShot_withGetTeamStatRankings_isNetworkUnavailable() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getTeamStatRankings { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            nil, nil, TestError.testError
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The network is unavailable.")
+    }
+
+    func test_jumpShot_withGetTeamStatRankings_isRequestFailed() throws {
+         let mockURLSession = MockURLSession()
+         var errorDescription = String()
+         router.session = mockURLSession
+
+         let expectation = XCTestExpectation(description: "Network Error")
+
+        jumpShot.getTeamStatRankings { _, error in
+             errorDescription = error!.localizedDescription
+             expectation.fulfill()
+         }
+
+         mockURLSession.dataTaskArgsCompletionHandler.first?(
+            badJsonData(), response(statusCode: 300), nil
+         )
+
+         wait(for: [expectation], timeout: 1.0)
+         XCTAssertEqual(errorDescription, "The request failed.")
+     }
+
+    func test_jumpShot_withGetTeamStatRankings_isNoDataReturned() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getTeamStatRankings { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+                            nil, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "No NBA data was returned.")
+     }
+
+    func test_jumpShot_withGetTeamStatRankings_isUnableToDecode() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+
+        let path = getPath(forResource: "TeamStatRankingApiResponseMissingAttribute",
+                            ofType: "json")
+
+        let teamStatRankingApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getTeamStatRankings { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            teamStatRankingApiResponseData, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The source data could not be decoded.")
+     }
+
+    func test_jumpShot_withGetTeamStatRankings_isUnableToDecodeWithError() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getTeamStatRankings { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            badJsonData(), response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The source data could not be decoded.")
+     }
+
+    func test_jumpShot_withGetTeamStatRankings_isOneSchedule() throws {
+        let mockURLSession = MockURLSession()
+        var responseTeamStatRankings = [TeamStatRanking]()
+        router.session = mockURLSession
+        let testBundle = Bundle(for: type(of: self))
+        guard let path = testBundle.path(forResource: "TeamStatRankingApiResponseOneTeamRanking", ofType: "json")
+            else { fatalError("Can't find TeamStatRankingApiResponseOneTeamRanking.json file") }
+        let teamStatRanking = try Data(contentsOf: URL(fileURLWithPath: path))
+
+        let expectation = XCTestExpectation(description: "TeamStatRanking Api Response")
+
+        jumpShot.getTeamStatRankings { teamStatRankings, _ in
+            responseTeamStatRankings = teamStatRankings!
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            teamStatRanking, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 5.0)
+        
+        let minData = """
+        {
+              "avg":"48.0",
+              "rank":"3"
+        }
+        """.data(using: .utf8)!
+        let minStatRanking = try JSONDecoder().decode(StatRanking.self, from: minData)
+        
+        let fgpData = """
+        {
+              "avg":"0.40",
+              "rank":"29"
+        }
+        """.data(using: .utf8)!
+        let fgpStatRanking = try JSONDecoder().decode(StatRanking.self, from: fgpData)
+        
+        let tppData = """
+        {
+              "avg":"0.32",
+              "rank":"22"
+        }
+        """.data(using: .utf8)!
+        let tppStatRanking = try JSONDecoder().decode(StatRanking.self, from: tppData)
+        
+        let ftpData = """
+        {
+              "avg":"0.80",
+              "rank":"2"
+        }
+        """.data(using: .utf8)!
+        let ftpStatRanking = try JSONDecoder().decode(StatRanking.self, from: ftpData)
+        
+        let orpgData = """
+        {
+              "avg":"11.8",
+              "rank":"4"
+        }
+        """.data(using: .utf8)!
+        let orpgStatRanking = try JSONDecoder().decode(StatRanking.self, from: orpgData)
+        
+        let drpgData = """
+        {
+              "avg":"42.0",
+              "rank":"3"
+        }
+        """.data(using: .utf8)!
+        let drpgStatRanking = try JSONDecoder().decode(StatRanking.self, from: drpgData)
+        
+        let trpgData = """
+        {
+              "avg":"53.8",
+              "rank":"2"
+        }
+        """.data(using: .utf8)!
+        let trpgStatRanking = try JSONDecoder().decode(StatRanking.self, from: trpgData)
+        
+        let apgData = """
+        {
+              "avg":"24.0",
+              "rank":"14"
+        }
+        """.data(using: .utf8)!
+        let apgStatRanking = try JSONDecoder().decode(StatRanking.self, from: apgData)
+        
+        let tpgData = """
+        {
+              "avg":"17.8",
+              "rank":"16"
+        }
+        """.data(using: .utf8)!
+        let tpgStatRanking = try JSONDecoder().decode(StatRanking.self, from: tpgData)
+        
+        let spgData = """
+        {
+              "avg":"7.2",
+              "rank":"23"
+        }
+        """.data(using: .utf8)!
+        let spgStatRanking = try JSONDecoder().decode(StatRanking.self, from: spgData)
+        
+        let bpgData = """
+        {
+              "avg":"3.2",
+              "rank":"23"
+        }
+        """.data(using: .utf8)!
+        let bpgStatRanking = try JSONDecoder().decode(StatRanking.self, from: bpgData)
+        
+        let pfpgData = """
+        {
+              "avg":"24.0",
+              "rank":"15"
+        }
+        """.data(using: .utf8)!
+        let pfpgStatRanking = try JSONDecoder().decode(StatRanking.self, from: pfpgData)
+        
+        let ppgData = """
+        {
+              "avg":"112.8",
+              "rank":"9"
+        }
+        """.data(using: .utf8)!
+        let ppgStatRanking = try JSONDecoder().decode(StatRanking.self, from: ppgData)
+        
+        let oppgData = """
+        {
+              "avg":"116.8",
+              "rank":"6"
+        }
+        """.data(using: .utf8)!
+        let oppgStatRanking = try JSONDecoder().decode(StatRanking.self, from: oppgData)
+        
+        let effData = """
+        {
+              "avg":"-4.00",
+              "rank":"18"
+        }
+        """.data(using: .utf8)!
+        let effStatRanking = try JSONDecoder().decode(StatRanking.self, from: effData)
+    
+        XCTAssertEqual(responseTeamStatRankings.first!.teamId, "1610612737")
+        XCTAssertEqual(responseTeamStatRankings.first!.min, minStatRanking)
+        XCTAssertEqual(responseTeamStatRankings.first!.fgp, fgpStatRanking)
+        XCTAssertEqual(responseTeamStatRankings.first!.tpp, tppStatRanking)
+        XCTAssertEqual(responseTeamStatRankings.first!.ftp, ftpStatRanking)
+        XCTAssertEqual(responseTeamStatRankings.first!.orpg, orpgStatRanking)
+        XCTAssertEqual(responseTeamStatRankings.first!.drpg, drpgStatRanking)
+        XCTAssertEqual(responseTeamStatRankings.first!.trpg, trpgStatRanking)
+        XCTAssertEqual(responseTeamStatRankings.first!.apg, apgStatRanking)
+        XCTAssertEqual(responseTeamStatRankings.first!.tpg, tpgStatRanking)
+        XCTAssertEqual(responseTeamStatRankings.first!.spg, spgStatRanking)
+        XCTAssertEqual(responseTeamStatRankings.first!.bpg, bpgStatRanking)
+        XCTAssertEqual(responseTeamStatRankings.first!.pfpg, pfpgStatRanking)
+        XCTAssertEqual(responseTeamStatRankings.first!.ppg, ppgStatRanking)
+        XCTAssertEqual(responseTeamStatRankings.first!.oppg, oppgStatRanking)
+        XCTAssertEqual(responseTeamStatRankings.first!.eff, effStatRanking)
+     }
 }

@@ -80,7 +80,7 @@ public struct TeamStatRanking {
     let ppg: StatRanking
     let oppg: StatRanking
     let eff: StatRanking
-
+    
     public init(from decoder: Decoder) throws {
         let teamStatRankingContainer = try decoder.container(keyedBy: TeamStatRankingCodingKeys.self)
         teamId = try teamStatRankingContainer.decode(String.self, forKey: .teamId)
@@ -162,11 +162,18 @@ extension TeamStatRankingApiResponse {
                     return nil
             }
 
-            do {
-                let teamStatRanking = try JSONDecoder().decode(TeamStatRanking.self, from: teamStatRankingData)
-                self.teamStatRankings.append(teamStatRanking)
-            } catch {
+            // for some reason, the all star teams are included in the team stat rankings - need to be filtered out
+            guard let nickname = teamStatRankingDictionary["nickname"] as? String else {
                 return nil
+            }
+
+            if !nickname.contains("Team") {
+                do {
+                    let teamStatRanking = try JSONDecoder().decode(TeamStatRanking.self, from: teamStatRankingData)
+                    self.teamStatRankings.append(teamStatRanking)
+                } catch {
+                    return nil
+                }
             }
         }
     }

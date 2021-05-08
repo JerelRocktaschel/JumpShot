@@ -47,6 +47,7 @@
 		D817FCD3261BD1A10092F5E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D817FCD1261BD1A10092F5E0 /* LaunchScreen.storyboard */; };
 		D817FCDC261BD1B40092F5E0 /* JumpShotTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D817FCDB261BD1B40092F5E0 /* JumpShotTableViewController.swift */; };
 		D817FCE7261BD1C60092F5E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D817FCE6261BD1C60092F5E0 /* Main.storyboard */; };
+		D821742226461E7A0028C0F3 /* JumpShotGetTeamStatRankings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D821742126461E7A0028C0F3 /* JumpShotGetTeamStatRankings.swift */; };
 		D832C4DD261E50F000D214B8 /* JumpShotGetTeamImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D832C4DC261E50F000D214B8 /* JumpShotGetTeamImage.swift */; };
 		D832C4F4261F74CD00D214B8 /* BOS.png in Resources */ = {isa = PBXBuildFile; fileRef = D832C4F3261F74CD00D214B8 /* BOS.png */; };
 		D832C4FA261FB3D300D214B8 /* NOP.png in Resources */ = {isa = PBXBuildFile; fileRef = D832C4F8261FB3D300D214B8 /* NOP.png */; };
@@ -175,6 +176,7 @@
 		D817FCD4261BD1A10092F5E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D817FCDB261BD1B40092F5E0 /* JumpShotTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JumpShotTableViewController.swift; sourceTree = "<group>"; };
 		D817FCE6261BD1C60092F5E0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		D821742126461E7A0028C0F3 /* JumpShotGetTeamStatRankings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetTeamStatRankings.swift; sourceTree = "<group>"; };
 		D832C4DC261E50F000D214B8 /* JumpShotGetTeamImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetTeamImage.swift; sourceTree = "<group>"; };
 		D832C4F3261F74CD00D214B8 /* BOS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BOS.png; sourceTree = "<group>"; };
 		D832C4F8261FB3D300D214B8 /* NOP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NOP.png; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				D852B5162633B7D700610391 /* JumpShotGetTeamSchedules.swift */,
 				D8C0319F26445F9B0009292A /* JumpShotGetCompleteSchedule.swift */,
 				D8C03187264423080009292A /* JumpShotGetCoaches.swift */,
+				D821742126461E7A0028C0F3 /* JumpShotGetTeamStatRankings.swift */,
 				D817FC41261BCFB00092F5E0 /* JumpShot.h */,
 				D817FC67261BD0070092F5E0 /* Network */,
 				D817FC42261BCFB00092F5E0 /* Info.plist */,
@@ -921,6 +924,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D821742226461E7A0028C0F3 /* JumpShotGetTeamStatRankings.swift in Sources */,
 				D832C52826262CFB00D214B8 /* Player.swift in Sources */,
 				D817FC72261BD0070092F5E0 /* Team.swift in Sources */,
 				D832C4DD261E50F000D214B8 /* JumpShotGetTeamImage.swift in Sources */,

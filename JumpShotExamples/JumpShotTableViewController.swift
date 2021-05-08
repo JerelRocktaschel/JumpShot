@@ -27,7 +27,8 @@ class JumpShotTableViewController: UITableViewController {
                              "getTeamLeaders(for: \"1610612737\")",
                              "getTeamSchedules(for: \"1610612737\")",
                              "getCompleteSchedule()",
-                             "getCoaches()"]
+                             "getCoaches()",
+                             "getTeamStatRankings()"]
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         jumpShotFunctions.count
@@ -68,6 +69,8 @@ class JumpShotTableViewController: UITableViewController {
             getCompleteSchedule()
         case 10:
             getCoaches()
+        case 11:
+            getTeamStatRankings()
         default:
             print("No function selected")
         }
@@ -164,7 +167,7 @@ class JumpShotTableViewController: UITableViewController {
             }
 
             guard let standings = standings else {
-                print("No schedules returned.")
+                print("No standings returned.")
                 return
             }
 
@@ -180,7 +183,7 @@ class JumpShotTableViewController: UITableViewController {
             }
 
             guard let teamLeaders = teamLeaders else {
-                print("No schedules returned.")
+                print("No leaders returned.")
                 return
             }
 
@@ -228,11 +231,27 @@ class JumpShotTableViewController: UITableViewController {
             }
 
             guard let coaches = coaches else {
-                print("No schedules returned.")
+                print("No coaches returned.")
                 return
             }
 
             print(coaches)
+        }
+    }
+
+    private func getTeamStatRankings() {
+        jumpShot.getTeamStatRankings { teamStatRankings, error in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+
+            guard let teamStatRankings = teamStatRankings else {
+                print("No rankings returned.")
+                return
+            }
+
+            print(teamStatRankings)
         }
     }
 }
