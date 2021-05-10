@@ -22,6 +22,7 @@ class JumpShotApiEndPointTests: XCTestCase {
     var completeScheduleJumpShotApiEndPoint: JumpShotApiEndPoint!
     var coachJumpShotApiEndPoint: JumpShotApiEndPoint!
     var teamStatRankingJumpShotApiEndPoint: JumpShotApiEndPoint!
+    var playerStatsJumpShotApiEndPoint: JumpShotApiEndPoint!
 
     override func setUp() {
         teamsJumpShotApiEndPoint = JumpShotApiEndPoint.self.teamList(season: "2020")
@@ -38,6 +39,7 @@ class JumpShotApiEndPointTests: XCTestCase {
         completeScheduleJumpShotApiEndPoint = JumpShotApiEndPoint.self.completeScheduleList(season: "2020")
         coachJumpShotApiEndPoint = JumpShotApiEndPoint.self.coachList(season: "2020")
         teamStatRankingJumpShotApiEndPoint = JumpShotApiEndPoint.self.teamStatRankingList(season: "2020")
+        playerStatsJumpShotApiEndPoint = JumpShotApiEndPoint.self.playerStatsList(season: "2020", playerId: "2544")
     }
 
     // MARK: Team
@@ -207,7 +209,7 @@ class JumpShotApiEndPointTests: XCTestCase {
         XCTAssertEqual(coachJumpShotApiEndPoint.path, "2020/coaches.json")
     }
 
-    // MARK: Coach
+    // MARK: Team Stat Ranking
 
     func test_teamStatRankingListJumpShotApiEndPoint_withEnvironmentalBaseURL_isCorrectValue() {
         XCTAssertEqual(teamStatRankingJumpShotApiEndPoint.environmentBaseURL,
@@ -221,5 +223,21 @@ class JumpShotApiEndPointTests: XCTestCase {
 
     func test_teamStatRankingListJumpShotApiEndPoint_withPath_isCorrectValue() {
         XCTAssertEqual(teamStatRankingJumpShotApiEndPoint.path, "2020/team_stats_rankings.json")
+    }
+
+    // MARK: Player Stats
+
+    func test_playerStatsListJumpShotApiEndPoint_withEnvironmentalBaseURL_isCorrectValue() {
+        XCTAssertEqual(playerStatsJumpShotApiEndPoint.environmentBaseURL,
+                       "https://data.nba.com/prod/v1/")
+    }
+
+    func test_playerStatsListJumpShotApiEndPoint_withBaseURL_isCorrectValue() {
+        XCTAssertEqual(playerStatsJumpShotApiEndPoint.baseURL,
+                       URL(string: "https://data.nba.com/prod/v1/"))
+    }
+
+    func test_playerStatsListJumpShotApiEndPoint_withPath_isCorrectValue() {
+        XCTAssertEqual(playerStatsJumpShotApiEndPoint.path, "2020/players/2544_profile.json")
     }
 }

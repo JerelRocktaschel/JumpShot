@@ -61,6 +61,7 @@
 		D83B2646262A1951002EDBB0 /* GameSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83B2645262A1951002EDBB0 /* GameSchedule.swift */; };
 		D852B5122633532A00610391 /* TeamSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D852B5112633532A00610391 /* TeamSchedule.swift */; };
 		D852B5172633B7D700610391 /* JumpShotGetTeamSchedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = D852B5162633B7D700610391 /* JumpShotGetTeamSchedules.swift */; };
+		D8874CF2264972D300CA3520 /* PlayerStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8874CF1264972D300CA3520 /* PlayerStat.swift */; };
 		D89353402641B950006CA270 /* TeamScheduleModelFromTeamScheduleCall.json in Resources */ = {isa = PBXBuildFile; fileRef = D893533F2641B950006CA270 /* TeamScheduleModelFromTeamScheduleCall.json */; };
 		D893534926422700006CA270 /* TeamScheduleModelBadDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D893534826422700006CA270 /* TeamScheduleModelBadDataFormat.json */; };
 		D893534E26422719006CA270 /* TeamScheduleModelMissingDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D893534D26422719006CA270 /* TeamScheduleModelMissingDataFormat.json */; };
@@ -190,6 +191,7 @@
 		D83B2645262A1951002EDBB0 /* GameSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSchedule.swift; sourceTree = "<group>"; };
 		D852B5112633532A00610391 /* TeamSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSchedule.swift; sourceTree = "<group>"; };
 		D852B5162633B7D700610391 /* JumpShotGetTeamSchedules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetTeamSchedules.swift; sourceTree = "<group>"; };
+		D8874CF1264972D300CA3520 /* PlayerStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStat.swift; sourceTree = "<group>"; };
 		D893533F2641B950006CA270 /* TeamScheduleModelFromTeamScheduleCall.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TeamScheduleModelFromTeamScheduleCall.json; sourceTree = "<group>"; };
 		D893534826422700006CA270 /* TeamScheduleModelBadDataFormat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TeamScheduleModelBadDataFormat.json; sourceTree = "<group>"; };
 		D893534D26422719006CA270 /* TeamScheduleModelMissingDataFormat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TeamScheduleModelMissingDataFormat.json; sourceTree = "<group>"; };
@@ -384,6 +386,7 @@
 				D852B5112633532A00610391 /* TeamSchedule.swift */,
 				D893538B2643701B006CA270 /* Coach.swift */,
 				D8C031DD2645D8810009292A /* TeamStatRanking.swift */,
+				D8874CF1264972D300CA3520 /* PlayerStat.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -932,6 +935,7 @@
 				D8C031A026445F9B0009292A /* JumpShotGetCompleteSchedule.swift in Sources */,
 				D8C031DE2645D8810009292A /* TeamStatRanking.swift in Sources */,
 				D815EAC7262B8B75004C22AD /* JumpShotGetDailySchedule.swift in Sources */,
+				D8874CF2264972D300CA3520 /* PlayerStat.swift in Sources */,
 				D817FC71261BD0070092F5E0 /* JumpShotNetworkManager.swift in Sources */,
 				D8B629E42631FE06007B0D63 /* JumpShotGetTeamLeaders.swift in Sources */,
 				D83B2646262A1951002EDBB0 /* GameSchedule.swift in Sources */,

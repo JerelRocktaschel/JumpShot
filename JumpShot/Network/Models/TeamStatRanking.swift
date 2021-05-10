@@ -80,7 +80,7 @@ public struct TeamStatRanking {
     let ppg: StatRanking
     let oppg: StatRanking
     let eff: StatRanking
-    
+
     public init(from decoder: Decoder) throws {
         let teamStatRankingContainer = try decoder.container(keyedBy: TeamStatRankingCodingKeys.self)
         teamId = try teamStatRankingContainer.decode(String.self, forKey: .teamId)
