@@ -735,4 +735,72 @@ class JumpShotModelTests: XCTestCase {
         }
         XCTAssertNil(teamStatRankingModelResponse)
     }
+    
+    // MARK: Player Stats
+
+    func test_playerStatsModel_withCompleteData_isSuccessful() throws {
+        let path = getPath(forResource: "PlayerStatsModel",
+                               ofType: "json")
+        let playerStatsModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let playerStatsModelResponse = try JSONDecoder().decode(PlayerStats.self, from: playerStatsModelData)
+        XCTAssertEqual(playerStatsModelResponse.ppg, 25.0)
+        XCTAssertEqual(playerStatsModelResponse.rpg, 7.9)
+        XCTAssertEqual(playerStatsModelResponse.apg, 7.8)
+        XCTAssertEqual(playerStatsModelResponse.mpg, 33.7)
+        XCTAssertEqual(playerStatsModelResponse.topg, 3.8)
+        XCTAssertEqual(playerStatsModelResponse.spg, 1.0)
+        XCTAssertEqual(playerStatsModelResponse.bpg, 0.6)
+        XCTAssertEqual(playerStatsModelResponse.tpp, 36.6)
+        XCTAssertEqual(playerStatsModelResponse.ftp, 70.1)
+        XCTAssertEqual(playerStatsModelResponse.fgp, 51.3)
+        XCTAssertEqual(playerStatsModelResponse.assists, 336)
+        XCTAssertEqual(playerStatsModelResponse.blocks, 25)
+        XCTAssertEqual(playerStatsModelResponse.steals, 45)
+        XCTAssertEqual(playerStatsModelResponse.turnovers, 162)
+        XCTAssertEqual(playerStatsModelResponse.offReb, 25)
+        XCTAssertEqual(playerStatsModelResponse.defReb, 313)
+        XCTAssertEqual(playerStatsModelResponse.totReb, 338)
+        XCTAssertEqual(playerStatsModelResponse.fgm, 400)
+        XCTAssertEqual(playerStatsModelResponse.fga, 779)
+        XCTAssertEqual(playerStatsModelResponse.tpm, 101)
+        XCTAssertEqual(playerStatsModelResponse.tpa, 276)
+        XCTAssertEqual(playerStatsModelResponse.ftm, 176)
+        XCTAssertEqual(playerStatsModelResponse.fta, 251)
+        XCTAssertEqual(playerStatsModelResponse.pFouls, 68)
+        XCTAssertEqual(playerStatsModelResponse.points, 1077)
+        XCTAssertEqual(playerStatsModelResponse.gamesPlayed, 43)
+        XCTAssertEqual(playerStatsModelResponse.gamesStarted, 43)
+        XCTAssertEqual(playerStatsModelResponse.plusMinus, 285)
+        XCTAssertEqual(playerStatsModelResponse.min, 1447)
+        XCTAssertEqual(playerStatsModelResponse.dd2, 18)
+        XCTAssertEqual(playerStatsModelResponse.td3, 5)
+    }
+
+    func test_playerStatsModel_withBadData_isNil() throws {
+        let path = getPath(forResource: "PlayerStatsModelBadData",
+                               ofType: "json")
+        let playerStatsModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        var playerStatsModelResponse: PlayerStats?
+
+        do {
+            playerStatsModelResponse = try JSONDecoder().decode(PlayerStats.self, from: playerStatsModelData)
+        } catch {
+            playerStatsModelResponse = nil
+        }
+        XCTAssertNil(playerStatsModelResponse)
+    }
+
+    func test_playerStatsModel_withMissingData_isNil() throws {
+        let path = getPath(forResource: "PlayerStatsModelMissingData",
+                               ofType: "json")
+        let playerStatsModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        var playerStatsModelResponse: PlayerStats?
+
+        do {
+            playerStatsModelResponse = try JSONDecoder().decode(PlayerStats.self, from: playerStatsModelData)
+        } catch {
+            playerStatsModelResponse = nil
+        }
+        XCTAssertNil(playerStatsModelResponse)
+     }
 }

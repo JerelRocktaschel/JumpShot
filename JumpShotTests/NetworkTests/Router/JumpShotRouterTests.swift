@@ -126,7 +126,7 @@ class JumpShotRouterTests: XCTestCase {
     // MARK: PlayerStats
 
     func test_playerStatsRouter_shouldMakeRequestToPlayerStatsAPIURL() {
-        router.request(.playerStatsList(season: "2020", playerId: "2544")) { _, _, _ in
+        router.request(.playerStatsSummary(season: "2020", playerId: "2544")) { _, _, _ in
         }
         mockURLSession.verifyDataTask(
             with: URLRequest(url: URL(string: "https://data.nba.com/prod/v1/2020/players/2544_profile.json")!))

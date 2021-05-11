@@ -8,13 +8,13 @@
 import Foundation
 import UIKit
 
-// MARK: Import the JumpShot Framework
+// MARK: 1 - Import the JumpShot Framework
 
 import JumpShot
 
 class JumpShotTableViewController: UITableViewController {
 
-    // MARK: 1 - Instantiate an instance of JumpShot
+    // MARK: 2 - Instantiate an instance of JumpShot
 
     let jumpShot = JumpShot()
     let jumpShotFunctions = ["getTeams()",
@@ -28,7 +28,8 @@ class JumpShotTableViewController: UITableViewController {
                              "getTeamSchedules(for: \"1610612737\")",
                              "getCompleteSchedule()",
                              "getCoaches()",
-                             "getTeamStatRankings()"]
+                             "getTeamStatRankings()",
+                             "playerStatsSummary(for: \"2544\")"]
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         jumpShotFunctions.count
@@ -71,6 +72,8 @@ class JumpShotTableViewController: UITableViewController {
             getCoaches()
         case 11:
             getTeamStatRankings()
+        case 12:
+            getPlayerStatsSummary()
         default:
             print("No function selected")
         }
@@ -78,7 +81,7 @@ class JumpShotTableViewController: UITableViewController {
 
     private func getTeams() {
 
-        // MARK: 2 - Call a JumpShot function and handle the response via a closure
+        // MARK: 3 - Call a JumpShot function and handle the response via a closure
 
         jumpShot.getTeams { teams, error in
             guard error == nil else {
@@ -252,6 +255,22 @@ class JumpShotTableViewController: UITableViewController {
             }
 
             print(teamStatRankings)
+        }
+    }
+    
+    private func getPlayerStatsSummary() {
+        jumpShot.getGetPlayerStatsSummary(for: "203085") { playerStatsSummary, error in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+
+            guard let playerStatsSummary = playerStatsSummary else {
+                print("No rankings returned.")
+                return
+            }
+
+            print(playerStatsSummary)
         }
     }
 }

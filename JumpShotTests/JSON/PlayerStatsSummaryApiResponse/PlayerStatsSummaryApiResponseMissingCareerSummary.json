@@ -1,0 +1,22 @@
+{
+   "_internal":{
+      "pubDateTime":"2021-05-10 21:10:53.440 EDT",
+      "igorPath":"S3,1620695435365,1620695441554|router,1620695441554,1620695441558|xmlProcessor,1620695441765,1620695442326|domUpdater,1620695442892,1620695453271|feedProducer,1620695453353,1620695453756",
+      "xslt":"NBA/xsl/player/marty_player_profile.xsl",
+      "xsltForceRecompile":"true",
+      "xsltInCache":"false",
+      "xsltCompileTimeMillis":"75",
+      "xsltTransformTimeMillis":"299",
+      "consolidatedDomKey":"prod__transform__marty_player_profile__1871898046580",
+      "endToEndTimeMillis":"18391"
+   },
+   "league":{
+      "standard":{
+         "teamId":"1610612747",
+         "stats":{
+            "latest":{
+            }
+         }
+      }
+   }
+}

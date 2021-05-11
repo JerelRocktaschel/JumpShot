@@ -1917,4 +1917,294 @@ class JumpShotTests: XCTestCase {
         XCTAssertEqual(responseTeamStatRankings.first!.oppg, oppgStatRanking)
         XCTAssertEqual(responseTeamStatRankings.first!.eff, effStatRanking)
      }
+    
+    // MARK: GetPlayerStatsSummary
+
+   func test_jumpShot_withGetPlayerStatsSummary_isNetworkUnavailable() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getGetPlayerStatsSummary(for: "203085") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            nil, nil, TestError.testError
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The network is unavailable.")
+    }
+    
+    func test_jumpShot_withGetPlayerStatsSummary_isRequestFailed() throws {
+         let mockURLSession = MockURLSession()
+         var errorDescription = String()
+         router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "Network Error")
+
+         jumpShot.getGetPlayerStatsSummary(for: "203085") { _, error in
+             errorDescription = error!.localizedDescription
+             expectation.fulfill()
+         }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+           badJsonData(), response(statusCode: 300), nil
+        )
+
+         wait(for: [expectation], timeout: 1.0)
+         XCTAssertEqual(errorDescription, "The request failed.")
+     }
+
+    func test_jumpShot_withGetPlayerStatsSummary_isNoDataReturned() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getGetPlayerStatsSummary(for: "203085") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+                            nil, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "No NBA data was returned.")
+     }
+
+    func test_jumpShot_withGetPlayerStatsSummary_isUnableToDecode() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+
+        let path = getPath(forResource: "PlayerStatsSummaryApiResponseMissingAttribute",
+                            ofType: "json")
+
+        let coachApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getGetPlayerStatsSummary(for: "203085") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            coachApiResponseData, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The source data could not be decoded.")
+     }
+
+    func test_jumpShot_withGetPlayerStatsSummary_isUnableToDecodeWithError() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getGetPlayerStatsSummary(for: "203085") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            badJsonData(), response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The source data could not be decoded.")
+     }
+
+    func test_jumpShot_withGetPlayerStatsSummary_isOneSummary() throws {
+        let mockURLSession = MockURLSession()
+        var responseSummary = [PlayerStatsSummary]()
+        router.session = mockURLSession
+        let testBundle = Bundle(for: type(of: self))
+        guard let path = testBundle.path(forResource: "PlayerStatsSummaryApiResponseOneSummary", ofType: "json")
+            else { fatalError("Can't find PlayerStatsSummaryApiResponseOneSummary.json file") }
+        let playerStatsSummaryApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+
+        let expectation = XCTestExpectation(description: "PlayerStatsSummary Api Response")
+
+        jumpShot.getGetPlayerStatsSummary(for: "203085") {  playerStatsSummary, _  in
+            responseSummary.append(playerStatsSummary!)
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            playerStatsSummaryApiResponseData, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 5.0)
+        
+        let careerStatsSummaryData = """
+        {
+           "tpp":"34.5",
+           "ftp":"73.4",
+           "fgp":"50.4",
+           "ppg":"27",
+           "rpg":"7.4",
+           "apg":"7.4",
+           "bpg":"0.8",
+           "mpg":"38.2",
+           "spg":"1.6",
+           "assists":"9682",
+           "blocks":"982",
+           "steals":"2060",
+           "turnovers":"4586",
+           "offReb":"1534",
+           "defReb":"8209",
+           "totReb":"9743",
+           "fgm":"12881",
+           "fga":"25560",
+           "tpm":"1976",
+           "tpa":"5729",
+           "ftm":"7580",
+           "fta":"10333",
+           "pFouls":"2393",
+           "points":"35318",
+           "gamesPlayed":"1308",
+           "gamesStarted":"1307",
+           "plusMinus":"7131",
+           "min":"49997",
+           "dd2":"507",
+           "td3":"99"
+        }
+        """.data(using: .utf8)!
+        let careerStatsSummary = try JSONDecoder().decode(PlayerStats.self, from: careerStatsSummaryData)
+        
+        let currentStatsSummaryData = """
+        {
+            "seasonYear":2020,
+            "seasonStageId":2,
+            "ppg":"25",
+            "rpg":"7.9",
+            "apg":"7.8",
+            "mpg":"33.7",
+            "topg":"3.8",
+            "spg":"1",
+            "bpg":"0.6",
+            "tpp":"36.6",
+            "ftp":"70.1",
+            "fgp":"51.3",
+            "assists":"336",
+            "blocks":"25",
+            "steals":"45",
+            "turnovers":"162",
+            "offReb":"25",
+            "defReb":"313",
+            "totReb":"338",
+            "fgm":"400",
+            "fga":"779",
+            "tpm":"101",
+            "tpa":"276",
+            "ftm":"176",
+            "fta":"251",
+            "pFouls":"68",
+            "points":"1077",
+            "gamesPlayed":"43",
+            "gamesStarted":"43",
+            "plusMinus":"285",
+            "min":"1447",
+            "dd2":"18",
+            "td3":"5"
+        }
+        """.data(using: .utf8)!
+        let currentStatsSummary = try JSONDecoder().decode(PlayerStats.self, from: currentStatsSummaryData)
+        
+        let teamStatsSummaryData = """
+        {
+           "teamId":"1610612747",
+           "ppg":"25",
+           "rpg":"7.9",
+           "apg":"7.8",
+           "mpg":"33.7",
+           "topg":"3.8",
+           "spg":"1",
+           "bpg":"0.6",
+           "tpp":"36.6",
+           "ftp":"70.1",
+           "fgp":"51.3",
+           "assists":"336",
+           "blocks":"25",
+           "steals":"45",
+           "turnovers":"162",
+           "offReb":"25",
+           "defReb":"313",
+           "totReb":"338",
+           "fgm":"400",
+           "fga":"779",
+           "tpm":"101",
+           "tpa":"276",
+           "ftm":"176",
+           "fta":"251",
+           "pFouls":"68",
+           "points":"1077",
+           "gamesPlayed":"43",
+           "gamesStarted":"43",
+           "plusMinus":"285",
+           "min":"1447",
+           "dd2":"18",
+           "td3":"5"
+        }
+        """.data(using: .utf8)!
+        let teamStatsSummary = try JSONDecoder().decode(PlayerStats.self, from: teamStatsSummaryData)
+        
+        let totalStatsSummaryData = """
+        {
+            "ppg":"25",
+            "rpg":"7.9",
+            "apg":"7.8",
+            "mpg":"33.7",
+            "topg":"3.8",
+            "spg":"1",
+            "bpg":"0.6",
+            "tpp":"36.6",
+            "ftp":"70.1",
+            "fgp":"51.3",
+            "assists":"336",
+            "blocks":"25",
+            "steals":"45",
+            "turnovers":"162",
+            "offReb":"25",
+            "defReb":"313",
+            "totReb":"338",
+            "fgm":"400",
+            "fga":"779",
+            "tpm":"101",
+            "tpa":"276",
+            "ftm":"176",
+            "fta":"251",
+            "pFouls":"68",
+            "points":"1077",
+            "gamesPlayed":"43",
+            "gamesStarted":"43",
+            "plusMinus":"285",
+            "min":"1447",
+            "dd2":"18",
+            "td3":"5"
+        }
+        """.data(using: .utf8)!
+        let totalStatsSummary = try JSONDecoder().decode(PlayerStats.self, from: totalStatsSummaryData)
+        let playerTeamStats = PlayerTeamStats(teamId: "1610612747", playerStats: teamStatsSummary)
+        var playerTeamStatsList = [PlayerTeamStats]()
+        playerTeamStatsList.append(playerTeamStats)
+        let playerTeamStatsSeason = PlayerTeamStatsSeason(seasonYear: 2020, playerStatTeams: playerTeamStatsList, seasonTotalStats: totalStatsSummary)
+        var playerTeamStatsSeasonList = [PlayerTeamStatsSeason]()
+        playerTeamStatsSeasonList.append(playerTeamStatsSeason)
+        let playerStatsSummary = PlayerStatsSummary(careerStatsSummary: careerStatsSummary,
+                                                     currentSeasonStatsSummary: currentStatsSummary,
+                                                     playerTeamStatsSeasons: playerTeamStatsSeasonList)
+        XCTAssertEqual(responseSummary.first!, playerStatsSummary)
+     }
 }

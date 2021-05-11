@@ -329,4 +329,94 @@ class JumpShotAPIResponseTests: XCTestCase {
         let teamStatRankingApiResponse = TeamStatRankingApiResponse(json: teamStatRankingApiResponseJson)
         XCTAssertNil(teamStatRankingApiResponse)
     }
+
+    // MARK: PlayerStatsSummaryApiResponse
+
+    func test_playerStatsSummaryApiResponse_withMissingLeagueDictionary_isNil() throws {
+        let path = getPath(forResource: "PlayerStatsSummaryApiResponseMissingLeague",
+                           ofType: "json")
+        let playerStatsSummaryApiResponseJson = try getApiResourceJson(withPath: path)
+        let playerStatsSummaryApiResponse = PlayerStatsSummaryApiResponse(json: playerStatsSummaryApiResponseJson)
+        XCTAssertNil(playerStatsSummaryApiResponse)
+    }
+
+    func test_playerStatsSummaryApiResponse_withMissingStandardDictionary_isNil() throws {
+        let path = getPath(forResource: "PlayerStatsSummaryApiResponseMissingStandard",
+                           ofType: "json")
+        let playerStatsSummaryApiResponseJson = try getApiResourceJson(withPath: path)
+        let playerStatsSummaryApiResponse = PlayerStatsSummaryApiResponse(json: playerStatsSummaryApiResponseJson)
+        XCTAssertNil(playerStatsSummaryApiResponse)
+    }
+
+    func test_playerStatsSummaryApiResponse_withMissingStatsDictionary_isNil() throws {
+        let path = getPath(forResource: "PlayerStatsSummaryApiResponseMissingStats",
+                           ofType: "json")
+        let playerStatsSummaryApiResponseJson = try getApiResourceJson(withPath: path)
+        let playerStatsSummaryApiResponse = PlayerStatsSummaryApiResponse(json: playerStatsSummaryApiResponseJson)
+        XCTAssertNil(playerStatsSummaryApiResponse)
+    }
+
+    func test_playerStatsSummaryApiResponse_withMissingLatestDictionary_isNil() throws {
+        let path = getPath(forResource: "PlayerStatsSummaryApiResponseMissingLatest",
+                           ofType: "json")
+        let playerStatsSummaryApiResponseJson = try getApiResourceJson(withPath: path)
+        let playerStatsSummaryApiResponse = PlayerStatsSummaryApiResponse(json: playerStatsSummaryApiResponseJson)
+        XCTAssertNil(playerStatsSummaryApiResponse)
+    }
+
+    func test_playerStatsSummaryApiResponse_withMissingCareerSummaryDictionary_isNil() throws {
+        let path = getPath(forResource: "PlayerStatsSummaryApiResponseMissingCareerSummary",
+                           ofType: "json")
+        let playerStatsSummaryApiResponseJson = try getApiResourceJson(withPath: path)
+        let playerStatsSummaryApiResponse = PlayerStatsSummaryApiResponse(json: playerStatsSummaryApiResponseJson)
+        XCTAssertNil(playerStatsSummaryApiResponse)
+    }
+
+    func test_playerStatsSummaryApiResponse_withMissingRegularSeasonDictionary_isNil() throws {
+        let path = getPath(forResource: "PlayerStatsSummaryApiResponseMissingRegularSeason",
+                           ofType: "json")
+        let playerStatsSummaryApiResponseJson = try getApiResourceJson(withPath: path)
+        let playerStatsSummaryApiResponse = PlayerStatsSummaryApiResponse(json: playerStatsSummaryApiResponseJson)
+        XCTAssertNil(playerStatsSummaryApiResponse)
+    }
+
+    func test_playerStatsSummaryApiResponse_withMissingSeasonDictionary_isNil() throws {
+        let path = getPath(forResource: "PlayerStatsSummaryApiResponseMissingSeason",
+                           ofType: "json")
+        let playerStatsSummaryApiResponseJson = try getApiResourceJson(withPath: path)
+        let playerStatsSummaryApiResponse = PlayerStatsSummaryApiResponse(json: playerStatsSummaryApiResponseJson)
+        XCTAssertNil(playerStatsSummaryApiResponse)
+    }
+
+    func test_playerStatsSummaryApiResponse_withMissingTeamsDictionary_isNil() throws {
+        let path = getPath(forResource: "PlayerStatsSummaryApiResponseMissingTeams",
+                           ofType: "json")
+        let playerStatsSummaryApiResponseJson = try getApiResourceJson(withPath: path)
+        let playerStatsSummaryApiResponse = PlayerStatsSummaryApiResponse(json: playerStatsSummaryApiResponseJson)
+        XCTAssertNil(playerStatsSummaryApiResponse)
+    }
+
+    func test_playerStatsSummaryApiResponse_withMissingTotalDictionary_isNil() throws {
+        let path = getPath(forResource: "PlayerStatsSummaryApiResponseMissingTotal",
+                           ofType: "json")
+        let playerStatsSummaryApiResponseJson = try getApiResourceJson(withPath: path)
+        let playerStatsSummaryApiResponse = PlayerStatsSummaryApiResponse(json: playerStatsSummaryApiResponseJson)
+        XCTAssertNil(playerStatsSummaryApiResponse)
+    }
+
+    func test_playerStatsSummaryApiResponse_withOneSummary_isNotNil() throws {
+        let path = getPath(forResource: "PlayerStatsSummaryApiResponseOneSummary",
+                           ofType: "json")
+        let playerStatsSummaryApiResponseJson = try getApiResourceJson(withPath: path)
+        let playerStatsSummaryApiResponse = PlayerStatsSummaryApiResponse(json: playerStatsSummaryApiResponseJson)
+        XCTAssertNotNil(playerStatsSummaryApiResponse?.playerStatsSummary)
+    }
+
+    func test_playerStatsSummaryApiResponse_withMissingAttribute_isNil() throws {
+        let path = getPath(forResource: "PlayerStatsSummaryApiResponseMissingAttribute",
+                           ofType: "json")
+        let playerStatsSummaryApiResponseJson = try getApiResourceJson(withPath: path)
+        let playerStatsSummaryApiResponse = PlayerStatsSummaryApiResponse(json: playerStatsSummaryApiResponseJson)
+        XCTAssertNil(playerStatsSummaryApiResponse)
+    }
 }
