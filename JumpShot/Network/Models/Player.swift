@@ -60,7 +60,7 @@ public struct Player {
     var meters: Double?
     var pounds: Int?
     var kilograms: Double?
-    let dateOfBirth: Date
+    var dateOfBirth: Date?
     let teams: [Team]
     var draftTeamId: String?
     var draftPosition: Int?
@@ -124,7 +124,9 @@ public struct Player {
         }
 
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        dateOfBirth = dateFormatter.date(from: dateOfBirthString)!
+        if let dateOfBirthFormatted = dateFormatter.date(from: dateOfBirthString) {
+            dateOfBirth = dateOfBirthFormatted
+        }
 
         var teamArray = [Team]()
         for teamDictionary in teamsDictionaries {
