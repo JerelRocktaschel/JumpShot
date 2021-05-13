@@ -445,4 +445,30 @@ class JumpShotAPIResponseTests: XCTestCase {
         let playApiResponse = PlayApiResponse(json: playApiResponseJson)
         XCTAssertNil(playApiResponse)
     }
+
+    // MARK: LeadTrackerApiResponse
+
+    func test_leadTrackerApiResponse_withMissingLeagueDictionary_isNil() throws {
+        let path = getPath(forResource: "LeadTrackerApiResponseMissingPlays",
+                           ofType: "json")
+        let leadTrackerApiResponseJson = try getApiResourceJson(withPath: path)
+        let leadTrackerApiResponse = LeadTrackerApiResponse(json: leadTrackerApiResponseJson)
+        XCTAssertNil(leadTrackerApiResponse)
+    }
+
+    func test_leadTrackerApiResponse_withOnePlay_isOne() throws {
+        let path = getPath(forResource: "LeadTrackerApiResponseOnePlay",
+                           ofType: "json")
+        let leadTrackerApiResponseJson = try getApiResourceJson(withPath: path)
+        let leadTrackerApiResponse = LeadTrackerApiResponse(json: leadTrackerApiResponseJson)
+        XCTAssertEqual(leadTrackerApiResponse?.leadTrackers.count, 1)
+    }
+
+    func test_leadTrackerApiResponse_withMissingAttribute_isNil() throws {
+        let path = getPath(forResource: "LeadTrackerApiResponseMissingAttribute",
+                            ofType: "json")
+        let leadTrackerApiResponseJson = try getApiResourceJson(withPath: path)
+        let leadTrackerApiResponse = LeadTrackerApiResponse(json: leadTrackerApiResponseJson)
+        XCTAssertNil(leadTrackerApiResponse)
+    }
 }

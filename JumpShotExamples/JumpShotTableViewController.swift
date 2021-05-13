@@ -30,7 +30,8 @@ class JumpShotTableViewController: UITableViewController {
                              "getCoaches()",
                              "getTeamStatRankings()",
                              "playerStatsSummary(for: \"2544\")",
-                             "getGamePlays(for: \"20210125\", and \"0022000257\")"]
+                             "getGamePlays(for: \"20210125\", and \"0022000257\")",
+                             "getLeadTrackers(for: \"20170201\", and \"0022000257\", and \"1\")"]
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         jumpShotFunctions.count
@@ -77,6 +78,8 @@ class JumpShotTableViewController: UITableViewController {
             getPlayerStatsSummary()
         case 13:
             getGamePlays()
+        case 14:
+            getLeadTrackers()
         default:
             print("No function selected")
         }
@@ -276,7 +279,7 @@ class JumpShotTableViewController: UITableViewController {
             print(playerStatsSummary)
         }
     }
-    
+
     private func getGamePlays() {
         jumpShot.getGetGamePlays(for: "20210125", and: "0022000257") { plays, error in
             guard error == nil else {
@@ -290,6 +293,22 @@ class JumpShotTableViewController: UITableViewController {
             }
 
             print(plays)
+        }
+    }
+
+    private func getLeadTrackers() {
+        jumpShot.getGetLeadTrackers(for: "20170201", and: "0021600732", and: "1") { leadTrackers, error in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+
+            guard let leadTrackers = leadTrackers else {
+                print("No Lead Trackers returned.")
+                return
+            }
+
+            print(leadTrackers)
         }
     }
 }

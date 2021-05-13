@@ -1,0 +1,13 @@
+{
+   "_internal":{
+      "pubDateTime":"2017-02-01 20:07:00.918",
+      "xslt":"xsl/game/playbyplay/marty_lead_tracker.xsl",
+      "eventName":"pbp_period"
+   },
+   "plays":[
+      {
+         "leadTeamId":"1610612761",
+         "points":"2"
+      }
+   ]
+}

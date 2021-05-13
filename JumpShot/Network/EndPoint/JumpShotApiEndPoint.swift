@@ -77,7 +77,7 @@ enum JumpShotApiEndPoint {
     case teamStatRankingList(season: String)
     case playerStatsSummary(season: String, playerId: String)
     case gamePlayList(date: String, gameId: String)
-    case leadTrackerList(date: String, gameId: String, quarter: String)
+    case leadTrackerList(date: String, gameId: String, period: String)
 }
 
 extension JumpShotApiEndPoint: EndPointType {

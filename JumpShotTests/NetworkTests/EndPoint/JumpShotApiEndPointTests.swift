@@ -45,7 +45,7 @@ class JumpShotApiEndPointTests: XCTestCase {
         playByPlayJumpShotApiEndPoint = JumpShotApiEndPoint.self.gamePlayList(date: "20210125", gameId: "0022000257")
         leadTrackerJumpShotApiEndPoint = JumpShotApiEndPoint.self.leadTrackerList(date: "20170201",
                                                                                   gameId: "0021600732",
-                                                                                  quarter: "1")
+                                                                                  period: "1")
     }
 
     // MARK: Team

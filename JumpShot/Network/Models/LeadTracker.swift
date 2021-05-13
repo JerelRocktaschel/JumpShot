@@ -25,14 +25,6 @@
 
 import Foundation
 
-public struct LeadTrackerQuarter {
-
-    // MARK: Internal Properties
-
-    let quarter: Int
-    let leaderTrackers: [LeadTracker]
-}
-
 public struct LeadTracker {
 
     // MARK: Internal Properties

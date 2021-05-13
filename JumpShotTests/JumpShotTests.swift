@@ -2347,4 +2347,138 @@ class JumpShotTests: XCTestCase {
         XCTAssertEqual(responsePlays.first!.isScoreChange, false)
         XCTAssertEqual(responsePlays.first!.formattedDescription, "DET - Wright Rebound (Off:1 Def:1)")
      }
+    
+    // MARK: GetLeadTrackers
+
+    func test_jumpShot_withGetLeadTrackers_isNetworkUnavailable() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getGetLeadTrackers(for: "20170201", and: "0021600732", and: "1") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            nil, nil, TestError.testError
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The network is unavailable.")
+    }
+
+    func test_jumpShot_withGetLeadTrackers_isRequestFailed() throws {
+         let mockURLSession = MockURLSession()
+         var errorDescription = String()
+         router.session = mockURLSession
+
+         let expectation = XCTestExpectation(description: "Network Error")
+
+        jumpShot.getGetLeadTrackers(for: "20170201", and: "0021600732", and: "1") { _, error in
+             errorDescription = error!.localizedDescription
+             expectation.fulfill()
+         }
+
+         mockURLSession.dataTaskArgsCompletionHandler.first?(
+            badJsonData(), response(statusCode: 300), nil
+         )
+
+         wait(for: [expectation], timeout: 1.0)
+         XCTAssertEqual(errorDescription, "The request failed.")
+     }
+
+    func test_jumpShot_withGetLeadTrackers_isNoDataReturned() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getGetLeadTrackers(for: "20170201", and: "0021600732", and: "1") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+                            nil, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "No NBA data was returned.")
+     }
+
+    func test_jumpShot_withGetLeadTrackers_isUnableToDecode() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+
+        let path = getPath(forResource: "LeadTrackerApiResponseMissingAttribute",
+                            ofType: "json")
+
+        let playApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getGetLeadTrackers(for: "20170201", and: "0021600732", and: "1") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            playApiResponseData, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The source data could not be decoded.")
+     }
+
+    func test_jumpShot_withGetLeadTrackers_isUnableToDecodeWithError() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getGetLeadTrackers(for: "20170201", and: "0021600732", and: "1") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            badJsonData(), response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The source data could not be decoded.")
+     }
+
+    func test_jumpShot_withGetLeadTrackers_isOnePlay() throws {
+        let mockURLSession = MockURLSession()
+        var responseLeadTrackers = [LeadTracker]()
+        router.session = mockURLSession
+        let testBundle = Bundle(for: type(of: self))
+        guard let path = testBundle.path(forResource: "LeadTrackerApiResponseOnePlay", ofType: "json")
+            else { fatalError("Can't find LeadTrackerResponseOnePlay.json file") }
+        let leadTrackerResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+
+        let expectation = XCTestExpectation(description: "LeadTracker Api Response")
+
+        jumpShot.getGetLeadTrackers(for: "20170201", and: "0021600732", and: "1")  { leadTrackers, _ in
+            responseLeadTrackers = leadTrackers!
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            leadTrackerResponseData, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 5.0)
+    
+        XCTAssertEqual(responseLeadTrackers.first!.clock, "11:48")
+        XCTAssertEqual(responseLeadTrackers.first!.leadTeamId, "1610612761")
+        XCTAssertEqual(responseLeadTrackers.first!.points, 2)
+     }
 }

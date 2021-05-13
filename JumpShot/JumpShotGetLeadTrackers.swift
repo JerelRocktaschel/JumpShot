@@ -41,18 +41,17 @@ public extension JumpShot {
         # Notes: #
         1. Handle [Play] return due to being optional.
      */
-    
+
     func getGetLeadTrackers(for gameDate: String,
                             and gameId: String,
-                            completion: @escaping (_ leadTrackerQuarters: [LeadTrackerQuarter]?, _ error: LocalizedError?) -> Void) {
-        //loop until no data returned
-        //create lead tracker quarter quarter
-        //add to array
-        //return array
-        var quarterHasData: Bool = true
-        while(quarterHasData == true) {
+                            and period: String,
+                            completion: @escaping (_ leadTrackerQuarters: [LeadTracker]?,
+                                                   _ error: LocalizedError?) -> Void) {
 
-        JumpShotNetworkManager.shared.router.request(.gamePlayList(date: gameDate, gameId: gameId)) { data, response, error in
+            JumpShotNetworkManager.shared.router.request(.leadTrackerList(
+                                                            date: gameDate,
+                                                            gameId: gameId,
+                                                            period: period)) { data, response, error in
             guard error == nil else {
                 completion(nil, JumpShotNetworkManagerError.networkConnectivityError)
                 return
@@ -72,7 +71,7 @@ public extension JumpShot {
                             completion(nil, JumpShotNetworkManagerError.unableToDecodeError)
                             return
                         }
-                        //completion(apiResponse.leadTrackers, nil)
+                        completion(apiResponse.leadTrackers, nil)
                     } catch {
                         completion(nil, JumpShotNetworkManagerError.unableToDecodeError)
                     }
@@ -81,6 +80,5 @@ public extension JumpShot {
                 }
             }
         }
-    }
     }
 }
