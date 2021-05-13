@@ -803,4 +803,50 @@ class JumpShotModelTests: XCTestCase {
         }
         XCTAssertNil(playerStatsModelResponse)
      }
+    
+    // MARK: Play
+    
+    func test_playModel_withCompleteData_isSuccessful() throws {
+        let path = getPath(forResource: "PlayModel",
+                               ofType: "json")
+        let playModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let playModelResponse = try JSONDecoder().decode(Play.self, from: playModelData)
+        XCTAssertEqual(playModelResponse.clock, "10:31")
+        XCTAssertEqual(playModelResponse.eventMsgType, "4")
+        XCTAssertEqual(playModelResponse.description, "[DET] Wright Rebound (Off:1 Def:1)")
+        XCTAssertEqual(playModelResponse.playerId, "1626153")
+        XCTAssertEqual(playModelResponse.teamId, "1610612765")
+        XCTAssertEqual(playModelResponse.vTeamScore, 2)
+        XCTAssertEqual(playModelResponse.hTeamScore, 6)
+        XCTAssertEqual(playModelResponse.isScoreChange, false)
+        XCTAssertEqual(playModelResponse.formattedDescription, "DET - Wright Rebound (Off:1 Def:1)")
+    }
+
+    func test_playhModel_withBadData_isNil() throws {
+        let path = getPath(forResource: "PlayModelBadDataFormat",
+                               ofType: "json")
+        let playModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let playhModelResponse: Play?
+
+        do {
+            playhModelResponse = try JSONDecoder().decode(Play.self, from: playModelData)
+        } catch {
+            playhModelResponse = nil
+        }
+        XCTAssertNil(playhModelResponse)
+    }
+
+    func test_playhModel_withMissingData_isNil() throws {
+        let path = getPath(forResource: "PlayModelMissingDataFormat",
+                               ofType: "json")
+        let playModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let playhModelResponse: Play?
+
+        do {
+            playhModelResponse = try JSONDecoder().decode(Play.self, from: playModelData)
+        } catch {
+            playhModelResponse = nil
+        }
+        XCTAssertNil(playhModelResponse)
+    }
 }

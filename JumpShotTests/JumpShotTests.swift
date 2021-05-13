@@ -2207,4 +2207,144 @@ class JumpShotTests: XCTestCase {
                                                      playerTeamStatsSeasons: playerTeamStatsSeasonList)
         XCTAssertEqual(responseSummary.first!, playerStatsSummary)
      }
+    
+    // MARK: GetGamePlays
+
+    func test_jumpShot_withGetGamePlays_isNetworkUnavailable() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getGetGamePlays(for: "20210125", and: "0022000257") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            nil, nil, TestError.testError
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The network is unavailable.")
+    }
+
+    func test_jumpShot_withGetGamePlays_isRequestFailed() throws {
+         let mockURLSession = MockURLSession()
+         var errorDescription = String()
+         router.session = mockURLSession
+
+         let expectation = XCTestExpectation(description: "Network Error")
+
+        jumpShot.getGetGamePlays(for: "20210125", and: "0022000257") { _, error in
+             errorDescription = error!.localizedDescription
+             expectation.fulfill()
+         }
+
+         mockURLSession.dataTaskArgsCompletionHandler.first?(
+            badJsonData(), response(statusCode: 300), nil
+         )
+
+         wait(for: [expectation], timeout: 1.0)
+         XCTAssertEqual(errorDescription, "The request failed.")
+     }
+
+    func test_jumpShot_withGetGamePlays_isNoDataReturned() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getGetGamePlays(for: "20210125", and: "0022000257") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+                            nil, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "No NBA data was returned.")
+     }
+
+    func test_jumpShot_withGetGamePlays_isUnableToDecode() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+
+        let path = getPath(forResource: "PlayApiResponseMissingAttribute",
+                            ofType: "json")
+
+        let playApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getGetGamePlays(for: "20210125", and: "0022000257") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            playApiResponseData, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The source data could not be decoded.")
+     }
+
+    func test_jumpShot_withGetGamePlays_isUnableToDecodeWithError() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getGetGamePlays(for: "20210125", and: "0022000257") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            badJsonData(), response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The source data could not be decoded.")
+     }
+
+    func test_jumpShot_withGetPlays_isOnePlay() throws {
+        let mockURLSession = MockURLSession()
+        var responsePlays = [Play]()
+        router.session = mockURLSession
+        let testBundle = Bundle(for: type(of: self))
+        guard let path = testBundle.path(forResource: "PlayApiResponseOnePlay", ofType: "json")
+            else { fatalError("Can't find PlayApiResponseOnePlay.json file") }
+        let playApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+
+        let expectation = XCTestExpectation(description: "Play Api Response")
+
+        jumpShot.getGetGamePlays(for: "20210125", and: "0022000257") { plays, _ in
+            responsePlays = plays!
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            playApiResponseData, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 5.0)
+    
+        XCTAssertEqual(responsePlays.first!.clock, "10:31")
+        XCTAssertEqual(responsePlays.first!.eventMsgType, "4")
+        XCTAssertEqual(responsePlays.first!.description, "[DET] Wright Rebound (Off:1 Def:1)")
+        XCTAssertEqual(responsePlays.first!.playerId, "1626153")
+        XCTAssertEqual(responsePlays.first!.teamId, "1610612765")
+        XCTAssertEqual(responsePlays.first!.vTeamScore, 2)
+        XCTAssertEqual(responsePlays.first!.hTeamScore, 6)
+        XCTAssertEqual(responsePlays.first!.isScoreChange, false)
+        XCTAssertEqual(responsePlays.first!.formattedDescription, "DET - Wright Rebound (Off:1 Def:1)")
+     }
 }

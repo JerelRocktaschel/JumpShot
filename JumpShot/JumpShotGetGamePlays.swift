@@ -1,5 +1,5 @@
 //
-//  JumpShotGetPlayerStats.swift
+//  JumpShotGetGamePlays.swift
 //  JumpShot
 //
 //  Copyright (c) 2021 Jerel Rocktaschel
@@ -27,22 +27,23 @@ import Foundation
 
 public extension JumpShot {
     /**
-        Returns a PlayerStatSummary for the player queried
+        Returns an array of Play model objects for the game and date passed
      
-        URL called:  data.nba.com/prod/v1/2020/players/2544_profile.json
+        URL called:  data.nba.net/prod/v1/20210125/0022000257_pbp_1.json
    
-        - Parameter playerId: The callback after retrieval.
+        - Parameter gameDate: GameDate for game
+        - Parameter gameId: GameID for game
         - Parameter completion: The callback after retrieval.
-        - Parameter teamStatRankings: An array of Coach model objects.
+        - Parameter plays: An array of Playmodel objects.
         - Parameter error: Error should one occur.
-        - Returns: An array of TeamStatRanking model objects or error.
+        - Returns: An array of Play model objects or error.
             
         # Notes: #
-        1. Handle PlayerStatSummary return due to being optional.
+        1. Handle [Play] return due to being optional.
      */
-    func getGetPlayerStatsSummary(for playerId: String, completion: @escaping (_ playerStatsSummary: PlayerStatsSummary?, _ error: LocalizedError?) -> Void) {
-        let season = Date().getSeasonYear()
-        JumpShotNetworkManager.shared.router.request(.playerStatsSummary(season: season, playerId: playerId)) { data, response, error in
+
+    func getGetGamePlays(for gameDate: String, and gameId: String, completion: @escaping (_ plays: [Play]?, _ error: LocalizedError?) -> Void) {
+        JumpShotNetworkManager.shared.router.request(.gamePlayList(date: gameDate, gameId: gameId)) { data, response, error in
             guard error == nil else {
                 completion(nil, JumpShotNetworkManagerError.networkConnectivityError)
                 return
@@ -58,11 +59,11 @@ public extension JumpShot {
                     }
                     do {
                         let json = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any]
-                        guard let apiResponse = PlayerStatsSummaryApiResponse(json: json!) else {
+                        guard let apiResponse = PlayApiResponse(json: json!) else {
                             completion(nil, JumpShotNetworkManagerError.unableToDecodeError)
                             return
                         }
-                        completion(apiResponse.playerStatsSummary!, nil)
+                        completion(apiResponse.plays, nil)
                     } catch {
                         completion(nil, JumpShotNetworkManagerError.unableToDecodeError)
                     }

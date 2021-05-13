@@ -419,4 +419,30 @@ class JumpShotAPIResponseTests: XCTestCase {
         let playerStatsSummaryApiResponse = PlayerStatsSummaryApiResponse(json: playerStatsSummaryApiResponseJson)
         XCTAssertNil(playerStatsSummaryApiResponse)
     }
+
+    // MARK: CoachApiResponse
+
+    func test_playApiResponse_withMissingLeagueDictionary_isNil() throws {
+        let path = getPath(forResource: "PlayApiResponseMissingPlays",
+                           ofType: "json")
+        let playApiResponseJson = try getApiResourceJson(withPath: path)
+        let playApiResponse = PlayApiResponse(json: playApiResponseJson)
+        XCTAssertNil(playApiResponse)
+    }
+
+    func test_playApiResponse_withOnePlay_isOne() throws {
+        let path = getPath(forResource: "PlayApiResponseOnePlay",
+                           ofType: "json")
+        let playApiResponseJson = try getApiResourceJson(withPath: path)
+        let playApiResponse = PlayApiResponse(json: playApiResponseJson)
+        XCTAssertEqual(playApiResponse?.plays.count, 1)
+    }
+
+    func test_playApiResponse_withMissingAttribute_isNil() throws {
+        let path = getPath(forResource: "PlayApiResponseMissingAttribute",
+                            ofType: "json")
+        let playApiResponseJson = try getApiResourceJson(withPath: path)
+        let playApiResponse = PlayApiResponse(json: playApiResponseJson)
+        XCTAssertNil(playApiResponse)
+    }
 }

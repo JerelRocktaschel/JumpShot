@@ -1,0 +1,13 @@
+{
+   "_internal":{
+      "pubDateTime":"2021-02-03 14:26:21.581 EST",
+      "igorPath":"S3,1612380378396,1612380380848|router,1612380380848,1612380380854|domUpdater,1612380381118,1612380381409|feedProducer,1612380381518,1612380381594",
+      "xslt":"NBA/xsl/game/playbyplay/marty_by_period.xsl",
+      "xsltForceRecompile":"true",
+      "xsltInCache":"false",
+      "xsltCompileTimeMillis":"24",
+      "xsltTransformTimeMillis":"10",
+      "consolidatedDomKey":"prod__transform__marty_play_by_play__2424683912429",
+      "endToEndTimeMillis":"3198"
+   }
+}

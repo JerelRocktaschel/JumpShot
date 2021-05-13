@@ -23,6 +23,7 @@ class JumpShotApiEndPointTests: XCTestCase {
     var coachJumpShotApiEndPoint: JumpShotApiEndPoint!
     var teamStatRankingJumpShotApiEndPoint: JumpShotApiEndPoint!
     var playerStatsJumpShotApiEndPoint: JumpShotApiEndPoint!
+    var playByPlayJumpShotApiEndPoint: JumpShotApiEndPoint!
 
     override func setUp() {
         teamsJumpShotApiEndPoint = JumpShotApiEndPoint.self.teamList(season: "2020")
@@ -40,6 +41,7 @@ class JumpShotApiEndPointTests: XCTestCase {
         coachJumpShotApiEndPoint = JumpShotApiEndPoint.self.coachList(season: "2020")
         teamStatRankingJumpShotApiEndPoint = JumpShotApiEndPoint.self.teamStatRankingList(season: "2020")
         playerStatsJumpShotApiEndPoint = JumpShotApiEndPoint.self.playerStatsSummary(season: "2020", playerId: "2544")
+        playByPlayJumpShotApiEndPoint = JumpShotApiEndPoint.self.gamePlayList(date: "20210125", gameId: "0022000257")
     }
 
     // MARK: Team
@@ -239,5 +241,21 @@ class JumpShotApiEndPointTests: XCTestCase {
 
     func test_playerStatsSummaryJumpShotApiEndPoint_withPath_isCorrectValue() {
         XCTAssertEqual(playerStatsJumpShotApiEndPoint.path, "2020/players/2544_profile.json")
+    }
+
+    // MARK: Game Play By Play
+
+    func test_playByPlayListJumpShotApiEndPoint_withEnvironmentalBaseURL_isCorrectValue() {
+        XCTAssertEqual(playByPlayJumpShotApiEndPoint.environmentBaseURL,
+                       "https://data.nba.net/prod/v1/")
+    }
+
+    func test_playByPlayListJumpShotApiEndPoint_withBaseURL_isCorrectValue() {
+        XCTAssertEqual(playByPlayJumpShotApiEndPoint.baseURL,
+                       URL(string: "https://data.nba.net/prod/v1/"))
+    }
+
+    func test_playByPlayListJumpShotApiEndPoint_withPath_isCorrectValue() {
+        XCTAssertEqual(playByPlayJumpShotApiEndPoint.path, "20210125/0022000257_pbp_1.json")
     }
 }

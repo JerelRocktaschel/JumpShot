@@ -1,0 +1,15 @@
+{
+    "clock":"10:31",
+    "eventMsgType":"4",
+    "description":"[DET] Wright Rebound (Off:1 Def:1)",
+    "personId":"1626153",
+    "teamId":"1610612765",
+    "vTeamScore":"2",
+    "hTeamScore":"6",
+    "isScoreChange":false,
+    "isVideoAvailable":false,
+    "formatted":{
+        "description":"DET - Wright Rebound (Off:1 Def:1)"
+    }
+}
+

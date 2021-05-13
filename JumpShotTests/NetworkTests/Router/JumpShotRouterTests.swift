@@ -131,4 +131,13 @@ class JumpShotRouterTests: XCTestCase {
         mockURLSession.verifyDataTask(
             with: URLRequest(url: URL(string: "https://data.nba.com/prod/v1/2020/players/2544_profile.json")!))
     }
+
+    // MARK: GamePlayByPlay
+
+    func test_gamePlayByPlayRouter_shouldMakeRequestToPlayerStatsAPIURL() {
+        router.request(.gamePlayList(date: "20210125", gameId: "0022000257")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://data.nba.net/prod/v1/20210125/0022000257_pbp_1.json")!))
+    }
 }
