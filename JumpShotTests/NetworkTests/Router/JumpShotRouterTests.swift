@@ -140,4 +140,15 @@ class JumpShotRouterTests: XCTestCase {
         mockURLSession.verifyDataTask(
             with: URLRequest(url: URL(string: "https://data.nba.net/prod/v1/20210125/0022000257_pbp_1.json")!))
     }
+
+    // MARK: LeadTracker
+
+    func test_leadTrackerRouter_shouldMakeRequestToPlayerStatsAPIURL() {
+        router.request(.leadTrackerList(date: "20170201",
+                                        gameId: "0021600732",
+                                        quarter: "1")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://data.nba.net/prod/v1/20170201/0021600732_lead_tracker_1.json")!))
+    }
 }

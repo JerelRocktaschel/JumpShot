@@ -24,6 +24,7 @@ class JumpShotApiEndPointTests: XCTestCase {
     var teamStatRankingJumpShotApiEndPoint: JumpShotApiEndPoint!
     var playerStatsJumpShotApiEndPoint: JumpShotApiEndPoint!
     var playByPlayJumpShotApiEndPoint: JumpShotApiEndPoint!
+    var leadTrackerJumpShotApiEndPoint: JumpShotApiEndPoint!
 
     override func setUp() {
         teamsJumpShotApiEndPoint = JumpShotApiEndPoint.self.teamList(season: "2020")
@@ -42,6 +43,9 @@ class JumpShotApiEndPointTests: XCTestCase {
         teamStatRankingJumpShotApiEndPoint = JumpShotApiEndPoint.self.teamStatRankingList(season: "2020")
         playerStatsJumpShotApiEndPoint = JumpShotApiEndPoint.self.playerStatsSummary(season: "2020", playerId: "2544")
         playByPlayJumpShotApiEndPoint = JumpShotApiEndPoint.self.gamePlayList(date: "20210125", gameId: "0022000257")
+        leadTrackerJumpShotApiEndPoint = JumpShotApiEndPoint.self.leadTrackerList(date: "20170201",
+                                                                                  gameId: "0021600732",
+                                                                                  quarter: "1")
     }
 
     // MARK: Team
@@ -257,5 +261,21 @@ class JumpShotApiEndPointTests: XCTestCase {
 
     func test_playByPlayListJumpShotApiEndPoint_withPath_isCorrectValue() {
         XCTAssertEqual(playByPlayJumpShotApiEndPoint.path, "20210125/0022000257_pbp_1.json")
+    }
+
+    // MARK: Lead tracker
+
+    func test_leadTrackerListJumpShotApiEndPoint_withEnvironmentalBaseURL_isCorrectValue() {
+        XCTAssertEqual(leadTrackerJumpShotApiEndPoint.environmentBaseURL,
+                       "https://data.nba.net/prod/v1/")
+    }
+
+    func test_leadTrackerListJumpShotApiEndPoint_withBaseURL_isCorrectValue() {
+        XCTAssertEqual(leadTrackerJumpShotApiEndPoint.baseURL,
+                       URL(string: "https://data.nba.net/prod/v1/"))
+    }
+
+    func test_leadTrackerListJumpShotApiEndPoint_withPath_isCorrectValue() {
+        XCTAssertEqual(leadTrackerJumpShotApiEndPoint.path, "20170201/0021600732_lead_tracker_1.json")
     }
 }

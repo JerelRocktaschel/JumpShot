@@ -43,6 +43,7 @@ public enum BaseURL {
     public static var teamStatRankingList: String { return "https://data.nba.com/prod/v1/" }
     public static var playerStatsSummary: String { return "https://data.nba.com/prod/v1/" }
     public static var gamePlayList: String { return "https://data.nba.net/prod/v1/" }
+    public static var leadTrackerList: String { return "https://data.nba.net/prod/v1/" }
 }
 
 public enum Path {
@@ -59,6 +60,7 @@ public enum Path {
     public static var teamStatRankingList: String { return "/team_stats_rankings.json" }
     public static var playerStatsSummary: String { return "_profile.json" }
     public static var gamePlayList: String { return "_pbp_1.json" }
+    public static var leadTrackerList: String { return ".json" }
 }
 
 enum JumpShotApiEndPoint {
@@ -75,6 +77,7 @@ enum JumpShotApiEndPoint {
     case teamStatRankingList(season: String)
     case playerStatsSummary(season: String, playerId: String)
     case gamePlayList(date: String, gameId: String)
+    case leadTrackerList(date: String, gameId: String, quarter: String)
 }
 
 extension JumpShotApiEndPoint: EndPointType {
@@ -96,6 +99,7 @@ extension JumpShotApiEndPoint: EndPointType {
         case .teamStatRankingList: return BaseURL.teamStatRankingList
         case .playerStatsSummary: return BaseURL.playerStatsSummary
         case .gamePlayList: return BaseURL.gamePlayList
+        case .leadTrackerList: return BaseURL.leadTrackerList
         }
     }
 
@@ -134,6 +138,8 @@ extension JumpShotApiEndPoint: EndPointType {
             return season + "/players/" + playerId + Path.playerStatsSummary
         case .gamePlayList(let date, let gameId):
             return date + "/" + gameId + Path.gamePlayList
+        case .leadTrackerList(let date, let gameId, let quarter):
+            return date + "/" + gameId + "_lead_tracker_" + quarter + Path.leadTrackerList
         }
     }
 }
