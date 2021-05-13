@@ -849,4 +849,44 @@ class JumpShotModelTests: XCTestCase {
         }
         XCTAssertNil(playhModelResponse)
     }
+    
+    // MARK: LeadTracker
+    
+    func test_leadTrackerModel_withCompleteData_isSuccessful() throws {
+        let path = getPath(forResource: "LeadTrackerModel",
+                               ofType: "json")
+        let leadTrackerData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let leadTrackerDataResponse = try JSONDecoder().decode(LeadTracker.self, from: leadTrackerData)
+        XCTAssertEqual(leadTrackerDataResponse.clock, "11:48")
+        XCTAssertEqual(leadTrackerDataResponse.leadTeamId, "1610612761")
+        XCTAssertEqual(leadTrackerDataResponse.points, 2)
+    }
+
+    func test_leadTrackerModel_withBadData_isNil() throws {
+        let path = getPath(forResource: "LeadTrackerBadDataFormat",
+                               ofType: "json")
+        let leadTrackerData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let leadTrackerModelResponse: LeadTracker?
+
+        do {
+            leadTrackerModelResponse = try JSONDecoder().decode(LeadTracker.self, from: leadTrackerData)
+        } catch {
+            leadTrackerModelResponse = nil
+        }
+        XCTAssertNil(leadTrackerModelResponse)
+    }
+
+    func test_leadTrackerModel_withMissingData_isNil() throws {
+        let path = getPath(forResource: "LeadTrackerMissingDataFormat",
+                               ofType: "json")
+        let leadTrackerData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let leadTrackerModelResponse: LeadTracker?
+
+        do {
+            leadTrackerModelResponse = try JSONDecoder().decode(LeadTracker.self, from: leadTrackerData)
+        } catch {
+            leadTrackerModelResponse = nil
+        }
+        XCTAssertNil(leadTrackerModelResponse)
+    }
 }

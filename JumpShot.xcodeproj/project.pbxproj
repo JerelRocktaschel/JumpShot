@@ -70,6 +70,11 @@
 		D826CC2D264CB71800E95454 /* PlayApiResponseMissingPlays.json in Resources */ = {isa = PBXBuildFile; fileRef = D826CC2C264CB71800E95454 /* PlayApiResponseMissingPlays.json */; };
 		D826CC35264CB76F00E95454 /* PlayApiResponseOnePlay.json in Resources */ = {isa = PBXBuildFile; fileRef = D826CC34264CB76F00E95454 /* PlayApiResponseOnePlay.json */; };
 		D826CC3A264CB7E500E95454 /* PlayApiResponseMissingAttribute.json in Resources */ = {isa = PBXBuildFile; fileRef = D826CC39264CB7E500E95454 /* PlayApiResponseMissingAttribute.json */; };
+		D826CC48264D8CDD00E95454 /* JumpShotGetLeadTrackers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826CC47264D8CDD00E95454 /* JumpShotGetLeadTrackers.swift */; };
+		D826CC4D264D8D3E00E95454 /* LeadTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826CC4C264D8D3E00E95454 /* LeadTracker.swift */; };
+		D826CC53264DAA2600E95454 /* LeadTrackerModel.json in Resources */ = {isa = PBXBuildFile; fileRef = D826CC52264DAA2600E95454 /* LeadTrackerModel.json */; };
+		D826CC5B264DAB2500E95454 /* LeadTrackerBadDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D826CC5A264DAB2500E95454 /* LeadTrackerBadDataFormat.json */; };
+		D826CC60264DAB6200E95454 /* LeadTrackerMissingDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D826CC5F264DAB6200E95454 /* LeadTrackerMissingDataFormat.json */; };
 		D832C4DD261E50F000D214B8 /* JumpShotGetTeamImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D832C4DC261E50F000D214B8 /* JumpShotGetTeamImage.swift */; };
 		D832C4F4261F74CD00D214B8 /* BOS.png in Resources */ = {isa = PBXBuildFile; fileRef = D832C4F3261F74CD00D214B8 /* BOS.png */; };
 		D832C4FA261FB3D300D214B8 /* NOP.png in Resources */ = {isa = PBXBuildFile; fileRef = D832C4F8261FB3D300D214B8 /* NOP.png */; };
@@ -223,6 +228,11 @@
 		D826CC2C264CB71800E95454 /* PlayApiResponseMissingPlays.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlayApiResponseMissingPlays.json; sourceTree = "<group>"; };
 		D826CC34264CB76F00E95454 /* PlayApiResponseOnePlay.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlayApiResponseOnePlay.json; sourceTree = "<group>"; };
 		D826CC39264CB7E500E95454 /* PlayApiResponseMissingAttribute.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlayApiResponseMissingAttribute.json; sourceTree = "<group>"; };
+		D826CC47264D8CDD00E95454 /* JumpShotGetLeadTrackers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetLeadTrackers.swift; sourceTree = "<group>"; };
+		D826CC4C264D8D3E00E95454 /* LeadTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadTracker.swift; sourceTree = "<group>"; };
+		D826CC52264DAA2600E95454 /* LeadTrackerModel.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LeadTrackerModel.json; sourceTree = "<group>"; };
+		D826CC5A264DAB2500E95454 /* LeadTrackerBadDataFormat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LeadTrackerBadDataFormat.json; sourceTree = "<group>"; };
+		D826CC5F264DAB6200E95454 /* LeadTrackerMissingDataFormat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LeadTrackerMissingDataFormat.json; sourceTree = "<group>"; };
 		D832C4DC261E50F000D214B8 /* JumpShotGetTeamImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetTeamImage.swift; sourceTree = "<group>"; };
 		D832C4F3261F74CD00D214B8 /* BOS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BOS.png; sourceTree = "<group>"; };
 		D832C4F8261FB3D300D214B8 /* NOP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NOP.png; sourceTree = "<group>"; };
@@ -383,6 +393,7 @@
 				D821742126461E7A0028C0F3 /* JumpShotGetTeamStatRankings.swift */,
 				D8874D012649B25800CA3520 /* JumpShotGetPlayerStats.swift */,
 				D826CC0A264C7EEB00E95454 /* JumpShotGetGamePlays.swift */,
+				D826CC47264D8CDD00E95454 /* JumpShotGetLeadTrackers.swift */,
 				D817FC41261BCFB00092F5E0 /* JumpShot.h */,
 				D817FC67261BD0070092F5E0 /* Network */,
 				D817FC42261BCFB00092F5E0 /* Info.plist */,
@@ -436,6 +447,7 @@
 				D8C031DD2645D8810009292A /* TeamStatRanking.swift */,
 				D8874CF1264972D300CA3520 /* PlayerStats.swift */,
 				D826CC05264C7A3200E95454 /* Play.swift */,
+				D826CC4C264D8D3E00E95454 /* LeadTracker.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -460,6 +472,7 @@
 		D817FC78261BD02A0092F5E0 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				D826CC51264DAA0900E95454 /* LeadTrackerModel */,
 				D826CC2B264CB6EA00E95454 /* PlayModelApiResponse */,
 				D826CC0F264CAE1300E95454 /* PlayModel */,
 				D826CBB4264AACB300E95454 /* PlayerStatsSummaryApiResponse */,
@@ -635,6 +648,16 @@
 				D826CC39264CB7E500E95454 /* PlayApiResponseMissingAttribute.json */,
 			);
 			path = PlayModelApiResponse;
+			sourceTree = "<group>";
+		};
+		D826CC51264DAA0900E95454 /* LeadTrackerModel */ = {
+			isa = PBXGroup;
+			children = (
+				D826CC52264DAA2600E95454 /* LeadTrackerModel.json */,
+				D826CC5A264DAB2500E95454 /* LeadTrackerBadDataFormat.json */,
+				D826CC5F264DAB6200E95454 /* LeadTrackerMissingDataFormat.json */,
+			);
+			path = LeadTrackerModel;
 			sourceTree = "<group>";
 		};
 		D832C4F2261F749E00D214B8 /* Images */ = {
@@ -927,6 +950,7 @@
 				D8C032052645F2860009292A /* TeamStatRankingApiResponseMissingStandard.json in Resources */,
 				D815EB10262FBB19004C22AD /* GameScheduleApiResponseMissingCompleteGameSet.json in Resources */,
 				D815EAF3262F7E6D004C22AD /* GameScheduleModel.json in Resources */,
+				D826CC5B264DAB2500E95454 /* LeadTrackerBadDataFormat.json in Resources */,
 				D8B6298B2631C20C007B0D63 /* StandingModel.json in Resources */,
 				D89353632642E157006CA270 /* TeamScheduleApiResponseMissingAttribute.json in Resources */,
 				D832C4FB261FB3D300D214B8 /* UTA.png in Resources */,
@@ -965,6 +989,7 @@
 				D826CC1F264CB35600E95454 /* PlayModelBadDataFormat.json in Resources */,
 				D826CC2D264CB71800E95454 /* PlayApiResponseMissingPlays.json in Resources */,
 				D89353CA264388B6006CA270 /* CoachApiResponseMissingAttribute.json in Resources */,
+				D826CC53264DAA2600E95454 /* LeadTrackerModel.json in Resources */,
 				D89353402641B950006CA270 /* TeamScheduleModelFromTeamScheduleCall.json in Resources */,
 				D815EB15262FC503004C22AD /* GameScheduleApiResponseMissingAttribute.json in Resources */,
 				D832C4FA261FB3D300D214B8 /* NOP.png in Resources */,
@@ -983,6 +1008,7 @@
 				D826CB9B264A1D0300E95454 /* PlayerStatsModel.json in Resources */,
 				D832C4F4261F74CD00D214B8 /* BOS.png in Resources */,
 				D8B629902631C223007B0D63 /* StandingModelMissingDataFormat.json in Resources */,
+				D826CC60264DAB6200E95454 /* LeadTrackerMissingDataFormat.json in Resources */,
 				D815EAFB262FAB9F004C22AD /* GameScheduleModelBadDataFormat.json in Resources */,
 				D826CBDF264AC48700E95454 /* PlayerStatsSummaryApiResponseMissingSeason.json in Resources */,
 				D8D6761F2629DFDF0009B06F /* PlayerModelMissingDataFormat.json in Resources */,
@@ -1061,6 +1087,7 @@
 				D817FC71261BD0070092F5E0 /* JumpShotNetworkManager.swift in Sources */,
 				D826CC06264C7A3200E95454 /* Play.swift in Sources */,
 				D8B629E42631FE06007B0D63 /* JumpShotGetTeamLeaders.swift in Sources */,
+				D826CC48264D8CDD00E95454 /* JumpShotGetLeadTrackers.swift in Sources */,
 				D83B2646262A1951002EDBB0 /* GameSchedule.swift in Sources */,
 				D8B629D92631ED8B007B0D63 /* Leader.swift in Sources */,
 				D8C03188264423080009292A /* JumpShotGetCoaches.swift in Sources */,
@@ -1068,6 +1095,7 @@
 				D852B5172633B7D700610391 /* JumpShotGetTeamSchedules.swift in Sources */,
 				D817FC5E261BCFEC0092F5E0 /* JumpShot.swift in Sources */,
 				D832C5092624BE0200D214B8 /* JumpShotGetPlayerImage.swift in Sources */,
+				D826CC4D264D8D3E00E95454 /* LeadTracker.swift in Sources */,
 				D893538C2643701B006CA270 /* Coach.swift in Sources */,
 				D826CC0B264C7EEB00E95454 /* JumpShotGetGamePlays.swift in Sources */,
 				D8B6295D2630B169007B0D63 /* JumpShotGetStandings.swift in Sources */,
