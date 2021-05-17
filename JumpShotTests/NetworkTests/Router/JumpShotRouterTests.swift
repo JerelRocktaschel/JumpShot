@@ -151,4 +151,14 @@ class JumpShotRouterTests: XCTestCase {
         mockURLSession.verifyDataTask(
             with: URLRequest(url: URL(string: "https://data.nba.net/prod/v1/20170201/0021600732_lead_tracker_1.json")!))
     }
+
+    // MARK: GameRecap
+
+    func test_gameRecapRouter_shouldMakeRequestToGameRecapAPIURL() {
+        router.request(.gameRecap(date: "20210125",
+                                        gameId: "0022000257")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://data.nba.net/prod/v1/20210125/0022000257_recap_article.json")!))
+    }
 }
