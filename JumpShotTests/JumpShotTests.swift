@@ -2481,4 +2481,144 @@ class JumpShotTests: XCTestCase {
         XCTAssertEqual(responseLeadTrackers.first!.leadTeamId, "1610612761")
         XCTAssertEqual(responseLeadTrackers.first!.points, 2)
      }
+    
+    // MARK: GetGameRecap
+
+    func test_jumpShot_withGetGameRecap_isNetworkUnavailable() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getGetGameRecap(for: "20210125", and: "0022000257") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            nil, nil, TestError.testError
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The network is unavailable.")
+    }
+
+    func test_jumpShot_withGetGameRecap_isRequestFailed() throws {
+         let mockURLSession = MockURLSession()
+         var errorDescription = String()
+         router.session = mockURLSession
+
+         let expectation = XCTestExpectation(description: "Network Error")
+
+        jumpShot.getGetGameRecap(for: "20210125", and: "0022000257") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+         mockURLSession.dataTaskArgsCompletionHandler.first?(
+            badJsonData(), response(statusCode: 300), nil
+         )
+
+         wait(for: [expectation], timeout: 1.0)
+         XCTAssertEqual(errorDescription, "The request failed.")
+     }
+
+    func test_jumpShot_withGetGameRecap_isNoDataReturned() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getGetGameRecap(for: "20210125", and: "0022000257") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+                            nil, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "No NBA data was returned.")
+     }
+
+    func test_jumpShot_withGetGameRecap_isUnableToDecode() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+
+        let path = getPath(forResource: "LeadTrackerApiResponseMissingAttribute",
+                            ofType: "json")
+
+        let playApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getGetGameRecap(for: "20210125", and: "0022000257") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            playApiResponseData, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The source data could not be decoded.")
+     }
+
+    func test_jumpShot_withGetGameRecap_isUnableToDecodeWithError() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getGetGameRecap(for: "20210125", and: "0022000257") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            badJsonData(), response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The source data could not be decoded.")
+     }
+
+    func test_jumpShot_withGetGameRecap_isOnePlay() throws {
+        let mockURLSession = MockURLSession()
+        var responseGameRecap = [GameRecap]()
+        router.session = mockURLSession
+        let testBundle = Bundle(for: type(of: self))
+        let publishDate = "2021-01-26T04:44:00.000Z".iso8601Date!
+        let paragraph = Paragraph(text: "DETROIT (AP)  Delon Wright scored a career-high 28 points and Wayne Ellington had another impressive shooting night for Detroit, leading the Pistons to a 119-104 victory over the Eastern Conference-leading Philadelphia 76ers on Monday.")
+        let paragraphs = [paragraph]
+        guard let path = testBundle.path(forResource: "GameRecapApiResponseOneRecap", ofType: "json")
+            else { fatalError("Can't find GameRecapApiResponseOneRecap.json file") }
+        let leadTrackerResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+
+        let expectation = XCTestExpectation(description: "GameRecap Api Response")
+
+        jumpShot.getGetGameRecap(for: "20210125", and: "0022000257") { gameRecap, _ in
+            responseGameRecap.append(gameRecap!)
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            leadTrackerResponseData, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 5.0)
+    
+        XCTAssertEqual(responseGameRecap.first!.author, "By NOAH TRISTER")
+        XCTAssertEqual(responseGameRecap.first!.authorTitle, "AP Sports Writer")
+        XCTAssertEqual(responseGameRecap.first!.copyright, "Copyright 2021 by STATS LLC and Associated Press. Any commercial use or distribution without the express written consent of STATS LLC and Associated Press is strictly prohibited")
+        XCTAssertEqual(responseGameRecap.first!.title, "Wright, Ellington lead Pistons over 76ers 119-104")
+        XCTAssertEqual(responseGameRecap.first!.publishDate, publishDate)
+        XCTAssertEqual(responseGameRecap.first!.paragraphs, paragraphs)
+     }
 }

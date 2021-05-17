@@ -889,4 +889,53 @@ class JumpShotModelTests: XCTestCase {
         }
         XCTAssertNil(leadTrackerModelResponse)
     }
+    
+    // MARK: GameRecap
+
+    func test_gameRecapModel_withCompleteData_isSuccessful() throws {
+        let path = getPath(forResource: "GameRecapModel",
+                               ofType: "json")
+        let gameRecapModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let gameRecapModelResponse = try JSONDecoder().decode(GameRecap.self, from: gameRecapModelData)
+        let publishDate = "2021-01-26T04:44:00.000Z".iso8601Date!
+        let paragraph = Paragraph(text: "DETROIT (AP)  Delon Wright scored a career-high 28 points and Wayne Ellington had another impressive shooting night for Detroit, leading the Pistons to a 119-104 victory over the Eastern Conference-leading Philadelphia 76ers on Monday.")
+        let paragraphs = [paragraph]
+        
+        
+        XCTAssertEqual(gameRecapModelResponse.author, "By NOAH TRISTER")
+        XCTAssertEqual(gameRecapModelResponse.authorTitle, "AP Sports Writer")
+        XCTAssertEqual(gameRecapModelResponse.copyright, "Copyright 2021 by STATS LLC and Associated Press. Any commercial use or distribution without the express written consent of STATS LLC and Associated Press is strictly prohibited")
+        XCTAssertEqual(gameRecapModelResponse.title, "Wright, Ellington lead Pistons over 76ers 119-104")
+        XCTAssertEqual(gameRecapModelResponse.publishDate, publishDate)
+        XCTAssertEqual(gameRecapModelResponse.paragraphs, paragraphs)
+    
+    }
+
+    func test_gameRecapModel_withBadData_isNil() throws {
+        let path = getPath(forResource: "GameRecapModelBadDataFormat",
+                               ofType: "json")
+        let gameRecapModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        var gameRecapModelResponse: GameRecap?
+
+        do {
+            gameRecapModelResponse = try JSONDecoder().decode(GameRecap.self, from: gameRecapModelData)
+        } catch {
+            gameRecapModelResponse = nil
+        }
+        XCTAssertNil(gameRecapModelResponse)
+    }
+
+     func test_gameRecapModel_withMissingData_isNil() throws {
+        let path = getPath(forResource: "GameRecapModelMissingDataFormat",
+                               ofType: "json")
+        let gameRecapModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let gameRecapModelResponse: GameRecap?
+
+        do {
+            gameRecapModelResponse = try JSONDecoder().decode(GameRecap.self, from: gameRecapModelData)
+        } catch {
+            gameRecapModelResponse = nil
+        }
+        XCTAssertNil(gameRecapModelResponse)
+     }
 }

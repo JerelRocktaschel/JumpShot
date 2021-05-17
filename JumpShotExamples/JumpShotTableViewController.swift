@@ -31,7 +31,8 @@ class JumpShotTableViewController: UITableViewController {
                              "getTeamStatRankings()",
                              "playerStatsSummary(for: \"2544\")",
                              "getGamePlays(for: \"20210125\", and \"0022000257\")",
-                             "getLeadTrackers(for: \"20170201\", and \"0022000257\", and \"1\")"]
+                             "getLeadTrackers(for: \"20170201\", and \"0022000257\", and \"1\")",
+                             "getGameRecap(for: \"20210125\", and \"0022000257\")"]
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         jumpShotFunctions.count
@@ -80,6 +81,8 @@ class JumpShotTableViewController: UITableViewController {
             getGamePlays()
         case 14:
             getLeadTrackers()
+        case 15:
+            getGameRecap()
         default:
             print("No function selected")
         }
@@ -309,6 +312,22 @@ class JumpShotTableViewController: UITableViewController {
             }
 
             print(leadTrackers)
+        }
+    }
+    
+    private func getGameRecap() {
+        jumpShot.getGetGameRecap(for: "20210125", and: "0022000257") { gameRecap, error in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+
+            guard let gameRecap = gameRecap else {
+                print("No Game Recap returned.")
+                return
+            }
+
+            print(gameRecap)
         }
     }
 }

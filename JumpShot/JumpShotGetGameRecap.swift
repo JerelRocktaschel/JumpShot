@@ -1,5 +1,5 @@
 //
-//  JumpShotGetLeadTrackers.swift
+//  JumpShotGetGameRecap.swift
 //  JumpShot
 //
 //  Copyright (c) 2021 Jerel Rocktaschel
@@ -29,30 +29,26 @@ public extension JumpShot {
     /**
         Returns an array of Play model objects for the game and date passed
      
-        URL called:  data.nba.net/prod/v1/20210125/0022000257_pbp_1.json
+        URL called:  data.nba.net/prod/v1/YYYYMMDD/GAME_ID_recap_article.json
    
         - Parameter gameDate: GameDate for game
         - Parameter gameId: GameID for game
-        - Parameter period: 1-4 for regular game. 5+ for overtimes.
         - Parameter completion: The callback after retrieval.
-        - Parameter plays: An array of Playmodel objects.
+        - Parameter gameRecap: A GameRecap object.
         - Parameter error: Error should one occur.
         - Returns: An array of Play model objects or error.
             
         # Notes: #
-        1. Handle [Play] return due to being optional.
+        1. Handle GameRecap return due to being optional.
      */
 
-    func getGetLeadTrackers(for gameDate: String,
-                            and gameId: String,
-                            and period: String,
-                            completion: @escaping (_ leadTrackerQuarters: [LeadTracker]?,
+    func getGetGameRecap(for gameDate: String,
+                         and gameId: String,
+                         completion: @escaping (_ gameRecap: GameRecap?,
                                                    _ error: LocalizedError?) -> Void) {
 
-            JumpShotNetworkManager.shared.router.request(.leadTrackerList(
-                                                            date: gameDate,
-                                                            gameId: gameId,
-                                                            period: period)) { data, response, error in
+        JumpShotNetworkManager.shared.router.request(.gameRecap(date: gameDate,
+                                                                gameId: gameId)) { data, response, error in
             guard error == nil else {
                 completion(nil, JumpShotNetworkManagerError.networkConnectivityError)
                 return
@@ -68,11 +64,11 @@ public extension JumpShot {
                     }
                     do {
                         let json = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any]
-                        guard let apiResponse = LeadTrackerApiResponse(json: json!) else {
+                        guard let apiResponse = GameRecapApiResponse(json: json!) else {
                             completion(nil, JumpShotNetworkManagerError.unableToDecodeError)
                             return
                         }
-                        completion(apiResponse.leadTrackers, nil)
+                        completion(apiResponse.gameRecap, nil)
                     } catch {
                         completion(nil, JumpShotNetworkManagerError.unableToDecodeError)
                     }

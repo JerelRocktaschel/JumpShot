@@ -59,6 +59,16 @@ extension String {
             return nil
         }
     }
+    
+    /// returns iso8601 date
+    var iso8601Date: Date? {
+        JumpShot.dateFormatter = DateFormatter.iso8601Full
+        if let iso8601Date = JumpShot.dateFormatter.date(from: self) {
+            return iso8601Date
+        } else {
+            return nil
+        }
+    }
 
     var bool: Bool {
         if self == "1" {

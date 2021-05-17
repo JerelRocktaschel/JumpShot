@@ -78,6 +78,13 @@
 		D826CC66264DD2C900E95454 /* LeadTrackerApiResponseMissingPlays.json in Resources */ = {isa = PBXBuildFile; fileRef = D826CC65264DD2C900E95454 /* LeadTrackerApiResponseMissingPlays.json */; };
 		D826CC6E264DD37600E95454 /* LeadTrackerApiResponseOnePlay.json in Resources */ = {isa = PBXBuildFile; fileRef = D826CC6D264DD37600E95454 /* LeadTrackerApiResponseOnePlay.json */; };
 		D826CC73264DD3F300E95454 /* LeadTrackerApiResponseMissingAttribute.json in Resources */ = {isa = PBXBuildFile; fileRef = D826CC72264DD3F300E95454 /* LeadTrackerApiResponseMissingAttribute.json */; };
+		D826CC7E2652C13700E95454 /* JumpShotGetGameRecap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826CC7D2652C13700E95454 /* JumpShotGetGameRecap.swift */; };
+		D826CC832652C20800E95454 /* GameRecap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826CC822652C20800E95454 /* GameRecap.swift */; };
+		D826CC892653200C00E95454 /* GameRecapModel.json in Resources */ = {isa = PBXBuildFile; fileRef = D826CC882653200C00E95454 /* GameRecapModel.json */; };
+		D826CC91265320B800E95454 /* GameRecapModelMissingDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D826CC90265320B800E95454 /* GameRecapModelMissingDataFormat.json */; };
+		D826CC96265320D900E95454 /* GameRecapModelBadDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D826CC95265320D900E95454 /* GameRecapModelBadDataFormat.json */; };
+		D826CCA92653268D00E95454 /* GameRecapApiResponseOneRecap.json in Resources */ = {isa = PBXBuildFile; fileRef = D826CCA82653268D00E95454 /* GameRecapApiResponseOneRecap.json */; };
+		D826CCAE265326B300E95454 /* GameRecapApiResponseMissingAttribute.json in Resources */ = {isa = PBXBuildFile; fileRef = D826CCAD265326B300E95454 /* GameRecapApiResponseMissingAttribute.json */; };
 		D832C4DD261E50F000D214B8 /* JumpShotGetTeamImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D832C4DC261E50F000D214B8 /* JumpShotGetTeamImage.swift */; };
 		D832C4F4261F74CD00D214B8 /* BOS.png in Resources */ = {isa = PBXBuildFile; fileRef = D832C4F3261F74CD00D214B8 /* BOS.png */; };
 		D832C4FA261FB3D300D214B8 /* NOP.png in Resources */ = {isa = PBXBuildFile; fileRef = D832C4F8261FB3D300D214B8 /* NOP.png */; };
@@ -239,6 +246,13 @@
 		D826CC65264DD2C900E95454 /* LeadTrackerApiResponseMissingPlays.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LeadTrackerApiResponseMissingPlays.json; sourceTree = "<group>"; };
 		D826CC6D264DD37600E95454 /* LeadTrackerApiResponseOnePlay.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LeadTrackerApiResponseOnePlay.json; sourceTree = "<group>"; };
 		D826CC72264DD3F300E95454 /* LeadTrackerApiResponseMissingAttribute.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LeadTrackerApiResponseMissingAttribute.json; sourceTree = "<group>"; };
+		D826CC7D2652C13700E95454 /* JumpShotGetGameRecap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetGameRecap.swift; sourceTree = "<group>"; };
+		D826CC822652C20800E95454 /* GameRecap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRecap.swift; sourceTree = "<group>"; };
+		D826CC882653200C00E95454 /* GameRecapModel.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameRecapModel.json; sourceTree = "<group>"; };
+		D826CC90265320B800E95454 /* GameRecapModelMissingDataFormat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameRecapModelMissingDataFormat.json; sourceTree = "<group>"; };
+		D826CC95265320D900E95454 /* GameRecapModelBadDataFormat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameRecapModelBadDataFormat.json; sourceTree = "<group>"; };
+		D826CCA82653268D00E95454 /* GameRecapApiResponseOneRecap.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameRecapApiResponseOneRecap.json; sourceTree = "<group>"; };
+		D826CCAD265326B300E95454 /* GameRecapApiResponseMissingAttribute.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameRecapApiResponseMissingAttribute.json; sourceTree = "<group>"; };
 		D832C4DC261E50F000D214B8 /* JumpShotGetTeamImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetTeamImage.swift; sourceTree = "<group>"; };
 		D832C4F3261F74CD00D214B8 /* BOS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BOS.png; sourceTree = "<group>"; };
 		D832C4F8261FB3D300D214B8 /* NOP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NOP.png; sourceTree = "<group>"; };
@@ -400,6 +414,7 @@
 				D8874D012649B25800CA3520 /* JumpShotGetPlayerStats.swift */,
 				D826CC0A264C7EEB00E95454 /* JumpShotGetGamePlays.swift */,
 				D826CC47264D8CDD00E95454 /* JumpShotGetLeadTrackers.swift */,
+				D826CC7D2652C13700E95454 /* JumpShotGetGameRecap.swift */,
 				D817FC41261BCFB00092F5E0 /* JumpShot.h */,
 				D817FC67261BD0070092F5E0 /* Network */,
 				D817FC42261BCFB00092F5E0 /* Info.plist */,
@@ -454,6 +469,7 @@
 				D8874CF1264972D300CA3520 /* PlayerStats.swift */,
 				D826CC05264C7A3200E95454 /* Play.swift */,
 				D826CC4C264D8D3E00E95454 /* LeadTracker.swift */,
+				D826CC822652C20800E95454 /* GameRecap.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -478,6 +494,8 @@
 		D817FC78261BD02A0092F5E0 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				D826CCA32653248F00E95454 /* GameRecapApiResponse */,
+				D826CC8726531FF800E95454 /* GameRecapModel */,
 				D826CC64264DD26D00E95454 /* LeadTrackerApiResponse */,
 				D826CC51264DAA0900E95454 /* LeadTrackerModel */,
 				D826CC2B264CB6EA00E95454 /* PlayModelApiResponse */,
@@ -675,6 +693,25 @@
 				D826CC6D264DD37600E95454 /* LeadTrackerApiResponseOnePlay.json */,
 			);
 			path = LeadTrackerApiResponse;
+			sourceTree = "<group>";
+		};
+		D826CC8726531FF800E95454 /* GameRecapModel */ = {
+			isa = PBXGroup;
+			children = (
+				D826CC882653200C00E95454 /* GameRecapModel.json */,
+				D826CC90265320B800E95454 /* GameRecapModelMissingDataFormat.json */,
+				D826CC95265320D900E95454 /* GameRecapModelBadDataFormat.json */,
+			);
+			path = GameRecapModel;
+			sourceTree = "<group>";
+		};
+		D826CCA32653248F00E95454 /* GameRecapApiResponse */ = {
+			isa = PBXGroup;
+			children = (
+				D826CCA82653268D00E95454 /* GameRecapApiResponseOneRecap.json */,
+				D826CCAD265326B300E95454 /* GameRecapApiResponseMissingAttribute.json */,
+			);
+			path = GameRecapApiResponse;
 			sourceTree = "<group>";
 		};
 		D832C4F2261F749E00D214B8 /* Images */ = {
@@ -984,6 +1021,7 @@
 				D893539226437923006CA270 /* CoachModel.json in Resources */,
 				D826CBAB264A21B600E95454 /* PlayerStatsModelBadData.json in Resources */,
 				D817FC8C261BD02A0092F5E0 /* TeamModelBadDataFormat.json in Resources */,
+				D826CC91265320B800E95454 /* GameRecapModelMissingDataFormat.json in Resources */,
 				D8B629D12631CC54007B0D63 /* StandingApiResponseOneStanding.json in Resources */,
 				D8B62A21263301A3007B0D63 /* LeaderApiResponseMissingAttribute.json in Resources */,
 				D8B629F42632FC8B007B0D63 /* LeaderModel.json in Resources */,
@@ -1009,6 +1047,7 @@
 				D89353CA264388B6006CA270 /* CoachApiResponseMissingAttribute.json in Resources */,
 				D826CC53264DAA2600E95454 /* LeadTrackerModel.json in Resources */,
 				D89353402641B950006CA270 /* TeamScheduleModelFromTeamScheduleCall.json in Resources */,
+				D826CC892653200C00E95454 /* GameRecapModel.json in Resources */,
 				D815EB15262FC503004C22AD /* GameScheduleApiResponseMissingAttribute.json in Resources */,
 				D832C4FA261FB3D300D214B8 /* NOP.png in Resources */,
 				D8B629B52631C735007B0D63 /* StandingApiResponseMissingLeague.json in Resources */,
@@ -1018,12 +1057,14 @@
 				D8B629C72631C8D5007B0D63 /* StandingApiResponseMissingTeams.json in Resources */,
 				D8D6763F2629E36E0009B06F /* PlayerApiResponseMissingLeagueDict.json in Resources */,
 				D8D676172628E2B90009B06F /* PlayerModel.json in Resources */,
+				D826CC96265320D900E95454 /* GameRecapModelBadDataFormat.json in Resources */,
 				D826CBCB264AB2F100E95454 /* PlayerStatsSummaryApiResponseMissingStats.json in Resources */,
 				D815EAEA262F7699004C22AD /* GameScheduleApiResponse.json in Resources */,
 				D8C0322226461DDE0009292A /* TeamStatRankingApiResponseMissingAttribute.json in Resources */,
 				D826CC6E264DD37600E95454 /* LeadTrackerApiResponseOnePlay.json in Resources */,
 				D893537B2642E377006CA270 /* TeamScheduleApiResponseFromTeamScheduleCall.json in Resources */,
 				D817FC8B261BD02A0092F5E0 /* TeamModelMissingDataFormat.json in Resources */,
+				D826CCAE265326B300E95454 /* GameRecapApiResponseMissingAttribute.json in Resources */,
 				D826CB9B264A1D0300E95454 /* PlayerStatsModel.json in Resources */,
 				D832C4F4261F74CD00D214B8 /* BOS.png in Resources */,
 				D8B629902631C223007B0D63 /* StandingModelMissingDataFormat.json in Resources */,
@@ -1035,6 +1076,7 @@
 				D826CBF6264ACDEB00E95454 /* PlayerStatsSummaryApiResponseOneSummary.json in Resources */,
 				D89353592642E0F7006CA270 /* TeamScheduleApiResponseMissingLeague.json in Resources */,
 				D817FC84261BD02A0092F5E0 /* TeamApiResponseMissingLeagueDict.json in Resources */,
+				D826CCA92653268D00E95454 /* GameRecapApiResponseOneRecap.json in Resources */,
 				D89353B8264381BD006CA270 /* CoachApiResponseMissingLeague.json in Resources */,
 				D826CC3A264CB7E500E95454 /* PlayApiResponseMissingAttribute.json in Resources */,
 				D826CBEC264AC55800E95454 /* PlayerStatsSummaryApiResponseMissingTeams.json in Resources */,
@@ -1114,8 +1156,10 @@
 				D817FC73261BD0070092F5E0 /* JumpShotApiEndPoint.swift in Sources */,
 				D852B5172633B7D700610391 /* JumpShotGetTeamSchedules.swift in Sources */,
 				D817FC5E261BCFEC0092F5E0 /* JumpShot.swift in Sources */,
+				D826CC7E2652C13700E95454 /* JumpShotGetGameRecap.swift in Sources */,
 				D832C5092624BE0200D214B8 /* JumpShotGetPlayerImage.swift in Sources */,
 				D826CC4D264D8D3E00E95454 /* LeadTracker.swift in Sources */,
+				D826CC832652C20800E95454 /* GameRecap.swift in Sources */,
 				D893538C2643701B006CA270 /* Coach.swift in Sources */,
 				D826CC0B264C7EEB00E95454 /* JumpShotGetGamePlays.swift in Sources */,
 				D8B6295D2630B169007B0D63 /* JumpShotGetStandings.swift in Sources */,

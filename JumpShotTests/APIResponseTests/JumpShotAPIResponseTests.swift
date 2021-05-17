@@ -471,4 +471,22 @@ class JumpShotAPIResponseTests: XCTestCase {
         let leadTrackerApiResponse = LeadTrackerApiResponse(json: leadTrackerApiResponseJson)
         XCTAssertNil(leadTrackerApiResponse)
     }
+
+    // MARK: GameRecapApiResponse
+
+    func test_gameRecapApiResponse_withOneRecap_isOne() throws {
+        let path = getPath(forResource: "GameRecapApiResponseOneRecap",
+                           ofType: "json")
+        let gameRecapApiResponseJson = try getApiResourceJson(withPath: path)
+        let gameRecapApiResponse = GameRecapApiResponse(json: gameRecapApiResponseJson)
+        XCTAssertNotNil(gameRecapApiResponse?.gameRecap)
+    }
+
+    func test_gameRecapApiResponse_withMissingAttribute_isNil() throws {
+        let path = getPath(forResource: "GameRecapApiResponseMissingAttribute",
+                           ofType: "json")
+        let gameRecapApiResponseJson = try getApiResourceJson(withPath: path)
+        let gameRecapApiResponse = GameRecapApiResponse(json: gameRecapApiResponseJson)
+        XCTAssertNil(gameRecapApiResponse?.gameRecap)
+    }
 }
