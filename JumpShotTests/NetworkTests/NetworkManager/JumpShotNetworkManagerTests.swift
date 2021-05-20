@@ -12,10 +12,6 @@ class JumpShotNetworkTests: XCTestCase {
 
     let networkManager = JumpShotNetworkManager.shared
 
-    func test_jumpShotNetworkManagerResources_withUrlDateformat_isCorrectValue() {
-        XCTAssertEqual(JumpShotNetworkManagerResources.urlDateformat, "MM/dd/yyyy")
-    }
-
     func test_jumpShotNetworkManagerResources_withSeasonStartMonthAndDay_isCorrectValue() {
         XCTAssertEqual(JumpShotNetworkManagerResources.seasonStartMonthAndDay, "12/01/")
     }

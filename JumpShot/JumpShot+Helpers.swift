@@ -49,21 +49,17 @@ public extension JumpShot {
 }
 
 extension String {
-    /// formats and returns date for NBA game time
+
     var gameDate: Date? {
-        JumpShot.dateFormatter.dateFormat = "MM/dd/yyyy hh:mm a"
-        JumpShot.dateFormatter.timeZone = TimeZone(abbreviation: "EST")
-        if let gameDate = JumpShot.dateFormatter.date(from: self) {
+        if let gameDate = DateFormatter.gameDate.date(from: self) {
             return gameDate
         } else {
             return nil
         }
     }
-    
-    /// returns iso8601 date
+
     var iso8601Date: Date? {
-        JumpShot.dateFormatter = DateFormatter.iso8601Full
-        if let iso8601Date = JumpShot.dateFormatter.date(from: self) {
+        if let iso8601Date = DateFormatter.iso8601Full.date(from: self) {
             return iso8601Date
         } else {
             return nil
@@ -93,8 +89,7 @@ extension Date {
     func getSeasonYear() -> String {
         var year = String(Calendar.current.component(.year, from: Date()))
         let newSeasonDateString = JumpShotNetworkManagerResources.seasonStartMonthAndDay + year
-        JumpShot.dateFormatter.dateFormat = JumpShotNetworkManagerResources.urlDateformat
-        if let newSeasonDate = JumpShot.dateFormatter.date(from: newSeasonDateString),
+        if let newSeasonDate = DateFormatter.urlDate.date(from: newSeasonDateString),
             let yearInt = Int(year),
             self < newSeasonDate {
                 year = String(yearInt - 1)
@@ -130,6 +125,19 @@ extension DateFormatter {
         formatter.calendar = Calendar(identifier: .iso8601)
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
         formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter
+    }()
+    
+    static let gameDate: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy hh:mm a"
+        formatter.timeZone = TimeZone(abbreviation: "EST")
+        return formatter
+    }()
+
+    static let urlDate: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
         return formatter
     }()
 }

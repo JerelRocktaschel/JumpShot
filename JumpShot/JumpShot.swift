@@ -27,13 +27,6 @@ import Foundation
 
 public class JumpShot {
 
-    // MARK: Properties
-
-    static var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        return formatter
-    }()
-
     // MARK: Init
 
     public init() { }

@@ -39,7 +39,6 @@ enum Result<T> {
 // MARK: Network Manager Resources
 
 enum JumpShotNetworkManagerResources {
-    public static var urlDateformat: String { return "MM/dd/yyyy" }
     public static var seasonStartMonthAndDay: String { return "12/01/" }
 }
 
