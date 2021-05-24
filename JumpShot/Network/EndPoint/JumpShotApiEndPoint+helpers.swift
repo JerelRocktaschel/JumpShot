@@ -35,17 +35,17 @@ public enum LeagueLeader {
     public enum SeasonType: String {
         case preSeason = "Pre+Season"
         case regularSeason = "Regular+Season"
-        case allStar = "All+Star"
         case playoffs = "Playoffs"
     }
 
-    public enum Category: String {
+    public enum TotalsCategory: String {
         case minutes = "MIN"
         case fieldGoalsMade = "FGM"
         case fieldGoalsAttempted = "FGA"
         case fieldGoalsPercentage = "FG_PCT"
-        case threePointAttempts = "FG3A"
-        case threePointPercentage = "FG3_PCT"
+        case threePointersMade = "FG3M"
+        case threePointersAttempted = "FG3A"
+        case threePointersPercentage = "FG3_PCT"
         case foulShotsMade = "FTM"
         case foulShotsAttempted = "FTA"
         case foulShotsPercentage = "FT_PCT"
@@ -60,6 +60,38 @@ public enum LeagueLeader {
         case points = "PTS"
         case assistsToTurnovers = "AST_TOV"
         case stealsToTurnovers = "STL_TOV"
+        case personalFouls = "PF"
+    }
+    
+    public enum PerGameCategory: String {
+        case minutes = "MIN"
+        case offensiveRebounds = "OREB"
+        case defensiveRebounds = "DREB"
+        case rebounds = "REB"
+        case assists = "AST"
+        case steals = "STL"
+        case blocks = "BLK"
+        case turnovers = "TOV"
+        case playerEfficiency = "EFF"
+        case points = "PTS"
+    }
+    
+    public enum Per48Category: String {
+        case fieldGoalsMade = "FGM"
+        case fieldGoalsAttempted = "FGA"
+        case threePointersMade = "FG3M"
+        case threePointersAttempted = "FG3A"
+        case foulShotsMade = "FTM"
+        case foulShotsAttempted = "FTA"
+        case offensiveRebounds = "OREB"
+        case defensiveRebounds = "DREB"
+        case rebounds = "REB"
+        case assists = "AST"
+        case steals = "STL"
+        case blocks = "BLK"
+        case turnovers = "TOV"
+        case playerEfficiency = "EFF"
+        case points = "PTS"
         case personalFouls = "PF"
     }
 }

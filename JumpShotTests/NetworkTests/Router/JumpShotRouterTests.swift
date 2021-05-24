@@ -204,16 +204,6 @@ class JumpShotRouterTests: XCTestCase {
             with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=EFF")!))
     }
     
-    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_SeasonIs_AllStar() {
-        router.request(.leagueLeadersList(perMode: .perGame,
-                                          season: "2020-21",
-                                          seasonType: .allStar,
-                                          category: .playerEfficiency)) { _, _, _ in
-        }
-        mockURLSession.verifyDataTask(
-            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=All+Star&StatCategory=EFF")!))
-    }
-    
     func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_SeasonIs_Playoffs() {
         router.request(.leagueLeadersList(perMode: .perGame,
                                           season: "2020-21",
@@ -263,12 +253,22 @@ class JumpShotRouterTests: XCTestCase {
         mockURLSession.verifyDataTask(
             with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=Totals&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=FG_PCT")!))
     }
+    
+    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_FG3M() {
+        router.request(.leagueLeadersList(perMode: .totals,
+                                          season: "2020-21",
+                                          seasonType: .regularSeason,
+                                          category: .threePointersMade)) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=Totals&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=FG3M")!))
+    }
 
     func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_FG3A() {
         router.request(.leagueLeadersList(perMode: .totals,
                                           season: "2020-21",
                                           seasonType: .regularSeason,
-                                          category: .threePointAttempts)) { _, _, _ in
+                                          category: .threePointersAttempted)) { _, _, _ in
         }
         mockURLSession.verifyDataTask(
             with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=Totals&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=FG3A")!))
@@ -278,7 +278,7 @@ class JumpShotRouterTests: XCTestCase {
         router.request(.leagueLeadersList(perMode: .totals,
                                           season: "2020-21",
                                           seasonType: .regularSeason,
-                                          category: .threePointPercentage)) { _, _, _ in
+                                          category: .threePointersPercentage)) { _, _, _ in
         }
         mockURLSession.verifyDataTask(
             with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=Totals&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=FG3_PCT")!))
