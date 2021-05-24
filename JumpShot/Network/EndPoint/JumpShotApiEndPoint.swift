@@ -45,6 +45,7 @@ public enum BaseURL {
     public static var gamePlayList: String { return "https://data.nba.net/prod/v1/" }
     public static var leadTrackerList: String { return "https://data.nba.net/prod/v1/" }
     public static var gameRecap: String { return "https://data.nba.net/prod/v1/" }
+    public static var leagueLeadersList: String { return "https://stats.nba.com/stats/" }
 }
 
 public enum Path {
@@ -81,6 +82,10 @@ enum JumpShotApiEndPoint {
     case gamePlayList(date: String, gameId: String)
     case leadTrackerList(date: String, gameId: String, period: String)
     case gameRecap(date: String, gameId: String)
+    case leagueLeadersList(perMode: LeagueLeader.PerMode,
+                           season: String,
+                           seasonType: LeagueLeader.SeasonType,
+                           category: LeagueLeader.Category)
 }
 
 extension JumpShotApiEndPoint: EndPointType {
@@ -104,6 +109,7 @@ extension JumpShotApiEndPoint: EndPointType {
         case .gamePlayList: return BaseURL.gamePlayList
         case .leadTrackerList: return BaseURL.leadTrackerList
         case .gameRecap: return BaseURL.gameRecap
+        case .leagueLeadersList: return BaseURL.leagueLeadersList
         }
     }
 
@@ -146,6 +152,12 @@ extension JumpShotApiEndPoint: EndPointType {
             return date + "/" + gameId + "_lead_tracker_" + quarter + Path.leadTrackerList
         case .gameRecap(let date, let gameId):
             return date + "/" + gameId + Path.gameRecap
+        case .leagueLeadersList(let perMode, let season, let seasonType, let category):
+            let leagueLeadersUrlString = "leagueLeaders?LeagueID=00&PerMode=" + perMode.rawValue +
+                "&Scope=S&Season=" + season +
+                "&SeasonType=" + seasonType.rawValue +
+                "&StatCategory=" + category.rawValue
+            return leagueLeadersUrlString
         }
     }
 }

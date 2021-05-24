@@ -26,6 +26,7 @@ class JumpShotApiEndPointTests: XCTestCase {
     var playByPlayJumpShotApiEndPoint: JumpShotApiEndPoint!
     var leadTrackerJumpShotApiEndPoint: JumpShotApiEndPoint!
     var gameRecapJumpShotApiEndPoint: JumpShotApiEndPoint!
+    var leagueLeadersListJumpShotApiEndPoint: JumpShotApiEndPoint!
 
     override func setUp() {
         teamsJumpShotApiEndPoint = JumpShotApiEndPoint.self.teamList(season: "2020")
@@ -49,6 +50,10 @@ class JumpShotApiEndPointTests: XCTestCase {
                                                                                   period: "1")
         gameRecapJumpShotApiEndPoint = JumpShotApiEndPoint.self.gameRecap(date: "20210125",
                                                                                   gameId: "0022000257")
+        leagueLeadersListJumpShotApiEndPoint = JumpShotApiEndPoint.self.leagueLeadersList(perMode: .totals,
+                                                                                          season: "2020-21",
+                                                                                          seasonType: .regularSeason,
+                                                                                          category: .playerEfficiency)
     }
 
     // MARK: Team
@@ -296,5 +301,17 @@ class JumpShotApiEndPointTests: XCTestCase {
 
     func test_gameRecapJumpShotApiEndPoint_withPath_isCorrectValue() {
         XCTAssertEqual(gameRecapJumpShotApiEndPoint.path, "20210125/0022000257_recap_article.json")
+    }
+
+    // MARK: League Leaders
+
+    func test_leagueLeadersListJumpShotApiEndPoint_withEnvironmentalBaseURL_isCorrectValue() {
+        XCTAssertEqual(leagueLeadersListJumpShotApiEndPoint.environmentBaseURL,
+                       "https://stats.nba.com/stats/")
+    }
+
+    func test_leagueLeadersListJumpShotApiEndPoint_withBaseURL_isCorrectValue() {
+        XCTAssertEqual(leagueLeadersListJumpShotApiEndPoint.baseURL,
+                       URL(string: "https://stats.nba.com/stats/"))
     }
 }
