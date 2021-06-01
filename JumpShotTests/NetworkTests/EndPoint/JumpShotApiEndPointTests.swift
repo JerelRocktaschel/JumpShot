@@ -53,7 +53,7 @@ class JumpShotApiEndPointTests: XCTestCase {
         leagueLeadersListJumpShotApiEndPoint = JumpShotApiEndPoint.self.leagueLeadersList(perMode: .totals,
                                                                                           season: "2020-21",
                                                                                           seasonType: .regularSeason,
-                                                                                          category: .playerEfficiency)
+                                                                                          category: "EFF")
     }
 
     // MARK: Team

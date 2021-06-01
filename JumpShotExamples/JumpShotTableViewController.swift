@@ -32,7 +32,8 @@ class JumpShotTableViewController: UITableViewController {
                              "playerStatsSummary(for: \"2544\")",
                              "getGamePlays(for: \"20210125\", and \"0022000257\")",
                              "getLeadTrackers(for: \"20170201\", and \"0022000257\", and \"1\")",
-                             "getGameRecap(for: \"20210125\", and \"0022000257\")"]
+                             "getGameRecap(for: \"20210125\", and \"0022000257\")",
+                             "getTotalLeagueLeaders(for: \"2020\", and .regularSeason, and .playerEfficiency)"]
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         jumpShotFunctions.count
@@ -83,6 +84,8 @@ class JumpShotTableViewController: UITableViewController {
             getLeadTrackers()
         case 15:
             getGameRecap()
+        case 16:
+            getTotalLeagueLeaders()
         default:
             print("No function selected")
         }
@@ -139,7 +142,8 @@ class JumpShotTableViewController: UITableViewController {
         }
     }
 
-    private func getPlayerImage(for size: JumpShotPlayerImageSize, and playerId: String) {
+    private func getPlayerImage(for size: JumpShotPlayerImageSize,
+                                and playerId: String) {
         jumpShot.getPlayerImage(for: size, and: playerId) { playerImage, error in
             guard error == nil else {
                 print(error!)
@@ -284,7 +288,8 @@ class JumpShotTableViewController: UITableViewController {
     }
 
     private func getGamePlays() {
-        jumpShot.getGetGamePlays(for: "20210125", and: "0022000257") { plays, error in
+        jumpShot.getGetGamePlays(for: "20210125",
+                                 and: "0022000257") { plays, error in
             guard error == nil else {
                 print(error!)
                 return
@@ -300,7 +305,9 @@ class JumpShotTableViewController: UITableViewController {
     }
 
     private func getLeadTrackers() {
-        jumpShot.getGetLeadTrackers(for: "20170201", and: "0021600732", and: "1") { leadTrackers, error in
+        jumpShot.getGetLeadTrackers(for: "20170201",
+                                    and: "0021600732",
+                                    and: "1") { leadTrackers, error in
             guard error == nil else {
                 print(error!)
                 return
@@ -314,9 +321,10 @@ class JumpShotTableViewController: UITableViewController {
             print(leadTrackers)
         }
     }
-    
+
     private func getGameRecap() {
-        jumpShot.getGetGameRecap(for: "20210125", and: "0022000257") { gameRecap, error in
+        jumpShot.getGetGameRecap(for: "20210125",
+                                 and: "0022000257") { gameRecap, error in
             guard error == nil else {
                 print(error!)
                 return
@@ -328,6 +336,24 @@ class JumpShotTableViewController: UITableViewController {
             }
 
             print(gameRecap)
+        }
+    }
+
+    private func getTotalLeagueLeaders() {
+        jumpShot.getTotalLeagueLeaders(for: 2020,
+                                       and: .regularSeason,
+                                       and: .playerEfficiency) { totalLeagueLeaders, error in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+
+            guard let totalLeagueLeaders = totalLeagueLeaders else {
+                print("No Total League Leaders returned.")
+                return
+            }
+
+            print(totalLeagueLeaders)
         }
     }
 }

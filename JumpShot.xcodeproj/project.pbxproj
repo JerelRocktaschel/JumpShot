@@ -86,6 +86,11 @@
 		D826CCA92653268D00E95454 /* GameRecapApiResponseOneRecap.json in Resources */ = {isa = PBXBuildFile; fileRef = D826CCA82653268D00E95454 /* GameRecapApiResponseOneRecap.json */; };
 		D826CCAE265326B300E95454 /* GameRecapApiResponseMissingAttribute.json in Resources */ = {isa = PBXBuildFile; fileRef = D826CCAD265326B300E95454 /* GameRecapApiResponseMissingAttribute.json */; };
 		D826CE9926582F9D00E95454 /* JumpShotApiEndPoint+helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826CE9826582F9C00E95454 /* JumpShotApiEndPoint+helpers.swift */; };
+		D826CEA7265C202300E95454 /* JumpShotGetPerTotalsLeagueLeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826CEA6265C202300E95454 /* JumpShotGetPerTotalsLeagueLeaders.swift */; };
+		D826CEAC265C204200E95454 /* JumpShotGetPer48LeagueLeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826CEAB265C204200E95454 /* JumpShotGetPer48LeagueLeaders.swift */; };
+		D826CEB1265C205400E95454 /* JumpShotGetPerGameLeagueLeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826CEB0265C205400E95454 /* JumpShotGetPerGameLeagueLeaders.swift */; };
+		D826CEC1265C75AB00E95454 /* TotalLeagueLeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826CEC0265C75AB00E95454 /* TotalLeagueLeader.swift */; };
+		D826CEC9265C77AC00E95454 /* PerLeagueLeaderswift in Sources */ = {isa = PBXBuildFile; fileRef = D826CEC8265C77AC00E95454 /* PerLeagueLeaderswift */; };
 		D832C4DD261E50F000D214B8 /* JumpShotGetTeamImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D832C4DC261E50F000D214B8 /* JumpShotGetTeamImage.swift */; };
 		D832C4F4261F74CD00D214B8 /* BOS.png in Resources */ = {isa = PBXBuildFile; fileRef = D832C4F3261F74CD00D214B8 /* BOS.png */; };
 		D832C4FA261FB3D300D214B8 /* NOP.png in Resources */ = {isa = PBXBuildFile; fileRef = D832C4F8261FB3D300D214B8 /* NOP.png */; };
@@ -255,6 +260,11 @@
 		D826CCA82653268D00E95454 /* GameRecapApiResponseOneRecap.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameRecapApiResponseOneRecap.json; sourceTree = "<group>"; };
 		D826CCAD265326B300E95454 /* GameRecapApiResponseMissingAttribute.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameRecapApiResponseMissingAttribute.json; sourceTree = "<group>"; };
 		D826CE9826582F9C00E95454 /* JumpShotApiEndPoint+helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JumpShotApiEndPoint+helpers.swift"; sourceTree = "<group>"; };
+		D826CEA6265C202300E95454 /* JumpShotGetPerTotalsLeagueLeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetPerTotalsLeagueLeaders.swift; sourceTree = "<group>"; };
+		D826CEAB265C204200E95454 /* JumpShotGetPer48LeagueLeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetPer48LeagueLeaders.swift; sourceTree = "<group>"; };
+		D826CEB0265C205400E95454 /* JumpShotGetPerGameLeagueLeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetPerGameLeagueLeaders.swift; sourceTree = "<group>"; };
+		D826CEC0265C75AB00E95454 /* TotalLeagueLeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalLeagueLeader.swift; sourceTree = "<group>"; };
+		D826CEC8265C77AC00E95454 /* PerLeagueLeaderswift */ = {isa = PBXFileReference; lastKnownFileType = text; path = PerLeagueLeaderswift; sourceTree = "<group>"; };
 		D832C4DC261E50F000D214B8 /* JumpShotGetTeamImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetTeamImage.swift; sourceTree = "<group>"; };
 		D832C4F3261F74CD00D214B8 /* BOS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BOS.png; sourceTree = "<group>"; };
 		D832C4F8261FB3D300D214B8 /* NOP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NOP.png; sourceTree = "<group>"; };
@@ -417,6 +427,9 @@
 				D826CC0A264C7EEB00E95454 /* JumpShotGetGamePlays.swift */,
 				D826CC47264D8CDD00E95454 /* JumpShotGetLeadTrackers.swift */,
 				D826CC7D2652C13700E95454 /* JumpShotGetGameRecap.swift */,
+				D826CEA6265C202300E95454 /* JumpShotGetPerTotalsLeagueLeaders.swift */,
+				D826CEAB265C204200E95454 /* JumpShotGetPer48LeagueLeaders.swift */,
+				D826CEB0265C205400E95454 /* JumpShotGetPerGameLeagueLeaders.swift */,
 				D817FC41261BCFB00092F5E0 /* JumpShot.h */,
 				D817FC67261BD0070092F5E0 /* Network */,
 				D817FC42261BCFB00092F5E0 /* Info.plist */,
@@ -472,6 +485,8 @@
 				D826CC05264C7A3200E95454 /* Play.swift */,
 				D826CC4C264D8D3E00E95454 /* LeadTracker.swift */,
 				D826CC822652C20800E95454 /* GameRecap.swift */,
+				D826CEC0265C75AB00E95454 /* TotalLeagueLeader.swift */,
+				D826CEC8265C77AC00E95454 /* PerLeagueLeaderswift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1151,16 +1166,20 @@
 				D815EAC7262B8B75004C22AD /* JumpShotGetDailySchedule.swift in Sources */,
 				D8874CF2264972D300CA3520 /* PlayerStats.swift in Sources */,
 				D817FC71261BD0070092F5E0 /* JumpShotNetworkManager.swift in Sources */,
+				D826CEC9265C77AC00E95454 /* PerLeagueLeaderswift in Sources */,
 				D826CC06264C7A3200E95454 /* Play.swift in Sources */,
 				D8B629E42631FE06007B0D63 /* JumpShotGetTeamLeaders.swift in Sources */,
 				D826CC48264D8CDD00E95454 /* JumpShotGetLeadTrackers.swift in Sources */,
 				D83B2646262A1951002EDBB0 /* GameSchedule.swift in Sources */,
 				D8B629D92631ED8B007B0D63 /* Leader.swift in Sources */,
 				D8C03188264423080009292A /* JumpShotGetCoaches.swift in Sources */,
+				D826CEAC265C204200E95454 /* JumpShotGetPer48LeagueLeaders.swift in Sources */,
 				D817FC73261BD0070092F5E0 /* JumpShotApiEndPoint.swift in Sources */,
 				D852B5172633B7D700610391 /* JumpShotGetTeamSchedules.swift in Sources */,
+				D826CEC1265C75AB00E95454 /* TotalLeagueLeader.swift in Sources */,
 				D817FC5E261BCFEC0092F5E0 /* JumpShot.swift in Sources */,
 				D826CC7E2652C13700E95454 /* JumpShotGetGameRecap.swift in Sources */,
+				D826CEA7265C202300E95454 /* JumpShotGetPerTotalsLeagueLeaders.swift in Sources */,
 				D832C5092624BE0200D214B8 /* JumpShotGetPlayerImage.swift in Sources */,
 				D826CC4D264D8D3E00E95454 /* LeadTracker.swift in Sources */,
 				D826CC832652C20800E95454 /* GameRecap.swift in Sources */,
@@ -1169,6 +1188,7 @@
 				D8B6295D2630B169007B0D63 /* JumpShotGetStandings.swift in Sources */,
 				D817FC74261BD0070092F5E0 /* Router.swift in Sources */,
 				D817FC64261BCFF80092F5E0 /* JumpShotGetTeams.swift in Sources */,
+				D826CEB1265C205400E95454 /* JumpShotGetPerGameLeagueLeaders.swift in Sources */,
 				D832C52D26273D6900D214B8 /* JumpShotGetPlayers.swift in Sources */,
 				D817FC75261BD0070092F5E0 /* EndPointType.swift in Sources */,
 				D852B5122633532A00610391 /* TeamSchedule.swift in Sources */,

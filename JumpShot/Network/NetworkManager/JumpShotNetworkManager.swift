@@ -52,6 +52,7 @@ enum JumpShotNetworkManagerError: Error {
     case badRequestError
     case outdatedRequestError
     case failedRequestError
+    case incorrectStartYearError
 }
 
 enum JumpShotNetworkManagerErrorDescription {
@@ -63,6 +64,7 @@ enum JumpShotNetworkManagerErrorDescription {
     public static var outdatedRequestError: String { return "The request is outdated." }
     public static var failedRequestError: String { return "The request failed." }
     public static var encodingError: String { return "The encoding failed with this request." }
+    public static var incorrectStartYearError: String { return "The start year is before 1946 or after the current season." }
 }
 
 extension JumpShotNetworkManagerError: LocalizedError {
@@ -82,6 +84,8 @@ extension JumpShotNetworkManagerError: LocalizedError {
             return JumpShotNetworkManagerErrorDescription.outdatedRequestError
         case .failedRequestError:
             return JumpShotNetworkManagerErrorDescription.failedRequestError
+        case .incorrectStartYearError:
+            return JumpShotNetworkManagerErrorDescription.incorrectStartYearError
         }
     }
 }

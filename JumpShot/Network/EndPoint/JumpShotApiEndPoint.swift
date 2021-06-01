@@ -82,10 +82,10 @@ enum JumpShotApiEndPoint {
     case gamePlayList(date: String, gameId: String)
     case leadTrackerList(date: String, gameId: String, period: String)
     case gameRecap(date: String, gameId: String)
-    case leagueLeadersList(perMode: LeagueLeader.PerMode,
+    case leagueLeadersList(perMode: LeagueLeaders.PerMode,
                            season: String,
-                           seasonType: LeagueLeader.SeasonType,
-                           category: LeagueLeader.Category)
+                           seasonType: LeagueLeaders.SeasonType,
+                           category: String)
 }
 
 extension JumpShotApiEndPoint: EndPointType {
@@ -156,7 +156,7 @@ extension JumpShotApiEndPoint: EndPointType {
             let leagueLeadersUrlString = "leagueLeaders?LeagueID=00&PerMode=" + perMode.rawValue +
                 "&Scope=S&Season=" + season +
                 "&SeasonType=" + seasonType.rawValue +
-                "&StatCategory=" + category.rawValue
+                "&StatCategory=" + category
             return leagueLeadersUrlString
         }
     }

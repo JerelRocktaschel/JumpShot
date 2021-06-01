@@ -1,0 +1,41 @@
+//
+//  LeagueLeaderPer48.swift
+//  JumpShot
+//
+//  Created by Jerel Rocktaschel on 5/24/21.
+//
+
+import Foundation
+
+public struct LeagueLeaderPer48 {
+
+    // MARK: Internal Properties
+
+    let playerid: String
+    let rank: Int
+    let player: String
+    let team: String
+    let gamesPlayed: Int
+    let minutes: Double
+    let fieldGoalsMade: Double
+    let fieldGoalsAttempted: Double
+    let fieldGoalsPercentage: Double
+    let threePointersMade: Double
+    let threePointersAttempted: Double
+    let threePointersPercentage: Double
+    let foulShotsMade: Double
+    let foulShotsAttempted: Double
+    let foulShotsPercentage: Double
+    let offensiveRebounds: Double
+    let defensiveRebounds: Double
+    let rebounds: Double
+    let assists: Double
+    let steals: Double
+    let blocks: Double
+    let turnovers: Double
+    let playerEfficiency: Double
+    let points: Double
+    let assistsToTurnovers: Double
+    let stealsToTurnovers: Double
+    let personalFouls: Double
+}

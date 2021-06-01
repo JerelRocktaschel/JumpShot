@@ -25,7 +25,7 @@
 
 import Foundation
 
-public enum LeagueLeader {
+public enum LeagueLeaders {
     public enum PerMode: String {
         case perGame = "PerGame"
         case per48 = "Per48"
@@ -38,7 +38,7 @@ public enum LeagueLeader {
         case playoffs = "Playoffs"
     }
 
-    public enum TotalsCategory: String {
+    public enum TotalsStatCategory: String {
         case minutes = "MIN"
         case fieldGoalsMade = "FGM"
         case fieldGoalsAttempted = "FGA"
@@ -62,8 +62,8 @@ public enum LeagueLeader {
         case stealsToTurnovers = "STL_TOV"
         case personalFouls = "PF"
     }
-    
-    public enum PerGameCategory: String {
+
+    public enum PerGameStatCategory: String {
         case minutes = "MIN"
         case offensiveRebounds = "OREB"
         case defensiveRebounds = "DREB"
@@ -75,8 +75,8 @@ public enum LeagueLeader {
         case playerEfficiency = "EFF"
         case points = "PTS"
     }
-    
-    public enum Per48Category: String {
+
+    public enum Per48StatCategory: String {
         case fieldGoalsMade = "FGM"
         case fieldGoalsAttempted = "FGA"
         case threePointersMade = "FG3M"

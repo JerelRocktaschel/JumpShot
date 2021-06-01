@@ -80,6 +80,11 @@ extension String {
         }
         return int
     }
+    
+    subscript(_ range: CountablePartialRangeFrom<Int>) -> String {
+        let start = index(startIndex, offsetBy: max(0, range.lowerBound))
+         return String(self[start...])
+    }
 }
 
 extension Date {
@@ -93,6 +98,19 @@ extension Date {
             let yearInt = Int(year),
             self < newSeasonDate {
                 year = String(yearInt - 1)
+        }
+        return year
+    }
+    
+    //TODO: NEED TO REFACTOR TO ONE HELPER - SET STRING IN NETWORK CALL
+    
+    func getSeasonYearInt() -> Int {
+        let year = Calendar.current.component(.year, from: Date())
+        let newSeasonDateString = JumpShotNetworkManagerResources.seasonStartMonthAndDay + String(year)
+        if let newSeasonDate = DateFormatter.urlDate.date(from: newSeasonDateString) {
+            if self < newSeasonDate {
+                return year - 1
+            }
         }
         return year
     }
