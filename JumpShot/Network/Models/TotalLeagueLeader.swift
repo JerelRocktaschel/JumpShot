@@ -57,64 +57,78 @@ public struct TotalLeagueLeader {
     let assistsToTurnovers: Double
     let stealsToTurnovers: Double
 
-    public init?(with values: [Any]) throws {
+    public init(from decoder: Decoder) throws {
 
-        guard let intPlayerId = values[0] as? Int,
-              let intRank = values[1]  as? Int,
-              let strPlayer = values[2] as? String,
-              let strTeam = values[3] as? String,
-              let intGamesPlayed = values[4] as? Int,
-              let intMinutes = values[5] as? Int,
-              let intFGMade = values[6] as? Int,
-              let intFGAttempts = values[7] as? Int,
-              let dblFieldGoalsPercentage = values[8] as? Double,
-              let int3PMade = values[9] as? Int,
-              let int3PAttemps = values[10] as? Int,
-              let dbl3PPercent = values[11] as? Double,
-              let intFtMade = values[12] as? Int,
-              let intFtAttempts = values[13] as? Int,
-              let dblFtPercentage = values[14] as? Double,
-              let intOffensiveRebounds = values[15] as? Int,
-              let intDefensiveRebounds = values[16] as? Int,
-              let intRebounds = values[17] as? Int,
-              let intAssists = values[18] as? Int,
-              let intSteals = values[19] as? Int,
-              let intBlocks = values[20] as? Int,
-              let intTurnovers = values[21] as? Int,
-              let intPersonalFouls = values[22] as? Int,
-              let intPlayerEfficiency = values[23] as? Int,
-              let intPoints = values[24] as? Int,
-              let dblAssistsToTurnovers = values[25] as? Double,
-              let dblStealsToTurnovers = values[26] as? Double else {
-            throw JumpShotNetworkManagerError.unableToDecodeError
-        }
-        self.playerId = String(intPlayerId)
-        self.rank = intRank
-        self.player = strPlayer
-        self.team = strTeam
-        self.gamesPlayed = intGamesPlayed
-        self.minutes = intMinutes
-        self.fieldGoalsMade = intFGMade
-        self.fieldGoalsAttempted = intFGAttempts
-        self.fieldGoalsPercentage = dblFieldGoalsPercentage
-        self.threePointersMade = int3PMade
-        self.threePointersAttempted = int3PAttemps
-        self.threePointersPercentage = dbl3PPercent
-        self.foulShotsMade = intFtMade
-        self.foulShotsAttempted = intFtAttempts
-        self.foulShotsPercentage = dblFtPercentage
-        self.offensiveRebounds = intOffensiveRebounds
-        self.defensiveRebounds = intDefensiveRebounds
-        self.rebounds = intRebounds
-        self.assists = intAssists
-        self.steals = intSteals
-        self.blocks = intBlocks
-        self.turnovers = intTurnovers
-        self.personalFouls = intPersonalFouls
-        self.playerEfficiency = intPlayerEfficiency
-        self.points = intPoints
-        self.assistsToTurnovers = dblAssistsToTurnovers
-        self.stealsToTurnovers = dblStealsToTurnovers
+        // MARK: Init
+
+        let totalLeagueLeaderCodingKeysContainer = try decoder.container(keyedBy: TotalLeagueLeaderCodingKeys.self)
+        let intPlayerId = try totalLeagueLeaderCodingKeysContainer.decode(Int.self, forKey: .playerId)
+        playerId = String(intPlayerId)
+        rank = try totalLeagueLeaderCodingKeysContainer.decode(Int.self, forKey: .rank)
+        player = try totalLeagueLeaderCodingKeysContainer.decode(String.self, forKey: .player)
+        team = try totalLeagueLeaderCodingKeysContainer.decode(String.self, forKey: .team)
+        gamesPlayed = try totalLeagueLeaderCodingKeysContainer.decode(Int.self, forKey: .gamesPlayed)
+        minutes = try totalLeagueLeaderCodingKeysContainer.decode(Int.self, forKey: .minutes)
+        fieldGoalsMade = try totalLeagueLeaderCodingKeysContainer.decode(Int.self, forKey: .fieldGoalsMade)
+        fieldGoalsAttempted = try totalLeagueLeaderCodingKeysContainer.decode(Int.self, forKey: .fieldGoalsAttempted)
+        fieldGoalsPercentage = try totalLeagueLeaderCodingKeysContainer.decode(Double.self,
+                                                                               forKey: .fieldGoalsPercentage)
+        threePointersMade = try totalLeagueLeaderCodingKeysContainer.decode(Int.self, forKey: .threePointersMade)
+        threePointersAttempted = try totalLeagueLeaderCodingKeysContainer.decode(Int.self,
+                                                                                 forKey: .threePointersAttempted)
+        threePointersPercentage = try totalLeagueLeaderCodingKeysContainer.decode(Double.self,
+                                                                                  forKey: .threePointersPercentage)
+        foulShotsMade = try totalLeagueLeaderCodingKeysContainer.decode(Int.self, forKey: .foulShotsMade)
+        foulShotsAttempted = try totalLeagueLeaderCodingKeysContainer.decode(Int.self, forKey: .foulShotsAttempted)
+        foulShotsPercentage = try totalLeagueLeaderCodingKeysContainer.decode(Double.self, forKey: .foulShotsPercentage)
+        offensiveRebounds = try totalLeagueLeaderCodingKeysContainer.decode(Int.self, forKey: .offensiveRebounds)
+        defensiveRebounds = try totalLeagueLeaderCodingKeysContainer.decode(Int.self, forKey: .defensiveRebounds)
+        rebounds = try totalLeagueLeaderCodingKeysContainer.decode(Int.self, forKey: .rebounds)
+        assists = try totalLeagueLeaderCodingKeysContainer.decode(Int.self, forKey: .assists)
+        steals = try totalLeagueLeaderCodingKeysContainer.decode(Int.self, forKey: .steals)
+        blocks = try totalLeagueLeaderCodingKeysContainer.decode(Int.self, forKey: .blocks)
+        turnovers = try totalLeagueLeaderCodingKeysContainer.decode(Int.self, forKey: .turnovers)
+        personalFouls = try totalLeagueLeaderCodingKeysContainer.decode(Int.self, forKey: .personalFouls)
+        playerEfficiency = try totalLeagueLeaderCodingKeysContainer.decode(Int.self, forKey: .playerEfficiency)
+        points = try totalLeagueLeaderCodingKeysContainer.decode(Int.self, forKey: .points)
+        assistsToTurnovers = try totalLeagueLeaderCodingKeysContainer.decode(Double.self, forKey: .assistsToTurnovers)
+        stealsToTurnovers = try totalLeagueLeaderCodingKeysContainer.decode(Double.self, forKey: .stealsToTurnovers)
+    }
+}
+
+extension TotalLeagueLeader: Decodable {
+
+    // MARK: Coding Keys
+
+    enum TotalLeagueLeaderCodingKeys: String, CodingKey {
+
+        case playerId = "PLAYER_ID"
+        case rank = "RANK"
+        case player = "PLAYER"
+        case team = "TEAM"
+        case gamesPlayed = "GP"
+        case minutes = "MIN"
+        case fieldGoalsMade = "FGM"
+        case fieldGoalsAttempted = "FGA"
+        case fieldGoalsPercentage = "FG_PCT"
+        case threePointersMade = "FG3M"
+        case threePointersAttempted = "FG3A"
+        case threePointersPercentage = "FG3_PCT"
+        case foulShotsMade = "FTM"
+        case foulShotsAttempted = "FTA"
+        case foulShotsPercentage = "FT_PCT"
+        case offensiveRebounds = "OREB"
+        case defensiveRebounds = "DREB"
+        case rebounds = "REB"
+        case assists = "AST"
+        case steals = "STL"
+        case blocks = "BLK"
+        case turnovers = "TOV"
+        case personalFouls = "PF"
+        case points = "PTS"
+        case playerEfficiency = "EFF"
+        case assistsToTurnovers = "AST_TOV"
+        case stealsToTurnovers = "STL_TOV"
     }
 }
 
@@ -130,9 +144,12 @@ extension TotalLeagueLeaderApiResponse {
     // MARK: Init
 
     init?(json: [String: Any]) {
-
         do {
             guard let resultSetDictionary = json["resultSet"] as? JSONDictionary else {
+                return nil
+            }
+
+            guard let headersDictionary = resultSetDictionary["headers"] as? [String] else {
                 return nil
             }
 
@@ -142,14 +159,18 @@ extension TotalLeagueLeaderApiResponse {
 
             self.totalLeagueLeaders = [TotalLeagueLeader]()
             for totalLeagueLeaderRowArray in rowSetArray {
-                if let totalLeagueLeader = try TotalLeagueLeader(with: totalLeagueLeaderRowArray) {
-                    totalLeagueLeaders.append(totalLeagueLeader)
-                } else {
-                    return nil
+                let totalLeagueLeaderDictionary = Dictionary(uniqueKeysWithValues:
+                                                                zip(headersDictionary, totalLeagueLeaderRowArray))                
+                guard let jsonTotalLeagueLeaderData = try? JSONSerialization.data(withJSONObject: totalLeagueLeaderDictionary,
+                                                                                 options: []) else {
+                        return nil
                 }
+                
+                let totalLeagueLeader = try JSONDecoder().decode(TotalLeagueLeader.self, from: jsonTotalLeagueLeaderData)
+                self.totalLeagueLeaders.append(totalLeagueLeader)
             }
-            } catch {
-                return nil
+        } catch {
+            return nil
         }
     }
 }

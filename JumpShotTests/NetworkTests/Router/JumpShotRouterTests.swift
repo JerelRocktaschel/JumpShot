@@ -213,4 +213,226 @@ class JumpShotRouterTests: XCTestCase {
         mockURLSession.verifyDataTask(
             with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Playoffs&StatCategory=EFF")!))
     }
+    
+    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_MIN() {
+        router.request(.leagueLeadersList(perMode: .perGame,
+                                          season: "2020-21",
+                                          seasonType: .regularSeason,
+                                          category: "MIN")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=MIN")!))
+    }
+    
+    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_FGM() {
+        router.request(.leagueLeadersList(perMode: .perGame,
+                                          season: "2020-21",
+                                          seasonType: .regularSeason,
+                                          category: "FGM")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=FGM")!))
+    }
+    
+    
+    
+    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_FGA() {
+        router.request(.leagueLeadersList(perMode: .perGame,
+                                          season: "2020-21",
+                                          seasonType: .regularSeason,
+                                          category: "FGA")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=FGA")!))
+    }
+
+    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_FG_PCT() {
+        router.request(.leagueLeadersList(perMode: .perGame,
+                                          season: "2020-21",
+                                          seasonType: .regularSeason,
+                                          category: "FG_PCT")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=FG_PCT")!))
+    }
+    
+    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_FG3M() {
+        router.request(.leagueLeadersList(perMode: .perGame,
+                                          season: "2020-21",
+                                          seasonType: .regularSeason,
+                                          category: "FG3M")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=FG3M")!))
+    }
+
+    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_FG3A() {
+        router.request(.leagueLeadersList(perMode: .perGame,
+                                          season: "2020-21",
+                                          seasonType: .regularSeason,
+                                          category: "FG3A")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=FG3A")!))
+    }
+
+    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_FG3_PCT() {
+        router.request(.leagueLeadersList(perMode: .perGame,
+                                          season: "2020-21",
+                                          seasonType: .regularSeason,
+                                          category: "FG3_PCT")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=FG3_PCT")!))
+    }
+    
+    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_FTM() {
+        router.request(.leagueLeadersList(perMode: .perGame,
+                                          season: "2020-21",
+                                          seasonType: .regularSeason,
+                                          category: "FTM")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=FTM")!))
+    }
+    
+    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_FTA() {
+        router.request(.leagueLeadersList(perMode: .perGame,
+                                          season: "2020-21",
+                                          seasonType: .regularSeason,
+                                          category: "FTA")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=FTA")!))
+    }
+
+    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_FT_PCT() {
+        router.request(.leagueLeadersList(perMode: .perGame,
+                                          season: "2020-21",
+                                          seasonType: .regularSeason,
+                                          category: "FT_PCT")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=FT_PCT")!))
+    }
+
+    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_OREB() {
+        router.request(.leagueLeadersList(perMode: .perGame,
+                                          season: "2020-21",
+                                          seasonType: .regularSeason,
+                                          category: "OREB")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=OREB")!))
+    }
+
+    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_DREB() {
+        router.request(.leagueLeadersList(perMode: .perGame,
+                                          season: "2020-21",
+                                          seasonType: .regularSeason,
+                                          category: "DREB")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=DREB")!))
+    }
+
+    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_REB() {
+        router.request(.leagueLeadersList(perMode: .perGame,
+                                          season: "2020-21",
+                                          seasonType: .regularSeason,
+                                          category: "REB")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=REB")!))
+    }
+
+    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_AST() {
+        router.request(.leagueLeadersList(perMode: .perGame,
+                                          season: "2020-21",
+                                          seasonType: .regularSeason,
+                                          category: "AST")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=AST")!))
+    }
+
+    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_STL() {
+        router.request(.leagueLeadersList(perMode: .perGame,
+                                          season: "2020-21",
+                                          seasonType: .regularSeason,
+                                          category: "STL")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=STL")!))
+    }
+
+    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_BLK() {
+        router.request(.leagueLeadersList(perMode: .perGame,
+                                          season: "2020-21",
+                                          seasonType: .regularSeason,
+                                          category: "BLK")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=BLK")!))
+    }
+
+    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_TOV() {
+        router.request(.leagueLeadersList(perMode: .perGame,
+                                          season: "2020-21",
+                                          seasonType: .regularSeason,
+                                          category: "TOV")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=TOV")!))
+    }
+    
+    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_EFF() {
+        router.request(.leagueLeadersList(perMode: .perGame,
+                                          season: "2020-21",
+                                          seasonType: .regularSeason,
+                                          category: "EFF")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=EFF")!))
+    }
+    
+    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_PTS() {
+        router.request(.leagueLeadersList(perMode: .perGame,
+                                          season: "2020-21",
+                                          seasonType: .regularSeason,
+                                          category: "PTS")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=PTS")!))
+    }
+
+    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_AST_TOV() {
+        router.request(.leagueLeadersList(perMode: .perGame,
+                                          season: "2020-21",
+                                          seasonType: .regularSeason,
+                                          category: "AST_TOV")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=AST_TOV")!))
+    }
+    
+    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_STL_TOV() {
+        router.request(.leagueLeadersList(perMode: .perGame,
+                                          season: "2020-21",
+                                          seasonType: .regularSeason,
+                                          category: "STL_TOV")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=STL_TOV")!))
+    }
+
+    func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_PF() {
+        router.request(.leagueLeadersList(perMode: .perGame,
+                                          season: "2020-21",
+                                          seasonType: .regularSeason,
+                                          category: "PF")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=PF")!))
+    }
 }

@@ -8,6 +8,8 @@
 import XCTest
 @testable import JumpShot
 
+// swiftlint:disable all
+
 class JumpShotAPIResponseTests: XCTestCase {
 
     // MARK: TeamApiResponse
@@ -488,5 +490,47 @@ class JumpShotAPIResponseTests: XCTestCase {
         let gameRecapApiResponseJson = try getApiResourceJson(withPath: path)
         let gameRecapApiResponse = GameRecapApiResponse(json: gameRecapApiResponseJson)
         XCTAssertNil(gameRecapApiResponse?.gameRecap)
+    }
+
+    // MARK: TotalLeagueLeaderApiResponse
+
+    func test_totalLeagueLeaderApiResponse_withMissingResultSet_isNil() throws {
+        let path = getPath(forResource: "TotalLeagueLeaderApiResponseMissingResultSet",
+                           ofType: "json")
+        let totalLeagueLeaderResponseJson = try getApiResourceJson(withPath: path)
+        let totalLeagueLeaderResponse = TotalLeagueLeaderApiResponse(json: totalLeagueLeaderResponseJson)
+        XCTAssertNil(totalLeagueLeaderResponse)
+    }
+
+    func test_totalLeagueLeaderApiResponse_withMissingHeaders_isNil() throws {
+        let path = getPath(forResource: "TotalLeagueLeaderApiResponseMissingHeaders",
+                           ofType: "json")
+        let totalLeagueLeaderResponseJson = try getApiResourceJson(withPath: path)
+        let totalLeagueLeaderResponse = TotalLeagueLeaderApiResponse(json: totalLeagueLeaderResponseJson)
+        XCTAssertNil(totalLeagueLeaderResponse)
+    }
+    
+    func test_totalLeagueLeaderApiResponse_withMissingRowSet_isNil() throws {
+        let path = getPath(forResource: "TotalLeagueLeaderApiResponseMissingRowSet",
+                           ofType: "json")
+        let totalLeagueLeaderResponseJson = try getApiResourceJson(withPath: path)
+        let totalLeagueLeaderResponse = TotalLeagueLeaderApiResponse(json: totalLeagueLeaderResponseJson)
+        XCTAssertNil(totalLeagueLeaderResponse)
+    }
+    
+    func test_totalLeagueLeaderApiResponse_withMissingAttribute_isNil() throws {
+        let path = getPath(forResource: "TotalLeagueLeaderApiResponseMissingAttribute",
+                           ofType: "json")
+        let totalLeagueLeaderResponseJson = try getApiResourceJson(withPath: path)
+        let totalLeagueLeaderResponse = TotalLeagueLeaderApiResponse(json: totalLeagueLeaderResponseJson)
+        XCTAssertNil(totalLeagueLeaderResponse)
+    }
+    
+    func test_totalLeagueLeaderApiResponse_withOneLeagueLeader_isOne() throws {
+        let path = getPath(forResource: "TotalLeagueLeaderApiResponseOneLeagueLeader",
+                           ofType: "json")
+        let totalLeagueLeaderResponseJson = try getApiResourceJson(withPath: path)
+        let totalLeagueLeaderResponse = TotalLeagueLeaderApiResponse(json: totalLeagueLeaderResponseJson)
+        XCTAssertEqual(totalLeagueLeaderResponse?.totalLeagueLeaders.count, 1)
     }
 }

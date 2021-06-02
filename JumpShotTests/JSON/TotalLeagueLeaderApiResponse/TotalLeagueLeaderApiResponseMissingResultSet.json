@@ -1,0 +1,12 @@
+{
+   "resource":"leagueleaders",
+   "parameters":{
+      "LeagueID":"00",
+      "PerMode":"Totals",
+      "StatCategory":"EFF",
+      "Season":"2020-21",
+      "SeasonType":"Regular Season",
+      "Scope":"S",
+      "ActiveFlag":null
+   }
+}

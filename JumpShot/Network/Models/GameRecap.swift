@@ -65,22 +65,22 @@ public struct GameRecap {
 
         // MARK: Init
 
-        let gameRecapCodingKeysCodingKeysContainer = try decoder.container(keyedBy: GameRecapCodingKeys.self)
-        let publishDateString = try gameRecapCodingKeysCodingKeysContainer.decode(String.self,
+        let gameRecapCodingKeysContainer = try decoder.container(keyedBy: GameRecapCodingKeys.self)
+        let publishDateString = try gameRecapCodingKeysContainer.decode(String.self,
                                                                                   forKey: .publishDate)
-        let paragraphList = try gameRecapCodingKeysCodingKeysContainer.decode([[String: String]].self,
+        let paragraphList = try gameRecapCodingKeysContainer.decode([[String: String]].self,
                                                                            forKey: .paragraphs)
 
-        author = try gameRecapCodingKeysCodingKeysContainer.decode(String.self, forKey: .author)
-        authorTitle = try gameRecapCodingKeysCodingKeysContainer.decode(String.self, forKey: .authorTitle)
-        copyright = try gameRecapCodingKeysCodingKeysContainer.decode(String.self, forKey: .copyright)
-        title = try gameRecapCodingKeysCodingKeysContainer.decode(String.self, forKey: .title)
+        author = try gameRecapCodingKeysContainer.decode(String.self, forKey: .author)
+        authorTitle = try gameRecapCodingKeysContainer.decode(String.self, forKey: .authorTitle)
+        copyright = try gameRecapCodingKeysContainer.decode(String.self, forKey: .copyright)
+        title = try gameRecapCodingKeysContainer.decode(String.self, forKey: .title)
 
         if let publishDateFormat = publishDateString.iso8601Date {
             publishDate = publishDateFormat
         } else {
             throw DecodingError.dataCorruptedError(forKey: .publishDate,
-                                                       in: gameRecapCodingKeysCodingKeysContainer,
+                                                       in: gameRecapCodingKeysContainer,
                                          debugDescription: "Publish Date not in expected format.")
         }
 

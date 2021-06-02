@@ -2621,4 +2621,141 @@ class JumpShotTests: XCTestCase {
         XCTAssertEqual(responseGameRecap.first!.publishDate, publishDate)
         XCTAssertEqual(responseGameRecap.first!.paragraphs, paragraphs)
      }
+    
+    // MARK: GetTotalLeagueLeaders
+
+    func test_jumpShot_withGetTotalLeagueLeaders_isNetworkUnavailable() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getTotalLeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            nil, nil, TestError.testError
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The network is unavailable.")
+    }
+    
+    func test_jumpShot_withGetTotalLeagueLeaders_isRequestFailed() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getTotalLeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+           badJsonData(), response(statusCode: 300), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The request failed.")
+    }
+    
+    func test_jumpShot_withGetTotalLeagueLeaders_isNoDataReturned() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getTotalLeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+                            nil, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "No NBA data was returned.")
+    }
+    
+    func test_jumpShot_withGetTotalLeagueLeaders_isUnableToDecode() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+
+        let path = getPath(forResource: "TotalLeagueLeaderApiResponseMissingAttribute",
+                            ofType: "json")
+
+        let totalLeagueLeaderResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getTotalLeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            totalLeagueLeaderResponseData, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The source data could not be decoded.")
+    }
+
+    func test_jumpShot_withGetTotalLeagueLeaders_isOneLeagueLeader() throws {
+        let mockURLSession = MockURLSession()
+        var responseTotalLeagueLeaders = [TotalLeagueLeader]()
+        router.session = mockURLSession
+        let testBundle = Bundle(for: type(of: self))
+        guard let path = testBundle.path(forResource: "TotalLeagueLeaderApiResponseOneLeagueLeader", ofType: "json")
+            else { fatalError("Can't find TotalLeagueLeaderApiResponseOneLeagueLeader.json file") }
+        let totalLeagueLeaderResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+
+        let expectation = XCTestExpectation(description: "TotalLeagueLeaderApiResponse")
+
+        jumpShot.getTotalLeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { totalLeagueLeaders, _ in
+            responseTotalLeagueLeaders = totalLeagueLeaders!
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            totalLeagueLeaderResponseData, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 5.0)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.playerId, "203999")
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.rank, 1)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.player, "Nikola Jokic")
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.team, "DEN")
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.gamesPlayed, 72)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.minutes, 2488)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.fieldGoalsMade, 732)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.fieldGoalsAttempted, 1293)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.fieldGoalsPercentage, 0.566)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.threePointersMade, 92)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.threePointersAttempted, 237)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.threePointersPercentage, 0.388)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.foulShotsMade, 342)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.foulShotsAttempted, 394)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.foulShotsPercentage, 0.868)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.defensiveRebounds, 575)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.offensiveRebounds, 205)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.rebounds, 780)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.assists, 599)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.steals, 95)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.blocks, 48)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.turnovers, 222)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.personalFouls, 192)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.playerEfficiency, 2585)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.points, 1898)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.assistsToTurnovers, 2.7)
+        XCTAssertEqual(responseTotalLeagueLeaders.first!.stealsToTurnovers, 0.43)
+     }
 }

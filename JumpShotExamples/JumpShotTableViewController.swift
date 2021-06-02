@@ -12,6 +12,8 @@ import UIKit
 
 import JumpShot
 
+// swiftlint:disable all
+
 class JumpShotTableViewController: UITableViewController {
 
     // MARK: 2 - Instantiate an instance of JumpShot
