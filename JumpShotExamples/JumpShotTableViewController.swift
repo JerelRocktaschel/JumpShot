@@ -35,7 +35,8 @@ class JumpShotTableViewController: UITableViewController {
                              "getGamePlays(for: \"20210125\", and \"0022000257\")",
                              "getLeadTrackers(for: \"20170201\", and \"0022000257\", and \"1\")",
                              "getGameRecap(for: \"20210125\", and \"0022000257\")",
-                             "getTotalLeagueLeaders(for: \"2020\", and .regularSeason, and .playerEfficiency)"]
+                             "getTotalLeagueLeaders(for: \"2020\", and .regularSeason, and .playerEfficiency)",
+                             "getPerGameLeagueLeaders(for: \"2020\", and .regularSeason, and .playerEfficiency)"]
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         jumpShotFunctions.count
@@ -88,6 +89,8 @@ class JumpShotTableViewController: UITableViewController {
             getGameRecap()
         case 16:
             getTotalLeagueLeaders()
+        case 17:
+            getPerGameLeagueLeaders()
         default:
             print("No function selected")
         }
@@ -356,6 +359,24 @@ class JumpShotTableViewController: UITableViewController {
             }
 
             print(totalLeagueLeaders)
+        }
+    }
+    
+    private func getPerGameLeagueLeaders() {
+        jumpShot.getPerGameLeagueLeaders(for: 2020,
+                                       and: .regularSeason,
+                                       and: .playerEfficiency) { perGameLeagueLeaders, error in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+
+            guard let perGameLeagueLeaders = perGameLeagueLeaders else {
+                print("No Game League Leaders returned.")
+                return
+            }
+
+            print(perGameLeagueLeaders)
         }
     }
 }
