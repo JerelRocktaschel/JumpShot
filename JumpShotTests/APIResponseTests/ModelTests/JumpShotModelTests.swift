@@ -1009,7 +1009,7 @@ class JumpShotModelTests: XCTestCase {
         let path = getPath(forResource: "PerGameLeaderModel",
                                ofType: "json")
         let perGameLeagueModelData = try Data(contentsOf: URL(fileURLWithPath: path))
-        let perGameLeagueModelResponse = try JSONDecoder().decode(PerGameLeagueLeader.self, from: perGameLeagueModelData)
+        let perGameLeagueModelResponse = try JSONDecoder().decode(PerLeagueLeader.self, from: perGameLeagueModelData)
         XCTAssertEqual(perGameLeagueModelResponse.playerId, "203999")
         XCTAssertEqual(perGameLeagueModelResponse.rank, 1)
         XCTAssertEqual(perGameLeagueModelResponse.player, "Nikola Jokic")
@@ -1040,10 +1040,10 @@ class JumpShotModelTests: XCTestCase {
         let path = getPath(forResource: "PerGameLeaderModelBadDataFormat",
                                ofType: "json")
         let perGameLeagueModelData = try Data(contentsOf: URL(fileURLWithPath: path))
-        var perGameLeagueModelResponse: PerGameLeagueLeader?
+        var perGameLeagueModelResponse: PerLeagueLeader?
 
         do {
-            perGameLeagueModelResponse = try JSONDecoder().decode(PerGameLeagueLeader.self, from: perGameLeagueModelData)
+            perGameLeagueModelResponse = try JSONDecoder().decode(PerLeagueLeader.self, from: perGameLeagueModelData)
         } catch {
             perGameLeagueModelResponse = nil
         }
@@ -1054,10 +1054,10 @@ class JumpShotModelTests: XCTestCase {
         let path = getPath(forResource: "PerGameLeaderModelMissingDataFormat",
                                ofType: "json")
         let perGameLeagueModelData = try Data(contentsOf: URL(fileURLWithPath: path))
-        var perGameLeagueModelResponse: PerGameLeagueLeader?
+        var perGameLeagueModelResponse: PerLeagueLeader?
 
         do {
-            perGameLeagueModelResponse = try JSONDecoder().decode(PerGameLeagueLeader.self, from: perGameLeagueModelData)
+            perGameLeagueModelResponse = try JSONDecoder().decode(PerLeagueLeader.self, from: perGameLeagueModelData)
         } catch {
             perGameLeagueModelResponse = nil
         }

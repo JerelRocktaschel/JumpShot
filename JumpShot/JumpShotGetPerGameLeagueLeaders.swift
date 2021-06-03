@@ -29,26 +29,26 @@ import Foundation
 
 public extension JumpShot {
     /**
-        Returns an array of LeagueLeaderTotal model objects for the seasson, category and season type passed
+        Returns an array of PerLeagueLeader model objects for the season, category and season type passed
      
-        URL called: stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=Totals&Scope=S&Season=BASEYEAR-SECONDYEAR&SeasonType=SEASON_TYPE&StatCategory=CATEGORY
+        URL called: stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=BASEYEAR-SECONDYEAR&SeasonType=SEASON_TYPE&StatCategory=CATEGORY
    
         - Parameter seasonStartYear: Year for when season began - year 2020 = season 2020-21
         - Parameter seasonType: LeagueLeaders.SeasonType
-        - Parameter category: LeagueLeader.TotalsStatCategory
+        - Parameter category: LeagueLeader.PerGameStatCategory
         - Parameter completion: The callback after retrieval.
-        - Parameter totalLeagueLeaders: An array of TotalLeagueLeader objects.
+        - Parameter perGameLeagueLeaders: An array of PerLeagueLeader objects.
         - Parameter error: Error should one occur.
-        - Returns: An array of TotalLeagueLeader model objects or error.
+        - Returns: An array of PerLeagueLeader model objects or error.
             
         # Notes: #
-        1. Handle totalLeagueLeaders return due to being optional.
+        1. Handle perGameLeagueLeaders return due to being optional.
      */
 
      func getPerGameLeagueLeaders(for seasonStartYear: Int,
                                 and seasonType: LeagueLeaders.SeasonType,
                                 and category: LeagueLeaders.PerGameStatCategory,
-                                completion: @escaping (_ totalLeagueLeaders: [PerGameLeagueLeader]?,
+                                completion: @escaping (_ perGameLeagueLeaders: [PerLeagueLeader]?,
                                 _ error: LocalizedError?) -> Void) {
 
         let currentSeasonStartYear = Date().getSeasonYearInt()

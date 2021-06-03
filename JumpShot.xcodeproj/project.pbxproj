@@ -108,7 +108,7 @@
 		D8342F092666D4360035D55E /* TotalLeagueLeaderApiResponseMissingRowSet.json in Resources */ = {isa = PBXBuildFile; fileRef = D8342F082666D4360035D55E /* TotalLeagueLeaderApiResponseMissingRowSet.json */; };
 		D8342F0E2666D57C0035D55E /* TotalLeagueLeaderApiResponseOneLeagueLeader.json in Resources */ = {isa = PBXBuildFile; fileRef = D8342F0D2666D57C0035D55E /* TotalLeagueLeaderApiResponseOneLeagueLeader.json */; };
 		D8342F162666DE350035D55E /* TotalLeagueLeaderApiResponseMissingAttribute.json in Resources */ = {isa = PBXBuildFile; fileRef = D8342F152666DE350035D55E /* TotalLeagueLeaderApiResponseMissingAttribute.json */; };
-		D8342F272667BF8A0035D55E /* PerGameLeagueLeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8342F262667BF8A0035D55E /* PerGameLeagueLeader.swift */; };
+		D8342F272667BF8A0035D55E /* PerLeagueLeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8342F262667BF8A0035D55E /* PerLeagueLeader.swift */; };
 		D8342F2D266830D00035D55E /* PerGameLeaderModelBadDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D8342F2C266830D00035D55E /* PerGameLeaderModelBadDataFormat.json */; };
 		D8342F35266833FC0035D55E /* PerGameLeaderModelMissingDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D8342F34266833FC0035D55E /* PerGameLeaderModelMissingDataFormat.json */; };
 		D8342F3A266834240035D55E /* PerGameLeaderModel.json in Resources */ = {isa = PBXBuildFile; fileRef = D8342F39266834240035D55E /* PerGameLeaderModel.json */; };
@@ -298,7 +298,7 @@
 		D8342F082666D4360035D55E /* TotalLeagueLeaderApiResponseMissingRowSet.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TotalLeagueLeaderApiResponseMissingRowSet.json; sourceTree = "<group>"; };
 		D8342F0D2666D57C0035D55E /* TotalLeagueLeaderApiResponseOneLeagueLeader.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TotalLeagueLeaderApiResponseOneLeagueLeader.json; sourceTree = "<group>"; };
 		D8342F152666DE350035D55E /* TotalLeagueLeaderApiResponseMissingAttribute.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TotalLeagueLeaderApiResponseMissingAttribute.json; sourceTree = "<group>"; };
-		D8342F262667BF8A0035D55E /* PerGameLeagueLeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerGameLeagueLeader.swift; sourceTree = "<group>"; };
+		D8342F262667BF8A0035D55E /* PerLeagueLeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerLeagueLeader.swift; sourceTree = "<group>"; };
 		D8342F2C266830D00035D55E /* PerGameLeaderModelBadDataFormat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PerGameLeaderModelBadDataFormat.json; sourceTree = "<group>"; };
 		D8342F34266833FC0035D55E /* PerGameLeaderModelMissingDataFormat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PerGameLeaderModelMissingDataFormat.json; sourceTree = "<group>"; };
 		D8342F39266834240035D55E /* PerGameLeaderModel.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PerGameLeaderModel.json; sourceTree = "<group>"; };
@@ -518,7 +518,7 @@
 				D826CC4C264D8D3E00E95454 /* LeadTracker.swift */,
 				D826CC822652C20800E95454 /* GameRecap.swift */,
 				D826CEC0265C75AB00E95454 /* TotalLeagueLeader.swift */,
-				D8342F262667BF8A0035D55E /* PerGameLeagueLeader.swift */,
+				D8342F262667BF8A0035D55E /* PerLeagueLeader.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1285,7 +1285,7 @@
 				D817FC64261BCFF80092F5E0 /* JumpShotGetTeams.swift in Sources */,
 				D826CEB1265C205400E95454 /* JumpShotGetPerGameLeagueLeaders.swift in Sources */,
 				D832C52D26273D6900D214B8 /* JumpShotGetPlayers.swift in Sources */,
-				D8342F272667BF8A0035D55E /* PerGameLeagueLeader.swift in Sources */,
+				D8342F272667BF8A0035D55E /* PerLeagueLeader.swift in Sources */,
 				D817FC75261BD0070092F5E0 /* EndPointType.swift in Sources */,
 				D852B5122633532A00610391 /* TeamSchedule.swift in Sources */,
 				D832C5112625080A00D214B8 /* JumpShot+Helpers.swift in Sources */,

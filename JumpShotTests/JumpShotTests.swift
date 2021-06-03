@@ -2848,7 +2848,7 @@ class JumpShotTests: XCTestCase {
 
     func test_jumpShot_withGetPerGameLeagueLeaders_isOneLeagueLeader() throws {
         let mockURLSession = MockURLSession()
-        var responsePerGameLeagueLeaders = [PerGameLeagueLeader]()
+        var responsePerGameLeagueLeaders = [PerLeagueLeader]()
         router.session = mockURLSession
         let testBundle = Bundle(for: type(of: self))
         guard let path = testBundle.path(forResource: "PerGameLeaderApiResponseOneLeagueLeader", ofType: "json")

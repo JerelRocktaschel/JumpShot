@@ -27,7 +27,7 @@ import Foundation
 
 public extension JumpShot {
     /**
-        Returns an array of LeagueLeaderTotal model objects for the seasson, category and season type passed
+        Returns an array of LeagueLeaderTotal model objects for the season, category and season type passed
      
         URL called: stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=Totals&Scope=S&Season=BASEYEAR-SECONDYEAR&SeasonType=SEASON_TYPE&StatCategory=CATEGORY
    
