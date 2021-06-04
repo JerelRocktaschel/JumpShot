@@ -25,7 +25,7 @@
 
 import Foundation
 
-public struct PerLeagueLeader {
+public struct PerGameLeagueLeader {
 
     // MARK: Internal Properties
 
@@ -90,7 +90,7 @@ public struct PerLeagueLeader {
     }
 }
 
-extension PerLeagueLeader: Decodable {
+extension PerGameLeagueLeader: Decodable {
 
     // MARK: Coding Keys
 
@@ -127,7 +127,7 @@ struct PerGameLeagueLeaderApiResponse {
 
     // MARK: Internal Properties
 
-    var perGameLeagueLeaders: [PerLeagueLeader]
+    var perGameLeagueLeaders: [PerGameLeagueLeader]
 }
 
 extension PerGameLeagueLeaderApiResponse {
@@ -148,7 +148,7 @@ extension PerGameLeagueLeaderApiResponse {
                 return nil
             }
 
-            self.perGameLeagueLeaders = [PerLeagueLeader]()
+            self.perGameLeagueLeaders = [PerGameLeagueLeader]()
             for perGameLeagueLeaderRowArray in rowSetArray {
                 let perGameLeagueLeaderDictionary = Dictionary(uniqueKeysWithValues:
                                                                 zip(headersDictionary, perGameLeagueLeaderRowArray))
@@ -157,7 +157,7 @@ extension PerGameLeagueLeaderApiResponse {
                         return nil
                 }
                 
-                let perGameLeagueLeader = try JSONDecoder().decode(PerLeagueLeader.self, from: jsonPerGameLeagueLeaderData)
+                let perGameLeagueLeader = try JSONDecoder().decode(PerGameLeagueLeader.self, from: jsonPerGameLeagueLeaderData)
                 self.perGameLeagueLeaders.append(perGameLeagueLeader)
             }
         } catch {

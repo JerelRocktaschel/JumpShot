@@ -36,7 +36,8 @@ class JumpShotTableViewController: UITableViewController {
                              "getLeadTrackers(for: \"20170201\", and \"0022000257\", and \"1\")",
                              "getGameRecap(for: \"20210125\", and \"0022000257\")",
                              "getTotalLeagueLeaders(for: \"2020\", and .regularSeason, and .playerEfficiency)",
-                             "getPerGameLeagueLeaders(for: \"2020\", and .regularSeason, and .playerEfficiency)"]
+                             "getPerGameLeagueLeaders(for: \"2020\", and .regularSeason, and .playerEfficiency)",
+                             "getPer48LeagueLeaders(for: \"2020\", and .regularSeason, and .playerEfficiency)"]
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         jumpShotFunctions.count
@@ -91,6 +92,8 @@ class JumpShotTableViewController: UITableViewController {
             getTotalLeagueLeaders()
         case 17:
             getPerGameLeagueLeaders()
+        case 18:
+            getPer48LeagueLeaders()
         default:
             print("No function selected")
         }
@@ -365,18 +368,36 @@ class JumpShotTableViewController: UITableViewController {
     private func getPerGameLeagueLeaders() {
         jumpShot.getPerGameLeagueLeaders(for: 2020,
                                        and: .regularSeason,
-                                       and: .playerEfficiency) { perGameLeagueLeaders, error in
+                                       and: .playerEfficiency) { perLeagueLeaders, error in
             guard error == nil else {
                 print(error!)
                 return
             }
 
-            guard let perGameLeagueLeaders = perGameLeagueLeaders else {
+            guard let perLeagueLeaders = perLeagueLeaders else {
                 print("No Game League Leaders returned.")
                 return
             }
 
-            print(perGameLeagueLeaders)
+            print(perLeagueLeaders)
+        }
+    }
+    
+    private func getPer48LeagueLeaders() {
+        jumpShot.getPer48LeagueLeaders(for: 2020,
+                                       and: .regularSeason,
+                                       and: .playerEfficiency) { perLeagueLeaders, error in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+
+            guard let perLeagueLeaders = perLeagueLeaders else {
+                print("No Per48 League Leaders returned.")
+                return
+            }
+
+            print(perLeagueLeaders)
         }
     }
 }

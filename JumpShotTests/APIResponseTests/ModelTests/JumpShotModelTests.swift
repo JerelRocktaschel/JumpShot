@@ -1006,10 +1006,10 @@ class JumpShotModelTests: XCTestCase {
     // MARK: PerGameLeagueLeader
 
     func test_perGameLeagueLeaderModel_withCompleteData_isSuccessful() throws {
-        let path = getPath(forResource: "PerGameLeaderModel",
+        let path = getPath(forResource: "PerGameLeagueLeaderModel",
                                ofType: "json")
         let perGameLeagueModelData = try Data(contentsOf: URL(fileURLWithPath: path))
-        let perGameLeagueModelResponse = try JSONDecoder().decode(PerLeagueLeader.self, from: perGameLeagueModelData)
+        let perGameLeagueModelResponse = try JSONDecoder().decode(PerGameLeagueLeader.self, from: perGameLeagueModelData)
         XCTAssertEqual(perGameLeagueModelResponse.playerId, "203999")
         XCTAssertEqual(perGameLeagueModelResponse.rank, 1)
         XCTAssertEqual(perGameLeagueModelResponse.player, "Nikola Jokic")
@@ -1037,13 +1037,13 @@ class JumpShotModelTests: XCTestCase {
     }
 
     func test_perGameLeagueLeaderModel_withBadData_isNil() throws {
-        let path = getPath(forResource: "PerGameLeaderModelBadDataFormat",
+        let path = getPath(forResource: "PerGameLeagueLeaderModelBadDataFormat",
                                ofType: "json")
         let perGameLeagueModelData = try Data(contentsOf: URL(fileURLWithPath: path))
-        var perGameLeagueModelResponse: PerLeagueLeader?
+        var perGameLeagueModelResponse: PerGameLeagueLeader?
 
         do {
-            perGameLeagueModelResponse = try JSONDecoder().decode(PerLeagueLeader.self, from: perGameLeagueModelData)
+            perGameLeagueModelResponse = try JSONDecoder().decode(PerGameLeagueLeader.self, from: perGameLeagueModelData)
         } catch {
             perGameLeagueModelResponse = nil
         }
@@ -1051,13 +1051,13 @@ class JumpShotModelTests: XCTestCase {
     }
 
      func test_perGameLeagueLeaderModel_withMissingData_isNil() throws {
-        let path = getPath(forResource: "PerGameLeaderModelMissingDataFormat",
+        let path = getPath(forResource: "PerGameLeagueLeaderModelMissingDataFormat",
                                ofType: "json")
         let perGameLeagueModelData = try Data(contentsOf: URL(fileURLWithPath: path))
-        var perGameLeagueModelResponse: PerLeagueLeader?
+        var perGameLeagueModelResponse: PerGameLeagueLeader?
 
         do {
-            perGameLeagueModelResponse = try JSONDecoder().decode(PerLeagueLeader.self, from: perGameLeagueModelData)
+            perGameLeagueModelResponse = try JSONDecoder().decode(PerGameLeagueLeader.self, from: perGameLeagueModelData)
         } catch {
             perGameLeagueModelResponse = nil
         }

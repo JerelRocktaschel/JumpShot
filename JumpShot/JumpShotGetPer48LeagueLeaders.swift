@@ -24,3 +24,70 @@
 //
 
 import Foundation
+
+public extension JumpShot {
+    /**
+        Returns an array of PerLeagueLeader model objects for the season, category and season type passed
+     
+        URL called: stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=BASEYEAR-SECONDYEAR&SeasonType=SEASON_TYPE&StatCategory=CATEGORY
+   
+        - Parameter seasonStartYear: Year for when season began - year 2020 = season 2020-21
+        - Parameter seasonType: LeagueLeaders.SeasonType
+        - Parameter category: LeagueLeader.PerGameStatCategory
+        - Parameter completion: The callback after retrieval.
+        - Parameter perLeagueLeaders: An array of PerLeagueLeader objects.
+        - Parameter error: Error should one occur.
+        - Returns: An array of PerLeagueLeader model objects or error.
+            
+        # Notes: #
+        1. Handle perGameLeagueLeaders return due to being optional.
+     */
+
+   /*  func getPer48LeagueLeaders(for seasonStartYear: Int,
+                                and seasonType: LeagueLeaders.SeasonType,
+                                and category: LeagueLeaders.Per48StatCategory,
+                                completion: @escaping (_ perLeagueLeaders: [PerLeagueLeader]?,
+                                _ error: LocalizedError?) -> Void) {
+
+        let currentSeasonStartYear = Date().getSeasonYearInt()
+        guard seasonStartYear > 1946 && seasonStartYear <= currentSeasonStartYear else {
+            completion(nil, JumpShotNetworkManagerError.incorrectStartYearError)
+            return
+        }
+
+        let seasonString = String(seasonStartYear) + "-" + String(seasonStartYear+1)[2...]
+
+        JumpShotNetworkManager.shared.router.request(.leagueLeadersList(perMode: .per48,
+                                                                        season: seasonString,
+                                                                        seasonType: seasonType,
+                                                                        category: category.rawValue)) { data, response, error in
+            guard error == nil else {
+                completion(nil, JumpShotNetworkManagerError.networkConnectivityError)
+                return
+            }
+
+            if let response = response as? HTTPURLResponse {
+                let result = JumpShotNetworkManager.shared.handleNetworkResponse(response)
+                switch result {
+                case .success:
+                    guard let responseData = data else {
+                        completion(nil, JumpShotNetworkManagerError.noDataError)
+                        return
+                    }
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any]
+                        guard let apiResponse = PerGameLeagueLeaderApiResponse(json: json!) else {
+                            completion(nil, JumpShotNetworkManagerError.unableToDecodeError)
+                            return
+                        }
+                        completion(apiResponse.perGameLeagueLeaders, nil)
+                    } catch {
+                        completion(nil, JumpShotNetworkManagerError.unableToDecodeError)
+                    }
+                case .failure(let networkFailureError):
+                    completion(nil, networkFailureError)
+                }
+            }
+        }
+    }*/
+}
