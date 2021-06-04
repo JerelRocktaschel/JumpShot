@@ -581,40 +581,40 @@ class JumpShotAPIResponseTests: XCTestCase {
     func test_per48LeagueLeaderApiResponse_withMissingResultSet_isNil() throws {
         let path = getPath(forResource: "Per48LeagueLeaderApiResponseMissingResultSet",
                            ofType: "json")
-        let perGameLeagueLeaderResponseJson = try getApiResourceJson(withPath: path)
-        let perGameLeagueLeaderResponse = PerGameLeagueLeaderApiResponse(json: perGameLeagueLeaderResponseJson)
-        XCTAssertNil(perGameLeagueLeaderResponse)
+        let per48LeagueLeaderResponseJson = try getApiResourceJson(withPath: path)
+        let per48LeagueLeaderResponse = Per48LeagueLeaderApiResponse(json: per48LeagueLeaderResponseJson)
+        XCTAssertNil(per48LeagueLeaderResponse)
     }
     
     func test_per48LeagueLeaderApiResponse_withMissingHeaders_isNil() throws {
-        let path = getPath(forResource: "Per48LeaderApiResponseMissingHeaders",
+        let path = getPath(forResource: "Per48LeagueLeaderApiResponseMissingHeaders",
                            ofType: "json")
-        let perGameLeagueLeaderResponseJson = try getApiResourceJson(withPath: path)
-        let perGameLeagueLeaderResponse = PerGameLeagueLeaderApiResponse(json: perGameLeagueLeaderResponseJson)
-        XCTAssertNil(perGameLeagueLeaderResponse)
+        let per48LeagueLeaderResponseJson = try getApiResourceJson(withPath: path)
+        let per48LeagueLeaderResponse = Per48LeagueLeaderApiResponse(json: per48LeagueLeaderResponseJson)
+        XCTAssertNil(per48LeagueLeaderResponse)
     }
     
     func test_per48LeagueLeaderApiResponse_withMissingRowSet_isNil() throws {
-        let path = getPath(forResource: "Per48LeaderApiResponseMissingRowSet",
+        let path = getPath(forResource: "Per48LeagueLeaderApiResponseMissingRowSet",
                            ofType: "json")
-        let perGameLeagueLeaderResponseJson = try getApiResourceJson(withPath: path)
-        let perGameLeagueLeaderResponse = PerGameLeagueLeaderApiResponse(json: perGameLeagueLeaderResponseJson)
-        XCTAssertNil(perGameLeagueLeaderResponse)
+        let per48LeagueLeaderResponseJson = try getApiResourceJson(withPath: path)
+        let per48LeagueLeaderResponse = Per48LeagueLeaderApiResponse(json: per48LeagueLeaderResponseJson)
+        XCTAssertNil(per48LeagueLeaderResponse)
     }
     
     func test_per48LeagueLeaderApiResponse_withMissingAttribute_isNil() throws {
-        let path = getPath(forResource: "Per48LeaderApiResponseMissingAttribute",
+        let path = getPath(forResource: "Per48LeagueLeaderApiResponseMissingAttribute",
                            ofType: "json")
-        let perGameLeagueLeaderResponseJson = try getApiResourceJson(withPath: path)
-        let perGameLeagueLeaderResponse = PerGameLeagueLeaderApiResponse(json: perGameLeagueLeaderResponseJson)
-        XCTAssertNil(perGameLeagueLeaderResponse)
+        let per48LeagueLeaderResponseJson = try getApiResourceJson(withPath: path)
+        let per48LeagueLeaderResponse = Per48LeagueLeaderApiResponse(json: per48LeagueLeaderResponseJson)
+        XCTAssertNil(per48LeagueLeaderResponse)
     }
     
     func test_per48LeagueLeaderApiResponse_withOneLeagueLeader_isOn() throws {
-        let path = getPath(forResource: "Per48LeaderApiResponseOneLeagueLeader",
+        let path = getPath(forResource: "Per48LeagueLeaderApiResponseOneLeagueLeader",
                            ofType: "json")
-        let perGameLeagueLeaderResponseJson = try getApiResourceJson(withPath: path)
-        let perGameLeagueLeaderResponse = PerGameLeagueLeaderApiResponse(json: perGameLeagueLeaderResponseJson)
-        XCTAssertEqual(perGameLeagueLeaderResponse?.perGameLeagueLeaders.count, 1)
+        let per48LeagueLeaderResponseJson = try getApiResourceJson(withPath: path)
+        let per48LeagueLeaderResponse = Per48LeagueLeaderApiResponse(json: per48LeagueLeaderResponseJson)
+        XCTAssertEqual(per48LeagueLeaderResponse?.per48LeagueLeaders.count, 1)
     }
 }

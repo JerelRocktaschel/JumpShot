@@ -2759,16 +2759,16 @@ class JumpShotTests: XCTestCase {
         XCTAssertEqual(responseTotalLeagueLeaders.first!.stealsToTurnovers, 0.43)
      }
     
-    // MARK: PerGameTotalLeagueLeaders
+    // MARK: Per48TotalLeagueLeaders
 
-    func test_jumpShot_withGetPerGameLeagueLeaders_isNetworkUnavailable() throws {
+    func test_jumpShot_withGetPer48LeagueLeaders_isNetworkUnavailable() throws {
         let mockURLSession = MockURLSession()
         var errorDescription = String()
         router.session = mockURLSession
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getPerGameLeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { _, error in
+        jumpShot.getPer48LeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2781,14 +2781,14 @@ class JumpShotTests: XCTestCase {
         XCTAssertEqual(errorDescription, "The network is unavailable.")
     }
     
-    func test_jumpShot_withGetPerGameLeagueLeaders_isRequestFailed() throws {
+    func test_jumpShot_withGetPer48LeagueLeaders_isRequestFailed() throws {
         let mockURLSession = MockURLSession()
         var errorDescription = String()
         router.session = mockURLSession
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getPerGameLeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { _, error in
+        jumpShot.getPer48LeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2801,14 +2801,14 @@ class JumpShotTests: XCTestCase {
         XCTAssertEqual(errorDescription, "The request failed.")
     }
     
-    func test_jumpShot_withGetPerGameLeagueLeaders_isNoDataReturned() throws {
+    func test_jumpShot_withGetPer48LeagueLeaders_isNoDataReturned() throws {
         let mockURLSession = MockURLSession()
         var errorDescription = String()
         router.session = mockURLSession
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getPerGameLeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { _, error in
+        jumpShot.getPer48LeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2821,11 +2821,11 @@ class JumpShotTests: XCTestCase {
         XCTAssertEqual(errorDescription, "No NBA data was returned.")
     }
     
-    func test_jumpShot_withGetPerGameLeagueLeaders_isUnableToDecode() throws {
+    func test_jumpShot_withGetPer48LeagueLeaders_isUnableToDecode() throws {
         let mockURLSession = MockURLSession()
         var errorDescription = String()
 
-        let path = getPath(forResource: "PerGameLeagueLeaderApiResponseMissingAttribute",
+        let path = getPath(forResource: "Per48LeagueLeaderApiResponseMissingAttribute",
                             ofType: "json")
 
         let totalLeagueLeaderResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
@@ -2833,7 +2833,7 @@ class JumpShotTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getPerGameLeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { _, error in
+        jumpShot.getPer48LeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2846,50 +2846,50 @@ class JumpShotTests: XCTestCase {
         XCTAssertEqual(errorDescription, "The source data could not be decoded.")
     }
 
-    func test_jumpShot_withGetPerGameLeagueLeaders_isOneLeagueLeader() throws {
+    func test_jumpShot_withGetPer48LeagueLeaders_isOneLeagueLeader() throws {
         let mockURLSession = MockURLSession()
-         var responsePerGameLeagueLeaders = [PerGameLeagueLeader]()
+         var responsePer48LeagueLeaders = [Per48LeagueLeader]()
          router.session = mockURLSession
          let testBundle = Bundle(for: type(of: self))
-         guard let path = testBundle.path(forResource: "PerGameLeagueLeaderApiResponseOneLeagueLeader", ofType: "json")
-             else { fatalError("Can't find PerGameLeaderApiResponseOneLeagueLeader.json file") }
-         let perGameLeagueLeaderResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+         guard let path = testBundle.path(forResource: "Per48LeagueLeaderApiResponseOneLeagueLeader", ofType: "json")
+             else { fatalError("Can't find Per48LeaderApiResponseOneLeagueLeader.json file") }
+         let per48LeagueLeaderResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
 
-         let expectation = XCTestExpectation(description: "PerGameLeagueLeaderApiResponse")
+         let expectation = XCTestExpectation(description: "Per48LeagueLeaderApiResponse")
 
-         jumpShot.getPerGameLeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { perLeagueLeaders, _ in
-             responsePerGameLeagueLeaders = perLeagueLeaders!
+         jumpShot.getPer48LeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { perLeagueLeaders, _ in
+             responsePer48LeagueLeaders = perLeagueLeaders!
              expectation.fulfill()
          }
 
          mockURLSession.dataTaskArgsCompletionHandler.first?(
-             perGameLeagueLeaderResponseData, response(statusCode: 200), nil
+             per48LeagueLeaderResponseData, response(statusCode: 200), nil
          )
 
          wait(for: [expectation], timeout: 5.0)
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.playerId, "203999")
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.rank, 1)
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.player, "Nikola Jokic")
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.team, "DEN")
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.gamesPlayed, 72)
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.minutes, 34.6)
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.fieldGoalsMade, 10.2)
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.fieldGoalsAttempted, 18)
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.fieldGoalsPercentage, 0.566)
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.threePointersMade, 1.3)
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.threePointersAttempted, 3.3)
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.threePointersPercentage, 0.388)
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.foulShotsMade, 4.8)
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.foulShotsAttempted, 5.5)
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.foulShotsPercentage, 0.868)
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.defensiveRebounds, 8)
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.offensiveRebounds, 2.8)
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.rebounds, 10.8)
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.assists, 8.3)
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.steals, 1.3)
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.blocks, 0.7)
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.turnovers, 3.1)
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.playerEfficiency, 35.9)
-         XCTAssertEqual(responsePerGameLeagueLeaders.first!.points, 26.4)
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.playerId, "203999")
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.rank, 1)
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.player, "Nikola Jokic")
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.team, "DEN")
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.gamesPlayed, 72)
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.minutes, 2488)
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.fieldGoalsMade, 14.1)
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.fieldGoalsAttempted, 24.9)
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.fieldGoalsPercentage, 0.566)
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.threePointersMade, 1.8)
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.threePointersAttempted, 4.6)
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.threePointersPercentage, 0.388)
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.foulShotsMade, 6.6)
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.foulShotsAttempted, 7.6)
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.foulShotsPercentage, 0.868)
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.defensiveRebounds, 11.1)
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.offensiveRebounds, 4.0)
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.rebounds, 15.0)
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.assists, 11.6)
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.steals, 1.83)
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.blocks, 0.93)
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.turnovers, 4.28)
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.playerEfficiency, 49.9)
+        XCTAssertEqual(responsePer48LeagueLeaders.first!.personalFouls, 3.7)
      }
 }

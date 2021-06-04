@@ -26,6 +26,7 @@
 import Foundation
 
 public extension JumpShot {
+    
     /**
         Returns an array of PerLeagueLeader model objects for the season, category and season type passed
      
@@ -43,10 +44,10 @@ public extension JumpShot {
         1. Handle perGameLeagueLeaders return due to being optional.
      */
 
-   /*  func getPer48LeagueLeaders(for seasonStartYear: Int,
+     func getPer48LeagueLeaders(for seasonStartYear: Int,
                                 and seasonType: LeagueLeaders.SeasonType,
                                 and category: LeagueLeaders.Per48StatCategory,
-                                completion: @escaping (_ perLeagueLeaders: [PerLeagueLeader]?,
+                                completion: @escaping (_ perLeagueLeaders: [Per48LeagueLeader]?,
                                 _ error: LocalizedError?) -> Void) {
 
         let currentSeasonStartYear = Date().getSeasonYearInt()
@@ -76,11 +77,11 @@ public extension JumpShot {
                     }
                     do {
                         let json = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any]
-                        guard let apiResponse = PerGameLeagueLeaderApiResponse(json: json!) else {
+                        guard let apiResponse = Per48LeagueLeaderApiResponse(json: json!) else {
                             completion(nil, JumpShotNetworkManagerError.unableToDecodeError)
                             return
                         }
-                        completion(apiResponse.perGameLeagueLeaders, nil)
+                        completion(apiResponse.per48LeagueLeaders, nil)
                     } catch {
                         completion(nil, JumpShotNetworkManagerError.unableToDecodeError)
                     }
@@ -89,5 +90,5 @@ public extension JumpShot {
                 }
             }
         }
-    }*/
+    }
 }

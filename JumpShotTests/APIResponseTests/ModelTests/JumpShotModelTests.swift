@@ -1063,4 +1063,65 @@ class JumpShotModelTests: XCTestCase {
         }
         XCTAssertNil(perGameLeagueModelResponse)
      }
+    
+    // MARK: Per48LeagueLeader
+
+   func test_per48LeagueLeaderModel_withCompleteData_isSuccessful() throws {
+        let path = getPath(forResource: "Per48LeagueLeaderModel",
+                               ofType: "json")
+        let per48LeagueModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let per48LeagueModelResponse = try JSONDecoder().decode(Per48LeagueLeader.self, from: per48LeagueModelData)
+        XCTAssertEqual(per48LeagueModelResponse.playerId, "203999")
+        XCTAssertEqual(per48LeagueModelResponse.rank, 1)
+        XCTAssertEqual(per48LeagueModelResponse.player, "Nikola Jokic")
+        XCTAssertEqual(per48LeagueModelResponse.team, "DEN")
+        XCTAssertEqual(per48LeagueModelResponse.gamesPlayed, 72)
+        XCTAssertEqual(per48LeagueModelResponse.minutes, 2488)
+        XCTAssertEqual(per48LeagueModelResponse.fieldGoalsMade, 14.1)
+        XCTAssertEqual(per48LeagueModelResponse.fieldGoalsAttempted, 24.9)
+        XCTAssertEqual(per48LeagueModelResponse.fieldGoalsPercentage, 0.566)
+        XCTAssertEqual(per48LeagueModelResponse.threePointersMade, 1.8)
+        XCTAssertEqual(per48LeagueModelResponse.threePointersAttempted, 4.6)
+        XCTAssertEqual(per48LeagueModelResponse.threePointersPercentage, 0.388)
+        XCTAssertEqual(per48LeagueModelResponse.foulShotsMade, 6.6)
+        XCTAssertEqual(per48LeagueModelResponse.foulShotsAttempted, 7.6)
+        XCTAssertEqual(per48LeagueModelResponse.foulShotsPercentage, 0.868)
+        XCTAssertEqual(per48LeagueModelResponse.defensiveRebounds, 11.1)
+        XCTAssertEqual(per48LeagueModelResponse.offensiveRebounds, 4.0)
+        XCTAssertEqual(per48LeagueModelResponse.rebounds, 15.0)
+        XCTAssertEqual(per48LeagueModelResponse.assists, 11.6)
+        XCTAssertEqual(per48LeagueModelResponse.steals, 1.83)
+        XCTAssertEqual(per48LeagueModelResponse.blocks, 0.93)
+        XCTAssertEqual(per48LeagueModelResponse.turnovers, 4.28)
+        XCTAssertEqual(per48LeagueModelResponse.playerEfficiency, 49.9)
+        XCTAssertEqual(per48LeagueModelResponse.personalFouls, 3.7)
+    }
+
+    func test_per48LeagueLeaderModel_withBadData_isNil() throws {
+        let path = getPath(forResource: "Per48LeagueLeaderModelBadDataFormat",
+                               ofType: "json")
+        let per48LeagueModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        var per48LeagueModelResponse: Per48LeagueLeader?
+
+        do {
+            per48LeagueModelResponse = try JSONDecoder().decode(Per48LeagueLeader.self, from: per48LeagueModelData)
+        } catch {
+            per48LeagueModelResponse = nil
+        }
+        XCTAssertNil(per48LeagueModelResponse)
+    }
+
+     func test_per48LeagueLeaderModel_withMissingData_isNil() throws {
+        let path = getPath(forResource: "Per48LeagueLeaderModelMissingDataFormat",
+                               ofType: "json")
+        let per48LeagueModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+        var per48LeagueModelResponse: Per48LeagueLeader?
+
+        do {
+            per48LeagueModelResponse = try JSONDecoder().decode(Per48LeagueLeader.self, from: per48LeagueModelData)
+        } catch {
+            per48LeagueModelResponse = nil
+        }
+        XCTAssertNil(per48LeagueModelResponse)
+     }
 }

@@ -368,36 +368,36 @@ class JumpShotTableViewController: UITableViewController {
     private func getPerGameLeagueLeaders() {
         jumpShot.getPerGameLeagueLeaders(for: 2020,
                                        and: .regularSeason,
-                                       and: .playerEfficiency) { perLeagueLeaders, error in
+                                       and: .playerEfficiency) { perGameLeagueLeaders, error in
             guard error == nil else {
                 print(error!)
                 return
             }
 
-            guard let perLeagueLeaders = perLeagueLeaders else {
+            guard let perGameLeagueLeaders = perGameLeagueLeaders else {
                 print("No Game League Leaders returned.")
                 return
             }
 
-            print(perLeagueLeaders)
+            print(perGameLeagueLeaders)
         }
     }
     
     private func getPer48LeagueLeaders() {
         jumpShot.getPer48LeagueLeaders(for: 2020,
                                        and: .regularSeason,
-                                       and: .playerEfficiency) { perLeagueLeaders, error in
+                                       and: .playerEfficiency) { per48LeagueLeaders, error in
             guard error == nil else {
                 print(error!)
                 return
             }
 
-            guard let perLeagueLeaders = perLeagueLeaders else {
+            guard let per48LeagueLeaders = per48LeagueLeaders else {
                 print("No Per48 League Leaders returned.")
                 return
             }
 
-            print(perLeagueLeaders)
+            print(per48LeagueLeaders)
         }
     }
 }
