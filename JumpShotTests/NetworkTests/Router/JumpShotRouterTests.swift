@@ -153,7 +153,7 @@ class JumpShotRouterTests: XCTestCase {
     }
 
     // MARK: LeagueLeaders
-    
+
     func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_PerModeIs_Totals() {
         router.request(.leagueLeadersList(perMode: .totals,
                                           season: "2020-21",
@@ -415,7 +415,7 @@ class JumpShotRouterTests: XCTestCase {
         mockURLSession.verifyDataTask(
             with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=AST_TOV")!))
     }
-    
+
     func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_STL_TOV() {
         router.request(.leagueLeadersList(perMode: .perGame,
                                           season: "2020-21",
@@ -434,5 +434,14 @@ class JumpShotRouterTests: XCTestCase {
         }
         mockURLSession.verifyDataTask(
             with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=PF")!))
+    }
+
+    // MARK: Boxscore
+
+    func test_boxscoreRouter_shouldMakeRequestToBoxscoreAPIURL() {
+        router.request(.boxscore(date: "20210125", gameId: "0022000257")) { _, _, _ in
+        }
+        mockURLSession.verifyDataTask(
+            with: URLRequest(url: URL(string: "https://data.nba.net/prod/v1/20210125/0022000257_boxscore.json")!))
     }
 }

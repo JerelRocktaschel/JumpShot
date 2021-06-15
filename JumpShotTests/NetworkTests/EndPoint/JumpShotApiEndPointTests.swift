@@ -27,6 +27,7 @@ class JumpShotApiEndPointTests: XCTestCase {
     var leadTrackerJumpShotApiEndPoint: JumpShotApiEndPoint!
     var gameRecapJumpShotApiEndPoint: JumpShotApiEndPoint!
     var leagueLeadersListJumpShotApiEndPoint: JumpShotApiEndPoint!
+    var boxscoreJumpShotApiEndPoint: JumpShotApiEndPoint!
 
     override func setUp() {
         teamsJumpShotApiEndPoint = JumpShotApiEndPoint.self.teamList(season: "2020")
@@ -48,12 +49,12 @@ class JumpShotApiEndPointTests: XCTestCase {
         leadTrackerJumpShotApiEndPoint = JumpShotApiEndPoint.self.leadTrackerList(date: "20170201",
                                                                                   gameId: "0021600732",
                                                                                   period: "1")
-        gameRecapJumpShotApiEndPoint = JumpShotApiEndPoint.self.gameRecap(date: "20210125",
-                                                                                  gameId: "0022000257")
+        gameRecapJumpShotApiEndPoint = JumpShotApiEndPoint.self.gameRecap(date: "20210125", gameId: "0022000257")
         leagueLeadersListJumpShotApiEndPoint = JumpShotApiEndPoint.self.leagueLeadersList(perMode: .totals,
                                                                                           season: "2020-21",
                                                                                           seasonType: .regularSeason,
                                                                                           category: "EFF")
+        boxscoreJumpShotApiEndPoint = JumpShotApiEndPoint.self.boxscore(date: "20210125", gameId: "0022000257")
     }
 
     // MARK: Team
@@ -313,5 +314,21 @@ class JumpShotApiEndPointTests: XCTestCase {
     func test_leagueLeadersListJumpShotApiEndPoint_withBaseURL_isCorrectValue() {
         XCTAssertEqual(leagueLeadersListJumpShotApiEndPoint.baseURL,
                        URL(string: "https://stats.nba.com/stats/"))
+    }
+
+    // MARK: Boxscore
+
+    func test_boxscoreJumpShotApiEndPoint_withEnvironmentalBaseURL_isCorrectValue() {
+        XCTAssertEqual(boxscoreJumpShotApiEndPoint.environmentBaseURL,
+                       "https://data.nba.net/prod/v1/")
+    }
+
+    func test_boxscoreJumpShotApiEndPoint_withBaseURL_isCorrectValue() {
+        XCTAssertEqual(boxscoreJumpShotApiEndPoint.baseURL,
+                       URL(string: "https://data.nba.net/prod/v1/"))
+    }
+
+    func test_boxscoreJumpShotApiEndPoint_withPath_isCorrectValue() {
+        XCTAssertEqual(boxscoreJumpShotApiEndPoint.path, "20210125/0022000257_boxscore.json")
     }
 }

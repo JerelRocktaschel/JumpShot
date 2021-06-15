@@ -1,5 +1,5 @@
 //
-//  JumpShotGetPerGameLeagueLeaders.swift
+//  JumpShotGetBoxscore.swift
 //  JumpShot
 //
 //  Copyright (c) 2021 Jerel Rocktaschel
@@ -25,40 +25,28 @@
 
 import Foundation
 
-
 public extension JumpShot {
     /**
-        Returns an array of PerLeagueLeader model objects for the season, category and season type passed
+        Returns a Boxscoremodel objects for the game date and GameId passed
      
-        URL called: stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=BASEYEAR-SECONDYEAR&SeasonType=SEASON_TYPE&StatCategory=CATEGORY
+        URL called: data.nba.net/prod/v1/GAMEDATE/GAMEID_boxscore.json
    
-        - Parameter seasonStartYear: Year for when season began - year 2020 = season 2020-21
-        - Parameter seasonType: LeagueLeaders.SeasonType
-        - Parameter category: LeagueLeader.PerGameStatCategory
+        - Parameter gameDate: GameDate for game
+        - Parameter gameId: GameID for game
         - Parameter completion: The callback after retrieval.
-        - Parameter perGameLeagueLeaders: An array of PerLeagueLeader objects.
+        - Parameter boxscore: A Boxscore object.
         - Parameter error: Error should one occur.
-        - Returns: An array of PerLeagueLeader model objects or error.
+        - Returns: An array of Boxscore model object or error.
             
         # Notes: #
-        1. Handle perGameLeagueLeaders return due to being optional.
+        1. Handle boxscore return due to being optional.
      */
-
-     func getPerGameLeagueLeaders(for seasonStartYear: Int,
-                                  and seasonType: LeagueLeaders.SeasonType,
-                                  and category: LeagueLeaders.PerGameStatCategory,
-                                  completion: @escaping (_ perGameLeagueLeaders: [PerGameLeagueLeader]?,
-                                  _ error: LocalizedError?) -> Void) {
-
-        let currentSeasonStartYear = Date().getSeasonYearInt()
-        guard seasonStartYear > 1946 && seasonStartYear <= currentSeasonStartYear else {
-            completion(nil, JumpShotNetworkManagerError.incorrectStartYearError)
-            return
-        }
-
-        let seasonString = String(seasonStartYear) + "-" + String(seasonStartYear+1)[2...]
-
-        JumpShotNetworkManager.shared.router.request(.leagueLeadersList(perMode: .perGame,
+    func getBoxscore(for gameDate: String,
+                     and gameId: String,
+                     completion: @escaping (_ boxscore: [Boxscore]?,
+                                            _ error: LocalizedError?) -> Void) {
+     
+     /*   JumpShotNetworkManager.shared.router.request(.leagueLeadersList(perMode: .perGame,
                                                                         season: seasonString,
                                                                         seasonType: seasonType,
                                                                         category: category.rawValue)) { data, response, error in
@@ -89,6 +77,6 @@ public extension JumpShot {
                     completion(nil, networkFailureError)
                 }
             }
-        }
+        }*/
     }
 }

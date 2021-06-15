@@ -46,6 +46,7 @@ public enum BaseURL {
     public static var leadTrackerList: String { return "https://data.nba.net/prod/v1/" }
     public static var gameRecap: String { return "https://data.nba.net/prod/v1/" }
     public static var leagueLeadersList: String { return "https://stats.nba.com/stats/" }
+    public static var boxscore: String { return "https://data.nba.net/prod/v1/" }
 }
 
 public enum Path {
@@ -64,6 +65,7 @@ public enum Path {
     public static var gamePlayList: String { return "_pbp_1.json" }
     public static var leadTrackerList: String { return ".json" }
     public static var gameRecap: String { return "_recap_article.json" }
+    public static var boxscore: String { return "_boxscore.json" }
 }
 
 enum JumpShotApiEndPoint {
@@ -86,6 +88,7 @@ enum JumpShotApiEndPoint {
                            season: String,
                            seasonType: LeagueLeaders.SeasonType,
                            category: String)
+    case boxscore(date: String, gameId: String)
 }
 
 extension JumpShotApiEndPoint: EndPointType {
@@ -110,6 +113,7 @@ extension JumpShotApiEndPoint: EndPointType {
         case .leadTrackerList: return BaseURL.leadTrackerList
         case .gameRecap: return BaseURL.gameRecap
         case .leagueLeadersList: return BaseURL.leagueLeadersList
+        case .boxscore: return BaseURL.boxscore
         }
     }
 
@@ -158,6 +162,8 @@ extension JumpShotApiEndPoint: EndPointType {
                 "&SeasonType=" + seasonType.rawValue +
                 "&StatCategory=" + category
             return leagueLeadersUrlString
+        case .boxscore(let date, let gameId):
+            return date + "/" + gameId + Path.boxscore
         }
     }
 }
