@@ -43,13 +43,11 @@ public extension JumpShot {
      */
     func getBoxscore(for gameDate: String,
                      and gameId: String,
-                     completion: @escaping (_ boxscore: [Boxscore]?,
+                     completion: @escaping (_ boxscore: Boxscore?,
                                             _ error: LocalizedError?) -> Void) {
-     
-     /*   JumpShotNetworkManager.shared.router.request(.leagueLeadersList(perMode: .perGame,
-                                                                        season: seasonString,
-                                                                        seasonType: seasonType,
-                                                                        category: category.rawValue)) { data, response, error in
+
+        JumpShotNetworkManager.shared.router.request(.boxscore(date: gameDate,
+                                                               gameId: gameId)) { data, response, error in
             guard error == nil else {
                 completion(nil, JumpShotNetworkManagerError.networkConnectivityError)
                 return
@@ -65,11 +63,11 @@ public extension JumpShot {
                     }
                     do {
                         let json = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any]
-                        guard let apiResponse = PerGameLeagueLeaderApiResponse(json: json!) else {
+                        guard let apiResponse = BoxscoreApiResponse(json: json!) else {
                             completion(nil, JumpShotNetworkManagerError.unableToDecodeError)
                             return
                         }
-                        completion(apiResponse.perGameLeagueLeaders, nil)
+                        completion(apiResponse.boxscore, nil)
                     } catch {
                         completion(nil, JumpShotNetworkManagerError.unableToDecodeError)
                     }
@@ -77,6 +75,6 @@ public extension JumpShot {
                     completion(nil, networkFailureError)
                 }
             }
-        }*/
+        }
     }
 }

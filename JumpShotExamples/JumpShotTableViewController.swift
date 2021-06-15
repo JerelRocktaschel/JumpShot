@@ -37,7 +37,8 @@ class JumpShotTableViewController: UITableViewController {
                              "getGameRecap(for: \"20210125\", and \"0022000257\")",
                              "getTotalLeagueLeaders(for: \"2020\", and .regularSeason, and .playerEfficiency)",
                              "getPerGameLeagueLeaders(for: \"2020\", and .regularSeason, and .playerEfficiency)",
-                             "getPer48LeagueLeaders(for: \"2020\", and .regularSeason, and .playerEfficiency)"]
+                             "getPer48LeagueLeaders(for: \"2020\", and .regularSeason, and .playerEfficiency)",
+                             "getBoxscore(for: \"20210125\", and \"0022000257\")"]
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         jumpShotFunctions.count
@@ -94,6 +95,8 @@ class JumpShotTableViewController: UITableViewController {
             getPerGameLeagueLeaders()
         case 18:
             getPer48LeagueLeaders()
+        case 19:
+            getBoxscore()
         default:
             print("No function selected")
         }
@@ -398,6 +401,23 @@ class JumpShotTableViewController: UITableViewController {
             }
 
             print(per48LeagueLeaders)
+        }
+    }
+    
+    private func getBoxscore() {
+        jumpShot.getBoxscore(for: "20210125",
+                             and: "0022000257") { boxscore, error in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+
+            guard let boxscore = boxscore else {
+                print("No Boxscore returned.")
+                return
+            }
+
+            print(boxscore)
         }
     }
 }

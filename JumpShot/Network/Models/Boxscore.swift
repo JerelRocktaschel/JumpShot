@@ -128,9 +128,9 @@ public struct Boxscore {
     let isGameActivated: Bool
     let status: Int
     let extendedStatus: Int
-  /*  let startTimeUTC: Date
-    let endTimeUTC: Date
-    let arena: Arena
+    let startTime: Date
+    let endTime: Date
+    /*  let arena: Arena
     let isBuzzerBeater: Bool
     let attendance: Int
     let isNeutralVenue: Bool
@@ -144,28 +144,32 @@ public struct Boxscore {
     // MARK: Init
 
     public init(from decoder: Decoder) throws {
+        let dateFormatter: DateFormatter
+        dateFormatter = DateFormatter.iso8601Full
         let boxscoreContainer = try decoder.container(keyedBy: BoxscoreCodingKeys.self)
-        let statusString = try boxscoreContainer.decode(String.self, forKey: .status)
-        let extendedStatusString = try boxscoreContainer.decode(String.self, forKey: .extendedStatus)
+        let startTimeString = try boxscoreContainer.decode(String.self, forKey: .startTime)
+        let endTimeString = try boxscoreContainer.decode(String.self, forKey: .endTime)
 
-        if let statusInt = Int(statusString) {
-            status = statusInt
-        } else {
-            throw DecodingError.dataCorruptedError(forKey: .status,
-                                                   in: boxscoreContainer,
-                                                   debugDescription: "Status is not in expected format.")
-        }
-
-        if let extendedStatusInt = Int(extendedStatusString) {
-            extendedStatus = extendedStatusInt
-        } else {
-            throw DecodingError.dataCorruptedError(forKey: .extendedStatus,
-                                                   in: boxscoreContainer,
-                                                   debugDescription: "Status is not in expected format.")
-        }
-
+        status = try boxscoreContainer.decode(Int.self, forKey: .status)
+        extendedStatus = try boxscoreContainer.decode(Int.self, forKey: .extendedStatus)
         isGameActivated = try boxscoreContainer.decode(Bool.self, forKey: .isGameActivated)
-        
+
+        if let startTimeUTCDate = dateFormatter.date(from: startTimeString) {
+            startTime = startTimeUTCDate
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .startTime,
+                                                   in: boxscoreContainer,
+                                                   debugDescription: "Date string does not match expected format.")
+        }
+
+        if let endTimeUTCDate = dateFormatter.date(from: endTimeString) {
+            endTime = endTimeUTCDate
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .endTime,
+                                                   in: boxscoreContainer,
+                                                   debugDescription: "Date string does not match expected format.")
+        }
+
     }
 }
 
@@ -177,5 +181,40 @@ extension Boxscore: Decodable {
         case isGameActivated
         case status = "statusNum"
         case extendedStatus = "extendedStatusNum"
+        case startTime = "startTimeUTC"
+        case endTime = "endTimeUTC"
     }
 }
+
+struct BoxscoreApiResponse {
+
+    // MARK: Internal Properties
+
+    var boxscore: Boxscore
+}
+
+extension BoxscoreApiResponse {
+
+    // MARK: Init
+
+    init?(json: [String: Any]) {
+
+        guard let basicGameDataDictionary = json["basicGameData"] as? JSONDictionary else {
+            return nil
+        }
+
+        do {
+            guard let jsonBoxscoreData = try? JSONSerialization.data(withJSONObject: basicGameDataDictionary,
+                                                                     options: []) else {
+                    return nil
+            }
+
+            let boxscore = try JSONDecoder().decode(Boxscore.self, from: jsonBoxscoreData)
+            self.boxscore = boxscore
+            } catch {
+                return nil
+        }
+    }
+}
+
+
