@@ -86,51 +86,9 @@ public struct Score {
     let score: Int
 }
 
-public enum BoxscoreTeamLeaderCategory {
-    case assists
-    case rebounds
-    case points
-}
-
-public struct BoxscoreTeamLeader {
-    let boxscoreTeamLeaderCategory: BoxscoreTeamLeaderCategory
-    let value: Int
-    let playerId: [String]
-}
-
-public struct ActivePlayer {
-    let personId: String
-    let firstName: String
-    let lastName: String
-    let jersey: Int
-    let isOnCourt: Bool
-    let points: Int
-    let position: String
-    let positionFull: String
-    let min: String
-    let fgm: Int
-    let fga: Int
-    let fgp: Double
-    let ftm: Int
-    let fta: Int
-    let ftp: Double
-    let tpm: Int
-    let tpa: Int
-    let tpp: Double
-    let offReb: Int
-    let defReb: Int
-    let totReb: Int
-    let assists: Int
-    let pFouls: Int
-    let steals: Int
-    let turnovers: Int
-    let blocks: Int
-    let plusMinus: Int
-    let dnp: String
-}
-
 public struct BoxscoreTeamData {
     let teamId: String
+    let triCode: String
     let wins: Int
     let losses: Int
     let seriesWins: Int
@@ -148,6 +106,7 @@ public struct BoxscoreTeamData {
         let scoreList = try boxscoreTeamDataContainer.decode([[String: String]].self, forKey: .linescore)
 
         teamId = try boxscoreTeamDataContainer.decode(String.self, forKey: .teamId)
+        triCode = try boxscoreTeamDataContainer.decode(String.self, forKey: .triCode)
 
         if let winsInt = Int(winsString) {
             wins = winsInt
@@ -208,6 +167,7 @@ extension BoxscoreTeamData: Decodable {
 
     enum BoxscoreTeamDataCodingKeys: String, CodingKey {
         case teamId
+        case triCode
         case wins = "win"
         case losses = "loss"
         case seriesWins = "seriesWin"
@@ -217,11 +177,274 @@ extension BoxscoreTeamData: Decodable {
     }
 }
 
+public struct ActivePlayer {
+    let playerId: String
+    let firstName: String
+    let lastName: String
+    let teamId: String
+    let isOnCourt: Bool
+    let position: String
+    let positionFull: String
+    let points: Int
+    let fgm: Int
+    let fga: Int
+    let fgp: Double
+    let ftm: Int
+    let fta: Int
+    let ftp: Double
+    let tpm: Int
+    let tpa: Int
+    let tpp: Double
+    let offensiveRebounds: Int
+    let defensiveRebounds: Int
+    let totalRebounds: Int
+    let assists: Int
+    let personalFouls: Int
+    let steals: Int
+    let turnovers: Int
+    let blocks: Int
+    let plusMinus: Int
+    let minutes: Int
+    let seconds: Int
+
+    public init(from decoder: Decoder) throws {
+        let activePlayerCodingKeysDataContainer = try decoder.container(keyedBy: ActivePlayerCodingKeys.self)
+        let pointsString = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .points)
+        let fgmString = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .fgm)
+        let fgaString = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .fga)
+        let fgpString = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .fgp)
+        let ftmString = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .ftm)
+        let ftaString = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .fta)
+        let ftpString = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .ftp)
+        let tpmString = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .tpm)
+        let tpaString = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .tpa)
+        let tppString = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .tpp)
+        let offensiveReboundsString = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .offensiveRebounds)
+        let defensiveReboundsString = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .defensiveRebounds)
+        let totalReboundsString = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .totalRebounds)
+        let assistsString = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .assists)
+        let personalFoulsString = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .personalFouls)
+        let stealsString = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .steals)
+        let turnoversString = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .turnovers)
+        let blocksString = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .blocks)
+        let plusMinusString = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .plusMinus)
+        let minutesString = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .minutes)
+        
+        if let pointsInt = Int(pointsString) {
+            points = pointsInt
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .points,
+                                                   in: activePlayerCodingKeysDataContainer,
+                                                   debugDescription: "Points is not in expected format.")
+        }
+        
+        if let fgmInt = Int(fgmString) {
+            fgm = fgmInt
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .fgm,
+                                                   in: activePlayerCodingKeysDataContainer,
+                                                   debugDescription: "Field goals made is not in expected format.")
+        }
+
+        if let fgaInt = Int(fgaString) {
+            fga = fgaInt
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .fga,
+                                                   in: activePlayerCodingKeysDataContainer,
+                                                   debugDescription: "Field goals attempted is not in expected format.")
+        }
+
+        if let fgpDouble = Double(fgpString) {
+            fgp = fgpDouble
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .fgp,
+                                                   in: activePlayerCodingKeysDataContainer,
+                                                   debugDescription: "Field goals percentage is not in expected format.")
+        }
+        
+        if let ftmInt = Int(ftmString) {
+            ftm = ftmInt
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .ftm,
+                                                   in: activePlayerCodingKeysDataContainer,
+                                                   debugDescription: "Foul shots made is not in expected format.")
+        }
+
+        if let ftaInt = Int(ftaString) {
+            fta = ftaInt
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .fta,
+                                                   in: activePlayerCodingKeysDataContainer,
+                                                   debugDescription: "Foul shots attempted is not in expected format.")
+        }
+
+        if let ftpDouble = Double(ftpString) {
+            ftp = ftpDouble
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .ftp,
+                                                   in: activePlayerCodingKeysDataContainer,
+                                                   debugDescription: "Foul shots percentage is not in expected format.")
+        }
+
+        if let tpmInt = Int(tpmString) {
+            tpm = tpmInt
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .tpm,
+                                                   in: activePlayerCodingKeysDataContainer,
+                                                   debugDescription: "Total points made is not in expected format.")
+        }
+
+        if let tpaInt = Int(tpaString) {
+            tpa = tpaInt
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .tpa,
+                                                   in: activePlayerCodingKeysDataContainer,
+                                                   debugDescription: "Total points attempted is not in expected format.")
+        }
+
+        if let tppDouble = Double(tppString) {
+            tpp = tppDouble
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .tpp,
+                                                   in: activePlayerCodingKeysDataContainer,
+                                                   debugDescription: "Total points percentage is not in expected format.")
+        }
+
+        if let offensiveReboundsInt = Int(offensiveReboundsString) {
+            offensiveRebounds = offensiveReboundsInt
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .offensiveRebounds,
+                                                   in: activePlayerCodingKeysDataContainer,
+                                                   debugDescription: "Offensive Rebounds is not in expected format.")
+        }
+
+        if let defensiveReboundsInt = Int(defensiveReboundsString) {
+            defensiveRebounds = defensiveReboundsInt
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .defensiveRebounds,
+                                                   in: activePlayerCodingKeysDataContainer,
+                                                   debugDescription: "Defensive Rebounds is not in expected format.")
+        }
+
+        if let totalReboundsInt = Int(totalReboundsString) {
+            totalRebounds = totalReboundsInt
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .totalRebounds,
+                                                   in: activePlayerCodingKeysDataContainer,
+                                                   debugDescription: "Total Rebounds is not in expected format.")
+        }
+
+        if let assistsInt = Int(assistsString) {
+            assists = assistsInt
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .assists,
+                                                   in: activePlayerCodingKeysDataContainer,
+                                                   debugDescription: "Assists is not in expected format.")
+        }
+
+        if let personalFoulsInt = Int(personalFoulsString) {
+            personalFouls = personalFoulsInt
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .personalFouls,
+                                                   in: activePlayerCodingKeysDataContainer,
+                                                   debugDescription: "Personal Fouls is not in expected format.")
+        }
+
+        if let stealsInt = Int(stealsString) {
+            steals = stealsInt
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .steals,
+                                                   in: activePlayerCodingKeysDataContainer,
+                                                   debugDescription: "Steals is not in expected format.")
+        }
+
+        if let turnoversInt = Int(turnoversString) {
+            turnovers = turnoversInt
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .turnovers,
+                                                   in: activePlayerCodingKeysDataContainer,
+                                                   debugDescription: "Turnovers is not in expected format.")
+        }
+
+        if let blocksInt = Int(blocksString) {
+            blocks = blocksInt
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .blocks,
+                                                   in: activePlayerCodingKeysDataContainer,
+                                                   debugDescription: "Blocks is not in expected format.")
+        }
+
+        if let plusMinusInt = Int(plusMinusString) {
+            plusMinus = plusMinusInt
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .plusMinus,
+                                                   in: activePlayerCodingKeysDataContainer,
+                                                   debugDescription: "Plus Minus is not in expected format.")
+        }
+
+        let delimeter = ":"
+        let separatedMinutesString = minutesString.components(separatedBy: delimeter)
+
+        if let minutesInt = Int(separatedMinutesString[0]), let secondsInt = Int(separatedMinutesString[1]) {
+            minutes = minutesInt
+            seconds = secondsInt
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .plusMinus,
+                                                   in: activePlayerCodingKeysDataContainer,
+                                                   debugDescription: "Minutes is not in expected format.")
+        }
+
+        playerId = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .playerId)
+        firstName = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .firstName)
+        lastName = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .lastName)
+        teamId = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .teamId)
+        isOnCourt = try activePlayerCodingKeysDataContainer.decode(Bool.self, forKey: .isOnCourt)
+        position = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .position)
+        positionFull = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .positionFull)
+    }
+}
+
+extension ActivePlayer: Decodable {
+
+    // MARK: Coding Keys
+
+    enum ActivePlayerCodingKeys: String, CodingKey {
+        case playerId = "personId"
+        case firstName
+        case lastName
+        case teamId
+        case isOnCourt
+        case position = "pos"
+        case positionFull = "position_full"
+        case points
+        case fgm
+        case fga
+        case fgp
+        case ftm
+        case fta
+        case ftp
+        case tpm
+        case tpa
+        case tpp
+        case offensiveRebounds = "offReb"
+        case defensiveRebounds = "defReb"
+        case totalRebounds = "totReb"
+        case assists
+        case personalFouls = "pFouls"
+        case steals
+        case turnovers
+        case blocks
+        case minutes = "min"
+        case plusMinus
+    }
+}
+
 public struct BoxscoreStats {
     let timesTied: Int
     let leadChanges: Int
     let visitorTeamStats: BoxscoreTeamStats
     let homeTeamStats: BoxscoreTeamStats
+    let activePlayers: [ActivePlayer]
 
     public init(from decoder: Decoder) throws {
         let boxscoreStatsDataContainer = try decoder.container(keyedBy: BoxscoreStatsDataCodingKeys.self)
@@ -235,7 +458,7 @@ public struct BoxscoreStats {
                                                    in: boxscoreStatsDataContainer,
                                                    debugDescription: "Times tied is not in expected format.")
         }
-        
+
         if let leadChangesInt = Int(leadChangesString) {
             leadChanges = leadChangesInt
         } else {
@@ -246,6 +469,7 @@ public struct BoxscoreStats {
 
         visitorTeamStats = try boxscoreStatsDataContainer.decode(BoxscoreTeamStats.self, forKey: .vTeam)
         homeTeamStats = try boxscoreStatsDataContainer.decode(BoxscoreTeamStats.self, forKey: .hTeam)
+        activePlayers = try boxscoreStatsDataContainer.decode([ActivePlayer].self, forKey: .activePlayers)
     }
 }
 
@@ -258,6 +482,7 @@ extension BoxscoreStats: Decodable {
         case leadChanges
         case vTeam
         case hTeam
+        case activePlayers
     }
 }
 
@@ -531,7 +756,7 @@ extension BoxscoreTeamStatTotals: Decodable {
         case minutes = "min"
         case shortTimeoutsRemaining = "short_timeout_remaining"
         case fullTimeoutsRemaining = "full_timeout_remaining"
-        case teamFouls
+        case teamFouls = "team_fouls"
     }
 }
 
@@ -570,7 +795,7 @@ public struct BoxscoreTeamStats {
                                                    in: boxscoreTeamStatsDataContainer,
                                                    debugDescription: "Fast break points is not in expected format.")
         }
-        
+
         if let biggestLeadInt = Int(biggestLeadString) {
             biggestLead = biggestLeadInt
         } else {
@@ -602,37 +827,10 @@ public struct BoxscoreTeamStats {
                                                    in: boxscoreTeamStatsDataContainer,
                                                    debugDescription: "Longest run is not in expected format.")
         }
-        
-        totals = try boxscoreTeamStatsDataContainer.decode(BoxscoreTeamStatTotals.self, forKey: .totals)
-        
-    }
 
-  /*  let fgm: Int
-    let points: Int
-    let ftm: Int
-    let fga: Int
-    let fgp: Int
-    let ftm: Int
-    let fta: Int
-    let ftp: Double
-    let tpm: Int
-    let tpa: Int
-    let tpp: Double
-    let offReb: Int
-    let defReb: Int
-    let totReb: Int
-    let assists: Int
-    let personalFouls: Int
-    let steals: Int
-    let turnovers: Int
-    let blocks: Int
-    let plusMinus: Int
-    let min: Double
-    let shortTimeoutTemaining: Int
-    let fullTimeoutTemaining: Int
-    let teamFouls: Int
-//    let boxscoreTeamLeaders: [BoxscoreTeamLeader]
-//    let activePlayers: [ActivePlayer]*/
+        totals = try boxscoreTeamStatsDataContainer.decode(BoxscoreTeamStatTotals.self, forKey: .totals)
+
+    }
 }
 
 extension BoxscoreTeamStats: Decodable {
@@ -647,6 +845,7 @@ extension BoxscoreTeamStats: Decodable {
         case pointsOffTurnovers
         case longestRun
         case totals
+        case leaders
     }
 }
 
@@ -665,7 +864,8 @@ public struct BasicGameData {
     let gameDuration: GameDuration
     let period: BoxscorePeriod
     let officials: [Official]
-    let teamsData: [BoxscoreTeamData]
+    let homeTeamData: BoxscoreTeamData
+    let visitorTeamData: BoxscoreTeamData
 
     // MARK: Init
 
@@ -714,13 +914,8 @@ public struct BasicGameData {
             }
         }
         officials = officialsArray
-
-        var teamsDataArray = [BoxscoreTeamData]()
-        let homeTeamData = try boxscoreContainer.decode(BoxscoreTeamData.self, forKey: .hTeam)
-        let visitorTeamData = try boxscoreContainer.decode(BoxscoreTeamData.self, forKey: .vTeam)
-        teamsDataArray.append(homeTeamData)
-        teamsDataArray.append(visitorTeamData)
-        teamsData = teamsDataArray
+        homeTeamData = try boxscoreContainer.decode(BoxscoreTeamData.self, forKey: .hTeam)
+        visitorTeamData = try boxscoreContainer.decode(BoxscoreTeamData.self, forKey: .vTeam)
     }
 }
 
@@ -767,17 +962,17 @@ extension BoxscoreApiResponse {
 
     init?(json: [String: Any]) {
 
-        guard let basicGameDataSetDictionary = json["basicGameData"] as? JSONDictionary else {
+        guard let basicGameDataDictionary = json["basicGameData"] as? JSONDictionary else {
             return nil
         }
         
-        guard let gameStatsSetDictionary = json["stats"] as? JSONDictionary else {
+        guard let gameStatsDictionary = json["stats"] as? JSONDictionary else {
             return nil
         }
 
         var basicGameData: BasicGameData
         do {
-            guard let jsonBoxscoreData = try? JSONSerialization.data(withJSONObject: basicGameDataSetDictionary,
+            guard let jsonBoxscoreData = try? JSONSerialization.data(withJSONObject: basicGameDataDictionary,
                                                                      options: []) else {
                     return nil
             }
@@ -790,7 +985,7 @@ extension BoxscoreApiResponse {
         
         var boxscoreStats: BoxscoreStats
         do {
-            guard let jsonBoxscoreStatsData = try? JSONSerialization.data(withJSONObject: gameStatsSetDictionary,
+            guard let jsonBoxscoreStatsData = try? JSONSerialization.data(withJSONObject: gameStatsDictionary,
                                                                      options: []) else {
                     return nil
             }
