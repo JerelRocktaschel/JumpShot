@@ -47,6 +47,7 @@ class JumpShotTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel!.text = jumpShotFunctions[indexPath.row]
+        cell.textLabel?.numberOfLines = 0
         return cell
     }
 
