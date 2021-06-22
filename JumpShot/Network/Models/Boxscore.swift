@@ -478,7 +478,7 @@ extension ActivePlayer: Equatable {
 
     // MARK: Equatable
 
-    public static func ==(lhs: ActivePlayer, rhs: ActivePlayer) -> Bool {
+    public static func == (lhs: ActivePlayer, rhs: ActivePlayer) -> Bool {
         return lhs.playerId == rhs.playerId &&
         lhs.firstName == rhs.firstName &&
         lhs.lastName == rhs.lastName &&
@@ -579,7 +579,7 @@ public struct BoxscoreStats {
     }
 }
 
-extension BoxscoreStats: Decodable {
+extension BoxscoreStats: Equatable {
 
     // MARK: Coding Keys
 
@@ -589,6 +589,19 @@ extension BoxscoreStats: Decodable {
         case vTeam
         case hTeam
         case activePlayers
+    }
+}
+
+extension BoxscoreStats: Decodable {
+
+    // MARK: Equatable
+
+    public static func == (lhs: BoxscoreStats, rhs: BoxscoreStats) -> Bool {
+        return lhs.timesTied == rhs.timesTied &&
+        lhs.leadChanges == rhs.leadChanges &&
+        lhs.visitorTeamStats == rhs.visitorTeamStats &&
+        lhs.homeTeamStats == rhs.homeTeamStats &&
+        lhs.activePlayers == rhs.activePlayers
     }
 }
 

@@ -2848,25 +2848,25 @@ class JumpShotTests: XCTestCase {
 
     func test_jumpShot_withGetPer48LeagueLeaders_isOneLeagueLeader() throws {
         let mockURLSession = MockURLSession()
-         var responsePer48LeagueLeaders = [Per48LeagueLeader]()
-         router.session = mockURLSession
-         let testBundle = Bundle(for: type(of: self))
-         guard let path = testBundle.path(forResource: "Per48LeagueLeaderApiResponseOneLeagueLeader", ofType: "json")
-             else { fatalError("Can't find Per48LeaderApiResponseOneLeagueLeader.json file") }
-         let per48LeagueLeaderResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+        var responsePer48LeagueLeaders = [Per48LeagueLeader]()
+        router.session = mockURLSession
+        let testBundle = Bundle(for: type(of: self))
+        guard let path = testBundle.path(forResource: "Per48LeagueLeaderApiResponseOneLeagueLeader", ofType: "json")
+            else { fatalError("Can't find Per48LeaderApiResponseOneLeagueLeader.json file") }
+        let per48LeagueLeaderResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
 
-         let expectation = XCTestExpectation(description: "Per48LeagueLeaderApiResponse")
+        let expectation = XCTestExpectation(description: "Per48LeagueLeaderApiResponse")
 
-         jumpShot.getPer48LeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { perLeagueLeaders, _ in
-             responsePer48LeagueLeaders = perLeagueLeaders!
-             expectation.fulfill()
-         }
+        jumpShot.getPer48LeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { perLeagueLeaders, _ in
+            responsePer48LeagueLeaders = perLeagueLeaders!
+            expectation.fulfill()
+        }
 
-         mockURLSession.dataTaskArgsCompletionHandler.first?(
-             per48LeagueLeaderResponseData, response(statusCode: 200), nil
-         )
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            per48LeagueLeaderResponseData, response(statusCode: 200), nil
+        )
 
-         wait(for: [expectation], timeout: 5.0)
+        wait(for: [expectation], timeout: 5.0)
         XCTAssertEqual(responsePer48LeagueLeaders.first!.playerId, "203999")
         XCTAssertEqual(responsePer48LeagueLeaders.first!.rank, 1)
         XCTAssertEqual(responsePer48LeagueLeaders.first!.player, "Nikola Jokic")
@@ -2891,5 +2891,149 @@ class JumpShotTests: XCTestCase {
         XCTAssertEqual(responsePer48LeagueLeaders.first!.turnovers, 4.28)
         XCTAssertEqual(responsePer48LeagueLeaders.first!.playerEfficiency, 49.9)
         XCTAssertEqual(responsePer48LeagueLeaders.first!.personalFouls, 3.7)
+     }
+    
+    // MARK: Boxscore
+
+    func test_jumpShot_withGetBoxscore_isNetworkUnavailable() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getBoxscore(for: "20210125",
+                             and: "0022000257") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            nil, nil, TestError.testError
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The network is unavailable.")
+    }
+    
+    func test_jumpShot_withGetBoxscore_isRequestFailed() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getBoxscore(for: "20210125",
+                             and: "0022000257") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+           badJsonData(), response(statusCode: 300), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The request failed.")
+    }
+    
+    func test_jumpShot_withGetBoxscore_isNoDataReturned() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getBoxscore(for: "20210125",
+                             and: "0022000257") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+                        nil, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "No NBA data was returned.")
+    }
+    
+    func test_jumpShot_withGetBoxscore_isUnableToDecode() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+
+        let path = getPath(forResource: "BoxscoreApiResponseMissingBasicGameData",
+                            ofType: "json")
+
+        let totalLeagueLeaderResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getBoxscore(for: "20210125",
+                             and: "0022000257") { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            totalLeagueLeaderResponseData, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The source data could not be decoded.")
+    }
+
+    func test_jumpShot_withGetBoxscore_isOneBoxscore() throws {
+        let mockURLSession = MockURLSession()
+        var responseBoxscore = [Boxscore]()
+        router.session = mockURLSession
+        let testBundle = Bundle(for: type(of: self))
+        guard let path = testBundle.path(forResource: "BoxscoreApiResponseOneBoxscore", ofType: "json")
+            else { fatalError("Can't find BoxscoreApiResponseOneBoxscore.json file") }
+        let boxscoreResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+
+        let expectation = XCTestExpectation(description: "BoxscoreApiResponse")
+
+        jumpShot.getBoxscore(for: "20210125",
+                     and: "0022000257") { boxscore, _ in
+            responseBoxscore.append(boxscore!)
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            boxscoreResponseData, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 5.0)
+        
+        let statsModelPath = getPath(forResource: "BoxscoreGameStatsModel",
+                                ofType: "json")
+        let boxscoreStatsData = try Data(contentsOf: URL(fileURLWithPath: statsModelPath))
+        let boxscoreStatsResponse = try JSONDecoder().decode(BoxscoreStats.self, from: boxscoreStatsData)
+        
+        let basicGamePath = getPath(forResource: "BoxscoreBasicGameModel",
+                                ofType: "json")
+        let boxscoreBasicGameData = try Data(contentsOf: URL(fileURLWithPath: basicGamePath))
+        let boxscoreBasicGameDataResponse = try JSONDecoder().decode(BasicGameData.self, from: boxscoreBasicGameData)
+        
+        XCTAssertEqual(responseBoxscore.first!.boxscoreStats.timesTied, boxscoreStatsResponse.timesTied)
+        XCTAssertEqual(responseBoxscore.first!.boxscoreStats.leadChanges, boxscoreStatsResponse.leadChanges)
+        XCTAssertEqual(responseBoxscore.first!.boxscoreStats.visitorTeamStats, boxscoreStatsResponse.visitorTeamStats)
+        XCTAssertEqual(responseBoxscore.first!.boxscoreStats.homeTeamStats, boxscoreStatsResponse.homeTeamStats)
+        XCTAssertEqual(responseBoxscore.first!.boxscoreStats.activePlayers.first!, boxscoreStatsResponse.activePlayers.first!)
+        XCTAssertEqual(responseBoxscore.first!.basicGameData.isGameActivated, boxscoreBasicGameDataResponse.isGameActivated)
+        XCTAssertEqual(responseBoxscore.first!.basicGameData.status, boxscoreBasicGameDataResponse.status)
+        XCTAssertEqual(responseBoxscore.first!.basicGameData.extendedStatus, boxscoreBasicGameDataResponse.extendedStatus)
+        XCTAssertEqual(responseBoxscore.first!.basicGameData.startTime, boxscoreBasicGameDataResponse.startTime)
+        XCTAssertEqual(responseBoxscore.first!.basicGameData.endTime, boxscoreBasicGameDataResponse.endTime)
+        XCTAssertEqual(responseBoxscore.first!.basicGameData.isBuzzerBeater, boxscoreBasicGameDataResponse.isBuzzerBeater)
+        XCTAssertEqual(responseBoxscore.first!.basicGameData.isNeutralVenue, boxscoreBasicGameDataResponse.isNeutralVenue)
+        XCTAssertEqual(responseBoxscore.first!.basicGameData.arena, boxscoreBasicGameDataResponse.arena)
+        XCTAssertEqual(responseBoxscore.first!.basicGameData.gameDuration, boxscoreBasicGameDataResponse.gameDuration)
+        XCTAssertEqual(responseBoxscore.first!.basicGameData.period, boxscoreBasicGameDataResponse.period)
+        XCTAssertEqual(responseBoxscore.first!.basicGameData.officials, boxscoreBasicGameDataResponse.officials)
+        XCTAssertEqual(responseBoxscore.first!.basicGameData.homeTeamData, boxscoreBasicGameDataResponse.homeTeamData)
+        XCTAssertEqual(responseBoxscore.first!.basicGameData.visitorTeamData, boxscoreBasicGameDataResponse.visitorTeamData)
      }
 }

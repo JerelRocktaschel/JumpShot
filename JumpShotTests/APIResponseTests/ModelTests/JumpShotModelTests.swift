@@ -1493,9 +1493,9 @@ class JumpShotModelTests: XCTestCase {
         var boxscoreStatsDataResponse: BoxscoreTeamStats?
 
         do {
-        boxscoreStatsDataResponse = try JSONDecoder().decode(BoxscoreTeamStats.self, from: boxscoreStatsData)
+            boxscoreStatsDataResponse = try JSONDecoder().decode(BoxscoreTeamStats.self, from: boxscoreStatsData)
         } catch {
-        boxscoreStatsDataResponse = nil
+            boxscoreStatsDataResponse = nil
         }
         XCTAssertNil(boxscoreStatsDataResponse)
      }
