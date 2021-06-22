@@ -64,14 +64,14 @@ extension Team: Decodable {
     // MARK: Coding Keys
 
     enum TeamCodingKeys: String, CodingKey {
-        case isAllStar = "isAllStar"
-        case city = "city"
-        case altCityName = "altCityName"
-        case fullName = "fullName"
+        case isAllStar
+        case city
+        case altCityName
+        case fullName
         case abbreviation = "tricode"
-        case teamId = "teamId"
+        case teamId
         case name = "nickname"
-        case urlName = "urlName"
+        case urlName
         case shortName = "teamShortName"
         case conference = "confName"
         case division = "divName"

@@ -122,12 +122,12 @@ extension Standing: Decodable {
     // MARK: Coding Keys
 
     enum GameScheduleCodingKeys: String, CodingKey {
-        case teamId = "teamId"
+        case teamId
         case wins = "win"
         case losses = "loss"
-        case winPct = "winPct"
-        case lossPct = "lossPct"
-        case gamesBehind = "gamesBehind"
+        case winPct
+        case lossPct
+        case gamesBehind
         case divisionGamesBehind = "divGamesBehind"
         case isClinchedPlayoffs = "clinchedPlayoffsCode"
         case conferenceWins = "confWin"
@@ -140,9 +140,9 @@ extension Standing: Decodable {
         case awayLosses = "awayLoss"
         case lastTenWins = "lastTenWin"
         case lastTenLosses = "lastTenLoss"
-        case streak = "streak"
+        case streak
         case divisionRank = "divRank"
-        case isWinStreak = "isWinStreak"
+        case isWinStreak
         case teamSitesOnly = "teamSitesOnly"
     }
 }

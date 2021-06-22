@@ -46,7 +46,7 @@ public struct Play {
         let playContainer = try decoder.container(keyedBy: PlayCodingKeys.self)
         let vTeamScoreString = try playContainer.decode(String.self, forKey: .vTeamScore)
         let hTeamScoreString = try playContainer.decode(String.self, forKey: .hTeamScore)
-        let formatted = try playContainer.decode([String:String].self, forKey: .formatted)
+        let formatted = try playContainer.decode([String: String].self, forKey: .formatted)
         clock = try playContainer.decode(String.self, forKey: .clock)
         eventMsgType = try playContainer.decode(String.self, forKey: .eventMsgType)
         description = try playContainer.decode(String.self, forKey: .description)

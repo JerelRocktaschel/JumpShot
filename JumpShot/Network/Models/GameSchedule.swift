@@ -81,12 +81,12 @@ extension GameSchedule: Decodable {
         case homeNickName = "htNickName"
         case homeShortName = "htShortName"
         case homeAbbreviation = "htAbbreviation"
-        case date = "date"
-        case time = "time"
+        case date
+        case time
         case gameDay = "day"
         case broadcastId = "broadcastID"
-        case broadcasterName = "broadcasterName"
-        case tapeDelayComments = "tapeDelayComments"
+        case broadcasterName
+        case tapeDelayComments
     }
 }
 

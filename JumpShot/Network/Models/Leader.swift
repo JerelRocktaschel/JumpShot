@@ -68,7 +68,7 @@ extension Leader: Decodable {
 
     enum LeaderCodingKeys: String, CodingKey {
         case playerId = "personId"
-        case value = "value"
+        case value
     }
 }
 

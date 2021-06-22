@@ -177,12 +177,12 @@ extension Player: Decodable {
     // MARK: Coding Keys
 
     enum PlayerCodingKeys: String, CodingKey {
-        case firstName = "firstName"
-        case lastName = "lastName"
+        case firstName
+        case lastName
         case displayName = "temporaryDisplayName"
         case playerId = "personId"
-        case teamId = "teamId"
-        case jersey = "jersey"
+        case teamId
+        case jersey
         case position = "pos"
         case feet = "heightFeet"
         case inches = "heightInches"
@@ -190,13 +190,13 @@ extension Player: Decodable {
         case pounds = "weightPounds"
         case kilograms = "weightKilograms"
         case dateOfBirth = "dateOfBirthUTC"
-        case teams = "teams"
-        case draft = "draft"
-        case nbaDebutYear = "nbaDebutYear"
-        case yearsPro = "yearsPro"
-        case collegeName = "collegeName"
-        case lastAffiliation = "lastAffiliation"
-        case country = "country"
+        case teams
+        case draft
+        case nbaDebutYear
+        case yearsPro
+        case collegeName
+        case lastAffiliation
+        case country
     }
 }
 

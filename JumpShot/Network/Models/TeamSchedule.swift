@@ -172,9 +172,9 @@ extension Period: Decodable {
     // MARK: Coding Keys
 
     enum PeriodCodingKeys: String, CodingKey {
-        case current = "current"
-        case type = "type"
-        case maxRegular = "maxRegular"
+        case current
+        case type
+        case maxRegular
     }
 }
 
@@ -375,43 +375,43 @@ extension TeamSchedule: Decodable {
     // MARK: Coding Keys
 
     enum TeamScheduleCodingKeys: String, CodingKey {
-        case gameUrlCode = "gameUrlCode"
-        case gameId = "gameId"
+        case gameUrlCode
+        case gameId
         case statusNumber = "statusNum"
         case extendedStatusNumber = "extendedStatusNum"
-        case startTimeEastern = "startTimeEastern"
-        case startTimeUTC = "startTimeUTC"
-        case startDateEastern = "startDateEastern"
-        case homeStartDate = "homeStartDate"
-        case homeStartTime = "homeStartTime"
-        case visitorStartDate = "visitorStartDate"
-        case visitorStartTime = "visitorStartTime"
-        case isHomeTeam = "isHomeTeam"
-        case isStartTimeTBD = "isStartTimeTBD"
-        case regionalBlackoutCodes = "regionalBlackoutCodes"
+        case startTimeEastern
+        case startTimeUTC
+        case startDateEastern
+        case homeStartDate
+        case homeStartTime
+        case visitorStartDate
+        case visitorStartTime
+        case isHomeTeam
+        case isStartTimeTBD
+        case regionalBlackoutCodes
         case isPurchasable = "canPurchase"
-        case isLeaguePass = "isLeaguePass"
-        case isNationalBlackout = "isNationalBlackout"
-        case isTNTOT = "isTNTOT"
-        case isVR = "isVR"
-        case tntotIsOnAir = "tntotIsOnAir"
-        case isNextVR = "isNextVR"
-        case isNBAOnTNTVR = "isNBAOnTNTVR"
-        case isMagicLeap = "isMagicLeap"
-        case isOculusVenues = "isOculusVenues"
+        case isLeaguePass
+        case isNationalBlackout
+        case isTNTOT
+        case isVR
+        case tntotIsOnAir
+        case isNextVR
+        case isNBAOnTNTVR
+        case isMagicLeap
+        case isOculusVenues
         case visitorTeam = "vTeam"
         case homeTeam = "hTeam"
-        case watch = "watch"
-        case broadcast = "broadcast"
-        case broadcasters = "broadcasters"
-        case national = "national"
-        case canadian = "canadian"
+        case watch
+        case broadcast
+        case broadcasters
+        case national
+        case canadian
         case spanishNational = "spanish_national"
-        case video = "video"
-        case audio = "audio"
-        case isNeutralVenue = "isNeutralVenue"
-        case isBuzzerBeater = "isBuzzerBeater"
-        case period = "period"
+        case video
+        case audio
+        case isNeutralVenue
+        case isBuzzerBeater
+        case period
     }
 }
 
