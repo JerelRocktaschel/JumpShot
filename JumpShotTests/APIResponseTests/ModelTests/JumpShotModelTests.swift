@@ -1124,4 +1124,393 @@ class JumpShotModelTests: XCTestCase {
         }
         XCTAssertNil(per48LeagueModelResponse)
      }
+    
+    // MARK: Boxscore - BasicGameData
+
+    func test_boxscoreBasicGameDataModel_withCompleteData_isSuccessful() throws {
+        let path = getPath(forResource: "BoxscoreBasicGameModel",
+                                ofType: "json")
+        let boxscoreBasicGameData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let boxscoreBasicGameDataResponse = try JSONDecoder().decode(BasicGameData.self, from: boxscoreBasicGameData)
+        let dateFormatter: DateFormatter
+        dateFormatter = DateFormatter.iso8601Full
+        
+        let arenaData = """
+            {
+                "name":"Little Caesars Arena",
+                "isDomestic":true,
+                "city":"Detroit",
+                "stateAbbr":"MI",
+                "country":"USA"
+            }
+            """.data(using: .utf8)!
+        let arena = try JSONDecoder().decode(Arena.self, from: arenaData)
+        
+        let gameDurationData = """
+            {
+                "hours":"2",
+                "minutes":"21"
+            }
+            """.data(using: .utf8)!
+        let gameDuration = try JSONDecoder().decode(GameDuration.self, from: gameDurationData)
+        
+        let boxscorePeriodData = """
+            {
+                "current":4,
+                "type":0,
+                "maxRegular":4,
+                "isHalftime":false,
+                "isEndOfPeriod":false
+            }
+            """.data(using: .utf8)!
+        let boxscorePeriod = try JSONDecoder().decode(BoxscorePeriod.self, from: boxscorePeriodData)
+        
+        let officials: [Official] = [Official(fullName: "JB DeRosa"),
+                                     Official(fullName: "Rodney Mott"),
+                                     Official(fullName: "Andy Nagy")]
+        
+        let homeTeamBoxscoreData = """
+            {
+                "teamId":"1610612765",
+                "triCode":"DET",
+                "win":"4",
+                "loss":"13",
+                "seriesWin":"1",
+                "seriesLoss":"1",
+                "score":"119",
+                "linescore":[
+                    {
+                       "score":"34"
+                    },
+                    {
+                       "score":"30"
+                    },
+                    {
+                       "score":"25"
+                    },
+                    {
+                       "score":"30"
+                    }
+                ]
+            }
+            """.data(using: .utf8)!
+        let homeTeamData = try JSONDecoder().decode(BoxscoreTeamData.self, from: homeTeamBoxscoreData)
+        
+        let visitorTeamBoxscoreData = """
+            {
+                "teamId":"1610612755",
+                "triCode":"PHI",
+                "win":"12",
+                "loss":"6",
+                "seriesWin":"1",
+                "seriesLoss":"1",
+                "score":"104",
+                "linescore":[
+                    {
+                       "score":"23"
+                    },
+                    {
+                       "score":"27"
+                    },
+                    {
+                       "score":"25"
+                    },
+                    {
+                       "score":"29"
+                    }
+                ]
+            }
+            """.data(using: .utf8)!
+        let visitorTeamData = try JSONDecoder().decode(BoxscoreTeamData.self, from: visitorTeamBoxscoreData)
+        
+        let startTime = dateFormatter.date(from: "2021-01-26T00:00:00.000Z")
+        let endTime = dateFormatter.date(from: "2021-01-26T02:39:00.000Z")
+        
+        XCTAssertEqual(boxscoreBasicGameDataResponse.isGameActivated, false)
+        XCTAssertEqual(boxscoreBasicGameDataResponse.status, 3)
+        XCTAssertEqual(boxscoreBasicGameDataResponse.extendedStatus, 0)
+        XCTAssertEqual(boxscoreBasicGameDataResponse.startTime, startTime)
+        XCTAssertEqual(boxscoreBasicGameDataResponse.endTime, endTime)
+        XCTAssertEqual(boxscoreBasicGameDataResponse.isBuzzerBeater, false)
+        XCTAssertEqual(boxscoreBasicGameDataResponse.isNeutralVenue, false)
+        XCTAssertEqual(boxscoreBasicGameDataResponse.arena, arena)
+        XCTAssertEqual(boxscoreBasicGameDataResponse.gameDuration, gameDuration)
+        XCTAssertEqual(boxscoreBasicGameDataResponse.period, boxscorePeriod)
+        XCTAssertEqual(boxscoreBasicGameDataResponse.officials, officials)
+        XCTAssertEqual(boxscoreBasicGameDataResponse.homeTeamData, homeTeamData)
+        XCTAssertEqual(boxscoreBasicGameDataResponse.visitorTeamData, visitorTeamData)
+     }
+    
+    func test_boxscoreModel_withBadData_isNil() throws {
+         let path = getPath(forResource: "BoxscoreBasicGameModelBadDataFormat",
+                                ofType: "json")
+         let boxscoreBasicGameData = try Data(contentsOf: URL(fileURLWithPath: path))
+         var boxscoreBasicGameDataResponse: BasicGameData?
+
+         do {
+            boxscoreBasicGameDataResponse = try JSONDecoder().decode(BasicGameData.self, from: boxscoreBasicGameData)
+         } catch {
+            boxscoreBasicGameDataResponse = nil
+         }
+         XCTAssertNil(boxscoreBasicGameDataResponse)
+     } 
+
+    func test_BoxscoreModel_withMissingData_isNil() throws {
+         let path = getPath(forResource: "BoxscoreBasicGameModelMissingDataFormat",
+                                ofType: "json")
+         let teamScheduleModelData = try Data(contentsOf: URL(fileURLWithPath: path))
+         var teamScheduleModelResponse: Leader?
+
+         do {
+             teamScheduleModelResponse = try JSONDecoder().decode(Leader.self, from: teamScheduleModelData)
+         } catch {
+             teamScheduleModelResponse = nil
+         }
+         XCTAssertNil(teamScheduleModelResponse)
+     }
+    
+    // MARK: Boxscore - BoxscoreStats
+    
+    func test_boxscoreStatsModel_withCompleteData_isSuccessful() throws {
+        let path = getPath(forResource: "BoxscoreGameStatsModel",
+                                ofType: "json")
+        let boxscoreStatsData = try Data(contentsOf: URL(fileURLWithPath: path))
+        let boxscoreStatsResponse = try JSONDecoder().decode(BoxscoreStats.self, from: boxscoreStatsData)
+        
+        let visitorTeamCodedStats = """
+            {
+                "fastBreakPoints":"11",
+                "pointsInPaint":"48",
+                "biggestLead":"0",
+                "secondChancePoints":"23",
+                "pointsOffTurnovers":"33",
+                "longestRun":"8",
+                "totals":{
+                 "points":"104",
+                 "fgm":"40",
+                 "fga":"94",
+                 "fgp":"42.6",
+                 "ftm":"15",
+                 "fta":"20",
+                 "ftp":"75.0",
+                 "tpm":"9",
+                 "tpa":"28",
+                 "tpp":"32.1",
+                 "offReb":"13",
+                 "defReb":"23",
+                 "totReb":"36",
+                 "assists":"15",
+                 "pFouls":"26",
+                 "steals":"12",
+                 "turnovers":"9",
+                 "blocks":"3",
+                 "plusMinus":"-15",
+                 "min":"240:00",
+                 "short_timeout_remaining":"0",
+                 "full_timeout_remaining":"2",
+                 "team_fouls":"24"
+                },
+                "leaders":{
+                 "points":{
+                    "value":"25",
+                    "players":[
+                       {
+                          "personId":"202699",
+                          "firstName":"Tobias",
+                          "lastName":"Harris"
+                       }
+                    ]
+                 },
+                 "rebounds":{
+                    "value":"9",
+                    "players":[
+                       {
+                          "personId":"1628396",
+                          "firstName":"Tony",
+                          "lastName":"Bradley"
+                       }
+                    ]
+                 },
+                 "assists":{
+                    "value":"4",
+                    "players":[
+                       {
+                          "personId":"1627732",
+                          "firstName":"Ben",
+                          "lastName":"Simmons"
+                       }
+                    ]
+                 }
+                }
+            }
+            """.data(using: .utf8)!
+        
+        let visitorTeamStats = try JSONDecoder().decode(BoxscoreTeamStats.self, from: visitorTeamCodedStats)
+        
+        let homeTeamCodedStats = """
+           {
+              "fastBreakPoints":"8",
+              "pointsInPaint":"30",
+              "biggestLead":"21",
+              "secondChancePoints":"15",
+              "pointsOffTurnovers":"16",
+              "longestRun":"8",
+              "totals":{
+                 "points":"119",
+                 "fgm":"35",
+                 "fga":"70",
+                 "fgp":"50.0",
+                 "ftm":"32",
+                 "fta":"38",
+                 "ftp":"84.2",
+                 "tpm":"17",
+                 "tpa":"38",
+                 "tpp":"44.7",
+                 "offReb":"11",
+                 "defReb":"36",
+                 "totReb":"47",
+                 "assists":"22",
+                 "pFouls":"20",
+                 "steals":"6",
+                 "turnovers":"18",
+                 "blocks":"6",
+                 "plusMinus":"15",
+                 "min":"240:00",
+                 "short_timeout_remaining":"0",
+                 "full_timeout_remaining":"2",
+                 "team_fouls":"19"
+              },
+              "leaders":{
+                 "points":{
+                    "value":"28",
+                    "players":[
+                       {
+                          "personId":"1626153",
+                          "firstName":"Delon",
+                          "lastName":"Wright"
+                       }
+                    ]
+                 },
+                 "rebounds":{
+                    "value":"10",
+                    "players":[
+                       {
+                          "personId":"203486",
+                          "firstName":"Mason",
+                          "lastName":"Plumlee"
+                       }
+                    ]
+                 },
+                 "assists":{
+                    "value":"9",
+                    "players":[
+                       {
+                          "personId":"1626153",
+                          "firstName":"Delon",
+                          "lastName":"Wright"
+                       }
+                    ]
+                 }
+              }
+           }
+           """.data(using: .utf8)!
+        let homeTeamStats = try JSONDecoder().decode(BoxscoreTeamStats.self, from: homeTeamCodedStats)
+       
+        let activePlayersCoded =
+            """
+          [
+             {
+                "personId":"201980",
+                "firstName":"Danny",
+                "lastName":"Green",
+                "jersey":"14",
+                "teamId":"1610612755",
+                "isOnCourt":false,
+                "points":"6",
+                "pos":"SF",
+                "position_full":"Small Forward",
+                "player_code":"danny_green",
+                "min":"22:04",
+                "fgm":"2",
+                "fga":"6",
+                "fgp":"33.3",
+                "ftm":"0",
+                "fta":"0",
+                "ftp":"0.0",
+                "tpm":"2",
+                "tpa":"4",
+                "tpp":"50.0",
+                "offReb":"1",
+                "defReb":"0",
+                "totReb":"1",
+                "assists":"0",
+                "pFouls":"1",
+                "steals":"1",
+                "turnovers":"0",
+                "blocks":"0",
+                "plusMinus":"-19",
+                "dnp":"",
+                "sortKey":{
+                   "name":1,
+                   "pos":0,
+                   "points":15,
+                   "min":11,
+                   "fgm":13,
+                   "fga":13,
+                   "fgp":13,
+                   "ftm":16,
+                   "fta":16,
+                   "ftp":16,
+                   "tpm":5,
+                   "tpa":6,
+                   "tpp":4,
+                   "offReb":8,
+                   "defReb":19,
+                   "totReb":18,
+                   "assists":17,
+                   "pFouls":13,
+                   "steals":7,
+                   "turnovers":15,
+                   "blocks":10,
+                   "plusMinus":27
+                }
+             }
+          ]
+          """.data(using: .utf8)!
+        let activePlayers = try JSONDecoder().decode([ActivePlayer].self, from: activePlayersCoded)
+
+        XCTAssertEqual(boxscoreStatsResponse.timesTied, 0)
+        XCTAssertEqual(boxscoreStatsResponse.leadChanges, 0)
+        XCTAssertEqual(boxscoreStatsResponse.visitorTeamStats, visitorTeamStats)
+        XCTAssertEqual(boxscoreStatsResponse.homeTeamStats, homeTeamStats)
+        XCTAssertEqual(boxscoreStatsResponse.activePlayers, activePlayers)
+    }
+    
+    func test_BoxscoreStatsModel_withBadData_isNil() throws {
+        let path = getPath(forResource: "BoxscoreGameStatsModelBadDataFormat",
+                            ofType: "json")
+        let boxscoreStatsData = try Data(contentsOf: URL(fileURLWithPath: path))
+        var boxscoreStatsDataResponse: BoxscoreTeamStats?
+
+        do {
+        boxscoreStatsDataResponse = try JSONDecoder().decode(BoxscoreTeamStats.self, from: boxscoreStatsData)
+        } catch {
+        boxscoreStatsDataResponse = nil
+        }
+        XCTAssertNil(boxscoreStatsDataResponse)
+     }
+
+    func test_BoxscoreStatsModel_withMissingData_isNil() throws {
+        let path = getPath(forResource: "BoxscoreGameStatsModelMissingDataFormat",
+                            ofType: "json")
+        let boxscoreStatsData = try Data(contentsOf: URL(fileURLWithPath: path))
+        var boxscoreStatsDataResponse: BoxscoreTeamStats?
+
+        do {
+           boxscoreStatsDataResponse = try JSONDecoder().decode(BoxscoreTeamStats.self, from: boxscoreStatsData)
+        } catch {
+           boxscoreStatsDataResponse = nil
+        }
+        XCTAssertNil(boxscoreStatsDataResponse)
+    }
 }

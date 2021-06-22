@@ -33,12 +33,38 @@ public struct Arena: Decodable {
     let country: String
 }
 
+extension Arena: Equatable {
+
+    // MARK: Equatable
+
+    public static func ==(lhs: Arena, rhs: Arena) -> Bool {
+        return lhs.name == rhs.name &&
+        lhs.isDomestic == rhs.isDomestic &&
+        lhs.city == rhs.city &&
+        lhs.stateAbbr == rhs.stateAbbr &&
+        lhs.country == rhs.country
+    }
+}
+
 public struct BoxscorePeriod: Decodable {
     let current: Int
     let type: Int
     let maxRegular: Int
     let isHalftime: Bool
     let isEndOfPeriod: Bool
+}
+
+extension BoxscorePeriod: Equatable {
+
+    // MARK: Equatable
+
+    public static func ==(lhs: BoxscorePeriod, rhs: BoxscorePeriod) -> Bool {
+        return lhs.current == rhs.current &&
+        lhs.type == rhs.type &&
+        lhs.maxRegular == rhs.maxRegular &&
+        lhs.isHalftime == rhs.isHalftime &&
+        lhs.isEndOfPeriod == rhs.isEndOfPeriod
+    }
 }
 
 public struct GameDuration {
@@ -78,12 +104,56 @@ extension GameDuration: Decodable {
     }
 }
 
+extension GameDuration: Equatable {
+
+    // MARK: Equatable
+
+    public static func ==(lhs: GameDuration, rhs: GameDuration) -> Bool {
+        return lhs.hours == rhs.hours &&
+        lhs.minutes == rhs.minutes
+    }
+}
+
 public struct Official {
     let fullName: String
 }
 
+extension Official: Equatable {
+
+    // MARK: Equatable
+
+    public static func ==(lhs: Official, rhs: Official) -> Bool {
+        return lhs.fullName == rhs.fullName
+    }
+}
+
 public struct Score {
     let score: Int
+}
+
+extension Score: Equatable {
+
+    // MARK: Equatable
+
+    public static func ==(lhs: Score, rhs: Score) -> Bool {
+        return lhs.score == rhs.score
+    }
+}
+
+extension BoxscoreTeamData: Equatable {
+
+    // MARK: Equatable
+
+    public static func == (lhs: BoxscoreTeamData, rhs: BoxscoreTeamData) -> Bool {
+        return lhs.teamId == rhs.teamId &&
+        lhs.triCode == rhs.triCode &&
+        lhs.wins == rhs.wins &&
+        lhs.losses == rhs.losses &&
+        lhs.seriesWins == rhs.seriesWins &&
+        lhs.seriesLosses == rhs.seriesLosses &&
+        lhs.score == rhs.score &&
+        lhs.linescore == rhs.linescore
+    }
 }
 
 public struct BoxscoreTeamData {
@@ -401,6 +471,42 @@ public struct ActivePlayer {
         isOnCourt = try activePlayerCodingKeysDataContainer.decode(Bool.self, forKey: .isOnCourt)
         position = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .position)
         positionFull = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .positionFull)
+    }
+}
+
+extension ActivePlayer: Equatable {
+
+    // MARK: Equatable
+
+    public static func ==(lhs: ActivePlayer, rhs: ActivePlayer) -> Bool {
+        return lhs.playerId == rhs.playerId &&
+        lhs.firstName == rhs.firstName &&
+        lhs.lastName == rhs.lastName &&
+        lhs.teamId == rhs.teamId &&
+        lhs.isOnCourt == rhs.isOnCourt &&
+        lhs.position == rhs.position &&
+        lhs.positionFull == rhs.positionFull &&
+        lhs.points == rhs.points &&
+        lhs.fgm == rhs.fgm &&
+        lhs.fga == rhs.fga &&
+        lhs.fgp == rhs.fgp &&
+        lhs.ftm == rhs.ftm &&
+        lhs.fta == rhs.fta &&
+        lhs.ftp == rhs.ftp &&
+        lhs.tpm == rhs.tpm &&
+        lhs.tpa == rhs.tpa &&
+        lhs.tpp == rhs.tpp &&
+        lhs.offensiveRebounds == rhs.offensiveRebounds &&
+        lhs.defensiveRebounds == rhs.defensiveRebounds &&
+        lhs.totalRebounds == rhs.totalRebounds &&
+        lhs.assists == rhs.assists &&
+        lhs.personalFouls == rhs.personalFouls &&
+        lhs.steals == rhs.steals &&
+        lhs.turnovers == rhs.turnovers &&
+        lhs.blocks == rhs.blocks &&
+        lhs.plusMinus == rhs.plusMinus &&
+        lhs.minutes == rhs.minutes &&
+        lhs.seconds == rhs.seconds
     }
 }
 
@@ -729,6 +835,39 @@ public struct BoxscoreTeamStatTotals {
     }
 }
 
+extension BoxscoreTeamStatTotals: Equatable {
+    
+    // MARK: Equatable
+
+    public static func ==(lhs: BoxscoreTeamStatTotals, rhs: BoxscoreTeamStatTotals) -> Bool {
+        return lhs.points == rhs.points &&
+        lhs.points == rhs.points &&
+        lhs.fgm == rhs.fgm &&
+        lhs.fga == rhs.fga &&
+        lhs.fgp == rhs.fgp &&
+        lhs.ftm == rhs.ftm &&
+        lhs.fta == rhs.fta &&
+        lhs.ftp == rhs.ftp &&
+        lhs.tpm == rhs.tpm &&
+        lhs.tpa == rhs.tpa &&
+        lhs.tpp == rhs.tpp &&
+        lhs.offensiveRebounds == rhs.offensiveRebounds &&
+        lhs.defensiveRebounds == rhs.defensiveRebounds &&
+        lhs.totalRebounds == rhs.totalRebounds &&
+        lhs.assists == rhs.assists &&
+        lhs.personalFouls == rhs.personalFouls &&
+        lhs.turnovers == rhs.turnovers &&
+        lhs.plusMinus == rhs.plusMinus &&
+        lhs.minutes == rhs.minutes &&
+        lhs.seconds == rhs.seconds &&
+        lhs.steals == rhs.steals &&
+        lhs.blocks == rhs.blocks &&
+        lhs.shortTimeoutsRemaining == rhs.shortTimeoutsRemaining &&
+        lhs.fullTimeoutsRemaining == rhs.fullTimeoutsRemaining &&
+        lhs.teamFouls == rhs.teamFouls
+    }
+}
+
 extension BoxscoreTeamStatTotals: Decodable {
 
     // MARK: Coding Keys
@@ -830,6 +969,21 @@ public struct BoxscoreTeamStats {
 
         totals = try boxscoreTeamStatsDataContainer.decode(BoxscoreTeamStatTotals.self, forKey: .totals)
 
+    }
+}
+
+extension BoxscoreTeamStats: Equatable {
+
+    // MARK: Equatable
+
+    public static func == (lhs: BoxscoreTeamStats, rhs: BoxscoreTeamStats) -> Bool {
+        return lhs.fastBreakPoints == rhs.fastBreakPoints &&
+        lhs.pointsInPaint == rhs.pointsInPaint &&
+        lhs.biggestLead == rhs.biggestLead &&
+        lhs.secondChancePoints == rhs.secondChancePoints &&
+        lhs.pointsOffTurnovers == rhs.pointsOffTurnovers &&
+        lhs.longestRun == rhs.longestRun &&
+        lhs.totals == rhs.totals
     }
 }
 
@@ -946,7 +1100,6 @@ public struct Boxscore {
 
     let basicGameData: BasicGameData
     let boxscoreStats: BoxscoreStats
-    
 }
 
 struct BoxscoreApiResponse {
