@@ -41,10 +41,13 @@ public extension JumpShot {
         # Notes: #
         1. Handle boxscore return due to being optional.
      */
+    
+    typealias BoxscoreCompletion = (_ boxscore: Boxscore?,
+                                    _ error: LocalizedError?) -> Void
+    
     func getBoxscore(for gameDate: String,
                      and gameId: String,
-                     completion: @escaping (_ boxscore: Boxscore?,
-                                            _ error: LocalizedError?) -> Void) {
+                     completion: @escaping BoxscoreCompletion) {
 
         JumpShotNetworkManager.shared.router.request(.boxscore(date: gameDate,
                                                                gameId: gameId)) { data, response, error in

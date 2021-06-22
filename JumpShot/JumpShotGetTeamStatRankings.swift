@@ -40,7 +40,10 @@ public extension JumpShot {
         1. Handle [TeamStatRanking] return due to being optional.
      */
 
-    func getTeamStatRankings(completion: @escaping (_ teamStatRankings: [TeamStatRanking]?, _ error: LocalizedError?) -> Void) {
+    typealias GetTeamStatRankingsCompletion = (_ teamStatRankings: [TeamStatRanking]?,
+                                               _ error: LocalizedError?) -> Void
+    
+    func getTeamStatRankings(completion: @escaping GetTeamStatRankingsCompletion) {
         let season = Date().getSeasonYear()
         JumpShotNetworkManager.shared.router.request(.teamStatRankingList(season: season)) { data, response, error in
             guard error == nil else {

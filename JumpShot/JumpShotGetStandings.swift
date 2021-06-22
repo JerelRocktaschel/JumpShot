@@ -43,7 +43,9 @@ public extension JumpShot {
         3. Not sure if isClinchedConference/isClinchedDivision will have values in the response.
      */
 
-    func getStandings(completion: @escaping (_ gameSchedules: [Standing]?, _ error: LocalizedError?) -> Void) {
+    typealias GetStandingsCompletion = (_ gameSchedules: [Standing]?, _ error: LocalizedError?) -> Void
+    
+    func getStandings(completion: @escaping GetStandingsCompletion) {
         JumpShotNetworkManager.shared.router.request(.standingList) { data, response, error in
             guard error == nil else {
                 completion(nil, JumpShotNetworkManagerError.networkConnectivityError)

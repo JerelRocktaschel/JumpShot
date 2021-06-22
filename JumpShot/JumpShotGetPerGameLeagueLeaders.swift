@@ -25,7 +25,6 @@
 
 import Foundation
 
-
 public extension JumpShot {
     /**
         Returns an array of PerLeagueLeader model objects for the season, category and season type passed
@@ -44,11 +43,13 @@ public extension JumpShot {
         1. Handle perGameLeagueLeaders return due to being optional.
      */
 
-     func getPerGameLeagueLeaders(for seasonStartYear: Int,
-                                  and seasonType: LeagueLeaders.SeasonType,
-                                  and category: LeagueLeaders.PerGameStatCategory,
-                                  completion: @escaping (_ perGameLeagueLeaders: [PerGameLeagueLeader]?,
-                                  _ error: LocalizedError?) -> Void) {
+    typealias PerGameLeagueLeadersCompletion = (_ perGameLeagueLeaders: [PerGameLeagueLeader]?,
+                                                _ error: LocalizedError?) -> Void
+
+    func getPerGameLeagueLeaders(for seasonStartYear: Int,
+                                 and seasonType: LeagueLeaders.SeasonType,
+                                 and category: LeagueLeaders.PerGameStatCategory,
+                                 completion: @escaping PerGameLeagueLeadersCompletion) {
 
         let currentSeasonStartYear = Date().getSeasonYearInt()
         guard seasonStartYear > 1946 && seasonStartYear <= currentSeasonStartYear else {

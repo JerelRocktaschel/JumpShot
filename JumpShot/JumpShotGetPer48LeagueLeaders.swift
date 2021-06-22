@@ -44,11 +44,13 @@ public extension JumpShot {
         1. Handle perGameLeagueLeaders return due to being optional.
      */
 
+    typealias Per48LeagueLeadersCompletion = (_ perLeagueLeaders: [Per48LeagueLeader]?,
+                                              _ error: LocalizedError?) -> Void
+    
      func getPer48LeagueLeaders(for seasonStartYear: Int,
                                 and seasonType: LeagueLeaders.SeasonType,
                                 and category: LeagueLeaders.Per48StatCategory,
-                                completion: @escaping (_ perLeagueLeaders: [Per48LeagueLeader]?,
-                                _ error: LocalizedError?) -> Void) {
+                                completion: @escaping Per48LeagueLeadersCompletion) {
 
         let currentSeasonStartYear = Date().getSeasonYearInt()
         guard seasonStartYear > 1946 && seasonStartYear <= currentSeasonStartYear else {

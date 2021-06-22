@@ -43,11 +43,13 @@ public extension JumpShot {
         1. Handle totalLeagueLeaders return due to being optional.
      */
 
-     func getTotalLeagueLeaders(for seasonStartYear: Int,
-                                and seasonType: LeagueLeaders.SeasonType,
-                                and category: LeagueLeaders.TotalsStatCategory,
-                                completion: @escaping (_ totalLeagueLeaders: [TotalLeagueLeader]?,
-                                _ error: LocalizedError?) -> Void) {
+    typealias TotalLeagueLeadersCompletion = (_ totalLeagueLeaders: [TotalLeagueLeader]?,
+                                              _ error: LocalizedError?) -> Void
+    
+    func getTotalLeagueLeaders(for seasonStartYear: Int,
+                               and seasonType: LeagueLeaders.SeasonType,
+                               and category: LeagueLeaders.TotalsStatCategory,
+                               completion: @escaping TotalLeagueLeadersCompletion) {
 
         let currentSeasonStartYear = Date().getSeasonYearInt()
         guard seasonStartYear > 1946 && seasonStartYear <= currentSeasonStartYear else {

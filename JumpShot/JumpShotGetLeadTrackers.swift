@@ -43,11 +43,13 @@ public extension JumpShot {
         1. Handle [Play] return due to being optional.
      */
 
+    typealias GetLeadTrackersCompletion = (_ leadTrackerQuarters: [LeadTracker]?,
+                                        _ error: LocalizedError?) -> Void
+    
     func getGetLeadTrackers(for gameDate: String,
                             and gameId: String,
                             and period: String,
-                            completion: @escaping (_ leadTrackerQuarters: [LeadTracker]?,
-                                                   _ error: LocalizedError?) -> Void) {
+                            completion: @escaping GetLeadTrackersCompletion) {
 
             JumpShotNetworkManager.shared.router.request(.leadTrackerList(
                                                             date: gameDate,

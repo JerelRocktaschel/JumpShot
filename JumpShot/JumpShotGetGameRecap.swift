@@ -42,10 +42,12 @@ public extension JumpShot {
         1. Handle GameRecap return due to being optional.
      */
 
+    typealias GetGameRecapCompletion = (_ gameRecap: GameRecap?,
+                                        _ error: LocalizedError?) -> Void
+    
     func getGetGameRecap(for gameDate: String,
                          and gameId: String,
-                         completion: @escaping (_ gameRecap: GameRecap?,
-                                                   _ error: LocalizedError?) -> Void) {
+                         completion: @escaping GetGameRecapCompletion) {
 
         JumpShotNetworkManager.shared.router.request(.gameRecap(date: gameDate,
                                                                 gameId: gameId)) { data, response, error in

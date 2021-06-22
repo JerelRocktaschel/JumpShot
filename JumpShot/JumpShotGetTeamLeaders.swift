@@ -41,8 +41,10 @@ public extension JumpShot {
         1. Handle [StatLeader] return due to being optional.
      */
 
-    func getTeamLeaders(for teamId: String, completion: @escaping (_ statLeaders: [StatLeader]?,
-                                                                   _ error: LocalizedError?) -> Void) {
+    typealias GetTeamLeadersCompletion = (_ statLeaders: [StatLeader]?,
+                                          _ error: LocalizedError?) -> Void
+    
+    func getTeamLeaders(for teamId: String, completion: @escaping GetTeamLeadersCompletion) {
         JumpShotNetworkManager.shared.router.request(.teamLeaderList(teamId: teamId)) { data, response, error in
             guard error == nil else {
                 completion(nil, JumpShotNetworkManagerError.networkConnectivityError)

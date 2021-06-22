@@ -40,8 +40,10 @@ public extension JumpShot {
         1. Handle [TeamSchedule] return due to being optional.
      */
 
-    func getCompleteSchedule(completion: @escaping (_ teamSchedules: [TeamSchedule]?,
-                                                    _ error: LocalizedError?) -> Void) {
+    typealias GetCompleteCompletion = (_ teamSchedules: [TeamSchedule]?,
+                                            _ error: LocalizedError?) -> Void
+    
+    func getCompleteSchedule(completion: @escaping GetTeamSchedulesCompletion) {
         let season = Date().getSeasonYear()
         JumpShotNetworkManager.shared.router.request(.completeScheduleList (season: season)) { data, response, error in
             guard error == nil else {

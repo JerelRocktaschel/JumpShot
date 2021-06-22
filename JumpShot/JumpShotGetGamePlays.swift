@@ -42,9 +42,12 @@ public extension JumpShot {
         1. Handle [Play] return due to being optional.
      */
 
+    typealias GetGamePlaysCompletion = (_ plays: [Play]?,
+                                        _ error: LocalizedError?) -> Void
+    
     func getGetGamePlays(for gameDate: String,
                          and gameId: String,
-                         completion: @escaping (_ plays: [Play]?, _ error: LocalizedError?) -> Void) {
+                         completion: @escaping GetGamePlaysCompletion) {
         JumpShotNetworkManager.shared.router.request(.gamePlayList(date: gameDate, gameId: gameId)) { data, response, error in
             guard error == nil else {
                 completion(nil, JumpShotNetworkManagerError.networkConnectivityError)

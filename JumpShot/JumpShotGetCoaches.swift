@@ -40,7 +40,9 @@ public extension JumpShot {
         1. Handle [Coach] return due to being optional.
      */
 
-    func getCoaches(completion: @escaping (_ coaches: [Coach]?, _ error: LocalizedError?) -> Void) {
+    typealias GetCoachesCompletion = (_ coaches: [Coach]?, _ error: LocalizedError?) -> Void
+    
+    func getCoaches(completion: @escaping GetCoachesCompletion) {
         let season = Date().getSeasonYear()
         JumpShotNetworkManager.shared.router.request(.coachList (season: season)) { data, response, error in
             guard error == nil else {

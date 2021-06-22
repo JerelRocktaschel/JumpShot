@@ -41,7 +41,9 @@ public extension JumpShot {
         1. Handle [Team] return due to being optional.
      */
 
-    func getTeams(completion: @escaping (_ teams: [Team]?, _ error: LocalizedError?) -> Void) {
+    typealias GetTeamsCompletion = (_ teams: [Team]?, _ error: LocalizedError?) -> Void
+
+    func getTeams(completion: @escaping GetTeamsCompletion) {
         let season = Date().getSeasonYear()
         JumpShotNetworkManager.shared.router.request(.teamList(season: season)) { data, response, error in
             guard error == nil else {
