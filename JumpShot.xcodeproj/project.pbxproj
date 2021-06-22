@@ -97,6 +97,9 @@
 		D82F05D2268174CD00A1F640 /* BoxscoreBasicGameModelBadDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D82F05D1268174CD00A1F640 /* BoxscoreBasicGameModelBadDataFormat.json */; };
 		D82F05D7268183F100A1F640 /* BoxscoreGameStatsModelBadDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D82F05D6268183F100A1F640 /* BoxscoreGameStatsModelBadDataFormat.json */; };
 		D82F05DC2681842100A1F640 /* BoxscoreGameStatsModelMissingDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D82F05DB2681842100A1F640 /* BoxscoreGameStatsModelMissingDataFormat.json */; };
+		D82F05E526824BAE00A1F640 /* BoxscoreApiResponseMissingBasicGameData.json in Resources */ = {isa = PBXBuildFile; fileRef = D82F05E426824BAE00A1F640 /* BoxscoreApiResponseMissingBasicGameData.json */; };
+		D82F05ED26824C9400A1F640 /* BoxscoreApiResponseMissingGameStats.json in Resources */ = {isa = PBXBuildFile; fileRef = D82F05EC26824C9400A1F640 /* BoxscoreApiResponseMissingGameStats.json */; };
+		D82F05F226824D8400A1F640 /* BoxscoreApiResponseOneBoxscore.json in Resources */ = {isa = PBXBuildFile; fileRef = D82F05F126824D8400A1F640 /* BoxscoreApiResponseOneBoxscore.json */; };
 		D832C4DD261E50F000D214B8 /* JumpShotGetTeamImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D832C4DC261E50F000D214B8 /* JumpShotGetTeamImage.swift */; };
 		D832C4F4261F74CD00D214B8 /* BOS.png in Resources */ = {isa = PBXBuildFile; fileRef = D832C4F3261F74CD00D214B8 /* BOS.png */; };
 		D832C4FA261FB3D300D214B8 /* NOP.png in Resources */ = {isa = PBXBuildFile; fileRef = D832C4F8261FB3D300D214B8 /* NOP.png */; };
@@ -304,6 +307,9 @@
 		D82F05D1268174CD00A1F640 /* BoxscoreBasicGameModelBadDataFormat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BoxscoreBasicGameModelBadDataFormat.json; sourceTree = "<group>"; };
 		D82F05D6268183F100A1F640 /* BoxscoreGameStatsModelBadDataFormat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BoxscoreGameStatsModelBadDataFormat.json; sourceTree = "<group>"; };
 		D82F05DB2681842100A1F640 /* BoxscoreGameStatsModelMissingDataFormat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BoxscoreGameStatsModelMissingDataFormat.json; sourceTree = "<group>"; };
+		D82F05E426824BAE00A1F640 /* BoxscoreApiResponseMissingBasicGameData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BoxscoreApiResponseMissingBasicGameData.json; sourceTree = "<group>"; };
+		D82F05EC26824C9400A1F640 /* BoxscoreApiResponseMissingGameStats.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BoxscoreApiResponseMissingGameStats.json; sourceTree = "<group>"; };
+		D82F05F126824D8400A1F640 /* BoxscoreApiResponseOneBoxscore.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BoxscoreApiResponseOneBoxscore.json; sourceTree = "<group>"; };
 		D832C4DC261E50F000D214B8 /* JumpShotGetTeamImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetTeamImage.swift; sourceTree = "<group>"; };
 		D832C4F3261F74CD00D214B8 /* BOS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BOS.png; sourceTree = "<group>"; };
 		D832C4F8261FB3D300D214B8 /* NOP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NOP.png; sourceTree = "<group>"; };
@@ -581,6 +587,7 @@
 		D817FC78261BD02A0092F5E0 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				D82F05E32682496300A1F640 /* BoxscoreApiResponse */,
 				D82F05B3268136A300A1F640 /* BoxscoreModel */,
 				D8342FA72669BEC70035D55E /* Per48LeagueLeaderModel */,
 				D8342F74266993FB0035D55E /* Per48LeagueLeaderApiResponse */,
@@ -819,6 +826,16 @@
 				D82F05D6268183F100A1F640 /* BoxscoreGameStatsModelBadDataFormat.json */,
 			);
 			path = BoxscoreModel;
+			sourceTree = "<group>";
+		};
+		D82F05E32682496300A1F640 /* BoxscoreApiResponse */ = {
+			isa = PBXGroup;
+			children = (
+				D82F05E426824BAE00A1F640 /* BoxscoreApiResponseMissingBasicGameData.json */,
+				D82F05EC26824C9400A1F640 /* BoxscoreApiResponseMissingGameStats.json */,
+				D82F05F126824D8400A1F640 /* BoxscoreApiResponseOneBoxscore.json */,
+			);
+			path = BoxscoreApiResponse;
 			sourceTree = "<group>";
 		};
 		D832C4F2261F749E00D214B8 /* Images */ = {
@@ -1194,6 +1211,7 @@
 				D8342F0E2666D57C0035D55E /* TotalLeagueLeaderApiResponseOneLeagueLeader.json in Resources */,
 				D893534926422700006CA270 /* TeamScheduleModelBadDataFormat.json in Resources */,
 				D826CBDA264AC3D600E95454 /* PlayerStatsSummaryApiResponseMissingRegularSeason.json in Resources */,
+				D82F05E526824BAE00A1F640 /* BoxscoreApiResponseMissingBasicGameData.json in Resources */,
 				D826CC24264CB36D00E95454 /* PlayModelMissingDataFormat.json in Resources */,
 				D8B629C22631C7EB007B0D63 /* StandingApiResponseMissingStandard.json in Resources */,
 				D8C0320F2645F3E10009292A /* TeamStatRankingApiResponseMissingTeams.json in Resources */,
@@ -1233,6 +1251,7 @@
 				D826CC1F264CB35600E95454 /* PlayModelBadDataFormat.json in Resources */,
 				D82F05D2268174CD00A1F640 /* BoxscoreBasicGameModelBadDataFormat.json in Resources */,
 				D826CC2D264CB71800E95454 /* PlayApiResponseMissingPlays.json in Resources */,
+				D82F05F226824D8400A1F640 /* BoxscoreApiResponseOneBoxscore.json in Resources */,
 				D89353CA264388B6006CA270 /* CoachApiResponseMissingAttribute.json in Resources */,
 				D8342F5026684E7E0035D55E /* PerGameLeagueLeaderApiResponseMissingRowSet.json in Resources */,
 				D826CC53264DAA2600E95454 /* LeadTrackerModel.json in Resources */,
@@ -1268,6 +1287,7 @@
 				D817FC88261BD02A0092F5E0 /* TeamApiResponseMissingAttribute.json in Resources */,
 				D8342FA92669BEF60035D55E /* Per48LeagueLeaderModel.json in Resources */,
 				D826CBF6264ACDEB00E95454 /* PlayerStatsSummaryApiResponseOneSummary.json in Resources */,
+				D82F05ED26824C9400A1F640 /* BoxscoreApiResponseMissingGameStats.json in Resources */,
 				D8342F042666D4070035D55E /* TotalLeagueLeaderApiResponseMissingHeaders.json in Resources */,
 				D89353592642E0F7006CA270 /* TeamScheduleApiResponseMissingLeague.json in Resources */,
 				D82F05CD268174B700A1F640 /* BoxscoreBasicGameModelMissingDataFormat.json in Resources */,

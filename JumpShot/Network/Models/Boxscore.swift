@@ -1118,7 +1118,7 @@ extension BoxscoreApiResponse {
         guard let basicGameDataDictionary = json["basicGameData"] as? JSONDictionary else {
             return nil
         }
-        
+
         guard let gameStatsDictionary = json["stats"] as? JSONDictionary else {
             return nil
         }
@@ -1135,7 +1135,7 @@ extension BoxscoreApiResponse {
             } catch {
                 return nil
         }
-        
+
         var boxscoreStats: BoxscoreStats
         do {
             guard let jsonBoxscoreStatsData = try? JSONSerialization.data(withJSONObject: gameStatsDictionary,

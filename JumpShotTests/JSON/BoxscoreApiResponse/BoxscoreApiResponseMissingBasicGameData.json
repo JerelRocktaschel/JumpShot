@@ -1,0 +1,15 @@
+{
+   "_internal":{
+      "pubDateTime":"2021-02-03 14:27:09.840 EST",
+      "igorPath":"domUpdater,1612380428219,1612380429146|feedProducer,1612380429275,1612380430344",
+      "routeName":"boxscore_final",
+      "routeValue":"2020_20210125_0022000257_final_boxscore",
+      "xslt":"NBA/xsl/game/boxscore/marty_boxscore.xsl",
+      "xsltForceRecompile":"true",
+      "xsltInCache":"false",
+      "xsltCompileTimeMillis":"537",
+      "xsltTransformTimeMillis":"504",
+      "consolidatedDomKey":"prod__transform__marty_boxscore__2472412901772",
+      "endToEndTimeMillis":"2125"
+   }
+}

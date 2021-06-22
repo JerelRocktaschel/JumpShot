@@ -617,4 +617,30 @@ class JumpShotAPIResponseTests: XCTestCase {
         let per48LeagueLeaderResponse = Per48LeagueLeaderApiResponse(json: per48LeagueLeaderResponseJson)
         XCTAssertEqual(per48LeagueLeaderResponse?.per48LeagueLeaders.count, 1)
     }
+    
+    // MARK: BoxscoreApiResponse
+
+    func test_boxscoreApiResponse_withMissingBasicGameData_isNil() throws {
+        let path = getPath(forResource: "BoxscoreApiResponseMissingBasicGameData",
+                           ofType: "json")
+        let boxscoreApiResponseJson = try getApiResourceJson(withPath: path)
+        let boxscoreApiResponse = BoxscoreApiResponse(json: boxscoreApiResponseJson)
+        XCTAssertNil(boxscoreApiResponse)
+    }
+    
+    func test_boxscoreApiResponse_withMissingGameStatsData_isNil() throws {
+        let path = getPath(forResource: "BoxscoreApiResponseMissingGameStats",
+                           ofType: "json")
+        let boxscoreApiResponseJson = try getApiResourceJson(withPath: path)
+        let boxscoreApiResponse = BoxscoreApiResponse(json: boxscoreApiResponseJson)
+        XCTAssertNil(boxscoreApiResponse)
+    }
+    
+    func test_boxscoreApiResponse_withBoxscore_isOne() throws {
+        let path = getPath(forResource: "BoxscoreApiResponseOneBoxscore",
+                           ofType: "json")
+        let boxscoreApiResponseJson = try getApiResourceJson(withPath: path)
+        let boxscoreApiResponse = BoxscoreApiResponse(json: boxscoreApiResponseJson)
+        XCTAssertNotNil(boxscoreApiResponse)
+    }
 }
