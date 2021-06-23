@@ -101,8 +101,8 @@ extension Date {
         }
         return year
     }
-    
-    func getSeasonYearInt() -> Int {
+
+    public func getSeasonYearInt() -> Int {
         let year = Calendar.current.component(.year, from: Date())
         let newSeasonDateString = JumpShotNetworkManagerResources.seasonStartMonthAndDay + String(year)
         if let newSeasonDate = DateFormatter.urlDate.date(from: newSeasonDateString) {

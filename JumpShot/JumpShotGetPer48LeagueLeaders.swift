@@ -32,7 +32,7 @@ public extension JumpShot {
      
         URL called: stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=BASEYEAR-SECONDYEAR&SeasonType=SEASON_TYPE&StatCategory=CATEGORY
    
-        - Parameter season: Year for when season began - year 2020 = season 2020-21,
+        - Parameter season: Year for when season began - year 2020 = season 2020-21.  Default to current season.
         - Parameter seasonType: LeagueLeaders.SeasonType
         - Parameter category: LeagueLeader.PerGameStatCategory
         - Parameter completion: The callback after retrieval.
@@ -47,7 +47,7 @@ public extension JumpShot {
     typealias Per48LeagueLeadersCompletion = (_ perLeagueLeaders: [Per48LeagueLeader]?,
                                               _ error: LocalizedError?) -> Void
     
-     func getPer48LeagueLeaders(for seasonStartYear: Int,
+     func getPer48LeagueLeaders(for seasonStartYear: Int = Date().getSeasonYearInt(),
                                 with seasonType: LeagueLeaders.SeasonType,
                                 and category: LeagueLeaders.Per48StatCategory,
                                 completion: @escaping Per48LeagueLeadersCompletion) {
