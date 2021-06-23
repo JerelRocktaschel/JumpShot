@@ -24,7 +24,7 @@ class JumpShotTableViewController: UITableViewController {
                              "getPlayerImage() - Small",
                              "getPlayerImage() - Large",
                              "getPlayers()",
-                             "getGameSchedule(for: \"04/20/2021\")",
+                             "getDailySchedule(for: \"04/20/2021\")",
                              "getStandings()",
                              "getTeamLeaders(for: \"1610612737\")",
                              "getTeamSchedules(for: \"1610612737\")",
@@ -56,26 +56,21 @@ class JumpShotTableViewController: UITableViewController {
         case 0:
             getTeams()
         case 1:
-            getTeamImage(for: "BOS")
+            getTeamImage()
         case 2:
-            getPlayerImage(for: .small, and: "1627759")
+            getPlayerImageSmall()
         case 3:
-            getPlayerImage(for: .large, and: "1627759")
+            getPlayerImageLarge()
         case 4:
             getPlayers()
         case 5:
-            var dateComponents = DateComponents()
-            dateComponents.year = 2021
-            dateComponents.month = 4
-            dateComponents.day = 20
-            let scheduleDate = Calendar.current.date(from: dateComponents)
-            getDailySchedule(for: scheduleDate!)
+            getDailySchedule()
         case 6:
             getStandings()
         case 7:
-            getTeamLeaders(for: "1610612737")
+            getTeamLeaders()
         case 8:
-            getTeamSchedules(for: "1610612737")
+            getTeamSchedules()
         case 9:
             getCompleteSchedule()
         case 10:
@@ -122,8 +117,8 @@ class JumpShotTableViewController: UITableViewController {
         }
     }
 
-    private func getTeamImage(for teamAbbreviation: String) {
-        jumpShot.getTeamImage(for: teamAbbreviation) { teamImage, error in
+    private func getTeamImage() {
+        jumpShot.getTeamImage(for: "BOS") { teamImage, error in
             guard error == nil else {
                 print(error!)
                 return
@@ -154,9 +149,24 @@ class JumpShotTableViewController: UITableViewController {
         }
     }
 
-    private func getPlayerImage(for size: JumpShotPlayerImageSize,
-                                and playerId: String) {
-        jumpShot.getPlayerImage(for: size, and: playerId) { playerImage, error in
+    private func getPlayerImageSmall() {
+        jumpShot.getPlayerImage(for: .small, and: "1627759") { playerImage, error in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+
+            guard let playerImage = playerImage else {
+                print("No image returned.")
+                return
+            }
+
+            print(playerImage)
+        }
+    }
+    
+    private func getPlayerImageLarge() {
+        jumpShot.getPlayerImage(for: .large, and: "1627759") { playerImage, error in
             guard error == nil else {
                 print(error!)
                 return
@@ -171,8 +181,13 @@ class JumpShotTableViewController: UITableViewController {
         }
     }
 
-    private func getDailySchedule(for date: Date) {
-        jumpShot.getDailySchedule(for: date) { gameSchedules, error in
+    private func getDailySchedule() {
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 4
+        dateComponents.day = 20
+        let scheduleDate = Calendar.current.date(from: dateComponents)
+        jumpShot.getDailySchedule(for: scheduleDate!) { gameSchedules, error in
             guard error == nil else {
                 print(error!)
                 return
@@ -203,8 +218,8 @@ class JumpShotTableViewController: UITableViewController {
         }
     }
 
-    private func getTeamLeaders(for teamId: String) {
-        jumpShot.getTeamLeaders(for: teamId) { teamLeaders, error in
+    private func getTeamLeaders() {
+        jumpShot.getTeamLeaders(for: "1610612737") { teamLeaders, error in
             guard error == nil else {
                 print(error!)
                 return
@@ -219,8 +234,8 @@ class JumpShotTableViewController: UITableViewController {
         }
     }
 
-    private func getTeamSchedules(for teamId: String) {
-        jumpShot.getTeamSchedules(for: teamId) { teamSchedules, error in
+    private func getTeamSchedules() {
+        jumpShot.getTeamSchedules(for: "1610612737") { teamSchedules, error in
             guard error == nil else {
                 print(error!)
                 return
@@ -300,8 +315,13 @@ class JumpShotTableViewController: UITableViewController {
     }
 
     private func getGamePlays() {
-        jumpShot.getGetGamePlays(for: "20210125",
-                                 and: "0022000257") { plays, error in
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 1
+        dateComponents.day = 25
+        let gameDate = Calendar.current.date(from: dateComponents)
+        jumpShot.getGetGamePlays(for: gameDate!,
+                                 with: "0022000257") { plays, error in
             guard error == nil else {
                 print(error!)
                 return
@@ -317,8 +337,13 @@ class JumpShotTableViewController: UITableViewController {
     }
 
     private func getLeadTrackers() {
-        jumpShot.getGetLeadTrackers(for: "20170201",
-                                    and: "0021600732",
+        var dateComponents = DateComponents()
+        dateComponents.year = 2017
+        dateComponents.month = 2
+        dateComponents.day = 1
+        let gameDate = Calendar.current.date(from: dateComponents)
+        jumpShot.getGetLeadTrackers(for: gameDate!,
+                                    with: "0021600732",
                                     and: "1") { leadTrackers, error in
             guard error == nil else {
                 print(error!)
@@ -335,8 +360,13 @@ class JumpShotTableViewController: UITableViewController {
     }
 
     private func getGameRecap() {
-        jumpShot.getGetGameRecap(for: "20210125",
-                                 and: "0022000257") { gameRecap, error in
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 1
+        dateComponents.day = 25
+        let gameDate = Calendar.current.date(from: dateComponents)
+        jumpShot.getGetGameRecap(for: gameDate!,
+                                 with: "0022000257") { gameRecap, error in
             guard error == nil else {
                 print(error!)
                 return
@@ -353,7 +383,7 @@ class JumpShotTableViewController: UITableViewController {
 
     private func getTotalLeagueLeaders() {
         jumpShot.getTotalLeagueLeaders(for: 2020,
-                                       and: .regularSeason,
+                                       with: .regularSeason,
                                        and: .playerEfficiency) { totalLeagueLeaders, error in
             guard error == nil else {
                 print(error!)
@@ -371,8 +401,8 @@ class JumpShotTableViewController: UITableViewController {
     
     private func getPerGameLeagueLeaders() {
         jumpShot.getPerGameLeagueLeaders(for: 2020,
-                                       and: .regularSeason,
-                                       and: .playerEfficiency) { perGameLeagueLeaders, error in
+                                         with: .regularSeason,
+                                         and: .playerEfficiency) { perGameLeagueLeaders, error in
             guard error == nil else {
                 print(error!)
                 return
@@ -389,7 +419,7 @@ class JumpShotTableViewController: UITableViewController {
     
     private func getPer48LeagueLeaders() {
         jumpShot.getPer48LeagueLeaders(for: 2020,
-                                       and: .regularSeason,
+                                       with: .regularSeason,
                                        and: .playerEfficiency) { per48LeagueLeaders, error in
             guard error == nil else {
                 print(error!)
@@ -406,8 +436,13 @@ class JumpShotTableViewController: UITableViewController {
     }
     
     private func getBoxscore() {
-        jumpShot.getBoxscore(for: "20210125",
-                             and: "0022000257") { boxscore, error in
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 1
+        dateComponents.day = 25
+        let gameDate = Calendar.current.date(from: dateComponents)
+        jumpShot.getBoxscore(for: gameDate!,
+                             with: "0022000257") { boxscore, error in
             guard error == nil else {
                 print(error!)
                 return

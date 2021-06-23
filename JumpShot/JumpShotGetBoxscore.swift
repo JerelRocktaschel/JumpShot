@@ -45,11 +45,11 @@ public extension JumpShot {
     typealias BoxscoreCompletion = (_ boxscore: Boxscore?,
                                     _ error: LocalizedError?) -> Void
     
-    func getBoxscore(for gameDate: String,
-                     and gameId: String,
+    func getBoxscore(for gameDate: Date = Date(),
+                     with gameId: String,
                      completion: @escaping BoxscoreCompletion) {
-
-        JumpShotNetworkManager.shared.router.request(.boxscore(date: gameDate,
+        let gameDateFormatted = gameDate.toYYYYMMDDFormat()
+        JumpShotNetworkManager.shared.router.request(.boxscore(date: gameDateFormatted,
                                                                gameId: gameId)) { data, response, error in
             guard error == nil else {
                 completion(nil, JumpShotNetworkManagerError.networkConnectivityError)

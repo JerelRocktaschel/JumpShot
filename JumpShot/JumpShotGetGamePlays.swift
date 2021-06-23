@@ -31,7 +31,7 @@ public extension JumpShot {
      
         URL called:  data.nba.net/prod/v1/20210125/0022000257_pbp_1.json
    
-        - Parameter gameDate: GameDate for game
+        - Parameter gameDate: GameDate for game. Default to today. Not sure why date is needed when gameId is provided.
         - Parameter gameId: GameID for game
         - Parameter completion: The callback after retrieval.
         - Parameter plays: An array of Playmodel objects.
@@ -45,10 +45,11 @@ public extension JumpShot {
     typealias GetGamePlaysCompletion = (_ plays: [Play]?,
                                         _ error: LocalizedError?) -> Void
     
-    func getGetGamePlays(for gameDate: String,
-                         and gameId: String,
+    func getGetGamePlays(for gameDate: Date = Date(),
+                         with gameId: String,
                          completion: @escaping GetGamePlaysCompletion) {
-        JumpShotNetworkManager.shared.router.request(.gamePlayList(date: gameDate, gameId: gameId)) { data, response, error in
+        let gameDateFormatted = gameDate.toYYYYMMDDFormat()
+        JumpShotNetworkManager.shared.router.request(.gamePlayList(date: gameDateFormatted, gameId: gameId)) { data, response, error in
             guard error == nil else {
                 completion(nil, JumpShotNetworkManagerError.networkConnectivityError)
                 return

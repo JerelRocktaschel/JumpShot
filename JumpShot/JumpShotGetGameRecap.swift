@@ -31,7 +31,7 @@ public extension JumpShot {
      
         URL called:  data.nba.net/prod/v1/YYYYMMDD/GAME_ID_recap_article.json
    
-        - Parameter gameDate: GameDate for game
+        - Parameter gameDate: GameDate for game. Default to today.
         - Parameter gameId: GameID for game
         - Parameter completion: The callback after retrieval.
         - Parameter gameRecap: A GameRecap object.
@@ -45,11 +45,12 @@ public extension JumpShot {
     typealias GetGameRecapCompletion = (_ gameRecap: GameRecap?,
                                         _ error: LocalizedError?) -> Void
     
-    func getGetGameRecap(for gameDate: String,
-                         and gameId: String,
+    func getGetGameRecap(for gameDate: Date = Date(),
+                         with gameId: String,
                          completion: @escaping GetGameRecapCompletion) {
 
-        JumpShotNetworkManager.shared.router.request(.gameRecap(date: gameDate,
+        let gameDateFormatted = gameDate.toYYYYMMDDFormat()
+        JumpShotNetworkManager.shared.router.request(.gameRecap(date: gameDateFormatted,
                                                                 gameId: gameId)) { data, response, error in
             guard error == nil else {
                 completion(nil, JumpShotNetworkManagerError.networkConnectivityError)

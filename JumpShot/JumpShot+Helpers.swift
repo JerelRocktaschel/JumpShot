@@ -102,8 +102,6 @@ extension Date {
         return year
     }
     
-    //TODO: NEED TO REFACTOR TO ONE HELPER - SET STRING IN NETWORK CALL
-    
     func getSeasonYearInt() -> Int {
         let year = Calendar.current.component(.year, from: Date())
         let newSeasonDateString = JumpShotNetworkManagerResources.seasonStartMonthAndDay + String(year)
@@ -125,6 +123,12 @@ extension Date {
         let year = String(self.get(.year).year!)
         return month + "/" + day + "/" + year
     }
+
+    func toYYYYMMDDFormat() -> String {
+        let dateFormatter: DateFormatter
+        dateFormatter = DateFormatter.monthYearDate
+        return dateFormatter.string(from: self)
+    }
 }
 
 extension DateFormatter {
@@ -143,6 +147,12 @@ extension DateFormatter {
         formatter.calendar = Calendar(identifier: .iso8601)
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
         formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter
+    }()
+    
+    static let monthYearDate: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
         return formatter
     }()
     

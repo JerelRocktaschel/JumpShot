@@ -31,7 +31,7 @@ public extension JumpShot {
      
         URL called: stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=BASEYEAR-SECONDYEAR&SeasonType=SEASON_TYPE&StatCategory=CATEGORY
    
-        - Parameter seasonStartYear: Year for when season began - year 2020 = season 2020-21
+        - Parameter season: Year for when season began - year 2020 = season 2020-21.
         - Parameter seasonType: LeagueLeaders.SeasonType
         - Parameter category: LeagueLeader.PerGameStatCategory
         - Parameter completion: The callback after retrieval.
@@ -47,10 +47,9 @@ public extension JumpShot {
                                                 _ error: LocalizedError?) -> Void
 
     func getPerGameLeagueLeaders(for seasonStartYear: Int,
-                                 and seasonType: LeagueLeaders.SeasonType,
+                                 with seasonType: LeagueLeaders.SeasonType,
                                  and category: LeagueLeaders.PerGameStatCategory,
                                  completion: @escaping PerGameLeagueLeadersCompletion) {
-
         let currentSeasonStartYear = Date().getSeasonYearInt()
         guard seasonStartYear > 1946 && seasonStartYear <= currentSeasonStartYear else {
             completion(nil, JumpShotNetworkManagerError.incorrectStartYearError)

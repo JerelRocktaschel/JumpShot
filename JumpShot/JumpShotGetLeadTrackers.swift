@@ -31,7 +31,7 @@ public extension JumpShot {
      
         URL called:  data.nba.net/prod/v1/20210125/0022000257_pbp_1.json
    
-        - Parameter gameDate: GameDate for game
+        - Parameter gameDate: GameDate for game. Default to today.
         - Parameter gameId: GameID for game
         - Parameter period: 1-4 for regular game. 5+ for overtimes.
         - Parameter completion: The callback after retrieval.
@@ -45,16 +45,15 @@ public extension JumpShot {
 
     typealias GetLeadTrackersCompletion = (_ leadTrackerQuarters: [LeadTracker]?,
                                         _ error: LocalizedError?) -> Void
-    
-    func getGetLeadTrackers(for gameDate: String,
-                            and gameId: String,
+
+    func getGetLeadTrackers(for gameDate: Date = Date(),
+                            with gameId: String,
                             and period: String,
                             completion: @escaping GetLeadTrackersCompletion) {
-
-            JumpShotNetworkManager.shared.router.request(.leadTrackerList(
-                                                            date: gameDate,
-                                                            gameId: gameId,
-                                                            period: period)) { data, response, error in
+        let gameDateFormatted = gameDate.toYYYYMMDDFormat()
+        JumpShotNetworkManager.shared.router.request(.leadTrackerList( date: gameDateFormatted,
+                                                                       gameId: gameId,
+                                                                       period: period)) { data, response, error in
             guard error == nil else {
                 completion(nil, JumpShotNetworkManagerError.networkConnectivityError)
                 return

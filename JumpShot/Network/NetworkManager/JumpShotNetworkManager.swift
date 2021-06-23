@@ -39,6 +39,7 @@ enum Result<T> {
 // MARK: Network Manager Resources
 
 enum JumpShotNetworkManagerResources {
+    /// should be set to before 1st game of season
     public static var seasonStartMonthAndDay: String { return "12/01/" }
 }
 

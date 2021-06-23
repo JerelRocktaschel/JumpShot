@@ -28,11 +28,11 @@ import Foundation
 public extension JumpShot {
 
     /**
-        Returns an array of GameSchedule model objects for a particular date.
+        Returns an array of GameSchedule model objects for a particular date in the current season.
      
         URL called:  stats.nba.com/stats/internationalbroadcasterschedule?LeagueID=00&Season=2020&RegionID=1&Date=MM/dd/yyyy&EST=Y
      
-        - Parameter scheduleDate: The date to retrieve the game schedule.
+        - Parameter scheduleDate: The date to retrieve the game schedule. Default date is today.
         - Parameter completion: The callback after retrieval.
         - Parameter teams: An array of Team model objects.
         - Parameter error: Error should one occur.
@@ -45,7 +45,7 @@ public extension JumpShot {
     typealias GetDailyScheduleCompletion = (_ gameSchedules: [GameSchedule]?,
                                             _ error: LocalizedError?) -> Void
     
-    func getDailySchedule(for scheduleDate: Date, completion: @escaping GetDailyScheduleCompletion) {
+    func getDailySchedule(for scheduleDate: Date = Date(), completion: @escaping GetDailyScheduleCompletion) {
         let scheduleDateString = scheduleDate.toNBADateURLFormat()
         let season = Date().getSeasonYear()
 
