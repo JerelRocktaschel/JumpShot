@@ -2214,10 +2214,14 @@ class JumpShotTests: XCTestCase {
         let mockURLSession = MockURLSession()
         var errorDescription = String()
         router.session = mockURLSession
-
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 1
+        dateComponents.day = 25
+        let gameDate = Calendar.current.date(from: dateComponents)
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getGetGamePlays(for: "20210125", and: "0022000257") { _, error in
+        jumpShot.getGetGamePlays(for: gameDate!, with: "0022000257") { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2231,33 +2235,44 @@ class JumpShotTests: XCTestCase {
     }
 
     func test_jumpShot_withGetGamePlays_isRequestFailed() throws {
-         let mockURLSession = MockURLSession()
-         var errorDescription = String()
-         router.session = mockURLSession
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 1
+        dateComponents.day = 25
+        let gameDate = Calendar.current.date(from: dateComponents)
+        let expectation = XCTestExpectation(description: "Network Error")
 
-         let expectation = XCTestExpectation(description: "Network Error")
+        jumpShot.getGetGamePlays(for: gameDate!, with: "0022000257") { _, error in
+         errorDescription = error!.localizedDescription
+         expectation.fulfill()
+        }
 
-        jumpShot.getGetGamePlays(for: "20210125", and: "0022000257") { _, error in
-             errorDescription = error!.localizedDescription
-             expectation.fulfill()
-         }
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+        badJsonData(), response(statusCode: 300), nil
+        )
 
-         mockURLSession.dataTaskArgsCompletionHandler.first?(
-            badJsonData(), response(statusCode: 300), nil
-         )
-
-         wait(for: [expectation], timeout: 1.0)
-         XCTAssertEqual(errorDescription, "The request failed.")
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The request failed.")
      }
 
     func test_jumpShot_withGetGamePlays_isNoDataReturned() throws {
         let mockURLSession = MockURLSession()
         var errorDescription = String()
         router.session = mockURLSession
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 1
+        dateComponents.day = 25
+        let gameDate = Calendar.current.date(from: dateComponents)
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getGetGamePlays(for: "20210125", and: "0022000257") { _, error in
+        jumpShot.getGetGamePlays(for: gameDate!, with: "0022000257") { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2276,13 +2291,19 @@ class JumpShotTests: XCTestCase {
 
         let path = getPath(forResource: "PlayApiResponseMissingAttribute",
                             ofType: "json")
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 1
+        dateComponents.day = 25
+        let gameDate = Calendar.current.date(from: dateComponents)
 
         let playApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
         router.session = mockURLSession
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getGetGamePlays(for: "20210125", and: "0022000257") { _, error in
+        jumpShot.getGetGamePlays(for: gameDate!, with: "0022000257") { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2299,10 +2320,16 @@ class JumpShotTests: XCTestCase {
         let mockURLSession = MockURLSession()
         var errorDescription = String()
         router.session = mockURLSession
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 1
+        dateComponents.day = 25
+        let gameDate = Calendar.current.date(from: dateComponents)
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getGetGamePlays(for: "20210125", and: "0022000257") { _, error in
+        jumpShot.getGetGamePlays(for: gameDate!, with: "0022000257") { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2323,10 +2350,16 @@ class JumpShotTests: XCTestCase {
         guard let path = testBundle.path(forResource: "PlayApiResponseOnePlay", ofType: "json")
             else { fatalError("Can't find PlayApiResponseOnePlay.json file") }
         let playApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 1
+        dateComponents.day = 25
+        let gameDate = Calendar.current.date(from: dateComponents)
 
         let expectation = XCTestExpectation(description: "Play Api Response")
 
-        jumpShot.getGetGamePlays(for: "20210125", and: "0022000257") { plays, _ in
+        jumpShot.getGetGamePlays(for: gameDate!, with: "0022000257") { plays, _ in
             responsePlays = plays!
             expectation.fulfill()
         }
@@ -2354,10 +2387,16 @@ class JumpShotTests: XCTestCase {
         let mockURLSession = MockURLSession()
         var errorDescription = String()
         router.session = mockURLSession
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2017
+        dateComponents.month = 2
+        dateComponents.day = 1
+        let gameDate = Calendar.current.date(from: dateComponents)
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getGetLeadTrackers(for: "20170201", and: "0021600732", and: "1") { _, error in
+        jumpShot.getGetLeadTrackers(for: gameDate!, with: "0021600732", and: "1") { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2374,10 +2413,16 @@ class JumpShotTests: XCTestCase {
          let mockURLSession = MockURLSession()
          var errorDescription = String()
          router.session = mockURLSession
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2017
+        dateComponents.month = 2
+        dateComponents.day = 1
+        let gameDate = Calendar.current.date(from: dateComponents)
 
          let expectation = XCTestExpectation(description: "Network Error")
 
-        jumpShot.getGetLeadTrackers(for: "20170201", and: "0021600732", and: "1") { _, error in
+        jumpShot.getGetLeadTrackers(for: gameDate!, with: "0021600732", and: "1") { _, error in
              errorDescription = error!.localizedDescription
              expectation.fulfill()
          }
@@ -2394,10 +2439,16 @@ class JumpShotTests: XCTestCase {
         let mockURLSession = MockURLSession()
         var errorDescription = String()
         router.session = mockURLSession
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2017
+        dateComponents.month = 2
+        dateComponents.day = 1
+        let gameDate = Calendar.current.date(from: dateComponents)
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getGetLeadTrackers(for: "20170201", and: "0021600732", and: "1") { _, error in
+        jumpShot.getGetLeadTrackers(for: gameDate!, with: "0021600732", and: "1") { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2416,13 +2467,19 @@ class JumpShotTests: XCTestCase {
 
         let path = getPath(forResource: "LeadTrackerApiResponseMissingAttribute",
                             ofType: "json")
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2017
+        dateComponents.month = 2
+        dateComponents.day = 1
+        let gameDate = Calendar.current.date(from: dateComponents)
 
         let playApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
         router.session = mockURLSession
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getGetLeadTrackers(for: "20170201", and: "0021600732", and: "1") { _, error in
+        jumpShot.getGetLeadTrackers(for: gameDate!, with: "0021600732", and: "1") { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2439,10 +2496,16 @@ class JumpShotTests: XCTestCase {
         let mockURLSession = MockURLSession()
         var errorDescription = String()
         router.session = mockURLSession
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2017
+        dateComponents.month = 2
+        dateComponents.day = 1
+        let gameDate = Calendar.current.date(from: dateComponents)
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getGetLeadTrackers(for: "20170201", and: "0021600732", and: "1") { _, error in
+        jumpShot.getGetLeadTrackers(for: gameDate!, with: "0021600732", and: "1") { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2465,8 +2528,14 @@ class JumpShotTests: XCTestCase {
         let leadTrackerResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
 
         let expectation = XCTestExpectation(description: "LeadTracker Api Response")
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2017
+        dateComponents.month = 2
+        dateComponents.day = 1
+        let gameDate = Calendar.current.date(from: dateComponents)
 
-        jumpShot.getGetLeadTrackers(for: "20170201", and: "0021600732", and: "1")  { leadTrackers, _ in
+        jumpShot.getGetLeadTrackers(for: gameDate!, with: "0021600732", and: "1")  { leadTrackers, _ in
             responseLeadTrackers = leadTrackers!
             expectation.fulfill()
         }
@@ -2488,10 +2557,16 @@ class JumpShotTests: XCTestCase {
         let mockURLSession = MockURLSession()
         var errorDescription = String()
         router.session = mockURLSession
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 1
+        dateComponents.day = 25
+        let gameDate = Calendar.current.date(from: dateComponents)
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getGetGameRecap(for: "20210125", and: "0022000257") { _, error in
+        jumpShot.getGetGameRecap(for: gameDate!, with: "0022000257") { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2508,10 +2583,16 @@ class JumpShotTests: XCTestCase {
          let mockURLSession = MockURLSession()
          var errorDescription = String()
          router.session = mockURLSession
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 1
+        dateComponents.day = 25
+        let gameDate = Calendar.current.date(from: dateComponents)
 
          let expectation = XCTestExpectation(description: "Network Error")
 
-        jumpShot.getGetGameRecap(for: "20210125", and: "0022000257") { _, error in
+        jumpShot.getGetGameRecap(for: gameDate!, with: "0022000257") { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2528,10 +2609,16 @@ class JumpShotTests: XCTestCase {
         let mockURLSession = MockURLSession()
         var errorDescription = String()
         router.session = mockURLSession
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 1
+        dateComponents.day = 25
+        let gameDate = Calendar.current.date(from: dateComponents)
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getGetGameRecap(for: "20210125", and: "0022000257") { _, error in
+        jumpShot.getGetGameRecap(for: gameDate!, with: "0022000257") { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2550,13 +2637,19 @@ class JumpShotTests: XCTestCase {
 
         let path = getPath(forResource: "LeadTrackerApiResponseMissingAttribute",
                             ofType: "json")
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 1
+        dateComponents.day = 25
+        let gameDate = Calendar.current.date(from: dateComponents)
 
         let playApiResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
         router.session = mockURLSession
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getGetGameRecap(for: "20210125", and: "0022000257") { _, error in
+        jumpShot.getGetGameRecap(for: gameDate!, with: "0022000257") { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2573,10 +2666,16 @@ class JumpShotTests: XCTestCase {
         let mockURLSession = MockURLSession()
         var errorDescription = String()
         router.session = mockURLSession
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 1
+        dateComponents.day = 25
+        let gameDate = Calendar.current.date(from: dateComponents)
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getGetGameRecap(for: "20210125", and: "0022000257") { _, error in
+        jumpShot.getGetGameRecap(for: gameDate!, with: "0022000257") { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2600,10 +2699,18 @@ class JumpShotTests: XCTestCase {
         guard let path = testBundle.path(forResource: "GameRecapApiResponseOneRecap", ofType: "json")
             else { fatalError("Can't find GameRecapApiResponseOneRecap.json file") }
         let leadTrackerResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 1
+        dateComponents.day = 25
+        let gameDate = Calendar.current.date(from: dateComponents)
 
         let expectation = XCTestExpectation(description: "GameRecap Api Response")
+        
+        
 
-        jumpShot.getGetGameRecap(for: "20210125", and: "0022000257") { gameRecap, _ in
+        jumpShot.getGetGameRecap(for: gameDate!, with: "0022000257") { gameRecap, _ in
             responseGameRecap.append(gameRecap!)
             expectation.fulfill()
         }
@@ -2631,7 +2738,7 @@ class JumpShotTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getTotalLeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { _, error in
+        jumpShot.getTotalLeagueLeaders(for: 2020, with: .regularSeason, and: .playerEfficiency) { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2651,7 +2758,7 @@ class JumpShotTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getTotalLeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { _, error in
+        jumpShot.getTotalLeagueLeaders(for: 2020, with: .regularSeason, and: .playerEfficiency) { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2671,7 +2778,7 @@ class JumpShotTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getTotalLeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { _, error in
+        jumpShot.getTotalLeagueLeaders(for: 2020, with: .regularSeason, and: .playerEfficiency) { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2696,7 +2803,7 @@ class JumpShotTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getTotalLeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { _, error in
+        jumpShot.getTotalLeagueLeaders(for: 2020, with: .regularSeason, and: .playerEfficiency) { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2720,7 +2827,7 @@ class JumpShotTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "TotalLeagueLeaderApiResponse")
 
-        jumpShot.getTotalLeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { totalLeagueLeaders, _ in
+        jumpShot.getTotalLeagueLeaders(for: 2020, with: .regularSeason, and: .playerEfficiency) { totalLeagueLeaders, _ in
             responseTotalLeagueLeaders = totalLeagueLeaders!
             expectation.fulfill()
         }
@@ -2768,7 +2875,7 @@ class JumpShotTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getPer48LeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { _, error in
+        jumpShot.getPer48LeagueLeaders(for: 2020, with: .regularSeason, and: .playerEfficiency) { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2788,7 +2895,7 @@ class JumpShotTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getPer48LeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { _, error in
+        jumpShot.getPer48LeagueLeaders(for: 2020, with: .regularSeason, and: .playerEfficiency) { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2808,7 +2915,7 @@ class JumpShotTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getPer48LeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { _, error in
+        jumpShot.getPer48LeagueLeaders(for: 2020, with: .regularSeason, and: .playerEfficiency) { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2833,7 +2940,7 @@ class JumpShotTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getPer48LeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { _, error in
+        jumpShot.getPer48LeagueLeaders(for: 2020, with: .regularSeason, and: .playerEfficiency) { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2857,7 +2964,7 @@ class JumpShotTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "Per48LeagueLeaderApiResponse")
 
-        jumpShot.getPer48LeagueLeaders(for: 2020, and: .regularSeason, and: .playerEfficiency) { perLeagueLeaders, _ in
+        jumpShot.getPer48LeagueLeaders(for: 2020, with: .regularSeason, and: .playerEfficiency) { perLeagueLeaders, _ in
             responsePer48LeagueLeaders = perLeagueLeaders!
             expectation.fulfill()
         }
@@ -2899,11 +3006,17 @@ class JumpShotTests: XCTestCase {
         let mockURLSession = MockURLSession()
         var errorDescription = String()
         router.session = mockURLSession
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 1
+        dateComponents.day = 25
+        let gameDate = Calendar.current.date(from: dateComponents)
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getBoxscore(for: "20210125",
-                             and: "0022000257") { _, error in
+        jumpShot.getBoxscore(for: gameDate!,
+                             with: "0022000257") { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2920,11 +3033,17 @@ class JumpShotTests: XCTestCase {
         let mockURLSession = MockURLSession()
         var errorDescription = String()
         router.session = mockURLSession
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 1
+        dateComponents.day = 25
+        let gameDate = Calendar.current.date(from: dateComponents)
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getBoxscore(for: "20210125",
-                             and: "0022000257") { _, error in
+        jumpShot.getBoxscore(for: gameDate!,
+                             with: "0022000257") { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2941,11 +3060,17 @@ class JumpShotTests: XCTestCase {
         let mockURLSession = MockURLSession()
         var errorDescription = String()
         router.session = mockURLSession
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 1
+        dateComponents.day = 25
+        let gameDate = Calendar.current.date(from: dateComponents)
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getBoxscore(for: "20210125",
-                             and: "0022000257") { _, error in
+        jumpShot.getBoxscore(for: gameDate!,
+                             with: "0022000257") { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2967,11 +3092,17 @@ class JumpShotTests: XCTestCase {
 
         let totalLeagueLeaderResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
         router.session = mockURLSession
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 1
+        dateComponents.day = 25
+        let gameDate = Calendar.current.date(from: dateComponents)
 
         let expectation = XCTestExpectation(description: "HTTP Response Error")
 
-        jumpShot.getBoxscore(for: "20210125",
-                             and: "0022000257") { _, error in
+        jumpShot.getBoxscore(for: gameDate!,
+                             with: "0022000257") { _, error in
             errorDescription = error!.localizedDescription
             expectation.fulfill()
         }
@@ -2992,11 +3123,17 @@ class JumpShotTests: XCTestCase {
         guard let path = testBundle.path(forResource: "BoxscoreApiResponseOneBoxscore", ofType: "json")
             else { fatalError("Can't find BoxscoreApiResponseOneBoxscore.json file") }
         let boxscoreResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2021
+        dateComponents.month = 1
+        dateComponents.day = 25
+        let gameDate = Calendar.current.date(from: dateComponents)
 
         let expectation = XCTestExpectation(description: "BoxscoreApiResponse")
 
-        jumpShot.getBoxscore(for: "20210125",
-                     and: "0022000257") { boxscore, _ in
+        jumpShot.getBoxscore(for: gameDate!,
+                             with: "0022000257") { boxscore, _ in
             responseBoxscore.append(boxscore!)
             expectation.fulfill()
         }
