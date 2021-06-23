@@ -100,6 +100,25 @@
 		D82F05E526824BAE00A1F640 /* BoxscoreApiResponseMissingBasicGameData.json in Resources */ = {isa = PBXBuildFile; fileRef = D82F05E426824BAE00A1F640 /* BoxscoreApiResponseMissingBasicGameData.json */; };
 		D82F05ED26824C9400A1F640 /* BoxscoreApiResponseMissingGameStats.json in Resources */ = {isa = PBXBuildFile; fileRef = D82F05EC26824C9400A1F640 /* BoxscoreApiResponseMissingGameStats.json */; };
 		D82F05F226824D8400A1F640 /* BoxscoreApiResponseOneBoxscore.json in Resources */ = {isa = PBXBuildFile; fileRef = D82F05F126824D8400A1F640 /* BoxscoreApiResponseOneBoxscore.json */; };
+		D82F06062683AC3200A1F640 /* MediaNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F06052683AC3200A1F640 /* MediaNames.swift */; };
+		D82F060E2683AC7300A1F640 /* MediaDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F060D2683AC7300A1F640 /* MediaDetails.swift */; };
+		D82F06132683AD5500A1F640 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F06122683AD5500A1F640 /* Media.swift */; };
+		D82F06182683AD7A00A1F640 /* ScheduledTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F06172683AD7A00A1F640 /* ScheduledTeam.swift */; };
+		D82F06202683AD9C00A1F640 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F061F2683AD9C00A1F640 /* Period.swift */; };
+		D82F062A2683AE5B00A1F640 /* PlayerTeamStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F06292683AE5B00A1F640 /* PlayerTeamStats.swift */; };
+		D82F06322683AE7200A1F640 /* PlayerTeamStatsSeason.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F06312683AE7200A1F640 /* PlayerTeamStatsSeason.swift */; };
+		D82F06372683AE8700A1F640 /* PlayerStatsSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F06362683AE8700A1F640 /* PlayerStatsSummary.swift */; };
+		D82F063F2683AF9500A1F640 /* Arena.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F063E2683AF9500A1F640 /* Arena.swift */; };
+		D82F06442683B06C00A1F640 /* BoxscorePeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F06432683B06C00A1F640 /* BoxscorePeriod.swift */; };
+		D82F06492683B09800A1F640 /* GameDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F06482683B09800A1F640 /* GameDuration.swift */; };
+		D82F064E2683B0AE00A1F640 /* Official.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F064D2683B0AE00A1F640 /* Official.swift */; };
+		D82F06532683B0D800A1F640 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F06522683B0D800A1F640 /* Score.swift */; };
+		D82F06582683B0E800A1F640 /* BoxscoreTeamData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F06572683B0E800A1F640 /* BoxscoreTeamData.swift */; };
+		D82F065D2683B10A00A1F640 /* ActivePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F065C2683B10A00A1F640 /* ActivePlayer.swift */; };
+		D82F06622683B12D00A1F640 /* BoxscoreStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F06612683B12D00A1F640 /* BoxscoreStats.swift */; };
+		D82F06672683B14800A1F640 /* BoxscoreTeamStatTotals.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F06662683B14800A1F640 /* BoxscoreTeamStatTotals.swift */; };
+		D82F066C2683B17200A1F640 /* BoxscoreTeamStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F066B2683B17200A1F640 /* BoxscoreTeamStats.swift */; };
+		D82F06712683B18800A1F640 /* BasicGameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F06702683B18800A1F640 /* BasicGameData.swift */; };
 		D832C4DD261E50F000D214B8 /* JumpShotGetTeamImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D832C4DC261E50F000D214B8 /* JumpShotGetTeamImage.swift */; };
 		D832C4F4261F74CD00D214B8 /* BOS.png in Resources */ = {isa = PBXBuildFile; fileRef = D832C4F3261F74CD00D214B8 /* BOS.png */; };
 		D832C4FA261FB3D300D214B8 /* NOP.png in Resources */ = {isa = PBXBuildFile; fileRef = D832C4F8261FB3D300D214B8 /* NOP.png */; };
@@ -310,6 +329,25 @@
 		D82F05E426824BAE00A1F640 /* BoxscoreApiResponseMissingBasicGameData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BoxscoreApiResponseMissingBasicGameData.json; sourceTree = "<group>"; };
 		D82F05EC26824C9400A1F640 /* BoxscoreApiResponseMissingGameStats.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BoxscoreApiResponseMissingGameStats.json; sourceTree = "<group>"; };
 		D82F05F126824D8400A1F640 /* BoxscoreApiResponseOneBoxscore.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BoxscoreApiResponseOneBoxscore.json; sourceTree = "<group>"; };
+		D82F06052683AC3200A1F640 /* MediaNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaNames.swift; sourceTree = "<group>"; };
+		D82F060D2683AC7300A1F640 /* MediaDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDetails.swift; sourceTree = "<group>"; };
+		D82F06122683AD5500A1F640 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		D82F06172683AD7A00A1F640 /* ScheduledTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledTeam.swift; sourceTree = "<group>"; };
+		D82F061F2683AD9C00A1F640 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
+		D82F06292683AE5B00A1F640 /* PlayerTeamStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTeamStats.swift; sourceTree = "<group>"; };
+		D82F06312683AE7200A1F640 /* PlayerTeamStatsSeason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTeamStatsSeason.swift; sourceTree = "<group>"; };
+		D82F06362683AE8700A1F640 /* PlayerStatsSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStatsSummary.swift; sourceTree = "<group>"; };
+		D82F063E2683AF9500A1F640 /* Arena.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arena.swift; sourceTree = "<group>"; };
+		D82F06432683B06C00A1F640 /* BoxscorePeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxscorePeriod.swift; sourceTree = "<group>"; };
+		D82F06482683B09800A1F640 /* GameDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDuration.swift; sourceTree = "<group>"; };
+		D82F064D2683B0AE00A1F640 /* Official.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Official.swift; sourceTree = "<group>"; };
+		D82F06522683B0D800A1F640 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		D82F06572683B0E800A1F640 /* BoxscoreTeamData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxscoreTeamData.swift; sourceTree = "<group>"; };
+		D82F065C2683B10A00A1F640 /* ActivePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePlayer.swift; sourceTree = "<group>"; };
+		D82F06612683B12D00A1F640 /* BoxscoreStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxscoreStats.swift; sourceTree = "<group>"; };
+		D82F06662683B14800A1F640 /* BoxscoreTeamStatTotals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxscoreTeamStatTotals.swift; sourceTree = "<group>"; };
+		D82F066B2683B17200A1F640 /* BoxscoreTeamStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxscoreTeamStats.swift; sourceTree = "<group>"; };
+		D82F06702683B18800A1F640 /* BasicGameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicGameData.swift; sourceTree = "<group>"; };
 		D832C4DC261E50F000D214B8 /* JumpShotGetTeamImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetTeamImage.swift; sourceTree = "<group>"; };
 		D832C4F3261F74CD00D214B8 /* BOS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BOS.png; sourceTree = "<group>"; };
 		D832C4F8261FB3D300D214B8 /* NOP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NOP.png; sourceTree = "<group>"; };
@@ -546,22 +584,22 @@
 		D817FC6A261BD0070092F5E0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D82F06272683ADF700A1F640 /* PlayerStats */,
+				D82F06282683AE3C00A1F640 /* Boxscore */,
+				D82F06042683ABFE00A1F640 /* TeamSchedule */,
 				D817FC6B261BD0070092F5E0 /* Team.swift */,
 				D832C52726262CFB00D214B8 /* Player.swift */,
 				D83B2645262A1951002EDBB0 /* GameSchedule.swift */,
 				D8B6295726305E2F007B0D63 /* Standing.swift */,
 				D8B629D82631ED8B007B0D63 /* Leader.swift */,
-				D852B5112633532A00610391 /* TeamSchedule.swift */,
 				D893538B2643701B006CA270 /* Coach.swift */,
 				D8C031DD2645D8810009292A /* TeamStatRanking.swift */,
-				D8874CF1264972D300CA3520 /* PlayerStats.swift */,
 				D826CC05264C7A3200E95454 /* Play.swift */,
 				D826CC4C264D8D3E00E95454 /* LeadTracker.swift */,
 				D826CC822652C20800E95454 /* GameRecap.swift */,
 				D826CEC0265C75AB00E95454 /* TotalLeagueLeader.swift */,
 				D8342F262667BF8A0035D55E /* PerGameLeagueLeader.swift */,
 				D8342F9F2669B7C70035D55E /* Per48LeagueLeader.swift */,
-				D8C6FDDE2674056B000CE316 /* Boxscore.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -587,38 +625,8 @@
 		D817FC78261BD02A0092F5E0 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
-				D82F05E32682496300A1F640 /* BoxscoreApiResponse */,
-				D82F05B3268136A300A1F640 /* BoxscoreModel */,
-				D8342FA72669BEC70035D55E /* Per48LeagueLeaderModel */,
-				D8342F74266993FB0035D55E /* Per48LeagueLeaderApiResponse */,
-				D8342F4126684D400035D55E /* PerGameLeagueLeaderApiResponse */,
-				D8342F2B266830650035D55E /* PerGameLeagueLeaderModel */,
-				D8342EFA2666CC8B0035D55E /* TotalLeagueLeaderApiResponse */,
-				D8342EE72666BEFD0035D55E /* TotalLeagueLeaderModel */,
-				D826CCA32653248F00E95454 /* GameRecapApiResponse */,
-				D826CC8726531FF800E95454 /* GameRecapModel */,
-				D826CC64264DD26D00E95454 /* LeadTrackerApiResponse */,
-				D826CC51264DAA0900E95454 /* LeadTrackerModel */,
-				D826CC2B264CB6EA00E95454 /* PlayModelApiResponse */,
-				D826CC0F264CAE1300E95454 /* PlayModel */,
-				D826CBB4264AACB300E95454 /* PlayerStatsSummaryApiResponse */,
-				D826CB99264A1C8B00E95454 /* PlayerStatsModel */,
-				D8C031FB2645EC010009292A /* TeamStatRankingApiResponse */,
-				D8C031E22645E37C0009292A /* TeamStatRankingModel */,
-				D89353AB26438075006CA270 /* CoachApiResponse */,
-				D8935390264378DF006CA270 /* CoachModel */,
-				D89353442641B958006CA270 /* TeamScheduleModel */,
-				D893531E2641A5CC006CA270 /* TeamScheduleApiResponse */,
-				D8B629F12632FC72007B0D63 /* LeaderModel */,
-				D8B629E82632FB13007B0D63 /* LeaderApiResponse */,
-				D8B629612631B737007B0D63 /* StandingApiResponse */,
-				D815EAD7262F762C004C22AD /* GameScheduleApiResponse */,
-				D8D675F62628D0570009B06F /* PlayerApiResponse */,
-				D8D6760D2628E26C0009B06F /* PlayerModel */,
-				D817FC79261BD02A0092F5E0 /* TeamApiResponse */,
-				D817FC80261BD02A0092F5E0 /* TeamModel */,
-				D815EAF1262F7E42004C22AD /* GameScheduleModel */,
-				D8B6296A2631B8EF007B0D63 /* StandingModel */,
+				D82F06002683A5FA00A1F640 /* ApiResponse */,
+				D82F05FF2683A5F100A1F640 /* Models */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -836,6 +844,95 @@
 				D82F05F126824D8400A1F640 /* BoxscoreApiResponseOneBoxscore.json */,
 			);
 			path = BoxscoreApiResponse;
+			sourceTree = "<group>";
+		};
+		D82F05FF2683A5F100A1F640 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D8D6760D2628E26C0009B06F /* PlayerModel */,
+				D817FC80261BD02A0092F5E0 /* TeamModel */,
+				D815EAF1262F7E42004C22AD /* GameScheduleModel */,
+				D8B6296A2631B8EF007B0D63 /* StandingModel */,
+				D8342F2B266830650035D55E /* PerGameLeagueLeaderModel */,
+				D8342EE72666BEFD0035D55E /* TotalLeagueLeaderModel */,
+				D826CC8726531FF800E95454 /* GameRecapModel */,
+				D826CC51264DAA0900E95454 /* LeadTrackerModel */,
+				D826CC0F264CAE1300E95454 /* PlayModel */,
+				D826CB99264A1C8B00E95454 /* PlayerStatsModel */,
+				D8C031E22645E37C0009292A /* TeamStatRankingModel */,
+				D8935390264378DF006CA270 /* CoachModel */,
+				D89353442641B958006CA270 /* TeamScheduleModel */,
+				D8B629F12632FC72007B0D63 /* LeaderModel */,
+				D8342FA72669BEC70035D55E /* Per48LeagueLeaderModel */,
+				D82F05B3268136A300A1F640 /* BoxscoreModel */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D82F06002683A5FA00A1F640 /* ApiResponse */ = {
+			isa = PBXGroup;
+			children = (
+				D8B629612631B737007B0D63 /* StandingApiResponse */,
+				D8342EFA2666CC8B0035D55E /* TotalLeagueLeaderApiResponse */,
+				D826CCA32653248F00E95454 /* GameRecapApiResponse */,
+				D826CC64264DD26D00E95454 /* LeadTrackerApiResponse */,
+				D826CC2B264CB6EA00E95454 /* PlayModelApiResponse */,
+				D826CBB4264AACB300E95454 /* PlayerStatsSummaryApiResponse */,
+				D8C031FB2645EC010009292A /* TeamStatRankingApiResponse */,
+				D89353AB26438075006CA270 /* CoachApiResponse */,
+				D893531E2641A5CC006CA270 /* TeamScheduleApiResponse */,
+				D8B629E82632FB13007B0D63 /* LeaderApiResponse */,
+				D815EAD7262F762C004C22AD /* GameScheduleApiResponse */,
+				D8D675F62628D0570009B06F /* PlayerApiResponse */,
+				D817FC79261BD02A0092F5E0 /* TeamApiResponse */,
+				D8342F4126684D400035D55E /* PerGameLeagueLeaderApiResponse */,
+				D8342F74266993FB0035D55E /* Per48LeagueLeaderApiResponse */,
+				D82F05E32682496300A1F640 /* BoxscoreApiResponse */,
+			);
+			path = ApiResponse;
+			sourceTree = "<group>";
+		};
+		D82F06042683ABFE00A1F640 /* TeamSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				D852B5112633532A00610391 /* TeamSchedule.swift */,
+				D82F06052683AC3200A1F640 /* MediaNames.swift */,
+				D82F060D2683AC7300A1F640 /* MediaDetails.swift */,
+				D82F06122683AD5500A1F640 /* Media.swift */,
+				D82F06172683AD7A00A1F640 /* ScheduledTeam.swift */,
+				D82F061F2683AD9C00A1F640 /* Period.swift */,
+			);
+			path = TeamSchedule;
+			sourceTree = "<group>";
+		};
+		D82F06272683ADF700A1F640 /* PlayerStats */ = {
+			isa = PBXGroup;
+			children = (
+				D8874CF1264972D300CA3520 /* PlayerStats.swift */,
+				D82F06292683AE5B00A1F640 /* PlayerTeamStats.swift */,
+				D82F06312683AE7200A1F640 /* PlayerTeamStatsSeason.swift */,
+				D82F06362683AE8700A1F640 /* PlayerStatsSummary.swift */,
+			);
+			path = PlayerStats;
+			sourceTree = "<group>";
+		};
+		D82F06282683AE3C00A1F640 /* Boxscore */ = {
+			isa = PBXGroup;
+			children = (
+				D8C6FDDE2674056B000CE316 /* Boxscore.swift */,
+				D82F06702683B18800A1F640 /* BasicGameData.swift */,
+				D82F066B2683B17200A1F640 /* BoxscoreTeamStats.swift */,
+				D82F06612683B12D00A1F640 /* BoxscoreStats.swift */,
+				D82F065C2683B10A00A1F640 /* ActivePlayer.swift */,
+				D82F06572683B0E800A1F640 /* BoxscoreTeamData.swift */,
+				D82F06522683B0D800A1F640 /* Score.swift */,
+				D82F064D2683B0AE00A1F640 /* Official.swift */,
+				D82F06482683B09800A1F640 /* GameDuration.swift */,
+				D82F06432683B06C00A1F640 /* BoxscorePeriod.swift */,
+				D82F063E2683AF9500A1F640 /* Arena.swift */,
+				D82F06662683B14800A1F640 /* BoxscoreTeamStatTotals.swift */,
+			);
+			path = Boxscore;
 			sourceTree = "<group>";
 		};
 		D832C4F2261F749E00D214B8 /* Images */ = {
@@ -1361,21 +1458,30 @@
 			files = (
 				D8874D022649B25800CA3520 /* JumpShotGetPlayerStats.swift in Sources */,
 				D8C6FDDF2674056B000CE316 /* Boxscore.swift in Sources */,
+				D82F063F2683AF9500A1F640 /* Arena.swift in Sources */,
 				D826CE9926582F9D00E95454 /* JumpShotApiEndPoint+helpers.swift in Sources */,
+				D82F062A2683AE5B00A1F640 /* PlayerTeamStats.swift in Sources */,
 				D821742226461E7A0028C0F3 /* JumpShotGetTeamStatRankings.swift in Sources */,
 				D832C52826262CFB00D214B8 /* Player.swift in Sources */,
 				D817FC72261BD0070092F5E0 /* Team.swift in Sources */,
 				D8342FA02669B7C70035D55E /* Per48LeagueLeader.swift in Sources */,
+				D82F06532683B0D800A1F640 /* Score.swift in Sources */,
 				D832C4DD261E50F000D214B8 /* JumpShotGetTeamImage.swift in Sources */,
 				D8B6295826305E2F007B0D63 /* Standing.swift in Sources */,
 				D8C031A026445F9B0009292A /* JumpShotGetCompleteSchedule.swift in Sources */,
+				D82F066C2683B17200A1F640 /* BoxscoreTeamStats.swift in Sources */,
 				D8C031DE2645D8810009292A /* TeamStatRanking.swift in Sources */,
 				D815EAC7262B8B75004C22AD /* JumpShotGetDailySchedule.swift in Sources */,
+				D82F06582683B0E800A1F640 /* BoxscoreTeamData.swift in Sources */,
 				D8874CF2264972D300CA3520 /* PlayerStats.swift in Sources */,
 				D817FC71261BD0070092F5E0 /* JumpShotNetworkManager.swift in Sources */,
+				D82F06132683AD5500A1F640 /* Media.swift in Sources */,
 				D826CC06264C7A3200E95454 /* Play.swift in Sources */,
+				D82F060E2683AC7300A1F640 /* MediaDetails.swift in Sources */,
 				D8B629E42631FE06007B0D63 /* JumpShotGetTeamLeaders.swift in Sources */,
+				D82F06202683AD9C00A1F640 /* Period.swift in Sources */,
 				D826CC48264D8CDD00E95454 /* JumpShotGetLeadTrackers.swift in Sources */,
+				D82F06322683AE7200A1F640 /* PlayerTeamStatsSeason.swift in Sources */,
 				D83B2646262A1951002EDBB0 /* GameSchedule.swift in Sources */,
 				D8B629D92631ED8B007B0D63 /* Leader.swift in Sources */,
 				D8C03188264423080009292A /* JumpShotGetCoaches.swift in Sources */,
@@ -1386,19 +1492,29 @@
 				D817FC5E261BCFEC0092F5E0 /* JumpShot.swift in Sources */,
 				D82F05AF2679355400A1F640 /* JumpShotGetBoxscore.swift in Sources */,
 				D826CC7E2652C13700E95454 /* JumpShotGetGameRecap.swift in Sources */,
+				D82F06672683B14800A1F640 /* BoxscoreTeamStatTotals.swift in Sources */,
 				D826CEA7265C202300E95454 /* JumpShotGetPerTotalsLeagueLeaders.swift in Sources */,
 				D832C5092624BE0200D214B8 /* JumpShotGetPlayerImage.swift in Sources */,
 				D826CC4D264D8D3E00E95454 /* LeadTracker.swift in Sources */,
 				D826CC832652C20800E95454 /* GameRecap.swift in Sources */,
 				D893538C2643701B006CA270 /* Coach.swift in Sources */,
 				D826CC0B264C7EEB00E95454 /* JumpShotGetGamePlays.swift in Sources */,
+				D82F06442683B06C00A1F640 /* BoxscorePeriod.swift in Sources */,
 				D8B6295D2630B169007B0D63 /* JumpShotGetStandings.swift in Sources */,
+				D82F06062683AC3200A1F640 /* MediaNames.swift in Sources */,
 				D817FC74261BD0070092F5E0 /* Router.swift in Sources */,
+				D82F06182683AD7A00A1F640 /* ScheduledTeam.swift in Sources */,
 				D817FC64261BCFF80092F5E0 /* JumpShotGetTeams.swift in Sources */,
 				D826CEB1265C205400E95454 /* JumpShotGetPerGameLeagueLeaders.swift in Sources */,
+				D82F065D2683B10A00A1F640 /* ActivePlayer.swift in Sources */,
 				D832C52D26273D6900D214B8 /* JumpShotGetPlayers.swift in Sources */,
 				D8342F272667BF8A0035D55E /* PerGameLeagueLeader.swift in Sources */,
+				D82F064E2683B0AE00A1F640 /* Official.swift in Sources */,
 				D817FC75261BD0070092F5E0 /* EndPointType.swift in Sources */,
+				D82F06492683B09800A1F640 /* GameDuration.swift in Sources */,
+				D82F06712683B18800A1F640 /* BasicGameData.swift in Sources */,
+				D82F06622683B12D00A1F640 /* BoxscoreStats.swift in Sources */,
+				D82F06372683AE8700A1F640 /* PlayerStatsSummary.swift in Sources */,
 				D852B5122633532A00610391 /* TeamSchedule.swift in Sources */,
 				D832C5112625080A00D214B8 /* JumpShot+Helpers.swift in Sources */,
 			);
