@@ -19,20 +19,12 @@ public struct BoxscoreStats {
         let timesTiedString = try boxscoreStatsDataContainer.decode(String.self, forKey: .timesTied)
         let leadChangesString = try boxscoreStatsDataContainer.decode(String.self, forKey: .leadChanges)
 
-        if let timesTiedInt = Int(timesTiedString) {
+        if let timesTiedInt = Int(timesTiedString),
+           let leadChangesInt = Int(leadChangesString) {
             timesTied = timesTiedInt
-        } else {
-            throw DecodingError.dataCorruptedError(forKey: .timesTied,
-                                                   in: boxscoreStatsDataContainer,
-                                                   debugDescription: "Times tied is not in expected format.")
-        }
-
-        if let leadChangesInt = Int(leadChangesString) {
             leadChanges = leadChangesInt
         } else {
-            throw DecodingError.dataCorruptedError(forKey: .leadChanges,
-                                                   in: boxscoreStatsDataContainer,
-                                                   debugDescription: "Lead changes wins is not in expected format.")
+            throw JumpShotNetworkManagerError.unableToDecodeError
         }
 
         visitorTeamStats = try boxscoreStatsDataContainer.decode(BoxscoreTeamStats.self, forKey: .vTeam)

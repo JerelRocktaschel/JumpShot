@@ -79,9 +79,7 @@ public struct GameRecap {
         if let publishDateFormat = publishDateString.iso8601Date {
             publishDate = publishDateFormat
         } else {
-            throw DecodingError.dataCorruptedError(forKey: .publishDate,
-                                                       in: gameRecapCodingKeysContainer,
-                                         debugDescription: "Publish Date not in expected format.")
+            throw JumpShotNetworkManagerError.unableToDecodeError
         }
 
         var paragraphArray = [Paragraph]()

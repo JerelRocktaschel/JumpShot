@@ -31,19 +31,19 @@ public struct Media {
 }
 
 extension Media: Equatable {
-    
+
     // MARK: Equatable
-    
-    public static func ==(lhs: Media, rhs: Media) -> Bool {
+
+    public static func == (lhs: Media, rhs: Media) -> Bool {
         return lhs.category == rhs.category && lhs.details == rhs.details
     }
 }
 
 extension Media: Comparable {
-    
+
     // MARK: Comparable
-    
-    public static func <(lhs: Media, rhs: Media) -> Bool {
+
+    public static func < (lhs: Media, rhs: Media) -> Bool {
         return lhs.category < rhs.category
     }
 }

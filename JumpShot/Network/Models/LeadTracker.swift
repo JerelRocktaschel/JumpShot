@@ -45,9 +45,7 @@ public struct LeadTracker {
         if let pointsInt = Int(pointsString) {
             points = pointsInt
         } else {
-            throw DecodingError.dataCorruptedError(forKey: .points,
-                                                   in: leadTrackerCodingKeysContainer,
-                                                   debugDescription: "Formatted points not in expected format.")
+            throw JumpShotNetworkManagerError.unableToDecodeError
         }
     }
 }

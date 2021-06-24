@@ -757,16 +757,16 @@ class JumpShotModelTests: XCTestCase {
         XCTAssertEqual(playerStatsModelResponse.blocks, 25)
         XCTAssertEqual(playerStatsModelResponse.steals, 45)
         XCTAssertEqual(playerStatsModelResponse.turnovers, 162)
-        XCTAssertEqual(playerStatsModelResponse.offReb, 25)
-        XCTAssertEqual(playerStatsModelResponse.defReb, 313)
-        XCTAssertEqual(playerStatsModelResponse.totReb, 338)
+        XCTAssertEqual(playerStatsModelResponse.offensiveRebounds, 25)
+        XCTAssertEqual(playerStatsModelResponse.defensiveRebounds, 313)
+        XCTAssertEqual(playerStatsModelResponse.totalRebounds, 338)
         XCTAssertEqual(playerStatsModelResponse.fgm, 400)
         XCTAssertEqual(playerStatsModelResponse.fga, 779)
         XCTAssertEqual(playerStatsModelResponse.tpm, 101)
         XCTAssertEqual(playerStatsModelResponse.tpa, 276)
         XCTAssertEqual(playerStatsModelResponse.ftm, 176)
         XCTAssertEqual(playerStatsModelResponse.fta, 251)
-        XCTAssertEqual(playerStatsModelResponse.pFouls, 68)
+        XCTAssertEqual(playerStatsModelResponse.personalFouls, 68)
         XCTAssertEqual(playerStatsModelResponse.points, 1077)
         XCTAssertEqual(playerStatsModelResponse.gamesPlayed, 43)
         XCTAssertEqual(playerStatsModelResponse.gamesStarted, 43)
@@ -822,18 +822,18 @@ class JumpShotModelTests: XCTestCase {
         XCTAssertEqual(playModelResponse.formattedDescription, "DET - Wright Rebound (Off:1 Def:1)")
     }
 
-    func test_playhModel_withBadData_isNil() throws {
+    func test_playModel_withBadData_isNil() throws {
         let path = getPath(forResource: "PlayModelBadDataFormat",
                                ofType: "json")
         let playModelData = try Data(contentsOf: URL(fileURLWithPath: path))
-        let playhModelResponse: Play?
+        let playModelResponse: Play?
 
         do {
-            playhModelResponse = try JSONDecoder().decode(Play.self, from: playModelData)
+            playModelResponse = try JSONDecoder().decode(Play.self, from: playModelData)
         } catch {
-            playhModelResponse = nil
+            playModelResponse = nil
         }
-        XCTAssertNil(playhModelResponse)
+        XCTAssertNil(playModelResponse)
     }
 
     func test_playhModel_withMissingData_isNil() throws {

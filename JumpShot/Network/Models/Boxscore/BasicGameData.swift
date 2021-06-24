@@ -60,20 +60,12 @@ public struct BasicGameData {
         isBuzzerBeater = try boxscoreContainer.decode(Bool.self, forKey: .isBuzzerBeater)
         isNeutralVenue = try boxscoreContainer.decode(Bool.self, forKey: .isNeutralVenue)
 
-        if let startTimeUTCDate = dateFormatter.date(from: startTimeString) {
+        if let startTimeUTCDate = dateFormatter.date(from: startTimeString),
+           let endTimeUTCDate = dateFormatter.date(from: endTimeString) {
             startTime = startTimeUTCDate
-        } else {
-            throw DecodingError.dataCorruptedError(forKey: .startTime,
-                                                   in: boxscoreContainer,
-                                                   debugDescription: "Date string does not match expected format.")
-        }
-
-        if let endTimeUTCDate = dateFormatter.date(from: endTimeString) {
             endTime = endTimeUTCDate
         } else {
-            throw DecodingError.dataCorruptedError(forKey: .endTime,
-                                                   in: boxscoreContainer,
-                                                   debugDescription: "Date string does not match expected format.")
+            throw JumpShotNetworkManagerError.unableToDecodeError
         }
 
         arena = try boxscoreContainer.decode(Arena.self, forKey: .arena)

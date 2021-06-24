@@ -58,7 +58,12 @@ public struct Leader {
         let valueString = try leaderContainer.decode(String.self, forKey: .value)
 
         playerId = try leaderContainer.decode(String.self, forKey: .playerId)
-        value = Double(valueString)!
+
+        if let valueDouble = Double(valueString) {
+            value = valueDouble
+        } else {
+            throw JumpShotNetworkManagerError.unableToDecodeError
+        }
     }
 }
 

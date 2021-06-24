@@ -40,16 +40,16 @@ public struct PlayerStats {
     let blocks: Int
     let steals: Int
     let turnovers: Int
-    let offReb: Int
-    let defReb: Int
-    let totReb: Int
+    let offensiveRebounds: Int
+    let defensiveRebounds: Int
+    let totalRebounds: Int
     let fgm: Int
     let fga: Int
     let tpm: Int
     let tpa: Int
     let ftm: Int
     let fta: Int
-    let pFouls: Int
+    let personalFouls: Int
     let points: Int
     let gamesPlayed: Int
     let gamesStarted: Int
@@ -92,36 +92,69 @@ public struct PlayerStats {
         let dd2String = try playerStatsRankingContainer.decode(String.self, forKey: .dd2)
         let td3String = try playerStatsRankingContainer.decode(String.self, forKey: .td3)
 
-        ppg = Double(ppgString)!
-        rpg = Double(rpgString)!
-        apg = Double(apgString)!
-        mpg = Double(mpgString)!
-        spg = Double(spgString)!
-        bpg = Double(bpgString)!
-        tpp = Double(tppString)!
-        ftp = Double(ftpString)!
-        fgp = Double(fgpString)!
-        assists = Int(assistsString)!
-        blocks = Int(blocksString)!
-        steals = Int(stealsString)!
-        turnovers = Int(turnoversString)!
-        offReb = Int(offRebString)!
-        defReb = Int(defRebString)!
-        totReb = Int(totRebString)!
-        fgm = Int(fgmString)!
-        fga = Int(fgaString)!
-        tpm = Int(tpmString)!
-        tpa = Int(tpaString)!
-        ftm = Int(ftmString)!
-        fta = Int(ftaString)!
-        pFouls = Int(pFoulsString)!
-        points = Int(pointsString)!
-        gamesPlayed = Int(gamesPlayedString)!
-        gamesStarted = Int(gamesStartedString)!
-        plusMinus = Int(plusMinusString)!
-        min = Int(minString)!
-        dd2 = Int(dd2String)!
-        td3 = Int(td3String)!
+        if let ppgDouble = Double(ppgString),
+           let rpgDouble = Double(rpgString),
+           let apgDouble = Double(apgString),
+           let mpgDouble = Double(mpgString),
+           let spgDouble = Double(spgString),
+           let bpgDouble = Double(bpgString),
+           let tppDouble = Double(tppString),
+           let ftpDouble = Double(ftpString),
+           let fgpDouble = Double(fgpString),
+           let assistsInt = Int(assistsString),
+           let blocksInt = Int(blocksString),
+           let stealsInt = Int(stealsString),
+           let turnoversInt = Int(turnoversString),
+           let offRebInt = Int(offRebString),
+           let defRebInt = Int(defRebString),
+           let totRebInt = Int(totRebString),
+           let fgmInt = Int(fgmString),
+           let fgaInt = Int(fgaString),
+           let tpmInt = Int(tpmString),
+           let tpaInt = Int(tpaString),
+           let ftmInt = Int(ftmString),
+           let ftaInt = Int(ftaString),
+           let pFoulsInt = Int(pFoulsString),
+           let pointsInt = Int(pointsString),
+           let gamesPlayedInt = Int(gamesPlayedString),
+           let gamesStartedInt = Int(gamesStartedString),
+           let plusMinusInt = Int(plusMinusString),
+           let minInt = Int(minString),
+           let dd2Int = Int(dd2String),
+           let td3Int = Int(td3String) {
+            ppg = ppgDouble
+            rpg = rpgDouble
+            apg = apgDouble
+            mpg = mpgDouble
+            spg = spgDouble
+            bpg = bpgDouble
+            tpp = tppDouble
+            ftp = ftpDouble
+            fgp = fgpDouble
+            assists = assistsInt
+            blocks = blocksInt
+            steals = stealsInt
+            turnovers = turnoversInt
+            offensiveRebounds = offRebInt
+            defensiveRebounds = defRebInt
+            totalRebounds = totRebInt
+            fgm = fgmInt
+            fga = fgaInt
+            tpm = tpmInt
+            tpa = tpaInt
+            ftm = ftmInt
+            fta = ftaInt
+            personalFouls = pFoulsInt
+            points = pointsInt
+            gamesPlayed = gamesPlayedInt
+            gamesStarted = gamesStartedInt
+            plusMinus = plusMinusInt
+            min = minInt
+            dd2 = dd2Int
+            td3 = td3Int
+        } else {
+            throw JumpShotNetworkManagerError.unableToDecodeError
+        }
 
         // for whatever reason, the careerSummary dictionary does not have topg ugh - so i calc it
         if playerStatsRankingContainer.allKeys.contains(.topg) {
@@ -193,16 +226,16 @@ extension PlayerStats: Equatable {
         lhs.blocks == rhs.blocks &&
         lhs.steals == rhs.steals &&
         lhs.turnovers == rhs.turnovers &&
-        lhs.offReb == rhs.offReb &&
-        lhs.defReb == rhs.defReb &&
-        lhs.totReb == rhs.totReb &&
+        lhs.offensiveRebounds == rhs.offensiveRebounds &&
+        lhs.defensiveRebounds == rhs.defensiveRebounds &&
+        lhs.totalRebounds == rhs.totalRebounds &&
         lhs.fgm == rhs.fgm &&
         lhs.fga == rhs.fga &&
         lhs.tpm == rhs.tpm &&
         lhs.tpa == rhs.tpa &&
         lhs.ftm == rhs.ftm &&
         lhs.fta == rhs.fta &&
-        lhs.pFouls == rhs.pFouls &&
+        lhs.personalFouls == rhs.personalFouls &&
         lhs.points == rhs.points &&
         lhs.gamesPlayed == rhs.gamesPlayed &&
         lhs.gamesStarted == rhs.gamesStarted &&

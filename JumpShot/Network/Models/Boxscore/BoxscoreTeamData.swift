@@ -29,44 +29,18 @@ public struct BoxscoreTeamData {
         teamId = try boxscoreTeamDataContainer.decode(String.self, forKey: .teamId)
         triCode = try boxscoreTeamDataContainer.decode(String.self, forKey: .triCode)
 
-        if let winsInt = Int(winsString) {
+        if let winsInt = Int(winsString),
+           let lossesInt = Int(lossesString),
+           let seriesWinsInt = Int(seriesWinsString),
+           let seriesLossesInt = Int(seriesLossesString),
+           let scoreInt = Int(scoreString) {
             wins = winsInt
-        } else {
-            throw DecodingError.dataCorruptedError(forKey: .wins,
-                                                   in: boxscoreTeamDataContainer,
-                                                   debugDescription: "Wins is not in expected format.")
-        }
-
-        if let lossesInt = Int(lossesString) {
             losses = lossesInt
-        } else {
-            throw DecodingError.dataCorruptedError(forKey: .losses,
-                                                   in: boxscoreTeamDataContainer,
-                                                   debugDescription: "Losses is not in expected format.")
-        }
-
-        if let seriesWinsInt = Int(seriesWinsString) {
             seriesWins = seriesWinsInt
-        } else {
-            throw DecodingError.dataCorruptedError(forKey: .seriesWins,
-                                                   in: boxscoreTeamDataContainer,
-                                                   debugDescription: "Series wins is not in expected format.")
-        }
-
-        if let seriesLossesInt = Int(seriesLossesString) {
             seriesLosses = seriesLossesInt
-        } else {
-            throw DecodingError.dataCorruptedError(forKey: .seriesLosses,
-                                                   in: boxscoreTeamDataContainer,
-                                                   debugDescription: "Series losses is not in expected format.")
-        }
-
-        if let scoreInt = Int(scoreString) {
             score = scoreInt
         } else {
-            throw DecodingError.dataCorruptedError(forKey: .score,
-                                                   in: boxscoreTeamDataContainer,
-                                                   debugDescription: "Score wins is not in expected format.")
+            throw JumpShotNetworkManagerError.unableToDecodeError
         }
 
         var scoreArray = [Score]()

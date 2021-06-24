@@ -39,10 +39,10 @@ public struct Period {
 }
 
 extension Period: Equatable {
-    
+
     // MARK: Equatable
     
-    public static func ==(lhs: Period, rhs: Period) -> Bool {
+    public static func == (lhs: Period, rhs: Period) -> Bool {
         return lhs.current == rhs.current && lhs.current == rhs.current && lhs.maxRegular == rhs.maxRegular
     }
 }

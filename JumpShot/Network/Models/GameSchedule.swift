@@ -59,11 +59,16 @@ public struct GameSchedule {
         homeNickName = try gameScheduleContainer.decode(String.self, forKey: .homeNickName)
         homeShortName = try gameScheduleContainer.decode(String.self, forKey: .homeShortName)
         homeAbbreviation = try gameScheduleContainer.decode(String.self, forKey: .homeAbbreviation)
-        gameDate = (dateString + " " + timeString).gameDate!
         gameDay = try gameScheduleContainer.decode(String.self, forKey: .gameDay)
         broadcastId = try gameScheduleContainer.decode(String.self, forKey: .broadcastId)
         broadcasterName = try gameScheduleContainer.decode(String.self, forKey: .broadcasterName)
         tapeDelayComments = try gameScheduleContainer.decode(String.self, forKey: .tapeDelayComments)
+
+        if let gameDateConverted = (dateString + " " + timeString).gameDate {
+            gameDate = gameDateConverted
+        } else {
+            throw JumpShotNetworkManagerError.unableToDecodeError
+        }
     }
 }
 

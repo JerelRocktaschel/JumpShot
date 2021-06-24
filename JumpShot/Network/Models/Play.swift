@@ -52,16 +52,16 @@ public struct Play {
         description = try playContainer.decode(String.self, forKey: .description)
         playerId = try playContainer.decode(String.self, forKey: .personId)
         teamId = try playContainer.decode(String.self, forKey: .teamId)
-        vTeamScore = Int(vTeamScoreString)!
-        hTeamScore = Int(hTeamScoreString)!
         isScoreChange = try playContainer.decode(Bool.self, forKey: .isScoreChange)
 
-        if let description = formatted["description"] {
+        if let vTeamScoreInt = Int(vTeamScoreString),
+           let hTeamScoreInt = Int(hTeamScoreString),
+           let description = formatted["description"] {
+            vTeamScore = vTeamScoreInt
+            hTeamScore = hTeamScoreInt
             formattedDescription = description
         } else {
-            throw DecodingError.dataCorruptedError(forKey: .formatted,
-                                                   in: playContainer,
-                                                   debugDescription: "Formatted description not in expected format.")
+            throw JumpShotNetworkManagerError.unableToDecodeError
         }
     }
 }

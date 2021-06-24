@@ -80,7 +80,6 @@ extension BoxscoreApiResponse {
                 return nil
         }
 
-        
         self.boxscore = Boxscore(basicGameData: basicGameData, boxscoreStats: boxscoreStats)
     }
 }

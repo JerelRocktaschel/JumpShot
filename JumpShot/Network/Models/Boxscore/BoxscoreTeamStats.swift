@@ -35,48 +35,21 @@ public struct BoxscoreTeamStats {
                                                    debugDescription: "Fast break points is not in expected format.")
         }
 
-        if let pointsInPaintInt = Int(pointsInPaintString) {
+        if let pointsInPaintInt = Int(pointsInPaintString),
+           let biggestLeadInt = Int(biggestLeadString),
+           let secondChancePointsInt = Int(secondChancePointsString),
+           let pointsOffTurnoversInt = Int(pointsOffTurnoversString),
+           let longestRunInt = Int(longestRunString) {
             pointsInPaint = pointsInPaintInt
-        } else {
-            throw DecodingError.dataCorruptedError(forKey: .pointsInPaint,
-                                                   in: boxscoreTeamStatsDataContainer,
-                                                   debugDescription: "Fast break points is not in expected format.")
-        }
-
-        if let biggestLeadInt = Int(biggestLeadString) {
             biggestLead = biggestLeadInt
-        } else {
-            throw DecodingError.dataCorruptedError(forKey: .biggestLead,
-                                                   in: boxscoreTeamStatsDataContainer,
-                                                   debugDescription: "Biggest lead is not in expected format.")
-        }
-
-        if let secondChancePointsInt = Int(secondChancePointsString) {
             secondChancePoints = secondChancePointsInt
-        } else {
-            throw DecodingError.dataCorruptedError(forKey: .secondChancePoints,
-                                                   in: boxscoreTeamStatsDataContainer,
-                                                   debugDescription: "Second chance points is not in expected format.")
-        }
-
-        if let pointsOffTurnoversInt = Int(pointsOffTurnoversString) {
             pointsOffTurnovers = pointsOffTurnoversInt
-        } else {
-            throw DecodingError.dataCorruptedError(forKey: .pointsOffTurnovers,
-                                                   in: boxscoreTeamStatsDataContainer,
-                                                   debugDescription: "Points off turnovers is not in expected format.")
-        }
-
-        if let longestRunInt = Int(longestRunString) {
             longestRun = longestRunInt
         } else {
-            throw DecodingError.dataCorruptedError(forKey: .longestRun,
-                                                   in: boxscoreTeamStatsDataContainer,
-                                                   debugDescription: "Longest run is not in expected format.")
+            throw JumpShotNetworkManagerError.unableToDecodeError
         }
 
         totals = try boxscoreTeamStatsDataContainer.decode(BoxscoreTeamStatTotals.self, forKey: .totals)
-
     }
 }
 

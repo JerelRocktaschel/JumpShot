@@ -91,29 +91,50 @@ public struct Standing {
         let divisionRankString = try standingContainer.decode(String.self, forKey: .divisionRank)
 
         teamId = try standingContainer.decode(String.self, forKey: .teamId)
-        wins = Int(winsString)!
-        losses = Int(lossesString)!
-        winPct = Double(winPctString)!
-        lossPct = Double(lossPctString)!
-        gamesBehind = Double(gamesBehindString)!
-        divisionGamesBehind = Double(divisionGamesBehindString)!
-        isClinchedPlayoffs = clinchedPlayoffsString.bool
-        conferenceWins = Int(conferenceWinsString)!
-        conferenceLosses = Int(conferenceLossesString)!
-        homeWins = Int(homeWinsString)!
-        homeLosses = Int(homeLossesString)!
-        divisionWins = Int(divisionWinsString)!
-        divisionLosses = Int(divisionLossesString)!
-        awayWins = Int(awayWinsString)!
-        awayLosses = Int(awayLossesString)!
-        lastTenWins = Int(lastTenWinsString)!
-        lastTenLosses = Int(lastTenLossesString)!
-        streak = Int(streakString)!
-        divisionRank = divisionRankString.int
         isWinStreak = try standingContainer.decode(Bool.self, forKey: .isWinStreak)
         teamSitesOnly = try standingContainer.decode(TeamSitesOnly.self, forKey: .teamSitesOnly)
+        isClinchedPlayoffs = clinchedPlayoffsString.bool
         isClinchedConference = teamSitesOnly.clinchedConference.bool
         isclinchedDivision = teamSitesOnly.clinchedDivision.bool
+        divisionRank = divisionRankString.int
+
+        if let winsInt = Int(winsString),
+           let lossesInt = Int(lossesString),
+           let winPctDouble = Double(winPctString),
+           let lossPctDouble = Double(lossPctString),
+           let gamesBehindDouble = Double(gamesBehindString),
+           let divisionGamesBehindDouble = Double(divisionGamesBehindString),
+           let conferenceWinsInt = Int(conferenceWinsString),
+           let conferenceLossesInt = Int(conferenceLossesString),
+           let homeWinsInt = Int(homeWinsString),
+           let homeLossesInt = Int(homeLossesString),
+           let divisionWinsInt = Int(divisionWinsString),
+           let divisionLossesInt = Int(divisionLossesString),
+           let awayWinsInt = Int(awayWinsString),
+           let awayLossesInt = Int(awayLossesString),
+           let lastTenWinsInt = Int(lastTenWinsString),
+           let lastTenLossesInt = Int(lastTenLossesString),
+           let streakInt = Int(streakString) {
+            wins = winsInt
+            losses = lossesInt
+            winPct = winPctDouble
+            lossPct = lossPctDouble
+            gamesBehind = gamesBehindDouble
+            divisionGamesBehind = divisionGamesBehindDouble
+            conferenceWins = conferenceWinsInt
+            conferenceLosses = conferenceLossesInt
+            homeWins = homeWinsInt
+            homeLosses = homeLossesInt
+            divisionWins = divisionWinsInt
+            divisionLosses = divisionLossesInt
+            awayWins = awayWinsInt
+            awayLosses = awayLossesInt
+            lastTenWins = lastTenWinsInt
+            lastTenLosses = lastTenLossesInt
+            streak = streakInt
+        } else {
+            throw JumpShotNetworkManagerError.unableToDecodeError
+        }
     }
 }
 

@@ -2708,8 +2708,6 @@ class JumpShotTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "GameRecap Api Response")
         
-        
-
         jumpShot.getGetGameRecap(for: gameDate!, with: "0022000257") { gameRecap, _ in
             responseGameRecap.append(gameRecap!)
             expectation.fulfill()

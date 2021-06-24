@@ -52,7 +52,7 @@ extension ScheduledTeam: Decodable {
     // MARK: Coding Keys
 
     enum ScheduledTeamCodingKeys: String, CodingKey {
-        case teamId = "teamId"
-        case score = "score"
+        case teamId
+        case score
     }
 }

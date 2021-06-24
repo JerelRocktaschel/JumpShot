@@ -174,9 +174,7 @@ public struct TeamSchedule {
         if let startTimeUTCDate = getStartTimeUTC(from: startTimeUTCString) {
             startTimeUTC = startTimeUTCDate
         } else {
-            throw DecodingError.dataCorruptedError(forKey: .startTimeUTC,
-                                                   in: teamScheduleContainer,
-                                                   debugDescription: "Date string does not match expected format.")
+            throw JumpShotNetworkManagerError.unableToDecodeError
         }
     }
 }
