@@ -46,32 +46,16 @@ public extension JumpShot {
     func getTeamStatRankings(completion: @escaping GetTeamStatRankingsCompletion) {
         let season = Date().getSeasonYear()
         JumpShotNetworkManager.shared.router.request(.teamStatRankingList(season: season)) { data, response, error in
-            guard error == nil else {
-                completion(nil, JumpShotNetworkManagerError.networkConnectivityError)
-                return
-            }
-
-            if let response = response as? HTTPURLResponse {
-                let result = JumpShotNetworkManager.shared.handleNetworkResponse(response)
-                switch result {
-                case .success:
-                    guard let responseData = data else {
-                        completion(nil, JumpShotNetworkManagerError.noDataError)
-                        return
-                    }
-                    do {
-                        let json = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any]
-                        guard let apiResponse = TeamStatRankingApiResponse(json: json!) else {
-                            completion(nil, JumpShotNetworkManagerError.unableToDecodeError)
-                            return
-                        }
-                        completion(apiResponse.teamStatRankings, nil)
-                    } catch {
-                        completion(nil, JumpShotNetworkManagerError.unableToDecodeError)
-                    }
-                case .failure(let networkFailureError):
-                    completion(nil, networkFailureError)
+            var dataResponse: (json: [String: Any]?, error: LocalizedError?)
+            dataResponse = self.handleDataResponse(data: data, response: response, error: error)
+            if let json = dataResponse.json {
+                guard let apiResponse = TeamStatRankingApiResponse(json: json) else {
+                    completion(nil, JumpShotNetworkManagerError.unableToDecodeError)
+                    return
                 }
+                completion(apiResponse.teamStatRankings, nil)
+            } else {
+                completion(nil, dataResponse.error)
             }
         }
     }

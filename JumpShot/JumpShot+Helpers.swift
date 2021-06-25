@@ -46,6 +46,33 @@ public extension JumpShot {
             return (nil, JumpShotNetworkManagerError.unableToDecodeError)
         }
     }
+    
+    internal func handleDataResponse(data: Data?,
+                                     response: URLResponse?,
+                                     error: Error?) -> ([String: Any]?, LocalizedError?) {
+        guard error == nil else {
+            return (nil, JumpShotNetworkManagerError.networkConnectivityError)
+        }
+
+        if let response = response as? HTTPURLResponse {
+            let result = JumpShotNetworkManager.shared.handleNetworkResponse(response)
+            switch result {
+            case .success:
+                guard let responseData = data else {
+                    return (nil, JumpShotNetworkManagerError.noDataError)
+                }
+                do {
+                    let json = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any]
+                    return (json, nil)
+                } catch {
+                    return (nil, JumpShotNetworkManagerError.unableToDecodeError)
+                }
+            case .failure(let networkFailureError):
+                return (nil, networkFailureError)
+            }
+        }
+        return (nil, JumpShotNetworkManagerError.networkConnectivityError)
+    }
 }
 
 extension String {
