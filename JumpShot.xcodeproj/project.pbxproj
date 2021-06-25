@@ -504,6 +504,7 @@
 				D817FC4B261BCFB00092F5E0 /* JumpShotTests */,
 				D817FCC5261BD1A00092F5E0 /* JumpShotExamples */,
 				D817FC3F261BCFB00092F5E0 /* Products */,
+				D82F069E26867D6500A1F640 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -933,6 +934,13 @@
 				D82F06662683B14800A1F640 /* BoxscoreTeamStatTotals.swift */,
 			);
 			path = Boxscore;
+			sourceTree = "<group>";
+		};
+		D82F069E26867D6500A1F640 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D832C4F2261F749E00D214B8 /* Images */ = {
@@ -1605,6 +1613,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1669,6 +1678,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1785,6 +1795,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V8M7L5RW78;
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = JumpShotExamples/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1804,6 +1815,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V8M7L5RW78;
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = JumpShotExamples/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
