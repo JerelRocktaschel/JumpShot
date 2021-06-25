@@ -40,9 +40,9 @@ extension MediaDetails: Equatable {
 }
 
 extension MediaDetails: Comparable {
-    
+
     // MARK: Comparable
-    
+
     public static func < (lhs: MediaDetails, rhs: MediaDetails) -> Bool {
         return lhs.subCategory < rhs.subCategory
     }

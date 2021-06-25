@@ -2,7 +2,25 @@
 //  JumpShotTests.swift
 //  JumpShotTests
 //
-//  Created by Jerel Rocktaschel on 3/31/21.
+//  Copyright (c) 2021 Jerel Rocktaschel
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 //
 // swiftlint:disable all
 
@@ -2863,6 +2881,142 @@ class JumpShotTests: XCTestCase {
         XCTAssertEqual(responseTotalLeagueLeaders.first!.assistsToTurnovers, 2.7)
         XCTAssertEqual(responseTotalLeagueLeaders.first!.stealsToTurnovers, 0.43)
      }
+    
+    // MARK: PerGameLeagueLeaders
+
+    func test_jumpShot_withGetPerGameLeagueLeaders_isNetworkUnavailable() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getPerGameLeagueLeaders(for: 2020, with: .regularSeason, and: .playerEfficiency) { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            nil, nil, TestError.testError
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The network is unavailable.")
+    }
+    
+    func test_jumpShot_withGetPerGameLeagueLeaders_isRequestFailed() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getPerGameLeagueLeaders(for: 2020, with: .regularSeason, and: .playerEfficiency) { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+           badJsonData(), response(statusCode: 300), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The request failed.")
+    }
+    
+    func test_jumpShot_withGetPerGameLeagueLeaders_isNoDataReturned() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getPerGameLeagueLeaders(for: 2020, with: .regularSeason, and: .playerEfficiency) { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+                            nil, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "No NBA data was returned.")
+    }
+    
+    func test_jumpShot_withGetPerGameLeagueLeaders_isUnableToDecode() throws {
+        let mockURLSession = MockURLSession()
+        var errorDescription = String()
+
+        let path = getPath(forResource: "PerGameLeagueLeaderApiResponseMissingAttribute",
+                            ofType: "json")
+
+        let perGameLeagueLeaderResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+        router.session = mockURLSession
+
+        let expectation = XCTestExpectation(description: "HTTP Response Error")
+
+        jumpShot.getPerGameLeagueLeaders(for: 2020, with: .regularSeason, and: .playerEfficiency) { _, error in
+            errorDescription = error!.localizedDescription
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            perGameLeagueLeaderResponseData, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(errorDescription, "The source data could not be decoded.")
+    }
+
+    func test_jumpShot_withGetPerGameLeagueLeaders_isOneLeagueLeader() throws {
+        let mockURLSession = MockURLSession()
+        var responsePerGameLeagueLeaders = [PerGameLeagueLeader]()
+        router.session = mockURLSession
+        let testBundle = Bundle(for: type(of: self))
+        guard let path = testBundle.path(forResource: "PerGameLeagueLeaderApiResponseOneLeagueLeader", ofType: "json")
+            else { fatalError("Can't find PerGameLeagueLeaderApiResponseOneLeagueLeader.json file") }
+        let perGameLeagueLeaderResponseData = try Data(contentsOf: URL(fileURLWithPath: path))
+
+        let expectation = XCTestExpectation(description: "PerGameLeagueLeaderApiResponse")
+
+        jumpShot.getPerGameLeagueLeaders(for: 2020, with: .regularSeason, and: .playerEfficiency) { perGameLeagueLeaders, _ in
+            responsePerGameLeagueLeaders = perGameLeagueLeaders!
+            expectation.fulfill()
+        }
+
+        mockURLSession.dataTaskArgsCompletionHandler.first?(
+            perGameLeagueLeaderResponseData, response(statusCode: 200), nil
+        )
+
+        wait(for: [expectation], timeout: 5.0)
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.playerId, "203999")
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.rank, 1)
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.player, "Nikola Jokic")
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.team, "DEN")
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.gamesPlayed, 72)
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.minutes, 34.6)
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.fieldGoalsMade, 10.2)
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.fieldGoalsAttempted, 18)
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.fieldGoalsPercentage, 0.566)
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.threePointersMade, 1.3)
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.threePointersAttempted, 3.3)
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.threePointersPercentage, 0.388)
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.foulShotsMade, 4.8)
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.foulShotsAttempted, 5.5)
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.foulShotsPercentage, 0.868)
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.defensiveRebounds, 8)
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.offensiveRebounds, 2.8)
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.rebounds, 10.8)
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.assists, 8.3)
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.steals, 1.3)
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.blocks, 0.7)
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.turnovers, 3.1)
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.playerEfficiency, 35.9)
+        XCTAssertEqual(responsePerGameLeagueLeaders.first!.points, 26.4)
+     }
+    
+    
     
     // MARK: Per48TotalLeagueLeaders
 
