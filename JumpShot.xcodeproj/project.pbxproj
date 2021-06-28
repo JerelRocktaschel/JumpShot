@@ -156,6 +156,8 @@
 		D8342FB12669BFA80035D55E /* Per48LeagueLeaderModelMissingDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D8342FB02669BFA80035D55E /* Per48LeagueLeaderModelMissingDataFormat.json */; };
 		D8342FB62669BFE80035D55E /* Per48LeagueLeaderModelBadDataFormat.json in Resources */ = {isa = PBXBuildFile; fileRef = D8342FB52669BFE80035D55E /* Per48LeagueLeaderModelBadDataFormat.json */; };
 		D83B2646262A1951002EDBB0 /* GameSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83B2645262A1951002EDBB0 /* GameSchedule.swift */; };
+		D851E05D268921F300B2AC9D /* JumpShot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D817FC3E261BCFB00092F5E0 /* JumpShot.framework */; };
+		D851E05E268921F300B2AC9D /* JumpShot.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D817FC3E261BCFB00092F5E0 /* JumpShot.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D852B5122633532A00610391 /* TeamSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D852B5112633532A00610391 /* TeamSchedule.swift */; };
 		D852B5172633B7D700610391 /* JumpShotGetTeamSchedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = D852B5162633B7D700610391 /* JumpShotGetTeamSchedules.swift */; };
 		D8874CF2264972D300CA3520 /* PlayerStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8874CF1264972D300CA3520 /* PlayerStats.swift */; };
@@ -228,7 +230,28 @@
 			remoteGlobalIDString = D817FC3D261BCFB00092F5E0;
 			remoteInfo = JumpShot;
 		};
+		D851E05F268921F300B2AC9D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D817FC35261BCFB00092F5E0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D817FC3D261BCFB00092F5E0;
+			remoteInfo = JumpShot;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D851E05A2689204C00B2AC9D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D851E05E268921F300B2AC9D /* JumpShot.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		D815EAC6262B8B75004C22AD /* JumpShotGetDailySchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpShotGetDailySchedule.swift; sourceTree = "<group>"; };
@@ -469,6 +492,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D851E05D268921F300B2AC9D /* JumpShot.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1227,10 +1251,12 @@
 				D817FCC0261BD1A00092F5E0 /* Sources */,
 				D817FCC1261BD1A00092F5E0 /* Frameworks */,
 				D817FCC2261BD1A00092F5E0 /* Resources */,
+				D851E05A2689204C00B2AC9D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D851E060268921F300B2AC9D /* PBXTargetDependency */,
 			);
 			name = JumpShotExamples;
 			productName = JumpShotExamples;
@@ -1561,6 +1587,11 @@
 			target = D817FC3D261BCFB00092F5E0 /* JumpShot */;
 			targetProxy = D817FC49261BCFB00092F5E0 /* PBXContainerItemProxy */;
 		};
+		D851E060268921F300B2AC9D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D817FC3D261BCFB00092F5E0 /* JumpShot */;
+			targetProxy = D851E05F268921F300B2AC9D /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1793,6 +1824,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V8M7L5RW78;
 				FRAMEWORK_SEARCH_PATHS = "";
@@ -1813,6 +1845,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V8M7L5RW78;
 				FRAMEWORK_SEARCH_PATHS = "";
