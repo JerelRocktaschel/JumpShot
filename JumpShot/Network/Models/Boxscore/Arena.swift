@@ -19,7 +19,7 @@ extension Arena: Equatable {
 
     // MARK: Equatable
 
-    public static func ==(lhs: Arena, rhs: Arena) -> Bool {
+    public static func == (lhs: Arena, rhs: Arena) -> Bool {
         return lhs.name == rhs.name &&
         lhs.isDomestic == rhs.isDomestic &&
         lhs.city == rhs.city &&

@@ -44,7 +44,7 @@ public extension JumpShot {
      */
 
     typealias GetStandingsCompletion = (_ gameSchedules: [Standing]?, _ error: LocalizedError?) -> Void
-    
+
     func getStandings(completion: @escaping GetStandingsCompletion) {
         JumpShotNetworkManager.shared.router.request(.standingList) { data, response, error in
             var dataResponse: (json: [String: Any]?, error: LocalizedError?)

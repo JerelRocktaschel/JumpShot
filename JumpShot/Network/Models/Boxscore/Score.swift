@@ -15,7 +15,7 @@ extension Score: Equatable {
 
     // MARK: Equatable
 
-    public static func ==(lhs: Score, rhs: Score) -> Bool {
+    public static func == (lhs: Score, rhs: Score) -> Bool {
         return lhs.score == rhs.score
     }
 }

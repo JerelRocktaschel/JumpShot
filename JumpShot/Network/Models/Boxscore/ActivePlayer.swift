@@ -108,7 +108,7 @@ public struct ActivePlayer {
         } else {
             throw JumpShotNetworkManagerError.unableToDecodeError
         }
-        
+
         playerId = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .playerId)
         firstName = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .firstName)
         lastName = try activePlayerCodingKeysDataContainer.decode(String.self, forKey: .lastName)

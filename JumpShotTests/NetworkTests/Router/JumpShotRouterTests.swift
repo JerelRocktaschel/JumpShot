@@ -2,8 +2,27 @@
 //  JumpShotRouterTests.swift
 //  JumpShotTests
 //
-//  Created by Jerel Rocktaschel on 3/31/21.
+//  Copyright (c) 2021 Jerel Rocktaschel
 //
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
+//
+// swiftlint:disable all
 
 import XCTest
 @testable import JumpShot
@@ -285,7 +304,7 @@ class JumpShotRouterTests: XCTestCase {
         mockURLSession.verifyDataTask(
             with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=FG3_PCT")!))
     }
-    
+
     func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_FTM() {
         router.request(.leagueLeadersList(perMode: .perGame,
                                           season: "2020-21",
@@ -295,7 +314,7 @@ class JumpShotRouterTests: XCTestCase {
         mockURLSession.verifyDataTask(
             with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=FTM")!))
     }
-    
+
     func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_FTA() {
         router.request(.leagueLeadersList(perMode: .perGame,
                                           season: "2020-21",
@@ -385,7 +404,7 @@ class JumpShotRouterTests: XCTestCase {
         mockURLSession.verifyDataTask(
             with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=TOV")!))
     }
-    
+
     func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_EFF() {
         router.request(.leagueLeadersList(perMode: .perGame,
                                           season: "2020-21",
@@ -395,7 +414,7 @@ class JumpShotRouterTests: XCTestCase {
         mockURLSession.verifyDataTask(
             with: URLRequest(url: URL(string: "https://stats.nba.com/stats/leagueLeaders?LeagueID=00&PerMode=PerGame&Scope=S&Season=2020-21&SeasonType=Regular+Season&StatCategory=EFF")!))
     }
-    
+
     func test_leagueLeadersRouter_shouldMakeRequestToLeagueLeadersAPIURL_StatCategoryIs_PTS() {
         router.request(.leagueLeadersList(perMode: .perGame,
                                           season: "2020-21",

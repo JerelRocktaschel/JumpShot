@@ -159,8 +159,9 @@ extension Per48LeagueLeaderApiResponse {
                                                                                  options: []) else {
                         return nil
                 }
-                
-                let per48LeagueLeader = try JSONDecoder().decode(Per48LeagueLeader.self, from: jsonPer48LeagueLeaderData)
+
+                let per48LeagueLeader = try JSONDecoder().decode(Per48LeagueLeader.self,
+                                                                 from: jsonPer48LeagueLeaderData)
                 self.per48LeagueLeaders.append(per48LeagueLeader)
             }
         } catch {

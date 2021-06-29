@@ -40,7 +40,7 @@ extension GameDuration: Equatable {
 
     // MARK: Equatable
 
-    public static func ==(lhs: GameDuration, rhs: GameDuration) -> Bool {
+    public static func == (lhs: GameDuration, rhs: GameDuration) -> Bool {
         return lhs.hours == rhs.hours &&
         lhs.minutes == rhs.minutes
     }

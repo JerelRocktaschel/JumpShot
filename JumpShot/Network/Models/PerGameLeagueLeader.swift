@@ -67,7 +67,8 @@ public struct PerGameLeagueLeader {
         gamesPlayed = try perGameLeagueLeaderCodingKeysContainer.decode(Int.self, forKey: .gamesPlayed)
         minutes = try perGameLeagueLeaderCodingKeysContainer.decode(Double.self, forKey: .minutes)
         fieldGoalsMade = try perGameLeagueLeaderCodingKeysContainer.decode(Double.self, forKey: .fieldGoalsMade)
-        fieldGoalsAttempted = try perGameLeagueLeaderCodingKeysContainer.decode(Double.self, forKey: .fieldGoalsAttempted)
+        fieldGoalsAttempted = try perGameLeagueLeaderCodingKeysContainer.decode(Double.self,
+                                                                                forKey: .fieldGoalsAttempted)
         fieldGoalsPercentage = try perGameLeagueLeaderCodingKeysContainer.decode(Double.self,
                                                                                forKey: .fieldGoalsPercentage)
         threePointersMade = try perGameLeagueLeaderCodingKeysContainer.decode(Double.self, forKey: .threePointersMade)
@@ -77,7 +78,8 @@ public struct PerGameLeagueLeader {
                                                                                   forKey: .threePointersPercentage)
         foulShotsMade = try perGameLeagueLeaderCodingKeysContainer.decode(Double.self, forKey: .foulShotsMade)
         foulShotsAttempted = try perGameLeagueLeaderCodingKeysContainer.decode(Double.self, forKey: .foulShotsAttempted)
-        foulShotsPercentage = try perGameLeagueLeaderCodingKeysContainer.decode(Double.self, forKey: .foulShotsPercentage)
+        foulShotsPercentage = try perGameLeagueLeaderCodingKeysContainer.decode(Double.self,
+                                                                                forKey: .foulShotsPercentage)
         offensiveRebounds = try perGameLeagueLeaderCodingKeysContainer.decode(Double.self, forKey: .offensiveRebounds)
         defensiveRebounds = try perGameLeagueLeaderCodingKeysContainer.decode(Double.self, forKey: .defensiveRebounds)
         rebounds = try perGameLeagueLeaderCodingKeysContainer.decode(Double.self, forKey: .rebounds)
@@ -156,8 +158,9 @@ extension PerGameLeagueLeaderApiResponse {
                                                                                  options: []) else {
                         return nil
                 }
-                
-                let perGameLeagueLeader = try JSONDecoder().decode(PerGameLeagueLeader.self, from: jsonPerGameLeagueLeaderData)
+
+                let perGameLeagueLeader = try JSONDecoder().decode(PerGameLeagueLeader.self,
+                                                                   from: jsonPerGameLeagueLeaderData)
                 self.perGameLeagueLeaders.append(perGameLeagueLeader)
             }
         } catch {
@@ -165,4 +168,3 @@ extension PerGameLeagueLeaderApiResponse {
         }
     }
 }
-

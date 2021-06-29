@@ -42,7 +42,7 @@ public extension JumpShot {
 
     typealias GetTeamStatRankingsCompletion = (_ teamStatRankings: [TeamStatRanking]?,
                                                _ error: LocalizedError?) -> Void
-    
+
     func getTeamStatRankings(completion: @escaping GetTeamStatRankingsCompletion) {
         let season = Date().getSeasonYear()
         JumpShotNetworkManager.shared.router.request(.teamStatRankingList(season: season)) { data, response, error in

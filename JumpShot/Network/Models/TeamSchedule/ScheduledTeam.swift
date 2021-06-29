@@ -39,10 +39,10 @@ public struct ScheduledTeam {
 }
 
 extension ScheduledTeam: Equatable {
-    
+
     // MARK: Equatable
-    
-    public static func ==(lhs: ScheduledTeam, rhs: ScheduledTeam) -> Bool {
+
+    public static func == (lhs: ScheduledTeam, rhs: ScheduledTeam) -> Bool {
         return lhs.teamId == rhs.teamId && lhs.score == rhs.score
     }
 }

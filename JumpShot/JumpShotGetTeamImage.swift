@@ -27,7 +27,7 @@ import Foundation
 import UIKit
 
 public extension JumpShot {
-    
+
     /**
         Returns a current team image in PNG format.
      

@@ -19,7 +19,7 @@ extension BoxscorePeriod: Equatable {
 
     // MARK: Equatable
 
-    public static func ==(lhs: BoxscorePeriod, rhs: BoxscorePeriod) -> Bool {
+    public static func == (lhs: BoxscorePeriod, rhs: BoxscorePeriod) -> Bool {
         return lhs.current == rhs.current &&
         lhs.type == rhs.type &&
         lhs.maxRegular == rhs.maxRegular &&

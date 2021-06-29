@@ -44,7 +44,7 @@ public extension JumpShot {
 
     typealias GetDailyScheduleCompletion = (_ gameSchedules: [GameSchedule]?,
                                             _ error: LocalizedError?) -> Void
-    
+
     func getDailySchedule(for scheduleDate: Date = Date(), completion: @escaping GetDailyScheduleCompletion) {
         let scheduleDateString = scheduleDate.toNBADateURLFormat()
         let season = Date().getSeasonYear()

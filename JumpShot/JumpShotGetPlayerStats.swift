@@ -40,10 +40,10 @@ public extension JumpShot {
         # Notes: #
         1. Handle PlayerStatSummary return due to being optional.
      */
-    
+
     typealias GetPlayerStatsSummaryCompletion = (_ playerStatsSummary: PlayerStatsSummary?,
                                                  _ error: LocalizedError?) -> Void
-    
+
     func getGetPlayerStatsSummary(for playerId: String, completion: @escaping GetPlayerStatsSummaryCompletion) {
         let season = Date().getSeasonYear()
         JumpShotNetworkManager.shared.router.request(.playerStatsSummary(season: season, playerId: playerId)) { data, response, error in

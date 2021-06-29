@@ -159,13 +159,12 @@ extension TotalLeagueLeaderApiResponse {
 
             self.totalLeagueLeaders = [TotalLeagueLeader]()
             for totalLeagueLeaderRowArray in rowSetArray {
-                let totalLeagueLeaderDictionary = Dictionary(uniqueKeysWithValues:
-                                                                zip(headersDictionary, totalLeagueLeaderRowArray))                
+                let totalLeagueLeaderDictionary = Dictionary(uniqueKeysWithValues: zip(headersDictionary, totalLeagueLeaderRowArray))
                 guard let jsonTotalLeagueLeaderData = try? JSONSerialization.data(withJSONObject: totalLeagueLeaderDictionary,
                                                                                  options: []) else {
                         return nil
                 }
-                
+
                 let totalLeagueLeader = try JSONDecoder().decode(TotalLeagueLeader.self, from: jsonTotalLeagueLeaderData)
                 self.totalLeagueLeaders.append(totalLeagueLeader)
             }

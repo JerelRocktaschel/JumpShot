@@ -44,7 +44,7 @@ public extension JumpShot {
 
     typealias GetGamePlaysCompletion = (_ plays: [Play]?,
                                         _ error: LocalizedError?) -> Void
-    
+
     func getGetGamePlays(for gameDate: Date = Date(),
                          with gameId: String,
                          completion: @escaping GetGamePlaysCompletion) {

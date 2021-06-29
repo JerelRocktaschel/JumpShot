@@ -41,10 +41,10 @@ public extension JumpShot {
         # Notes: #
         1. Handle boxscore return due to being optional.
      */
-    
+
     typealias BoxscoreCompletion = (_ boxscore: Boxscore?,
                                     _ error: LocalizedError?) -> Void
-    
+
     func getBoxscore(for gameDate: Date = Date(),
                      with gameId: String,
                      completion: @escaping BoxscoreCompletion) {

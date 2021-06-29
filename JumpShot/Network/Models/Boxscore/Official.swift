@@ -15,7 +15,7 @@ extension Official: Equatable {
 
     // MARK: Equatable
 
-    public static func ==(lhs: Official, rhs: Official) -> Bool {
+    public static func == (lhs: Official, rhs: Official) -> Bool {
         return lhs.fullName == rhs.fullName
     }
 }

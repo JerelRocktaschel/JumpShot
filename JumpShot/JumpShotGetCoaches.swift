@@ -41,7 +41,7 @@ public extension JumpShot {
      */
 
     typealias GetCoachesCompletion = (_ coaches: [Coach]?, _ error: LocalizedError?) -> Void
-    
+
     func getCoaches(completion: @escaping GetCoachesCompletion) {
         let season = Date().getSeasonYear()
         JumpShotNetworkManager.shared.router.request(.coachList (season: season)) { data, response, error in

@@ -39,14 +39,14 @@ public struct MediaNames {
 extension MediaNames: Equatable {
 
     // MARK: Equatable
-    
+
     public static func == (lhs: MediaNames, rhs: MediaNames) -> Bool {
         return lhs.shortName == rhs.shortName && lhs.longName == rhs.longName
     }
 }
 
 extension MediaNames: Comparable {
-    
+
     // MARK: Comparable
 
     public static func < (lhs: MediaNames, rhs: MediaNames) -> Bool {

@@ -42,7 +42,7 @@ public extension JumpShot {
 
     typealias GetCompleteCompletion = (_ teamSchedules: [TeamSchedule]?,
                                             _ error: LocalizedError?) -> Void
-    
+
     func getCompleteSchedule(completion: @escaping GetTeamSchedulesCompletion) {
         let season = Date().getSeasonYear()
         JumpShotNetworkManager.shared.router.request(.completeScheduleList (season: season)) { data, response, error in

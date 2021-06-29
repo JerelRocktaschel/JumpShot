@@ -26,7 +26,7 @@
 import Foundation
 
 public extension JumpShot {
-    
+
     /**
         Returns an array of PerLeagueLeader model objects for the season, category and season type passed
      
@@ -46,7 +46,7 @@ public extension JumpShot {
 
     typealias Per48LeagueLeadersCompletion = (_ perLeagueLeaders: [Per48LeagueLeader]?,
                                               _ error: LocalizedError?) -> Void
-    
+
      func getPer48LeagueLeaders(for seasonStartYear: Int = Date().getSeasonYearInt(),
                                 with seasonType: LeagueLeaders.SeasonType,
                                 and category: LeagueLeaders.Per48StatCategory,

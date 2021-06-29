@@ -46,7 +46,7 @@ public extension JumpShot {
             return (nil, JumpShotNetworkManagerError.unableToDecodeError)
         }
     }
-    
+
     internal func handleDataResponse(data: Data?,
                                      response: URLResponse?,
                                      error: Error?) -> ([String: Any]?, LocalizedError?) {
@@ -107,7 +107,7 @@ extension String {
         }
         return int
     }
-    
+
     subscript(_ range: CountablePartialRangeFrom<Int>) -> String {
         let start = index(startIndex, offsetBy: max(0, range.lowerBound))
          return String(self[start...])
@@ -176,13 +176,13 @@ extension DateFormatter {
         formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter
     }()
-    
+
     static let monthYearDate: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyyMMdd"
         return formatter
     }()
-    
+
     static let gameDate: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy hh:mm a"

@@ -45,7 +45,7 @@ extension Paragraph: Equatable {
 
     // MARK: Equatable
 
-    public static func ==(lhs: Paragraph, rhs: Paragraph) -> Bool {
+    public static func == (lhs: Paragraph, rhs: Paragraph) -> Bool {
         return lhs.text == rhs.text
     }
 }

@@ -43,7 +43,7 @@ public extension JumpShot {
 
     typealias GetTeamLeadersCompletion = (_ statLeaders: [StatLeader]?,
                                           _ error: LocalizedError?) -> Void
-    
+
     func getTeamLeaders(for teamId: String, completion: @escaping GetTeamLeadersCompletion) {
         JumpShotNetworkManager.shared.router.request(.teamLeaderList(teamId: teamId)) { data, response, error in
             var dataResponse: (json: [String: Any]?, error: LocalizedError?)

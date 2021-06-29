@@ -7,3 +7,5 @@ disabled_rules:
 file_length:
   warning: 800
   error: 1500
+  
+line_length: 165
